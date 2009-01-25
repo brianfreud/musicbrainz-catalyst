@@ -1,29 +1,32 @@
-[% WRAPPER 'artist/layout.tt' title='Check Duplicates' %]
-[% WRAPPER 'components/box.tt' header='Duplicate Releases' %]
-[% INCLUDE 'add_release/bread_crumbs.tt' %]
+[%# Converted #%]
 
-<p>
-    We found the following similar releases already in our database.
-</p>
+[%# TODO: Possible dupes are displayed, but there's no visible way to select one of them and abort the add process.  I've added a button to handle it, but it needs a different action (ie, /restart). #%]
+[%# TODO: Need a version of forms/row.tt that will keep both buttons on the same line, rather than stacking them. #%]
+[%# TODO: This page should only have the breadcrumbs up to "Check for Duplicates" highlighted.  It is also highlighting the Confirm breadcrumb. #%]
+[%# TODO: "No, my release..." takes you back to the Release Information (tracks.tt) step, but though you really are at the Confirm step then, the Comfirm Artist, Confirm Labels, and Check for Duplicates breadcrumbs are no longer hightlighted.  They should be, as should Confirm. #%]
 
-<ul>
-    <li>
-        Did you mean to enter one of the following?
-    </li>
-    <li>
-        If you are sure that your release is different, please confirm by
-        selecting the button below.
-    </li>
-</ul>
-
-[% INCLUDE 'release/release.tt' release=release.release
-    tracks=release.tracks release_events=release.events
-    show_artists=1
-    FOR release=similar %]
-
-[% INCLUDE 'forms/submit.tt'
-    label="No, my release is not one of the above"
-    WRAPPER 'forms/form.tt' %]
-
-[% END %]
+[%- PROCESS 'components/textblobs.tt' -%]
+[% WRAPPER 'artist/layout.tt' title=l('Check Duplicates') %]
+    [% WRAPPER 'components/box.tt' header=l('Possible duplicate Releases found') %]
+        [% INCLUDE 'add_release/bread_crumbs.tt' %]
+        <p>
+            [% text_similar_release %]
+        </p>
+        [%- WRAPPER 'layout/guidelines.tt' -%]
+            [%- make_guideline('did_you_mean') -%]
+            [%- make_guideline('release_confirm') -%]
+        [%- END -%]
+        [% INCLUDE 'release/release.tt' release=release.release
+            tracks=release.tracks release_events=release.events
+            show_artists=1
+            FOR release=similar %]
+        [%- WRAPPER 'forms/row.tt' %]
+            [% INCLUDE 'forms/submit.tt'
+                label=text_release_not_above
+                WRAPPER 'forms/form.tt' %]
+            [% INCLUDE 'forms/submit.tt'
+                label=text_release_is_above
+                WRAPPER 'forms/form.tt' %]
+        [% END %]
+    [% END %]
 [% END %]

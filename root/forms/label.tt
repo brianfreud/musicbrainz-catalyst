@@ -1,3 +1,7 @@
+[%# Converted #%]
+
+[%# TODO: This is generating a lot of invalid junk in the HTML #%]
+
 <label id="label-[% form_id(form, widget.full_name) %]" for="[% form_id(form, widget.full_name) %]" error" : "" %]">
-    [% label | ucfirst %][% UNLESS right; ':'; END %]
+    [% label | ucfirst %][% UNLESS right; ''; END %]
 </label>

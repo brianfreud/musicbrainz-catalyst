@@ -325,6 +325,7 @@ hr {
     color: #aaa;
     padding: 2pt 5pt;
     border: 1px solid #aaa;
+    font-weight: 700;
 }
 
 .wizard_breadcrumbs li.complete {

@@ -40,11 +40,12 @@
     float: left;
     text-align: right;
     width: 100pt;
+    padding-right: 3pt;
 }
 
 #content form.generic div.input,
 #content form.generic .labelRight {
-    margin-left: 60pt;
+    margin-left: 110pt;
 }
 
 #content form.generic .labelRight .input {

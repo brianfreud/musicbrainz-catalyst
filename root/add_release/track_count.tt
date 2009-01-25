@@ -1,27 +1,18 @@
-[% WRAPPER 'layout.tt' title='Add Release' %]
-[% WRAPPER 'components/box.tt' header='Add Release' %]
-[% INCLUDE 'add_release/bread_crumbs.tt' %]
+[%# Converted #%]
 
-<ul>
-    <li>
-        You are about to manually add a release to the artist
-        [%- entity_link(artist) -%].
-    </li>
-    <li>
-        Did you know that you can import releases from the
-        <a href="[% c.uri_for('/release/import') %]">FreeDB database</a>
-        ([% doc_link('FreeDB', 'read more') %])?
-    </li>
-    <li>
-        Please read the [%- doc_link('StyleGuidelines', 'style guidelines') -%]
-        first, then enter the number of tracks on this release to
-        begin the add release wizard.
-    </li>
-</ul>
+[%- PROCESS 'components/textblobs.tt' -%]
 
-[% WRAPPER 'forms/form.tt' %]
-    [% INCLUDE 'forms/widget.tt' widget=form.field('track_count') label='Track count' %]
-    [% INCLUDE 'forms/submit.tt' label='Next' %]
-[% END %]
-[% END %]
+[% WRAPPER "artist/layout.tt" title=l('Add Release') %]
+    [% WRAPPER 'components/box.tt' header=l('Number of Tracks on the Release') %]
+        [% INCLUDE 'add_release/bread_crumbs.tt' %]
+        [%- WRAPPER 'layout/guidelines.tt' -%]
+            [%- make_guideline('release_add') -%]
+            [%- make_guideline('freedb_did_you_know') -%]
+            [%- make_guideline('release_read_guidelines') -%]
+        [%- END -%]
+        [% WRAPPER 'forms/form.tt' %]
+            [%  make_required_widget('track_count', l('Number of Tracks:')) %]
+            [%- INCLUDE 'forms/submit.tt' label=l('Next') _ ' &raquo;' %]
+        [% END %]
+    [% END %]
 [% END %]

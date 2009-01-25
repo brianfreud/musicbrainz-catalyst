@@ -30,7 +30,7 @@ requires 'Email::Date::Format';
 requires 'Email::Valid';
 requires 'Form::Processor';
 requires 'JSON';
-requires 'Locale::MakeText::Simple';
+requires 'Locale::MakeText';
 requires 'MIME::Lite';
 requires 'Moose';
 requires 'OSSP::uuid';

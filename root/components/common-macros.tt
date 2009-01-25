@@ -1,10 +1,20 @@
-[%- MACRO get_guideline(text) INCLUDE 'layout/guideline.tt' guideline='text_guideline_' _ text -%]
+[%# Converted #%]
+
+[%# TODO: entity_link needs to be able to have the label made bold - see add_release/tracks.tt for example of where needed. #%]
+[%# TODO: make_required_widget should use css, not presentational HTML. #%]
+[%# TODO: Write a quickie xgettext script to pull text strings to a .po and rename that to .pot. #%]
+[%# TODO: Write a real l() macro (ie, implement c.localize(string, language) over in the real perl) to use that .pot. #%]
+
+[%- MACRO make_guideline(text) INCLUDE 'layout/guideline.tt' guideline='text_guideline_' _ text -%]
 
 [%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
-[% MACRO l(text, args) BLOCK;
-           c.localize(text, args);
-       END; %]
+[%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label='<strong>' _ label _ '</strong>' -%]
+
+[%# This next is currently a placerholder, but should be changed to be l(text, args) and c.localize(text, args); when that function exists #%]
+[%- MACRO l(text) BLOCK -%]
+    [%- text -%]
+[%- END -%]
 
 [%- MACRO doc_link(to, text) BLOCK -%]
     <a href="/doc/[% to %]">[% (text or to) %]</a>
@@ -14,7 +24,7 @@
     [%- mpclass = entity.has_mod_pending ? ' class="mp"' : '' -%]
     [%- IF entity.entity_type == "url" -%]
         <a href="[%- (entity.url || entity.name) -%]"[%- mpclass -%]>[%- (entity.name || entity.url) | truncate(53) | html -%]</a>
-        [<a href="[%- c.entity_url(entity, 'info') -%]">info</a>]
+        [<a href="[%- c.entity_url(entity, 'info') -%]">[% l('info') %]</a>]
     [%- ELSE -%]
         <a href="[%- c.entity_url(entity, 'show') -%]"[%- mpclass -%]>
             [%- UNLESS noicon -%]<span class="[%- entity.entity_type -%]_icon">[%- END -%]
@@ -32,5 +42,5 @@
 [%- END -%]
 
 [%- MACRO form_id(form, field) BLOCK -%]
-form-[% form.name %]-[% field.replace('_', '-') %]
+    form-[% form.name %]-[% field.replace('_', '-') %]
 [%- END -%]

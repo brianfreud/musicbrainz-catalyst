@@ -1,21 +1,30 @@
+[%# Converted #%]
+
+[% SET text_about_edit_notes = l('Please note that it is highly recommended to enter a edit note. If you do so, your edit is more likely to be voted on, and unanimously accepted by the other MusicBrainz editors. If your edit receives the required number of unanimous yes votes, it will be applied instantly, even before the voting period elapses in which edits usually are kept open. For detailed information on how long edits stay open and how many votes are required for it to pass unanimously, please see our edit conditions page.') %]
+[% SET text_autoeditor_note = l('<strong>Auto editor privileges</strong>: If you untick this checkbox, this edit will be entered as if you would not have ' _ doc_link('AutoEditor', 'auto editor') _ ' status. You can enable them any time again.') %]
+[% SET text_confirm_ask = l('Are you sure?') -%]
+[% SET text_confirm_sure = l('Yes, I am sure and I know what I am doing.') -%]
+[% SET text_guideline_ar_about = l('The fields below allow you to enter information about the title, track title(s), and artist(s) for this release.') %]
+[% SET text_guideline_ar_remove_tracks = l('Unless the release has attached ' _ doc_link('DiscID', 'Disc IDs') _ ', you can remove tracks by activating the remove button on the left of the track title fields.') %]
+[% SET text_guideline_ar_va_artists = l('If you are editing a ' _ doc_link('VariousArtistsRelease', 'Various Artists Release') _ ', or if you have chosen to display the track artists, you can activate the change button of the artists you would like to change. (Available only if you have JavaScript enabled.)  If you have JavaScript disabled, or if you need to add new artists, the next page will let you specify the track artists.') %]
 [% SET text_guideline_artist_add =  l('You are about to add an artist to MusicBrainz.') -%]
+[% SET text_guideline_artist_disambiguation = l('If one or more artists with the same name already exist in the database, you will be prompted to ' _ doc_link('ArtistComment', 'add a comment to this artist') _ ', which will allow users to distinguish this entry from the other artist(s) with the same name.') -%]
+[% SET text_guideline_artist_duplicate_confirm = l('Confirm by activating the checkbox below that you have read ' _ doc_link('ArtistComment', 'ArtistComment') _ ', understood how we distinguish duplicate artists, and that you know what you are doing.') -%]
+[% SET text_guideline_artist_duplicate_required = l('You are required to enter a comment which allows users to distinguish this artist from the other artists with the same name, if the final artist name is similar to an existing artist.') -%]
+[% SET text_guideline_artist_name_casing = l('Please note that the casing of the artist is taken into account when determining the need for a comment.  The two artists <em>some name</em> and <em>Some Name</em> are not the same.') -%]
+[% SET text_guideline_artist_read_guidelines = l('Please read the ' _ doc_link('StyleGuideline', 'Style Guidelines') _ ', then provide the necessary information about the new artist below.') -%]
+[% SET text_guideline_did_you_mean = l('Were you adding one of the following releases which already is in the database?') %]
+[% SET text_guideline_freedb_did_you_know = l('Did you know that you can <a href=' _ c.uri_for('/release/import') _ '>import releases</a> from the ' _ doc_link('FreeDB', 'FreeDB database') _ '?') %]
+[% SET text_guideline_release_add = l('You are about to manually add a ' _ doc_link('Release', 'Release') _ '.') %]
+[% SET text_guideline_release_confirm = l('If you are sure that your release is different, please confirm by selecting the button below.') %]
+[% SET text_guideline_release_read_guidelines = l('Please read the ' _ doc_link('StyleGuideline', 'Style Guidelines') _ ', then enter the number of tracks on this release to begin the add release wizard.') %]
+[% SET text_guideline_use_gc = l('Please use the Guess Case buttons to fix common style errors. (Available only if you have JavaScript enabled.)') %]
+[% SET text_info_dates = l('Dates are in the format YYYY-MM-DD. Partial dates such as YYYY-MM or just YYYY are OK, or you can omit the date entirely.') -%]
+[% SET text_release_is_above = l('Yes, my release is one of the above') %]
+[% SET text_release_not_above = l('No, my release is not one of the above') %]
+[% SET text_select_artist = l('Please search and select the correct artist.  If searching yields no useful results, you can <a href="?add=1">add a new artist</a>') %]
+[% SET text_select_label = l('Please search and select the correct label.  If searching yields no useful results, you can use the form below to add a new label.') %]
+[% SET text_similar_release = l('We found the following similar releases already in our database.') %]
+[% SET text_warning_artist_duplicate_add = l('You are attempting to add an artist which appears to be very similar, if not exactly the same, as these existing artists:') -%]
+[% SET text_warning_artist_duplicate_certain = l('If you are certain that you want to add this artist, then:') -%]
 
-[% SET text_guideline_read_guidelines = 'Please read the ' _ doc_link('StyleGuideline', 'Style Guidelines') _ ', then provide the necessary information about the new artist below.' -%]
-
-[% SET text_guideline_artist_disambiguation = 'If one or more artists with the same name already exist in the database, you will be prompted to add a comment to this artist, which will allow users to distinguish this entry from the other artist(s) with the same name (see ' _ doc_link('ArtistComment', 'ArtistComment') _ ').' -%]
-
-[% SET text_guideline_artist_name_casing = 'Please note that the casing of the artist is taken into account when determining the need for a comment.  The two artists <em>some name</em> and <em>Some Name</em> are not the same.' -%]
-
-[% SET text_warning_artist_duplicate_add = 'You are attempting to add the artist &quot;' _ form.value('name') _ '&quot;, which appears to be very similar, if not exactly the same, as these existing artists:' -%]
-
-[% SET text_guideline_artist_duplicate_confirm = 'Confirm by activating the checkbox below that you have read ' _ doc_link('ArtistComment', 'ArtistComment') _ ', understood how we distinguish duplicate artists, and that you know what you are doing.' -%]
-
-[% SET text_guideline_artist_duplicate_required = 'You are required to enter a comment which allows users to distinguish this artist from the other artists with the same name, if the final artist name is similar to an existing artist.' -%]
-
-[% SET text_warning_artist_duplicate_certain = 'If you are certain that you want to add this artist, then:' -%]
-
-[% SET text_info_dates = 'Dates are in the format YYYY-MM-DD. Partial dates such as YYYY-MM or just YYYY are OK, or you can omit the date entirely.' -%]
-
-[% SET text_confirm_sure = 'Yes, I am sure and I know what I am doing.' -%]
-
-[% SET text_confirm_ask = 'Are you sure?' -%]

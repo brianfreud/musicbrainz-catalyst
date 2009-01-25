@@ -10,7 +10,7 @@
 		</td>
 		[% END %]
 	[% END %]
-	
+
 	<table class="browse">
 		<tr>
 			<td>

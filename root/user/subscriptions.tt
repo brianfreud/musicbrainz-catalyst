@@ -7,7 +7,7 @@
 <p>
     To unsubscribe, activate the checkbox next to the artists, labels or editors you would like
     to unsubscribe from, then <em>Unsubscribe</em> below. To subscribe to an artist, a label or an editor,
-    use the "Subscribe" link on the artist's, label's or editor's page. 
+    use the "Subscribe" link on the artist's, label's or editor's page.
 </p>
 
 <h3>[% type | ucfirst %]s</h3>

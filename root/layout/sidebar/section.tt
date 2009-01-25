@@ -6,5 +6,5 @@
 [% END %]
 </h3>
 <div class="sidebar-module">
-[% content %]	
+[% content %]
 </div>

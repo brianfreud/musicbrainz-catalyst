@@ -40,7 +40,7 @@
         <p>
             Unless you want to be testing the latest and greatest MusicBrainz features
             you probably want to go to the <a href="http://musicbrainz.org/">
-            <img src="[% c.uri_for('/static/images/icon/extlink.gif') %]" alt="External Website" /> 
+            <img src="[% c.uri_for('/static/images/icon/extlink.gif') %]" alt="External Website" />
             MusicBrainz main server</a>.
         </p>
         [% END %]
@@ -80,7 +80,7 @@
             </a>
             <a href="[% c.uri_for('/doc/PicardDownload') %]" title="Download Picard">
                 Download Picard
-            </a> 
+            </a>
             [Windows/Linux]
             </div>
 
@@ -100,7 +100,7 @@
             </a>
             <a href="http://www.jthink.net/jaikoz/jsp/download/start.jsp" title="Download Jaikoz Tag Editor">
                 Download Jaikoz Tag Editor
-            </a> 
+            </a>
             [Windows, Linux, Mac OS X -- <a href="http://www.jthink.net/jaikoz">More info...</a>]
             </div>
         </p>

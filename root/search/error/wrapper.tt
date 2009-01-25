@@ -4,7 +4,7 @@
 [% content %]
 
 <p>
-    For help on writing effective search queries, try reading the 
+    For help on writing effective search queries, try reading the
     [%- doc_link('TextSearchSyntax', 'text search syntax') -%] documentation.
 </p>
 

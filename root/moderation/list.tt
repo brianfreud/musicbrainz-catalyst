@@ -31,14 +31,14 @@
         </tr>
         </table>
         </td>
-    
+
         <td>
             [% INCLUDE "moderation/info.tt" %]
         </td>
         <td class="actions">
             [% moderation.yes_votes %] yes :
             [% moderation.no_votes %] no<br/>
-            
+
             [% links = [
                 { link => c.entity_url(moderation, 'add_note'), text => 'Add note' },
                 { link => c.entity_url(moderation, 'approve'),  text => 'Approve' },
@@ -50,7 +50,7 @@
         <td class="under_info">&nbsp;</td>
         <td class="changes">
             [% INCLUDE "moderation/mods/${moderation.template}.tt"
-                  new=(moderation.new_unpacked  || moderation.new_data) 
+                  new=(moderation.new_unpacked  || moderation.new_data)
                  prev=(moderation.prev_unpacked || moderation.previous_data) %]
         </td>
         <td class="vote_choice">

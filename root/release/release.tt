@@ -4,7 +4,7 @@
     <div class="release_top">
         [%- IF release.has_artwork -%]
             <div class="artwork">
-                <img src="[% release.cover_url %]"> 
+                <img src="[% release.cover_url %]">
             </div>
         [%- END -%]
 

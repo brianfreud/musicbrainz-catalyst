@@ -14,7 +14,7 @@
 	<p class="labelRight">
 	  This attribute describes if a particular performance role was considered normal or additional.
 	</p>
-	
+
 	[%- INCLUDE 'forms/widget.tt' widget=form.field('guest') label='Guest'-%]
 	<p class="labelRight">
 	  This attribute indicates a 'guest' performance where the performer is not usually part of the band.

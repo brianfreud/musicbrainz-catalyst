@@ -4,9 +4,9 @@
 <p>The wiki page [% page.id %] does not exist. (Status: [% page.status %]).</p>
 
 <p>
-    It is possible that the page <strong>[% page.id %]</strong> does not exist <em>yet</em>. 
-    You might find a page which has a similar title by using the wiki search on the 
-    <a href="http://wiki.musicbrainz.org">MusicBrainz Wiki</a>. If this does not help either, 
+    It is possible that the page <strong>[% page.id %]</strong> does not exist <em>yet</em>.
+    You might find a page which has a similar title by using the wiki search on the
+    <a href="http://wiki.musicbrainz.org">MusicBrainz Wiki</a>. If this does not help either,
     and you know how to edit wiki pages, please help us by completing our documentation.
 </p>
 

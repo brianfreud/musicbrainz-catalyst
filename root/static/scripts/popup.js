@@ -11,12 +11,12 @@ function MbPopup()
 		var content = DIV();
 		content.innerHTML = html;
 
-		var closeLink = 
+		var closeLink =
 			A({'href': ''},
 				IMG({'src': '/images/es/close.gif', 'border': '0'})
 			);
 		connect(closeLink, 'onclick', function(e) { e.stop(); mb.popup.hide(); });
-		
+
 		var header =
 			TABLE({'cellpadding': '0', 'cellspacing': '0', 'width': '100%'},
 				TR({},
@@ -24,7 +24,7 @@ function MbPopup()
 					TD({'style': 'text-align:right;', 'class': opts['closefontclass']}, closeLink)
 				)
 			);
-		
+
 		replaceChildNodes(overDiv,
   			TABLE({'cellpadding': '0', 'cellspacing': '1', 'style': '', 'class': opts['bgclass']},
 				TR({}, TD({'style': ''}, header)),

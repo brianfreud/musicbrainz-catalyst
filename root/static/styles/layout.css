@@ -1,4 +1,4 @@
-/* 
+/*
  * General Elements
  */
 body {
@@ -263,10 +263,10 @@ div.box div.content {
     padding: 5pt;
 }
 
-div.bio { 
+div.bio {
     width: 90%;
-    border: 1px dotted #CCC; 
-    padding: 0px 5px 5px 5px; 
+    border: 1px dotted #CCC;
+    padding: 0px 5px 5px 5px;
 }
 
 ul.tagcloud li {

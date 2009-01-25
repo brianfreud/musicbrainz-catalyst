@@ -6,7 +6,7 @@
 		We found the following users that matched your query
 		(<code>[% query | html %]</code>).
 	</p>
-	
+
 	<ul>
 	[% FOR user IN users %]
 		<li>

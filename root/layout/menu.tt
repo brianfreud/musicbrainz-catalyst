@@ -15,7 +15,7 @@
             <li><a href="[% c.uri_for('/user/elections') %]">Autoeditor Elections</a></li>
         </ul>
     </li>
-    
+
     <li>
         <a href="http://blog.musicbrainz.org">News</a>
         <ul>

@@ -12,7 +12,7 @@
             </tr>
         [%- END -%]
         </table>
-        
+
         <p><a href="[% c.uri_for('/tags', tag, group.type) %]">View More</a></p>
     [%- ELSE -%]
         <p>No [% group.type %]s have been tagged with "[% tag | html %]"</p>

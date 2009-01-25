@@ -3,7 +3,7 @@
 
 <ul>
     <li>See also your <a href="[% c.uri_for('/user/preferences') %]">user preferences</a>, which includes your privacy settings.</li>
-    <li>If you would like to delete your account, please see the FAQ entry: 
+    <li>If you would like to delete your account, please see the FAQ entry:
     [%- doc_link('AccountFAQ', 'How do I delete my account?') -%]</li>
 </ul>
 

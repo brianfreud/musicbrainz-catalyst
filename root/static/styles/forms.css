@@ -49,7 +49,7 @@
 
 #content form.generic .labelRight .input {
     margin-left: 0;
-    display: inline; 
+    display: inline;
 }
 
 #content form.generic .labelRight label {
@@ -68,7 +68,7 @@
     width: 150pt;
 }
 
-#content form fieldset 
+#content form fieldset
 {
     padding: 0;
     border: none;

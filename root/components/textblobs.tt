@@ -1,0 +1,21 @@
+[% SET text_guideline_artist_add =  l('You are about to add an artist to MusicBrainz.') -%]
+
+[% SET text_guideline_read_guidelines = 'Please read the ' _ doc_link('StyleGuideline', 'Style Guidelines') _ ', then provide the necessary information about the new artist below.' -%]
+
+[% SET text_guideline_artist_disambiguation = 'If one or more artists with the same name already exist in the database, you will be prompted to add a comment to this artist, which will allow users to distinguish this entry from the other artist(s) with the same name (see ' _ doc_link('ArtistComment', 'ArtistComment') _ ').' -%]
+
+[% SET text_guideline_artist_name_casing = 'Please note that the casing of the artist is taken into account when determining the need for a comment.  The two artists <em>some name</em> and <em>Some Name</em> are not the same.' -%]
+
+[% SET text_warning_artist_duplicate_add = 'You are attempting to add the artist &quot;' _ form.value('name') _ '&quot;, which appears to be very similar, if not exactly the same, as these existing artists:' -%]
+
+[% SET text_guideline_artist_duplicate_confirm = 'Confirm by activating the checkbox below that you have read ' _ doc_link('ArtistComment', 'ArtistComment') _ ', understood how we distinguish duplicate artists, and that you know what you are doing.' -%]
+
+[% SET text_guideline_artist_duplicate_required = 'You are required to enter a comment which allows users to distinguish this artist from the other artists with the same name, if the final artist name is similar to an existing artist.' -%]
+
+[% SET text_warning_artist_duplicate_certain = 'If you are certain that you want to add this artist, then:' -%]
+
+[% SET text_info_dates = 'Dates are in the format YYYY-MM-DD. Partial dates such as YYYY-MM or just YYYY are OK, or you can omit the date entirely.' -%]
+
+[% SET text_confirm_sure = 'Yes, I am sure and I know what I am doing.' -%]
+
+[% SET text_confirm_ask = 'Are you sure?' -%]

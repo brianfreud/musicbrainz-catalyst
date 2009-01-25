@@ -1,3 +1,11 @@
+[%- MACRO get_guideline(text) INCLUDE 'layout/guideline.tt' guideline='text_guideline_' _ text -%]
+
+[%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
+
+[% MACRO l(text, args) BLOCK;
+           c.localize(text, args);
+       END; %]
+
 [%- MACRO doc_link(to, text) BLOCK -%]
     <a href="/doc/[% to %]">[% (text or to) %]</a>
 [%- END -%]

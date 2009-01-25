@@ -33,6 +33,7 @@
 </head>
 
 <body>
+    [%- PROCESS 'components/textblobs.tt' -%]
     [%- INCLUDE "layout/header.tt" -%]
 
     <div id="container">

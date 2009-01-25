@@ -371,6 +371,7 @@ hr {
 
 #menu_bar a {
     font-weight: bold;
+    font-size: 10;
 }
 
 #menu_bar a:hover {

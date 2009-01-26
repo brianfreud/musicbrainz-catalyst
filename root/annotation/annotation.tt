@@ -7,7 +7,7 @@
         </div>
         [%- IF show_change_log -%]
         <div class="bar">
-            [% l('Summary:') %] [% annotation.change_log || "(no change log)" %]
+            [% l('Summary:') %] [% annotation.change_log || l('(no change log)') %]
         </div>
         [%- END -%]
         <div class="bar">

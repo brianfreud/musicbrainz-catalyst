@@ -1,11 +1,13 @@
 [%# Converted #%]
 
-[% WRAPPER "layout.tt" title="$artist.name - " _ l('Details')" %]
+[% WRAPPER "layout.tt" title="$artist.name - " _ l('Details') %]
     [% INCLUDE "artist/header.tt" %]
     [% WRAPPER "components/box.tt" header=l('Artist Information') %]
         <table class="details">
             <tr>
-                <th>[%- doc_link("ArtistName", l("Artist Name")) -%]:</th>
+                <th>
+                    [%- doc_link("ArtistName", l("Artist Name")) -%]:
+                </th>
                 <td>
                     [% entity_link(artist) %]
                     [% IF artist.resolution %]
@@ -14,19 +16,35 @@
                 </td>
             </tr>
             <tr>
-                <th>[%- doc_link("MusicBrainzIdentifier", l("MBID")) -%]:</th>
-                <td>[% artist.mbid %]</td>
-            </tr>
-            <tr>
-                <th>[% l('Permanent link:') %]</th>
+                <th>
+                    [%- doc_link("MusicBrainzIdentifier", l("MBID")) -%]:
+                </th>
                 <td>
-                    [% perma="http://musicbrainz.org/artist/${artist.mbid}" %]
-                    <a href="[% perma | url %]">[% perma | html %]</a>
+                    [% artist.mbid %]
                 </td>
             </tr>
             <tr>
-                <th>[% l('Subscriber Count:') %]</th>
-                <td>[% artist.subscribers.size %]</td>
+                <th>
+                    [% l('Permanent link:') %]
+                </th>
+                <td>
+                    [% perma="http://musicbrainz.org/artist/${artist.mbid}" %]
+                    <a href="[% perma | url %]">
+                        [%- perma | html -%]
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    [% l('Subscriber Count:') %]
+                </th>
+                <td>
+                    [%- IF artist.subscribers.size > 0 -%]
+                        [% artist.subscribers.size %]
+                    [%- ELSE -%]
+                        0
+                    [%- END -%]
+                </td>
             </tr>
         </table>
     [% END %]

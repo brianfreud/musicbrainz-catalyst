@@ -1,3 +1,5 @@
-[%- WRAPPER 'artist/layout.tt' title="Relations" -%]
-[%- INCLUDE "components/relationships.tt" source=artist showall=1 -%]
+[%# Converted #%]
+
+[%- WRAPPER 'artist/layout.tt' title=l("Artist Relationships") -%]
+    [%- INCLUDE "components/relationships.tt" source=artist showall=1 -%]
 [%- END -%]

@@ -1,7 +1,6 @@
 [%# Converted #%]
 
 [%- PROCESS 'components/textblobs.tt' -%]
-
 [% WRAPPER "artist/layout.tt" title=l('Add Release') %]
     [% WRAPPER 'components/box.tt' header=l('Number of Tracks on the Release') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]

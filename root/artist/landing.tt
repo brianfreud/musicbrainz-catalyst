@@ -1,18 +1,31 @@
+[%# Converted #%]
+
+[%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER "layout.tt" title=artist.name -%]
-[%- INCLUDE "artist/header.tt" -%]
-[%- INCLUDE "annotation/annotation.tt" parent=artist -%]
-<div class="TagsBox">
-    [%- INCLUDE "tag/summary.tt" source=artist -%]
-</div>
-[%- INCLUDE "components/relationships.tt" source=artist -%]
-<div style="text-align: center;">
+    [%- INCLUDE "artist/header.tt" -%]
+    [%- INCLUDE "annotation/annotation.tt" parent=artist -%]
+    <div class="TagsBox">
+        [%- INCLUDE "tag/summary.tt" source=artist -%]
+    </div>
+    [%- INCLUDE "components/relationships.tt" source=artist -%]
+    <div style="text-align: center;">
     [%- IF c.req.query_params.show_all -%]
-        You are viewing all releases by [% artist.name %]. You can also choose to view only
-        <strong><a href="[% c.entity_url(artist, 'show', { show_all => 0 }) %]">albums, EPs, singles and compilations by this artist</a></strong>.
+        [% text_artist_current_full %]
+        <br />
+        <strong>
+            <a href="[% c.entity_url(artist, 'show', { show_all => 0 }) %]">
+                [%- text_artist_short_switch -%]
+            </a>
+        </strong>
     [%- ELSE -%]
-        You are viewing a small selection of releases by [% artist.name %]. You can also choose to
-        <strong><a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">show all releases</a></strong>.
+        [% text_artist_current_short %]
+        <br />
+        <strong>
+            <a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">
+                [%- text_artist_full_switch -%]
+            </a>
+        </strong>.
     [%- END -%]
-</div>
-[%- content -%]
+    </div>
+    [%- content -%]
 [%- END -%]

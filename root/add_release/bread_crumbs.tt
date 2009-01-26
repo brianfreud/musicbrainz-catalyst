@@ -1,8 +1,5 @@
 [%# Converted #%]
 
-[%# TODO: The current add release process only allows you to enter one release at a time; if you have multiple add release pages open, you're screwed.  #%]
-[%# TODO: Breaking out of the add release process by browsing away should clear your current status (unless you hit Back in the browser) - ie, it needs /restart enabled, on a per tab + session basis.  #%]
-
 [% steps = [
     { action => 'add_release_track_count', name => l('Track Count')},
     { action => 'add_release_information', name => l('Release Information')},

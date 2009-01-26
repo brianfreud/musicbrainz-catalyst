@@ -6,10 +6,10 @@
 [%# TODO: Write a real l() macro (ie, implement c.localize(string, language) over in the real perl) to use that .pot. #%]
 
 [%- MACRO make_guideline(text) INCLUDE 'layout/guideline.tt' guideline='text_guideline_' _ text -%]
-
+[%- MACRO make_dual_guideline(text1, text2) INCLUDE 'layout/guidelinedual.tt' guideline1='text_guideline_' _ text1 guideline2='text_guideline_' _ text2 -%]
 [%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
-[%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label='<strong>' _ label _ '</strong>' -%]
+[%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
 [%# This next is currently a placerholder, but should be changed to be l(text, args) and c.localize(text, args); when that function exists #%]
 [%- MACRO l(text) BLOCK -%]

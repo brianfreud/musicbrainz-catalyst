@@ -1,48 +1,29 @@
+[%# Converted #%]
+
+[%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER 'artist/layout.tt' title='Add non-album track' -%]
-[%- WRAPPER 'components/box.tt' header='Add non-album track' -%]
-
-<ul>
-    <li>
-        Please enter the names of the tracks you wish to add as
-        [%- doc_link("NonAlbumTrack", "non-album tracks") -%]
-        of [% entity_link(artist) %].
-    </li>
-    <li>
-        Blank tracks will be ignored; just leave empty the fields that you do not need.
-    </li>
-    <li>
-        <strong style="color: red;">Important!</strong>
-        Non-album tracks are designed for <strong>tracks that have not been released
-        on ANY [%- doc_link("Release", "release") -%]
-    </li>
-    <li>
-        Demo tracks and promotional tracks that have never been released on a release
-        are good candidates for non-album tracks.
-    </li>
-    <li>
-        Most live versions are released on singles. If you want to enter those tracks
-        into MusicBrainz, please enter them as the single release, or import them
-        from [%- doc_link("FreeDB", "FreeDB") -%], instead of adding them as
-        [%- doc_link("NonAlbumTrack", "non-album tracks") -%].
-    </li>
-    <li>
-        To enter a non-album track you must provide an
-        [%- doc_link("EditNote", "edit note") -%]
-        that lets the voters know why you think this is a
-        [%- doc_link("NonAlbumTrack", "non-album track") -%].
-        You are <strong>strongly encouraged</strong> to include a URL that will allow
-        the voters to evaluate the correctness of this edit.
-    </li>
-</ul>
-
-[%- WRAPPER 'forms/form.tt' moderation=1 -%]
-    [%- WRAPPER 'forms/fieldset.tt' legend='Tracks' -%]
-        [%- entity_link(artist)
-                WRAPPER 'forms/row.tt' label='Artist' -%]
-
-        [%- INCLUDE 'forms/widget.tt' widget=form.field('track') label='Track' -%]
+    [%- WRAPPER 'components/box.tt' header='Add non-album track' -%]
+        [%- WRAPPER 'layout/guidelines.tt' -%]
+            [%- make_guideline('nat_titles') -%]
+            [%- make_guideline('nat_blank') -%]
+            [%- make_guideline('nat_time') -%]
+            [%- make_guideline('nat_required_text') -%]
+            [%- make_guideline('nat_url') -%]
+            <strong style="color: red;">
+                [% l('Important:') %]
+            </strong>
+            [%- WRAPPER 'layout/guidelines.tt' -%]
+                [%- make_guideline('nat_purpose') -%]
+                [%- make_guideline('nat_good_ones') -%]
+                [%- make_guideline('nat_live_ones') -%]
+            [%- END -%]
+        [%- END -%]
+        [%- WRAPPER 'forms/form.tt' moderation=1 -%]
+            [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') -%]
+                [%- entity_link(artist)
+                    WRAPPER 'forms/row.tt' label=l('Artist') -%]
+                [%- make_widget('track', l('Track')) -%]
+            [%- END -%]
+        [%- END -%]
     [%- END -%]
-[%- END -%]
-
-[%- END -%]
 [%- END -%]

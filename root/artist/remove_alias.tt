@@ -1,27 +1,13 @@
-[%- WRAPPER 'artist/layout.tt' title='Remove Alias' -%]
-[%- WRAPPER 'components/box.tt' header='Confirm alias removal' -%]
+[%# Converted #%]
 
-<ul>
-    <li>
-        Please review the documentation about [% doc_link('ArtistAlias', 'artist aliases') -%],
-        before entering this edit.
-    </li>
-    <li>
-        Are you sure you want to remove the alias <strong>[% alias.name %]</strong>, which points to
-        the artist [%- entity_link(artist) -%]?
-    </li>
-    <li>
-        If you added this alias by mistake, please follow the instructions about
-        [% doc_link('HowToCancelEdits', 'how to cancel pending edits') -%].
-        Removing pending edits, rather than entering new edits, helps reduce
-        the number of open edits in the system.
-    </li>
-    <li>
-        Cancelling a pending edit will take effect within an hour, while removing
-        an artist alias has to be voted on according to the voting process.
-    </li>
-</ul>
-
-[%- INCLUDE 'forms/form.tt' moderation=1 -%]
-[%- END -%]
+[%- WRAPPER 'artist/layout.tt' title=l('Remove Artist Alias') -%]
+    [%- WRAPPER 'components/box.tt' header=l('Confirm alias removal') -%]
+        [%- WRAPPER 'layout/guidelines.tt' -%]
+            [%- make_guideline('artist_alias_remove') -%]
+            [%- make_guideline('artist_alias') -%]
+            [%- make_dual_guideline('text_guideline_artist_alias_mistake', 'text_guideline_cancel_dont_remove') -%]
+            [%- make_guideline('text_guideline_cancel_is_faster') -%]
+        [%- END -%]
+        [%- INCLUDE 'forms/form.tt' moderation=1 -%]
+    [%- END -%]
 [%- END -%]

@@ -3,7 +3,7 @@
     <p>[% entity_link(entity) %] has been tagged with the following:</p>
     [% INCLUDE "tag/cloud.tt" %]
 [%- ELSE -%]
-    <p>[% entity_link(entity) %] has not been tagged.</p>
+    <p>[% entity_link(entity) %] currently has no tags.</p>
 [%- END -%]
 [% END %]
 

@@ -1,15 +1,12 @@
 [%# Converted #%]
 
-[%# TODO: Need to display the specific event info, so the user can figure out for which release event they are selecting a label. #%]
-[%# TODO: components/search.tt should be changed to allow css to do bold, rather than use presentational HTML. #%]
-
 [% WRAPPER "artist/layout.tt" title=l("Confirm label") %]
     [% WRAPPER 'components/box.tt' header=l('Confirm label') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
         <p>
             [% text_select_label %]
         </p>
-        [% INCLUDE "components/search.tt" entities=labels search_label='<strong>' _ l('Label') _ '</strong>' %]
+        [% INCLUDE "components/search.tt" entities=labels search_label=l('Label') %]
     [% END %]
     [%- INCLUDE 'label/edit_form.tt' form=create_label -%]
 [% END %]

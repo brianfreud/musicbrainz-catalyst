@@ -1,3 +1,5 @@
-[%- WRAPPER 'artist/layout.tt' title="Permanant Link" -%]
-[%- INCLUDE "components/perma-link.tt" entity=artist -%]
+[%# Converted #%]
+
+[%- WRAPPER 'artist/layout.tt' title=l('Permanant Link') -%]
+    [%- INCLUDE 'components/perma-link.tt' entity=artist -%]
 [%- END -%]

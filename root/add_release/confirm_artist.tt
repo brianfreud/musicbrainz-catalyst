@@ -1,17 +1,5 @@
 [%# Converted #%]
 
-[%# TODO: The track or release artist name entered on the tracks.tt page is not being carried over. #%]
-[%# TODO: The track number from the tracks.tt page is not displayed. #%]
-[%# TODO: The track or release name entered on the tracks.tt page is not displayed. #%]
-[%# TODO: Nothing specifies if the artist you are identifying is the release artist or the track artist. Maybe add a condition to the box.tt and layout.tt calls, for "Confirm track artist" or "Confirm release artist"? #%]
-[%# TODO: components/search.tt should be changed to allow css to do bold, rather than use presentational HTML. #%]
-
-[%# TODO: This next from actually attempting an artist search:
-[%# TODO: Error: Caught exception in MusicBrainz::Server::Controller::Search->filter_artist "Can't use string ("1") as an ARRAY ref while "strict refs" in use at /home/brian/MusicBrainz/MyTemplateToolkit/script/../lib/SearchEngine.pm line 508." #%]
-
-[%# TODO: Just a thought - Is it possible to do all track/release artists on a single page, rather than page after page after page?  That's always the most annoying part of adding VA releases, is waiting on all the page reloads... #%]
-
-
 [% WRAPPER 'artist/layout.tt' title=l('Confirm artist') %]
     [% WRAPPER 'components/box.tt' header=l('Confirm artist') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
@@ -19,7 +7,7 @@
             [% text_select_artist %]
         </p>
         [% BLOCK create_link; '?id=${entity.id}&for=${key}'; END %]
-        [% INCLUDE 'components/search.tt' entities=artists search_label='<strong>' _ l('Artist') _ '</strong>' %]
+        [% INCLUDE 'components/search.tt' entities=artists search_label=l('Artist') %]
     [% END %]
     [% WRAPPER 'components/box.tt' header='Add New Artist' %]
         [%- INCLUDE 'artist/edit_form.tt' form=create_artist -%]

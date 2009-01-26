@@ -1,10 +1,5 @@
 [%# Converted #%]
 
-[%# TODO: Possible dupes are displayed, but there's no visible way to select one of them and abort the add process.  I've added a button to handle it, but it needs a different action (ie, /restart). #%]
-[%# TODO: Need a version of forms/row.tt that will keep both buttons on the same line, rather than stacking them. #%]
-[%# TODO: This page should only have the breadcrumbs up to "Check for Duplicates" highlighted.  It is also highlighting the Confirm breadcrumb. #%]
-[%# TODO: "No, my release..." takes you back to the Release Information (tracks.tt) step, but though you really are at the Confirm step then, the Comfirm Artist, Confirm Labels, and Check for Duplicates breadcrumbs are no longer hightlighted.  They should be, as should Confirm. #%]
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [% WRAPPER 'artist/layout.tt' title=l('Check Duplicates') %]
     [% WRAPPER 'components/box.tt' header=l('Possible duplicate Releases found') %]

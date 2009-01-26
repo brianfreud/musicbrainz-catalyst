@@ -1,7 +1,5 @@
 [%# Converted #%]
 
-[%# TODO: Need a version of forms/row.tt that will keep both submit buttons on the same line, rather than stacking them. #%]
-
 [%- WRAPPER 'artist/layout.tt' title=l('Confirm Add Release') -%]
     [%- WRAPPER 'components/box.tt' header=l('Enter Edit') -%]
         [%- INCLUDE 'add_release/bread_crumbs.tt' -%]

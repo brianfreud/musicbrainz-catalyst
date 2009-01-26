@@ -2,7 +2,7 @@
 
 [% extra_js = 'artistform.js' %]
 [%- WRAPPER 'layout.tt' title=l('New Artist') -%]
-[%- WRAPPER 'components/box.tt' header=l('Add a new artist') -%]
-[%- INCLUDE 'artist/edit_form.tt' new=1 -%]
-[%- END -%]
+    [%- WRAPPER 'components/box.tt' header=l('Add a new Artist') -%]
+        [%- INCLUDE 'artist/edit_form.tt' new=1 -%]
+    [%- END -%]
 [%- END -%]

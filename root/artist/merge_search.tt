@@ -1,3 +1,5 @@
+[%# Converted #%]
+
 [%- PROCESS 'components/textblobs.tt' -%]
 [% WRAPPER 'artist/layout.tt' title=l("Merge") %]
     [% WRAPPER 'components/box.tt' header=l("Merge ${artist.name} into another artist") %]

@@ -1,3 +1,5 @@
+[%# Converted #%]
+
 [%- IF annotation.text -%]
     <div class="annotation">
         <div class="body">
@@ -5,18 +7,18 @@
         </div>
         [%- IF show_change_log -%]
         <div class="bar">
-            Summary: [% annotation.change_log || "(no change log)" %]
+            [% l('Summary:') %] [% annotation.change_log || "(no change log)" %]
         </div>
         [%- END -%]
         <div class="bar">
             <div class="details">
-                Annotation last modified at [% annotation.creation_time %].
+                [% l('Annotation last modified:') %] [% annotation.creation_time %].
             </div>
             [%- IF c.user_exists -%]
                 <div class="options">
                     [%- INCLUDE 'components/piped-list.tt' list = [
-                        { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit', annotation.id), text => 'Edit' },
-                        { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'history'), text => 'History' }
+                        { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit', annotation.id), text => l('Edit') },
+                        { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'history'), text => l('History') }
                     ] -%]
                 </div>
             [%- END -%]
@@ -24,9 +26,9 @@
     </div>
 [%- ELSE -%]
     <p>
-        This [% parent.entity_type %] has no annotation.
+      [% l('This ' _ parent.entity_type _ ' has no annotation.') %]
         [%- IF c.user_exists -%]
-            <a href="[% c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit') %]">Add an annotation</a>
+            <a href="[% c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit') %]">[% l('Add an annotation') %]</a>
         [%- END -%]
     </p>
 [%- END -%]

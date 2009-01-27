@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER 'artist/layout.tt' title='Add non-album track' -%]
     [%- WRAPPER 'components/box.tt' header='Add non-album track' -%]
@@ -22,7 +20,7 @@
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') -%]
                 [%- entity_link(artist)
                     WRAPPER 'forms/row.tt' label=l('Artist') -%]
-                [%- make_widget('track', l('Track')) -%]
+                [%- INCLUDE 'forms/generic/row.tt' field=form.field('track') label=l('Track') -%]
             [%- END -%]
         [%- END -%]
     [%- END -%]

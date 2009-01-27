@@ -1,10 +1,10 @@
 [%# Converted #%]
 
 [%- IF c.user.is_auto_editor(c.session.orig_privs) -%]
-    [%- WRAPPER 'forms/fieldset.tt' legend='Autoeditor' -%]
-        <p>
+[%- WRAPPER 'forms/fieldset.tt' legend=l('Autoeditor') -%]
+    <p>
             [% text_autoeditor_note %]
-        </p>
-        [%- make_widget('as_auto_editor', l('Enable auto editor priviliges')) -%]
-    [%- END -%]
+    </p>
+    [%- INCLUDE 'forms/generic/row.tt' field=form.field('as_auto_editor')
+        label=l('Enable auto editor priviliges') -%]
 [%- END -%]

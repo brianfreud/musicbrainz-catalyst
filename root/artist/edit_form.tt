@@ -1,3 +1,4 @@
+<<<<<<< HEAD:root/artist/edit_form.tt
 [%# Converted #%]
 
 [%- PROCESS 'components/textblobs.tt' -%]
@@ -24,26 +25,26 @@
                 [%- PROCESS show_dupe FOREACH dupe=dupes -%]
             </ul>
             <p>
-                [%- text_warning_artist_duplicate_certain -%]
+                If you are certain that you want to add this artist, then:
             </p>
             [%- WRAPPER 'layout/guidelines.tt' -%]
                 [%- make_guideline('artist_duplicate_required') -%]
                 [%- make_guideline('artist_duplicate_confirm') -%]
-                [%- make_widget('confirmed', text_confirm_sure) -%]
+                [%- INCLUDE "forms/generic/row.tt" field=form.field("confirmed") label=l('Yes, I am sure and I know what I am doing.') -%]
             [%- END -%]
         [%- END -%]
     [%- END -%]
-    [%- WRAPPER 'forms/fieldset.tt' legend=l('Artist Details') -%]
-        [%- make_required_widget('artist_type', l('Type:')) -%]
-        [%- make_required_widget('name', l('Name:')) -%]
-        [%- make_required_widget('sortname', l('Sort Name:')) -%]
-        [%- make_widget('resolution', l('Comment:')) -%]
+    [%- WRAPPER 'forms/fieldset.tt' legend='Artist Details' -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("artist_type") label=l('Type')-%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("name") label=l('Name') -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("sortname") label=l('Sort Name') -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("resolution") label=l('Comment') -%]
     [%- END -%]
     [%- WRAPPER 'forms/fieldset.tt' legend=l('Date Period') -%]
         <p>
             [%- info_dates -%]
         </p>
-        [%- make_widget('start', l('Start:')) -%]
-        [%- make_widget('end', l('End:')) -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("start") label=l('Start Date') -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("end") label=l('End Date') -%]
     [%- END -%]
 [%- END -%]

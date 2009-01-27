@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [% WRAPPER "artist/layout.tt" title=l('Add Release') %]
     [% WRAPPER 'components/box.tt' header=l('Number of Tracks on the Release') %]
@@ -10,8 +8,8 @@
             [%- make_guideline('release_read_guidelines') -%]
         [%- END -%]
         [% WRAPPER 'forms/form.tt' %]
-            [%  make_required_widget('track_count', l('Number of Tracks:')) %]
-            [%- INCLUDE 'forms/submit.tt' label=l('Next') _ ' &raquo;' %]
+            [% INCLUDE 'forms/generic/row.tt' field=form.field('track_count') label='Track count' %]
+            [% INCLUDE 'forms/submit.tt' label=l('Next') _ ' &raquo;' %]
         [% END %]
     [% END %]
 [% END %]

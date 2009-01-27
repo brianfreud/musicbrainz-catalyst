@@ -4,46 +4,45 @@
     [%- WRAPPER 'forms/fieldset.tt' legend='Relationship' -%]
         [%- entity_link(source)
             WRAPPER 'forms/row.tt' label=source.entity_type -%]
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('type') label='Type' -%]
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('type') label='Type' -%]
         [%- entity_link(dest)
             WRAPPER 'forms/row.tt' label=dest.entity_type -%]
     [%- END -%]
 
     [%- WRAPPER 'forms/fieldset.tt' legend='Attributes' -%]
-        [%- INCLUDE 'forms/widget.tt' widget=form.field('additional') label='Additional'-%]
-	<p class="labelRight">
+        [%- INCLUDE 'forms/generic/row.tt' field=form.field('additional') label='Additional'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  This attribute describes if a particular performance role was considered normal or additional.
-	</p>
-
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('guest') label='Guest'-%]
-	<p class="labelRight">
+            [% END %]
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('guest') label=l('Guest')-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  This attribute indicates a 'guest' performance where the performer is not usually part of the band.
-	</p>
+            [% END %]
 
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('executive') label='Executive'-%]
-	<p class="labelRight">
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('executive') label='Executive'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  For executive producers
-	</p>
+            [% END %]
 
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('co') label='Co'-%]
-	<p class="labelRight">
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('co') label='Co'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  Co-[role]
-	</p>
+            [% END %]
 
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('instrument') label='Instrument'-%]
-	<p class="labelRight">
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('instrument') label='Instrument'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
           This attribute describes the possible instruments that can be captured as part of a performance.
-	</p>
+            [% END %]
 
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('vocals') label='Vocals'-%]
-	<p class="labelRight">
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('vocals') label='Vocals'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  This attribute describes a type of vocal performance.
-	</p>
+            [% END %]
 
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('orchestra') label='Orchestra'-%]
-	<p class="labelRight">
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('orchestra') label='Orchestra'-%]
+            [% WRAPPER 'label/blank_row.tt' %]
 	  This attribute describes a type of orchestra.
-	</p>
+            [% END %]
     [%- END -%]
 
     [%- WRAPPER 'forms/fieldset.tt' legend='Relationship Timespan' -%]
@@ -53,8 +52,8 @@
 	    These dates are optional, and leaving the end date blank indicates that this
 	    relationship is still active today.
 	</p>
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('begin') label="Begin date" -%]
-	[%- INCLUDE 'forms/widget.tt' widget=form.field('end')   label="End date" -%]
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('begin') label="Begin date" -%]
+	[%- INCLUDE 'forms/generic/row.tt' field=form.field('end')   label="End date" -%]
     [%- END -%]
 [%- END -%]
 [%- END -%]

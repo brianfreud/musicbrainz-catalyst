@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER 'artist/layout.tt' title="Change Data Quality" -%]
     [%- WRAPPER 'components/box.tt' header="Change Data Quality" -%]
@@ -13,7 +11,7 @@
         </strong>.
         <br />
         [%- WRAPPER "forms/form.tt" -%]
-            [%- make_widget('quality', l("Data Quality setting")) -%]
+            [%- INCLUDE "forms/generic/row.tt" field=form.field('quality') label="Data Quality setting" -%]
             [%- INCLUDE "forms/edit-note.tt" -%]
             [%- INCLUDE "forms/submit.tt" label="Update" -%]
         [%- END -%]

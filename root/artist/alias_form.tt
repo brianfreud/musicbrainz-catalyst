@@ -1,5 +1,3 @@
-[%# Converted #%]        
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER 'layout/guidelines.tt' -%]
     [%- make_guideline('alias_about') -%]

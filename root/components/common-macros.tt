@@ -5,8 +5,13 @@
 [%# TODO: Write a quickie xgettext script to pull text strings to a .po and rename that to .pot. #%]
 [%# TODO: Write a real l() macro (ie, implement c.localize(string, language) over in the real perl) to use that .pot. #%]
 
-[%- MACRO make_guideline(text) INCLUDE 'layout/guideline.tt' guideline='text_guideline_' _ text -%]
+
+[%# Once textblobs.tt is migrated back, these next two lines, oldguideline.tt, and guidelinedual.tt can be removed #%]
+[%- MACRO make_guideline(text) INCLUDE 'layout/oldguideline.tt' guideline='text_guideline_' _ text -%]
 [%- MACRO make_dual_guideline(text1, text2) INCLUDE 'layout/guidelinedual.tt' guideline1='text_guideline_' _ text1 guideline2='text_guideline_' _ text2 -%]
+
+[%- MACRO create_guideline(text) INCLUDE 'layout/guideline.tt' guideline=text -%]
+
 [%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
 [%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]

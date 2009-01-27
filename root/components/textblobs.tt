@@ -21,7 +21,7 @@
 [% SET text_guideline_artist_alias = l('Please review the documentation about ' _ doc_link('ArtistAlias', 'artist aliases') _ ', before entering this edit.') %]
 [% SET text_guideline_artist_alias_mistake = l('If you added recently added this alias by mistake,') %]
 [% SET text_guideline_artist_alias_remove = l('Are you sure you want to remove the alias <strong>' _ alias.name _ '</strong>, which points to the artist ' _ entity_link(artist) _ '?') %]
-[% SET text_guideline_artist_cleanedup = l(' please note that the server goes through once a day to clear out empty artists.  There is no need to remove these manually.') %]
+[% SET text_guideline_artist_cleanedup = l(' please note that the server automatically removes empty artists once a day.  There is no need to remove these manually.') %]
 [% SET text_guideline_artist_disambiguation = l('If one or more artists with the same name already exist in the database, you will be prompted to ' _ doc_link('ArtistComment', 'add a comment to this artist') _ ', which will allow users to distinguish this entry from the other artist(s) with the same name.') -%]
 [% SET text_guideline_artist_duplicate_confirm = l('Confirm by activating the checkbox below that you have read ' _ doc_link('ArtistComment', 'ArtistComment') _ ', understood how we distinguish duplicate artists, and that you know what you are doing.') -%]
 [% SET text_guideline_artist_duplicate_required = l('You are required to enter a comment which allows users to distinguish this artist from the other artists with the same name, if the final artist name is similar to an existing artist.') -%]

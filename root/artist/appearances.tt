@@ -1,6 +1,6 @@
 [%# Converted #%]
 
-[%- WRAPPER "artist/layout.tt" title=l("Appearances") -%]
+[%- WRAPPER "artist/layout.tt" title=l('Artist Credits') -%]
     [% BLOCK group_head %]
         [%- last_year = '.' -%]
         <h2 class="compactreleasetype">[% item.link | ucfirst %]</h2>

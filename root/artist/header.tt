@@ -2,7 +2,7 @@
 
 [%- info_links = [
     { link => c.entity_url(artist, 'aliases'), text => l('Aliases') },
-    { link => c.entity_url(artist, 'appearances'), text => l('Appears on') },
+    { link => c.entity_url(artist, 'appearances'), text => l('Credits') },
     { link => c.entity_url(artist, 'details'), text => l('Details') },
     { link => c.entity_url(artist, 'perma'), text => l('Permanent Link') },
     { link => c.entity_url(artist, 'show'), text => l('Releases') },

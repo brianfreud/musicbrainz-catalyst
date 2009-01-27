@@ -1,3 +1,5 @@
+[%# Converted #%]
+
 [%#- The box component is used to section of blocks of text and give them a specific header. By using the box component,
      you will also produce a box with a style that is consistent with the rest of the MusicBrainz website.
 
@@ -10,9 +12,10 @@
 [%- DEFAULT
     color = 'orange'
 -%]
-
 <div class="box [% color %]">
-    <h2>[% header | html %]</h2>
+    <h2>
+        [% header | html %]
+    </h2>
     <div class="content">
         [% content %]
     </div>

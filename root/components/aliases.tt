@@ -1,3 +1,5 @@
+[%# Converted %#]
+
 [%- WRAPPER 'components/box.tt' header=l('Aliases for ' _ ${entity.name}) -%]
     [%- IF aliases.size > 0 -%]
         <table>

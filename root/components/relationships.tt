@@ -31,19 +31,19 @@
         [%- n = relations.size - maximum -%]
         <div class="more_relationships">
             [% n %] relationship[% n > 1 ? "s" : "" %] not shown.
-            <a href="[% c.entity_url(source, 'relations') %]">View all relationships&hellip;</a>
+            <a href="[% c.entity_url(source, 'relations') %]">[% l('View all relationships&hellip;') %]</a>
         </div>
     [%- END -%]
 [%- END -%]
 
 [%- UNLESS justlist -%]
-[%- IF showall -%]<h1>Relationships for [% source.entity_type %] "[% source.name %]"</h1>[% END %]
+[%- IF showall -%]<h1>[% l('Relationships for') %] [% source.entity_type %] "[% source.name %]"</h1>[% END %]
 <div class="RelationshipBox">
     [%- IF relations.size -%]
         [%- entity_link(source) -%][% relations.size > 1 ? ":" : "" %]
         [%- PROCESS list -%]
     [%- ELSE -%]
-        [%- entity_link(source) -%] has no relationships.
+        [%- l(entity_link(source) _ 'has no relationships.) -%]
     [%- END -%]
 
     [%- IF current_relationship -%]

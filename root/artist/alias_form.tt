@@ -4,6 +4,6 @@
     [%- make_guideline('alias_misspelled') -%]
     [%- make_guideline('alias_unique') -%]
 [%- END -%]
-[%- INCLUDE 'forms/widget.tt' widget=form.field('alias') label=l('Alias')
+[%- INCLUDE 'forms/generic/row.tt' field=form.field('alias') label=l('Alias')
     WRAPPER 'forms/fieldset.tt' legend=l('Alias')
     WRAPPER 'forms/form.tt' moderation=1 -%]

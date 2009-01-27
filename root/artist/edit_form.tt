@@ -1,6 +1,3 @@
-<<<<<<< HEAD:root/artist/edit_form.tt
-[%# Converted #%]
-
 [%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER 'layout/guidelines.tt' -%]
     [%- IF new -%]

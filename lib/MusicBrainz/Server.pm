@@ -23,6 +23,9 @@ Static::Simple
 
 StackTrace
 
+I18N
+Unicode
+
 Session
 Session::State::Cookie
 

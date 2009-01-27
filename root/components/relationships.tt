@@ -30,25 +30,25 @@
     [%- IF relations.size > maximum  && !showall -%]
         [%- n = relations.size - maximum -%]
         <div class="more_relationships">
-            [% n %] relationship[% n > 1 ? "s" : "" %] not shown.
+            [% n %] [% l('relationship ' _ n > 1 ? "s" : "" _ ' not shown.') %]
             <a href="[% c.entity_url(source, 'relations') %]">[% l('View all relationships&hellip;') %]</a>
         </div>
     [%- END -%]
 [%- END -%]
 
 [%- UNLESS justlist -%]
-[%- IF showall -%]<h1>[% l('Relationships for') %] [% source.entity_type %] "[% source.name %]"</h1>[% END %]
+[%- IF showall -%]<h1>[% l('Relationships for ' _ source.entity_type) %] "[% source.name %]"</h1>[% END %]
 <div class="RelationshipBox">
     [%- IF relations.size -%]
         [%- entity_link(source) -%][% relations.size > 1 ? ":" : "" %]
         [%- PROCESS list -%]
     [%- ELSE -%]
-        [%- l(entity_link(source) _ 'has no relationships.) -%]
+        [%- l(entity_link(source) _ 'has no relationships.') -%]
     [%- END -%]
 
     [%- IF current_relationship -%]
         <hr/>
-	<p>Create a relationship with:</p>
+	<p>[% l('Create a relationship with:') %]</p>
 	<ul>
    	    <li>[%- entity_link(current_relationship) -%]</li>
 	</ul>
@@ -58,7 +58,7 @@
 		{
 			link => c.uri_for(c.controller('relate').action_for('store'),
 				[ source.entity_type, source.mbid ]),
-	    	text => "Use this ${source.entity_type} in a Relationship"
+	    	text => l("Use this ${source.entity_type} in a Relationship")
 			hide => !c.user_exists,
 		},
 		{
@@ -81,7 +81,7 @@
 		},
         {
 			link => c.entity_url(source, 'relations'),
-			text => 'View Relationships'
+			text => l('View Relationships')
 		},
     ] -%]
     <div>[%- INCLUDE 'components/piped-list.tt' list=links -%]</div>

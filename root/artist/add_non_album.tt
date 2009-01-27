@@ -17,11 +17,16 @@
             [%- END -%]
         [%- END -%]
         [%- WRAPPER 'forms/form.tt' moderation=1 -%]
-            [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') -%]
-                [%- entity_link(artist)
-                    WRAPPER 'forms/row.tt' label=l('Artist') -%]
-                [%- INCLUDE 'forms/generic/row.tt' field=form.field('track') label=l('Track') -%]
+            [%- WRAPPER 'forms/fieldset.tt' legend='Tracks' -%]
+                [%- WRAPPER 'forms/row.tt' -%]
+                    [%- INCLUDE 'forms/label.tt' label='Artist' -%]
+                    <div class="fields">[% entity_link(artist) %]</div>
+                [%- END -%]
+                [%- WRAPPER 'forms/row.tt' -%]
+                    [%- INCLUDE 'forms/generic/row.tt' field=form.field('track') label='Track' -%]
+                [%- END -%]        
             [%- END -%]
         [%- END -%]
     [%- END -%]
 [%- END -%]
+

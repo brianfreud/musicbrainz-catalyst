@@ -24,7 +24,8 @@
     margin-bottom: 4pt;
 }
 
-#content form.generic label {
+#content form.generic label,
+#content form.generic .row div.label {
     float: left;
     text-align: right;
     width: 90pt;
@@ -38,7 +39,8 @@
 }
 
 /* Labels that are not the main label for a row (ie, checkbox) */
-#content form.generic .no_label label {
+#content form.generic .no_label label,
+#content form.generic .fields label {
     width: auto;
     float: none;
     text-align: left;
@@ -61,3 +63,9 @@
     padding: 0 5pt;
     border-bottom: 2px solid #FFBB55;
 }
+
+
+/*
+ * Custom fields
+ */
+#content form input.duration { width: 50pt; }

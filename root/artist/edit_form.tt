@@ -22,7 +22,7 @@
                 [%- PROCESS show_dupe FOREACH dupe=dupes -%]
             </ul>
             <p>
-                If you are certain that you want to add this artist, then:
+                [% l('If you are certain that you want to add this artist, then:') %]
             </p>
             [%- WRAPPER 'layout/guidelines.tt' -%]
                 [%- make_guideline('artist_duplicate_required') -%]

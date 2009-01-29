@@ -1,6 +1,6 @@
 [%# Converted %#]
 
-[%- WRAPPER "artist/layout.tt" title="Aliases" -%]
+[%- WRAPPER "artist/layout.tt" title=l("Aliases") -%]
     [%- WRAPPER 'components/box.tt' header=l("Aliases for ${entity.name}") -%]
         [%- IF aliases.size > 0 -%]
             <table>

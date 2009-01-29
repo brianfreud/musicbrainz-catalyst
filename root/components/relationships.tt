@@ -64,20 +64,20 @@
                     },
                     {
                     link => c.uri_for('/relate/cancel'),
-                        text => 'Cancel',
+                        text => l('Cancel'),
                         hide => !current_relationship || !c.user_exists,
                     },
                     {
                     link => c.uri_for(c.controller('relate').action_for('create'),
                         [ current_relationship.entity_type, current_relationship.mbid ],
                         source.entity_type, source.mbid),
-                        text => 'Create Relationship',
+                        text => l('Create Relationship'),
                         hide => (current_relationship.id == source.id) || !c.user_exists,
                     },
                     {
                     link => c.uri_for(c.controller('relate').action_for('url'),
                         [ source.entity_type, source.mbid ]),
-                        text => 'Relate to URL',
+                        text => l('Relate to URL'),
                         hide => !c.user_exists
                     },
                     {

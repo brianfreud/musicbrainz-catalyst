@@ -33,7 +33,11 @@
                     [%- l('Subscribers:') -%]
                 </th>
                 <td>
-                    [%- label.subscribers.count -%]
+                    [%- IF label.subscribers.size > 0 -%]
+                        [% label.subscribers.size %]
+                    [%- ELSE -%]
+                        0
+                    [%- END -%]
                 </td>
             </tr>
         </table>

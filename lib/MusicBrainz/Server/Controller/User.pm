@@ -55,10 +55,8 @@ sub login : Private
     return 1
         if $c->user_exists;
 
-    $c->log->warn("No user, will redirect to " . $c->session->{__login_dest});
-
     use MusicBrainz::Server::Form::User::Login;
-    my $form = $self->form(MusicBrainz::Server::Form::User::Login->new);
+    $self->form(MusicBrainz::Server::Form::User::Login->new);
 
     $c->stash->{template}         = 'user/login.tt';
     $c->stash->{form}             = $self->form;
@@ -66,18 +64,18 @@ sub login : Private
 
     $c->detach unless $self->submit_and_validate($c);
 
-    if( !$c->authenticate({ username => $form->value("username"),
-                            password => $form->value("password") }) )
+    if( !$c->authenticate({ username => $self->form->value("username"),
+                            password => $self->form->value("password") }) )
     {
-        $form->add_general_error('Username/password combination invalid');
+        $self->form->add_general_error('Username/password combination invalid');
         $c->detach;
     }
     else
     {
-        if ($form->value('remember_me'))
+        if ($self->form->value('remember_me'))
         {
             $c->user->SetPermanentCookie($c,
-                only_this_ip => $form->value('single_ip')
+                only_this_ip => $self->form->value('single_ip')
             );
         }
     }
@@ -105,6 +103,14 @@ sub login_form : Local Path('login')
     }
 
     $c->forward('/user/login');
+
+    if ($c->user_exists)
+    {
+        # As strange as this condition appears, it happens
+        # if users clicks login while being on the login page
+        $c->response->redirect($c->uri_for('/'));
+        $c->detach;
+    }
 }
 
 =head2 register
@@ -313,7 +319,10 @@ sub edit : Local Form('User::EditProfile')
 
     $c->forward('login');
 
+    # We refresh $c->user as this is no longed loaded from the database
+    # on each request
     my $form = $self->form;
+    $c->user->Refresh;
     $form->init($c->user);
 
     return unless $self->submit_and_validate($c);
@@ -321,6 +330,8 @@ sub edit : Local Form('User::EditProfile')
     $form->update_model;
 
     $c->flash->{ok} = "Your profile has been sucessfully updated";
+    $c->response->redirect('/user/');
+    $c->detach;
 }
 
 =head2 change_password
@@ -410,6 +421,8 @@ sub profile : Local Args(1)
             overall_pc => int(($all / ($all_votes->{TOTAL} || 1)) * 100 + 0.5),
         };
     }
+
+    $c->stash->{preferences} = $c->model('User')->get_preferences_hash($user);
 
     $c->stash->{user    } = $user;
     $c->stash->{template} = 'user/profile.tt';
@@ -572,6 +585,7 @@ sub preferences : Local Form
     return unless $self->submit_and_validate($c);
 
     $form->update_from_form ($c->req->params);
+    $c->persist_user;
 }
 
 =head2 donate

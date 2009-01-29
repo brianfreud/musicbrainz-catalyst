@@ -1,10 +1,10 @@
 [% WRAPPER 'layout.tt' %]
     [% WRAPPER "components/box.tt" header=l('Page could not be found') %]
         <p>
-            [%- l('The wiki page ' _ page.id _ ' does not exist. (Status: ') %][% page.status -%]).
+            [%- l('The wiki page [_1] does not exist. (Status: [_2] ).', page.id, page.status) -%]
         </p>
         <p>
-            [% l('It is possible that the page <strong>' _ page.id _ '</strong> does not exist <em>yet</em>.  You might find a page which has a similar title by using the wiki search in the <a href=\"http://wiki.musicbrainz.org\">MusicBrainz Wiki</a>. If this does not help either, and you know how to edit wiki pages, please help us by completing our documentation.') %]
+            [% l('It is possible that the page <strong>[_1]</strong> does not exist <em>yet</em>.  You might find a page which has a similar title by using the page search function in the <a href=\"http://wiki.musicbrainz.org\">MusicBrainz Wiki</a>. If this does not help either, and you know how to edit wiki pages, please help us by completing our documentation.', page.id) %]
         </p>
     [% END %]
 [% END %]

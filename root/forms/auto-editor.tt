@@ -1,11 +1,9 @@
-[%# Converted #%]
-
 [%- IF c.user.is_auto_editor(c.session.orig_privs) -%]
-    [%- WRAPPER 'forms/fieldset.tt' legend=l('Autoeditor') -%]
+    [%- WRAPPER 'forms/fieldset.tt' legend=l('AutoEditor') -%]
         <p>
             [% text_autoeditor_note %]
         </p>
         [%- INCLUDE 'forms/generic/row.tt' field=form.field('as_auto_editor')
-            label=l('Enable auto editor priviliges') -%]
+            label=l('Enable AutoEditor priviliges') -%]
     [%- END -%]
 [%- END -%]

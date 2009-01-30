@@ -4,11 +4,11 @@
             [% l('Please login using the form below. Note that the password field <em>is</em> case sensitive.') %]
         </p>
         [% WRAPPER "forms/form.tt" moderation=0 %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('username') label=l("Username") %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('password') label=l("Password") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('username') label=l("Username") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('password') label=l("Password") %]
             [% INCLUDE "forms/submit.tt" label="Log In" %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('remember_me') label=l("Log in permanently") %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('single_ip') label=l("Only from this IP address") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('remember_me') label=l("Log in permanently") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('single_ip') label=l("Only from this IP address") %]
         [% END %]
         <ul>
             <li>

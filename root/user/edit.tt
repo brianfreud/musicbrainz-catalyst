@@ -5,9 +5,9 @@
             [%- create_guideline('If you would like to delete your account, please see the FAQ entry: [_1]', doc_link('AccountFAQ', l('How do I delete my account?')))
         [% END %]
         [% WRAPPER "forms/form.tt" %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('email') label=l("Email address") %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('homepage') label=l("Homepage") %]
-            [% INCLUDE "forms/widget.tt" widget=form.field('biography') label=l("Biography") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('email') label=l("Email address") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('homepage') label=l("Homepage") %]
+            [% INCLUDE "forms/generic/row.tt" field=form.field('biography') label=l("Biography") %]
             [% INCLUDE "forms/submit.tt" label=l("Update Profile") %]
         [% END %]
     [% END %]

@@ -1,136 +1,148 @@
 [% BLOCK fields %]
-    [% FOREACH pref=fields %]
-        [%- field = form.field(pref.widget) -%]
+    [% FOREACH field=fields %]
+        [%- widget = form.field(field.widget) -%]
         <p>
-        [%- IF field.widget == 'checkbox' -%]
-            [%- INCLUDE "forms/input.tt" -%]
-            [%- INCLUDE 'forms/label.tt' label=pref.label for=field -%]
-        [%- ELSE -%]
-            [%- INCLUDE 'forms/label.tt' for=field label=pref.label -%]
-            [%- INCLUDE "forms/input.tt" -%]
-        [%- END -%]
+            [%- IF widget.widget == 'checkbox' -%]
+                [%- INCLUDE "forms/input.tt" -%]
+                [%- INCLUDE 'forms/label.tt' label=field.label right=1 -%]
+            [%- ELSE -%]
+                [%- INCLUDE 'forms/label.tt' label=field.label -%]
+                [%- INCLUDE "forms/input.tt" -%]
+            [%- END -%]
         </p>
     [% END %]
 [% END %]
-
-[% WRAPPER "layout.tt" title="Preferences" %]
-
-[% WRAPPER "components/box.tt"  header="Preferences" %]
-[% WRAPPER "forms/form.tt" custom=1 %]
-
-[% IF form.has_error %]
-    <p>It appears there are some errors present in the preferences you attempted to set:</p>
-    <ul>
-    [% FOREACH field=form.error_fields %]
-        <li>
-        [% field.name %]
-        <ul>
-            [% FOREACH error=field.errors %]
-                <li class="error">[% error %]</li>
+[% WRAPPER "layout.tt" title=l("Preferences") %]
+    [% WRAPPER "components/box.tt"  header=l("Preferences") %]
+        [% WRAPPER "forms/form.tt" custom=1 %]
+            [% IF form.has_error %]
+                <p>
+                    [%- l('It appears there are some errors present in the preferences you attempted to set:') -%]
+                </p>
+                <ul>
+                [% FOREACH field=form.error_fields %]
+                    <li>
+                    [% field.name %]
+                    <ul>
+                        [% FOREACH error=field.errors %]
+                            <li class="error">
+                                [%- error -%]
+                            </li>
+                        [% END %]
+                    </ul>
+                [% END %]
+                </ul>
             [% END %]
-        </ul>
+            <fieldset>
+                <legend>
+                    [%- l('Voting/edit review pages') %]
+                </legend>
+                [% fields = [
+                    { widget = 'mod_add_album_inline', label = l('For "Add Release" edits, show the whole release...') },
+                    { widget = 'mod_add_album_link', label = l('and show editing links.') },
+                    { widget = 'navbar_mod_show_select_page' label = l('Make the "Vote on Edits" link in the sidebar go to this page instead of the "New edits" list.') }
+                ] %]
+                [% PROCESS fields %] 
+                <p>
+                    [% widget = form.field('mods_per_page') %]
+                    [% l('Show up to how many edits per page? (max: 25).') %] [% INCLUDE "forms/input.tt" %]
+                </p>
+                [% fields = [
+                    { widget = 'vote_abs_default' label = l('Abstain by default.') },
+                    { widget = 'vote_show_novote', label = l('Show the "No Vote" option') },
+                    { widget = 'mail_notes_if_i_noted', label = l('When I add a note to an edit , mail me all future notes for that edit.') },
+                    { widget = 'mail_notes_if_i_voted', label = l('When I vote on an edit, mail me all future notes for that edit.') },
+                    { widget = 'mail_on_first_no_vote', label = l('Mail me when one of my edits gets a "no" vote.') },
+                    { widget = 'show_inline_mods', label = l('Show inline edits') },
+                    { widget = 'show_inline_mods_random', label = l('Show random inline edits') },
+                    { widget = 'remove_recent_link_on_add', label = l('After creating a new relationship, remove the linked items from my "recently used" list.') },
+                    { widget = 'auto_subscribe', label = l('Automatically subscribe me to artists or labels I create.') },
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [%- l('Emailing other editors') %]
+                </legend>
+                [% fields = [
+                    { widget = 'reveal_address_when_mailing', label = l('Reveal my email address checked by default') },
+                    { widget = 'sendcopy_when_mailing', label = l('Send me a copy to my email address') },
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    Show artist
+                </legend>
+                [% widget = form.field('releases_show_compact') %]
+                <p>
+                    [% l('Default to a "compact" listing for how many, or more, releases? (allowed range: 1 - 1000).') %] [% INCLUDE "forms/input.tt" %]
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Show release') %]
+                </legend>
+                [% fields = [
+                    { widget = 'release_show_relationshipslinks', label = l('Show the add/edit relationships links in the release header.') },
+                    { widget = 'release_show_annotationlinks', label = l('Show the add/edit annotation links in the release header.') },
+                    { widget = 'show_amazon_coverart', label = l('Show Amazon.com cover art and buy links.') },
+                    { widget = 'use_amazon_store', label = l('Your preferred Amazon Store') },
+                ] %]
+            [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Country') %]
+                </legend>
+                [% fields = [
+                    { widget = 'default_country', label = l('When adding a new release, pick this country by default') },
+                    { widget = 'google_domain', label = l('Your preferred Google domain') },
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Date/time display') %]
+                </legend>
+                [% fields = [
+                    { widget = 'datetimeformat', label = l('Your preferred date/time format') },
+                    { widget = 'timezone', label = l('Your preferred time zone') },
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Top menu configuration') %]
+                </legend>
+                [% fields = [
+                    { widget = 'topmenu_submenu_types' label = l("The menu which is placed on top of the pages features multiple ways of navigating the site. You can choose which menu type (or both) you'd like to see if you are logged in") },
+                    { widget = 'topmenu_dropdown_trigger', label = l('If you selected an option which includes the Dropdown menus  above, you can choose how they get activated') }
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Use of JavaScript') %]
+                </legend>
+                [% fields = [
+                    { widget = 'autofix_open', label = l('On each page which uses it, the "Guess Case" box should initially be') },
+                    { widget = 'JSMoveFocus', label = l('Use JavaScript to move the input focus when the page loads.') },
+                    { widget = 'JSDiff', label = l('Use JavaScript to highlight changes on title edits.') },
+                    { widget = 'JSCollapse', label = l('Collapse releases per default on pages which show full releases (except the release page)') },
+                    { widget = 'JSDebug', label = l('Show the JavaScript debug box on the bottom of the page.') },
+                ] %]
+                [% PROCESS fields %]
+            </fieldset>
+            <fieldset>
+                <legend>
+                    [% l('Display options') %]
+                </legend>
+                <h3>
+                    [% l('Sidebar panels:') %]
+                </h3>
+            </fieldset>
+            [% INCLUDE "forms/submit.tt" label=l("Update Preferences") %]
+        [% END %]
     [% END %]
-    </ul>
-[% END %]
-
-<fieldset>
-    <legend>Voting/edit review pages</legend>
-    [% fields = [
-        { widget = 'mod_add_album_inline', label = 'For "Add Release" edits, show the whole release...' },
-        { widget = 'mod_add_album_link', label = 'and show editing links.' },
-        { widget = 'navbar_mod_show_select_page' label = 'Make the "Vote on Edits" link in the sidebar go to this page instead of the "New edits" list.' }
-    ] %]
-    [% PROCESS fields %] 
-    <p>
-        [% widget = form.field('mods_per_page') %]
-        Show up to [% INCLUDE "forms/input.tt" %] edits per page (max: 25).
-    </p>
-    [% fields = [
-        { widget = 'vote_abs_default' label = 'Abstain by default.' },
-        { widget = 'vote_show_novote', label = 'Show the "No Vote" option' },
-        { widget = 'mail_notes_if_i_noted', label = 'When I add a note to an edit , mail me all future notes for that edit.' },
-        { widget = 'mail_notes_if_i_voted', label = 'When I vote on an edit, mail me all future notes for that edit.' },
-        { widget = 'mail_on_first_no_vote', label = 'Mail me when one of my edits gets a "no" vote.' },
-        { widget = 'show_inline_mods', label = 'Show inline edits' },
-        { widget = 'show_inline_mods_random', label = 'Show random inline edits' },
-        { widget = 'remove_recent_link_on_add', label = 'After creating a new relationship, remove the linked items from my "recently used" list.' },
-        { widget = 'auto_subscribe', label = 'Automatically subscribe me to artists or labels I create.' },
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>E-mailing other editors</legend>
-    [% fields = [
-        { widget = 'reveal_address_when_mailing', label = 'Reveal my email address checked by default' },
-        { widget = 'sendcopy_when_mailing', label = 'Send me a copy to my email address' },
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Show artist</legend>
-    [% widget = form.field('releases_show_compact') %]
-    <p>Default to a "compact" listing when there are [% INCLUDE "forms/input.tt" %] release or more (allowed range: 1 - 1000).</p>
-</fieldset>
-
-<fieldset>
-    <legend>Show release</legend>
-    [% fields = [
-        { widget = 'release_show_relationshipslinks', label = 'Show the add/edit relationships links in the release header.' },
-        { widget = 'release_show_annotationlinks', label = 'Show the add/edit annotation links in the release header.' },
-        { widget = 'show_amazon_coverart', label = 'Show Amazon.com cover art and buy links.' },
-        { widget = 'use_amazon_store', label = 'Your preferred Amazon Store' },
-    ] %]
-[% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Country</legend>
-    [% fields = [
-        { widget = 'default_country', label = 'When adding a new release, pick this country by default' },
-        { widget = 'google_domain', label = 'Your preferred Google domain' },
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Date/time display</legend>
-    [% fields = [
-        { widget = 'datetimeformat', label = 'Your preferred date/time format' },
-        { widget = 'timezone', label = 'Your preferred time zone' },
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Topmenu configuration</legend>
-    [% fields = [
-        { widget = 'topmenu_submenu_types' label = "The menu which is placed on top of the pages features multiple ways of navigating the site. You can choose which menu type (or both) you'd like to see if you are logged in" },
-        { widget = 'topmenu_dropdown_trigger', label = 'If you selected an option which includes the Dropdown menus  above, you can choose how they get activated' }
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Use of JavaScript</legend>
-    [% fields = [
-        { widget = 'autofix_open', label = 'On each page which uses it, the "Guess Case" box should initially be' },
-        { widget = 'JSMoveFocus', label = 'Use Javascript to move the input focus when the page loads.' },
-        { widget = 'JSDiff', label = 'Use javascript to highlight changes on title edits.' },
-        { widget = 'JSCollapse', label = 'Collapse releases per default on pages which show full releases (except the release page)' },
-        { widget = 'JSDebug', label = 'Show the Javascript debug box on the bottom of the page.' },
-    ] %]
-    [% PROCESS fields %]
-</fieldset>
-
-<fieldset>
-    <legend>Display options</legend>
-    <h3>Sidebar panels:</h3>
-</fieldset>
-
-[% INCLUDE "forms/submit.tt" label="Update Preferences" %]
-[% END %]
-[% END %]
-
 [% END %]

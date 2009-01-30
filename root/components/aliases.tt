@@ -30,5 +30,6 @@
             <p>
                 [%- l('[_1] has no aliases.', entity_link(entity)) -%]
             </p>
+        [%- END -%]
     [%- END -%]
 [%- END -%]

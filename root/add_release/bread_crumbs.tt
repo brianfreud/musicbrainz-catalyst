@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [% steps = [
     { action => 'add_release_track_count', name => l('Track Count')},
     { action => 'add_release_information', name => l('Release Information')},

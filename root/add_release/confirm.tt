@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER 'artist/layout.tt' title=l('Confirm Add Release') -%]
     [%- WRAPPER 'components/box.tt' header=l('Enter Edit') -%]
         [%- INCLUDE 'add_release/bread_crumbs.tt' -%]
@@ -9,7 +7,7 @@
             [%- INCLUDE 'forms/submit.tt' label=l('Keep Editing') -%]
         [%- END -%]
     [%- END -%]
-    [%- WRAPPER 'components/box.tt' header='Preview' -%]
+    [%- WRAPPER 'components/box.tt' header=l('Preview') -%]
         [%- INCLUDE 'release/release.tt' release=preview
             tracks=preview_tracks no_info_links=1 no_edit_links=1
             release_events=preview_events

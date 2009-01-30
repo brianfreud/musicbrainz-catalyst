@@ -1,10 +1,8 @@
-[%# Converted #%]
-
-[% WRAPPER "artist/layout.tt" title=l("Confirm label") %]
-    [% WRAPPER 'components/box.tt' header=l('Confirm label') %]
+[% WRAPPER "artist/layout.tt" title=l('Confirm Label') %]
+    [% WRAPPER 'components/box.tt' header=l('Confirm Label') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
         <p>
-            [% text_select_label %]
+            [% l('Please search and select the correct Label.  If searching yields no useful results, you can use the form below to add a new Label.') %]
         </p>
         [% INCLUDE "components/search.tt" entities=labels search_label=l('Label') %]
     [% END %]

@@ -1,12 +1,11 @@
-[% WRAPPER 'track/layout.tt' title="Merge" %]
-
-[% WRAPPER 'components/box.tt' header="Remove ${track.name}" %]
-    <p>Are you sure you delete the track [%- entity_link(track) -%]? If so, please enter an edit note below</p>
-
-    [%- WRAPPER "forms/form.tt" -%]
-        [% INCLUDE "forms/edit-note.tt" widget=form.field("edit_note") %]
-        [% INCLUDE "forms/submit.tt" label="Enter Edit" %]
-    [%- END -%]
-[% END %]
-
+[% WRAPPER 'track/layout.tt' title=l("Merge Tracks") %]
+    [% WRAPPER 'components/box.tt' header=l("Remove [_1]", ${track.name}) %]
+        <p>
+            [%- l('Are you sure you delete the track [_1]? If so, please enter an edit note below.', entity_link(track)) -%]
+        </p>
+        [%- WRAPPER "forms/form.tt" -%]
+            [% INCLUDE "forms/edit-note.tt" widget=form.field("edit_note") %]
+            [% INCLUDE "forms/submit.tt" label=l("Enter edit") %]
+        [%- END -%]
+    [% END %]
 [% END %]

@@ -1,18 +1,21 @@
 [% WRAPPER "components/box.tt" header="Tags" %]
-[%- IF tagcloud.size -%]
-    <p>[% entity_link(entity) %] has been tagged with the following:</p>
-    [% INCLUDE "tag/cloud.tt" %]
-[%- ELSE -%]
-    <p>[% entity_link(entity) %] has not been tagged.</p>
-[%- END -%]
+    [%- IF tagcloud.size -%]
+        <p>
+            [%- l('[_1] has been tagged with the following:', entity_link(entity)) -%]
+        </p>
+        [% INCLUDE "tag/cloud.tt" %]
+    [%- ELSE -%]
+        <p>
+            [%- l('[_1] has not been tagged', entity_link(entity)) -%]
+        </p>
+    [%- END -%]
 [% END %]
-
 [%- IF c.user_exists -%]
-    [%- WRAPPER 'components/box.tt' header="Tag this ${entity.entity_type}" -%]
+    [%- WRAPPER 'components/box.tt' header=l("Tag this [_1]", ${entity.entity_type}) -%]
         [%- WRAPPER 'forms/form.tt' -%]
-	    [%- WRAPPER 'forms/fieldset.tt' legend='Tags' -%]
-	        [%- INCLUDE 'forms/widget.tt' widget=form.field('tags') label='Tags' -%]
-	        [%- INCLUDE 'forms/submit.tt' label='Tag' -%]
+	    [%- WRAPPER 'forms/fieldset.tt' legend=l('Tags') -%]
+	        [%- INCLUDE 'forms/widget.tt' widget=form.field('tags') label=l('Tags') -%]
+	        [%- INCLUDE 'forms/submit.tt' label=l('Tag') -%]
             [%- END -%]
         [%- END -%]
     [%- END -%]

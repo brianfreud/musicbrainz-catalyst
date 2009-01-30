@@ -30,6 +30,7 @@
     [%- IF relations.size > maximum  && !showall -%]
         [%- n = relations.size - maximum -%]
         <div class="more_relationships">
+[%# NOTE: This next line doesn't correctly do the l()...  not sure how to do it. %]
             [% n %] [% l('relationship ' _ n > 1 ? "s" : "" _ ' not shown.') %]
             <a href="[% c.entity_url(source, 'relations') %]">[% l('View all relationships&hellip;') %]</a>
         </div>
@@ -44,7 +45,7 @@
                     [%- entity_link(source) -%][% relations.size > 1 ? ":" : "" %]
                     [%- PROCESS list -%]
                 [%- ELSE -%]
-                    [% l(entity_link(source) _ ' has no relationships.') -%]
+                    [% l('[_1] has no relationships.', entity_link(source)) -%]
                 [%- END -%]
             [%- IF current_relationship -%]
                 <hr/>
@@ -59,7 +60,7 @@
                 {
                     link => c.uri_for(c.controller('relate').action_for('store'),
                         [ source.entity_type, source.mbid ]),
-                    text => l("Use this ${source.entity_type} in a Relationship")
+                    text => l("Use this [_1] in a Relationship", ${source.entity_type})
                         hide => !c.user_exists,
                     },
                     {

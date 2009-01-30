@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [% WRAPPER "layout.tt" title="$artist.name - " _ l('Details') %]
     [% INCLUDE "artist/header.tt" %]
     [% WRAPPER "components/box.tt" header=l('Artist Information') %]

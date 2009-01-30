@@ -1,4 +1,3 @@
-[%- PROCESS 'components/textblobs.tt' -%]
 [% WRAPPER "layout.tt" title="Login" %]
 
 [% WRAPPER "components/box.tt" header="Login" %]

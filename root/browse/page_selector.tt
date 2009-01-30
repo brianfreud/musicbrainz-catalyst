@@ -1,4 +1,4 @@
-[% WRAPPER "components/box.tt" header=l("Browse") %]
+[% WRAPPER "components/box.tt" header=l('Browse') %]
     [% MACRO append_link(char) BLOCK;
         c.req.uri_with( index => "${c.req.query_params.index}${char}", page => 1 );
         END %]

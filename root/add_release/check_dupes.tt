@@ -3,11 +3,13 @@
     [% WRAPPER 'components/box.tt' header=l('Possible duplicate Releases found') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
         <p>
+[%# i18n NOTE: Plural text %]
             [% l('We found the following similar Releases already in our database:') %]
         </p>
         [%- WRAPPER 'layout/guidelines.tt' -%]
-            [%- make_guideline(l('Were you adding one of the following Releases which already is in the database?')) -%]
-            [%- make_guideline(l('If you are sure that your Release is different, please confirm by selecting the button below.')) -%]
+[%# i18n NOTE: Plural text %]
+            [%- create_guideline(l('Were you adding one of the following Releases which already is in the database?')) -%]
+            [%- create_guideline(l('If you are sure that your Release is different, please confirm by selecting the button below.')) -%]
         [%- END -%]
         [% INCLUDE 'release/release.tt' release=release.release
             tracks=release.tracks release_events=release.events

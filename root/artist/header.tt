@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- info_links = [
     { link => c.entity_url(artist, 'aliases'), text => l('Aliases') },
     { link => c.entity_url(artist, 'appearances'), text => l('Credits') },

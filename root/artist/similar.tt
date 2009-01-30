@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER 'artist/layout.tt' title=l('Similar Artists') -%]
     [%- WRAPPER 'components/box.tt' header=l('Similar Artists') -%]
         [%- IF similar_artists.size -%]

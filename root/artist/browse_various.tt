@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER 'artist/layout.tt' -%]
     [%- INCLUDE 'browse/page_selector.tt' -%]
     [%- WRAPPER 'components/box.tt' header=l('Releases') %]
@@ -8,11 +6,21 @@
                 <tbody>
                 [% FOR release IN releases %]
                     <tr[% ' class="odd"' IF loop.count % 2 == 0 %]>
-                        <td class="tracks">[% release.track_count %]</td>
-                        <td class="discids">[% release.discid_count %]</td>
-                        <td class="puids">[% release.puid_count %]</td>
-                        <td class="status">[% release_attribute(release.release_status) %]</td>
-                        <td class="date">[% release.first_release_date %]</td>
+                        <td class="tracks">
+                            [%- release.track_count -%]
+                        </td>
+                        <td class="discids">
+                            [%- release.discid_count -%]
+                        </td>
+                        <td class="puids">
+                            [%- release.puid_count -%]
+                        </td>
+                        <td class="status">
+                            [%- release_attribute(release.release_status) -%]
+                        </td>
+                        <td class="date">
+                            [%- release.first_release_date -%]
+                        </td>
                         <td class="language">
                             <abbr title="[% release.language.name %] / [% release.script.name %]">
                                 [% release.language.iso_code_3t %]

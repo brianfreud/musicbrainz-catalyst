@@ -1,5 +1,3 @@
-[%# Converted %#]
-
 [%- WRAPPER "artist/layout.tt" title=l("Aliases") -%]
     [%- WRAPPER 'components/box.tt' header=l("Aliases for ${entity.name}") -%]
         [%- IF aliases.size > 0 -%]
@@ -30,7 +28,7 @@
             </table>
         [%- ELSE -%]
             <p>
-                [%- l(entity_link(entity) _ ' has no aliases.') -%]
+                [%- l('[_1] has no aliases.', entity_link(entity)) -%]
             </p>
     [%- END -%]
 [%- END -%]

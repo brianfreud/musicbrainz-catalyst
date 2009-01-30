@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [% extra_js = 'artistform.js' %]
 [%- WRAPPER 'layout.tt' title=l('New Artist') -%]
     [%- WRAPPER 'components/box.tt' header=l('Add a new Artist') -%]

@@ -6,7 +6,7 @@
         [%- create_guideline(l('Just highlight (Ctrl+a) the content in the textbox, and copy (Ctrl+c) and paste (Ctrl+v) it into your web page or blog.')) -%]
     [%- END -%]
     <p>
-        [% l('If you wish to use a text link (e.g. ' _ entity_link(entity, 1) _ ', you can use the following markup:') %]
+        [% l('If you wish to use a text link (e.g. [_1], you can use the following markup:', entity_link(entity, 1)) %]
     </p>
     <table id="id-table-link">
         <tr>
@@ -22,7 +22,7 @@
         </tr>
     </table>
     <p>
-        [% l('If you wish to use a link with an icon (e.g. ' _ entity_link(entity, 1) _ ', you can use the following markup:') %]
+        [% l('If you wish to use a link with an icon (e.g. [_1], you can use the following markup:', entity_link(entity, 1)) %]
     </p>
     <table id="id-table-icon-link">
         <tr>

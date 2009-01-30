@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER "$entity.entity_type/layout.tt" title=l("Edit Annotation") -%]
     [%- WRAPPER 'components/box.tt' header=l('Edit Annotation') -%]
         [%- WRAPPER 'forms/form.tt' moderation=1 -%]

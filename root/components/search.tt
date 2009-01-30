@@ -7,7 +7,7 @@
     [% WRAPPER "forms/form.tt" quiet=1 %]
         [%- WRAPPER 'forms/fieldset.tt' legend=l('Search Results') -%]
             <p>
-                [% l('We have found the following results. Please select one of the following, or you can refine your query and search again.') %]
+                [% l('We have found the following results. Please select one of the following, or else you can refine your query and search again.') %]
             </p>
             [%- FOREACH entity=entities -%]
                 [%- WRAPPER 'forms/blank_row.tt' right=1 -%]
@@ -16,6 +16,6 @@
                 [%- END -%]
             [%- END -%]
         [% END %]
-        [%- INCLUDE "forms/submit.tt" label="Select" -%]
+        [%- INCLUDE "forms/submit.tt" label=l('Select') -%]
     [%- END -%]
 [%- END -%]

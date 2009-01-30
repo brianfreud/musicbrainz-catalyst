@@ -5,8 +5,8 @@
     class = field.errors.size ? "$class error" : class;
     extra_attributes = class_html(class);
 -%]
-
 [%- IF type -%]
     [%- INCLUDE "forms/widgets/${type}.tt" -%]
-[%- ELSE; "Warning: unknown widget type?"; END -%]
+[%# This next is a debug message, and shouldn't be translated, as it shouldn't ever be seen anyhow. %]
+[%- ELSE; 'Warning: unknown widget type?'; END -%]
 

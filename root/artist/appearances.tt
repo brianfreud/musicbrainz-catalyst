@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER "artist/layout.tt" title=l('Artist Credits') -%]
     [% BLOCK group_head %]
         [%- last_year = '.' -%]

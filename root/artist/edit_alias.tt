@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER 'artist/layout.tt' title=l('Edit Artist Alias') -%]
     [%- WRAPPER 'components/box.tt' header=l('Edit Artist Alias') -%]
         [%- INCLUDE 'artist/alias_form.tt' -%]

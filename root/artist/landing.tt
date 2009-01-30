@@ -1,6 +1,3 @@
-[%# Converted #%]
-
-[%- PROCESS 'components/textblobs.tt' -%]
 [%- WRAPPER "layout.tt" title=artist.name -%]
     [%- INCLUDE "artist/header.tt" -%]
     [%- INCLUDE "annotation/annotation.tt" parent=artist -%]

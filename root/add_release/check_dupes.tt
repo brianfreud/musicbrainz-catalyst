@@ -1,15 +1,13 @@
-[%# Converted #%]
-
-[%- PROCESS 'components/textblobs.tt' -%]
 [% WRAPPER 'artist/layout.tt' title=l('Check Duplicates') %]
+[%# i18n NOTE: Plural text %]
     [% WRAPPER 'components/box.tt' header=l('Possible duplicate Releases found') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
         <p>
-            [% text_similar_release %]
+            [% l('We found the following similar Releases already in our database:') %]
         </p>
         [%- WRAPPER 'layout/guidelines.tt' -%]
-            [%- make_guideline('did_you_mean') -%]
-            [%- make_guideline('release_confirm') -%]
+            [%- make_guideline(l('Were you adding one of the following Releases which already is in the database?')) -%]
+            [%- make_guideline(l('If you are sure that your Release is different, please confirm by selecting the button below.')) -%]
         [%- END -%]
         [% INCLUDE 'release/release.tt' release=release.release
             tracks=release.tracks release_events=release.events
@@ -17,10 +15,11 @@
             FOR release=similar %]
         [%- WRAPPER 'forms/row.tt' %]
             [% INCLUDE 'forms/submit.tt'
-                label=text_release_not_above
+                label=l('No, my Release is not one of the above')
                 WRAPPER 'forms/form.tt' %]
+[%# NOTE: this next performs an incorrect action! %]
             [% INCLUDE 'forms/submit.tt'
-                label=text_release_is_above
+                label=l('Yes, my Release is one of the above')
                 WRAPPER 'forms/form.tt' %]
         [% END %]
     [% END %]

@@ -9,10 +9,10 @@
 [%- END -%]
 [%- WRAPPER 'forms/form.tt' moderation=1 -%]
     [%- IF form.field('confirmed').required -%]
-        [%- WRAPPER 'forms/fieldset.tt' legend=text_confirm_ask -%]
+        [%- WRAPPER 'forms/fieldset.tt' legend=l('Are you sure?') -%]
             <p>
                 <strong class='warning'>[% l('Warning:') %]</strong>
-                [% text_warning_artist_duplicate_add %]
+                [% l('You are attempting to add an artist which appears to be very similar, if not exactly the same, as these existing artists:') %]
             </p>
             [%- BLOCK show_dupe -%]
                 <li>[%- entity_link(dupe) -%]</li>

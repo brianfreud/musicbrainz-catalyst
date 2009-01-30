@@ -7,19 +7,19 @@
     [%- INCLUDE "components/relationships.tt" source=artist -%]
     <div style="text-align: center;">
     [%- IF c.req.query_params.show_all -%]
-        [% text_artist_current_full %]
+        [% l('You are currently viewing all releases by [_1].', artist.name) %]
         <br />
         <strong>
             <a href="[% c.entity_url(artist, 'show', { show_all => 0 }) %]">
-                [%- text_artist_short_switch -%]
+                [%- l(' View only albums, EPs, singles, and compilations by [_1].', artist.name ) -%]
             </a>
         </strong>
     [%- ELSE -%]
-        [% text_artist_current_short %]
+        [% l('You are currently viewing only albums, EPs, singles, and compilations by [_1].', artist.name) %]
         <br />
         <strong>
             <a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">
-                [%- text_artist_full_switch -%]
+                [%- l(' View all releases by [_1].', artist.name) -%]
             </a>
         </strong>.
     [%- END -%]

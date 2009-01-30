@@ -1,10 +1,3 @@
-[%# Converted #%]
-
-[%# TODO: entity_link needs to be able to have the label made bold - see add_release/tracks.tt for example of where needed. #%]
-[%# TODO: make_required_widget should use css, not presentational HTML. #%]
-[%# TODO: Write a quickie xgettext script to pull text strings to a .po and rename that to .pot. #%]
-[%# TODO: Write a real l() macro (ie, implement c.localize(string, language) over in the real perl) to use that .pot. #%]
-
 [%- MACRO create_guideline(text) BLOCK -%]
     <li>
         [%- text -%]
@@ -15,7 +8,6 @@
 [% MACRO html_escape(url) BLOCK; url | html; END %]
 
 [%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
-
 [%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
 [%# This next is currently a placerholder, but should be changed to be l(text, args) and c.localize(text, args); when that function exists #%]

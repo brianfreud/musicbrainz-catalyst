@@ -12,7 +12,7 @@
         [% IF anonymous_subscribers %]
             <p>
 [%# i18n NOTE: Plural text %]
-                [%- l('There are also [_1] anonymous subscribers', anonymous_subscribers) -%]
+                [%- l('There are also [_1] anonymous subscriber(s)', anonymous_subscribers) -%]
             </p>
         [% END %]
         [% IF user_subscribed %]

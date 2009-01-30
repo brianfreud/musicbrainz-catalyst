@@ -10,7 +10,7 @@
         [% END %]
         </p>
         [% IF anonymous_subscribers %]
-            <p>[% l('There are also ' _ anonymous_subscribers _ ' anonymous subscribers') %]</p>
+            <p>[% l('There are also [_1] anonymous subscribers', anonymous_subscribers) %]</p>
         [% END %]
         [% IF user_subscribed %]
             <a href="[% c.entity_url(artist, 'unsubscribe') %]">[% l('Unsubscribe from this artist.') %]</a>

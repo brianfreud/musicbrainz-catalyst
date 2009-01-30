@@ -11,7 +11,7 @@
             </table>
         [%- ELSE -%]
             <p>
-                [% text_artist_similar_none %]
+                [% l('Sorry, we do not have any data about similar artists for [_1].', entity_link(artist)) %]
             </p>
         [%- END -%]
     [%- END -%]

@@ -1,5 +1,3 @@
-[%# Converted #%]
-
 [%- WRAPPER "$entity.entity_type/layout.tt" title=l('Annotations') -%]
     <h1>[% l('Annotation History') %]</h1>
     [%- INCLUDE 'annotation/annotation.tt' parent=entity show_change_log=1

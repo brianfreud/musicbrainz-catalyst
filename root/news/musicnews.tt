@@ -1,0 +1,20 @@
+[%- WRAPPER 'layout.tt' title='Music News'%]
+    <h1>Music News</h1>
+
+    <h2>Upcoming Releases</h2>
+    [%- PROCESS 'news/musicnews-release.tt' data=upcoming_releases -%]
+
+    <h2>Recent releases (within the last 30 days)</h2>
+    [%- PROCESS 'news/musicnews-release.tt' data=recent_releases -%]
+
+    <div class="two_column_right">
+    <h2>Recently Broken Up</h2>
+    [%- PROCESS 'news/musicnews-artist.tt' data=recently_brokenup is_person=0 -%]
+    </div>
+
+    <div class="two_column_left">
+    <h2>Recently Deceased</h2>
+    [%- PROCESS 'news/musicnews-artist.tt' data=recently_deceased is_person=1 -%]
+    </div>
+
+[%- END -%]

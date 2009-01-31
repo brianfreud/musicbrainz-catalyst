@@ -8,8 +8,8 @@
     { link => c.entity_url(artist, 'google'), text => l('Search Google') }
     { link => c.entity_url(artist, 'similar'), text => l('Similar Artists') },
     { link => c.entity_url(artist, 'tags'), text => l('Tags') },
-    { link => c.uri_for('/moderation/entity/artist', artist.mbid), text => l('View Edits') }
-    { link => c.entity_url(artist, 'subscriptions'), text => l('View Subscriptions') },
+    { link => c.uri_for('/moderation/entity/artist', artist.mbid), text => l('View Edits') },
+    { link => c.entity_url(artist, 'subscriptions'), text => l('View Subscriptions') }
 ] -%]
 <div class='entity_header'>
     <div class='title artist'>

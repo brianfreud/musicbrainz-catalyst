@@ -1,3 +1,4 @@
+[%- USE UserDate(c.user) -%]
 [% IF moderation.Notes %]
     <table class="edit_notes">
     [% FOR note=moderation.Notes %]

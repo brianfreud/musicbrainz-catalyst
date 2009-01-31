@@ -22,8 +22,13 @@
 [%- END -%]
 
 [% MACRO l(text, args) BLOCK;
-    c.localize(text, args);
+    c.gettext(text, args);
 END; %]
+
+[% MACRO ln(text, args) BLOCK;
+    c.ngettext(text, args);
+END; %]
+
 
 
 [%- MACRO entity_link(entity, noicon) IF entity -%]

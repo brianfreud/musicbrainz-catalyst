@@ -11,7 +11,7 @@
            </tr>
            <tr>
                <th>
-                   [% doc_link('MusicBrainzIdentifier', 'MBID') %]:
+                   [% doc_link('MusicBrainzIdentifier', l('MBID')) %]:
                </th>
                <td>
                    [% release.mbid %]
@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>
-                    [%- l)'Permanent link:') -%]
+                    [%- l('Permanent link:') -%]
                 </th>
                 <td>
                     [%- perma='http://musicbrainz.org/release/${release.mbid}' -%]

@@ -1,4 +1,4 @@
-[% WRAPPER 'layout.tt' title=l("Browse [_1]", ${type}s) %]
+[% WRAPPER 'layout.tt' title=l("Browse {type}",  {type => get_plural_type(${type})}) %]
    [% INCLUDE "browse/page_selector.tt" %]
     [% IF entities.size %]
         <h1>
@@ -16,7 +16,7 @@
             [% END %]
         [% END %]
     [% ELSE %]
-        [% WRAPPER "components/box.tt" header=l('Browse [_1]s', ${type}) %]
+        [% WRAPPER "components/box.tt" header=l('Browse {type}', {type = ${type}}) %]
             [%- IF index.length > 0 -%]
                 </p>
                     [% l('Sorry, we could not find any {type} starting with {index}', {type => type, index => html_escape(index)}) %]

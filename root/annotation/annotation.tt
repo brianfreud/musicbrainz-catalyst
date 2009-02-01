@@ -24,7 +24,7 @@
     </div>
 [%- ELSE -%]
     <p>
-      [% l('This [_1] has no annotation.', parent.entity_type) %]
+      [% l('This {entity} has no annotation.', {entity => parent.entity_type}) %]
         [%- IF c.user_exists -%]
             <a href="[% c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit') %]">[% l('Add an annotation') %]</a>
         [%- END -%]

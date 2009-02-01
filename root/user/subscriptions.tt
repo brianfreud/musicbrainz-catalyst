@@ -1,7 +1,7 @@
 [%- WRAPPER 'layout.tt' title=l('Your Subscriptions') -%]
     [%- WRAPPER 'components/box.tt' header=l('Your Subscriptions') -%]
         <p>
-            [% l('You are currently subscribed to <strong>[_1]</strong> artists, <strong>[_2]</strong> labels and <strong>[_3]</strong> editors.', artist_count, label_count, editor_count) %]
+            [% l('You are currently subscribed to <strong>{num_artist}</strong> artists, <strong>{num_label}</strong> labels and <strong>{num_editor}</strong> editors.', {num_artist => artist_count, num_label => label_count, num_editor => editor_count}) %]
         </p>
         <p>
             [% l('To unsubscribe, activate the checkbox next to the artists, labels or editors you would like to unsubscribe from, then <em>Unsubscribe</em> below. To subscribe to an artist, a label or an editor, use the "Subscribe" link on the artist\'s, label\'s or editor\'s page.') %]

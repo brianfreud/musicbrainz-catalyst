@@ -1,5 +1,5 @@
 [% WRAPPER "${entity.entity_type}/layout.tt" title=l("Create Relationship: Relate to URL") %]
-    [% WRAPPER 'components/box.tt' header=l("Relate [_1] to URL", ${entity.entity_type}) %]
+    [% WRAPPER 'components/box.tt' header=l("Relate {type} to URL", {type => ${entity.entity_type}}) %]
         [%- WRAPPER 'layout/guidelines.tt' -%]
             [%- create_guideline(l('Select the URL relationship type and enter the URL below. Please note that the URL must be a valid URL, including the http:// or ftp:// protocol portion of the URL')) %]
             [%- create_guideline('<strong>' _l('You may not link to digital audio files or sites where unauthorized copies of copyrighted works can be downloaded.') _ </strong>) %]

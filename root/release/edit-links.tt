@@ -11,6 +11,6 @@
         ] -%]
         [% INCLUDE "components/piped-list.tt" list=edit_links %]
     [%- ELSE -%]
-        [% l('Please <a href=\"[_1]\">log in</a> to edit this release', c.uri_for("/user/login")) %]
+        [% l('Please <a href=\"{uri}\">log in</a> to edit this release', {uri => c.uri_for("/user/login")}) %]
     [%- END -%]
 </div>

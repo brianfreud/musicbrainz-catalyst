@@ -2,7 +2,7 @@
     [% WRAPPER "components/box.tt" header=("Search Results") %]
         [% IF users.size %]
             <p>
-                [% l('We found the following users that matched your query for <code>[_1]</code>.', html_escape(query)) %]
+                [% l('We found the following users that matched your query for <code>{query}</code>.', {query => html_escape(query)}) %]
             </p>
             <ul>
                 [% FOR user IN users %]
@@ -15,7 +15,7 @@
             </ul>
         [% ELSE %]
             <p>
-                [% l('Sorry, we could not find any users matching the query for <code> [_1] </code>', html_escape(query)) %]
+                [% l('Sorry, we could not find any users matching the query for <code>{query}</code>', {query => html_escape(query)}) %]
             </p>
         [% END %]
     [% END %]

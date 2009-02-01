@@ -11,11 +11,7 @@
         </p>
         [% IF anonymous_subscribers %]
             <p>
-                [% IF anonymous_subscribers > 1 %]
-                    [%- l('There are also [_1] anonymous subscribers.', anonymous_subscribers) -%]
-                [% ELSE %]
-                    [%- l('There is also one anonymous subscriber.') -%]
-                [% END %]
+                    [%- ln('There is also one anonymous subscriber.', 'There are also {num} anonymous subscribers.', anonymous_subscribers, {num => anonymous_subscribers}) -%]
             </p>
         [% END %]
         [% IF user_subscribed %]

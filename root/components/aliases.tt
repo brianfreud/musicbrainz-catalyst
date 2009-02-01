@@ -28,7 +28,7 @@
             </table>
         [%- ELSE -%]
             <p>
-                [%- l('[_1] has no aliases.', entity_link(entity)) -%]
+                [%- l('{entity} has no aliases.', {entity => entity_link(entity)}) -%]
             </p>
         [%- END -%]
     [%- END -%]

@@ -6,20 +6,22 @@
         </h1>
         [% WRAPPER 'components/box.tt' header=l('Found [_1] [_2]s', ${num}, ${type}) %]
             [% WRAPPER 'components/with-pager.tt' %]
-                <ol>
+                <ul>
                     [% FOR entity IN entities %]
-                        <li class="column[%column %]">
-                            [% entity_link(entity) %]
-                        </li>
+                    <li class="column[%column %]">
+                        <span class="counter">[% loop.index + pager.first %].</span> [% entity_link(entity) %]
+                    </li>
                     [% END %]
-                </ol>
+                </ul>
             [% END %]
         [% END %]
     [% ELSE %]
         [% WRAPPER "components/box.tt" header=l('Browse [_1]s', ${type}) %]
-            <p>
-                [% l('To begin browsing, please select a letter above.') %]
-            </p>
+            [%- IF index.length > 0 -%]
+                <p>
+                    [% l('To begin browsing, please select a letter above.') %]
+                </p>
+            [% END %]
         [% END %]
     [% END %]
 [% END %]

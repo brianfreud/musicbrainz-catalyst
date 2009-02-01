@@ -31,6 +31,7 @@
         [% l('Edit:') %]
         [%- IF c.user_exists -%]
             [%- edit_links = [
+	        { link => c.entity_url(label, 'add_alias'), text => l("Add Alias") },
                 { link => c.entity_url(label, 'edit'), text => l('Edit Label') },
                 { link => c.entity_url(label, 'subscribe'), text => l('Subscribe'), hide => subscribed },
                 { link => c.entity_url(label, 'unsubscribe'), text => l('Unsubscribe'), hide => !subscribed }

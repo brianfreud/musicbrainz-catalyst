@@ -1,8 +1,10 @@
 [%- WRAPPER "artist/landing.tt" -%]
     [% BLOCK group_head %]
         <h2 class="compactreleasetype">
+        [%- IF item.release_type %]
             [% IF item.artist != artist.id; l("Various Artists"); END %]
             [% plural_release_attribute(item.release_type) %]
+        [%- ELSE; l("Uncategorized Releases"); END -%]
         </h2>
         <table class="releases" summary="[% l('[_1] releases by [_2]', plural_release_attribute(item.release_type), artist.name) %]">
             <caption>

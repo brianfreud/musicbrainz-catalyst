@@ -35,6 +35,10 @@ div.status_ok {
     border: 1px solid black;
 }
 
+caption {
+    display: none;
+}
+
 /*
  * Header
  */

@@ -6,6 +6,7 @@
 
 [% MACRO url_escape(url) BLOCK; url | url; END %]
 [% MACRO html_escape(url) BLOCK; url | html; END %]
+[% MACRO make_ucfirst(text) BLOCK; text | ucfirst; END %]
 
 [%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 [%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
@@ -52,7 +53,7 @@
     ELSE; '';
     END -%]
 
-[%# Take type and return pluralized word form, avoids problems with '[% type %]s' #%]
+[%# Take type and return pluralized word form, avoids problems with '|% type %|s' #%]
 [%- MACRO get_plural_type(entity) BLOCK %]
   [% SWITCH entity %]
     [%   CASE release %]

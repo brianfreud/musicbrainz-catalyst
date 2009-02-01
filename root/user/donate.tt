@@ -13,7 +13,7 @@
             </p>
             [% IF days %]
                 <p>
-                    [%- l('You will not be nagged for another [% days %] days.') -%]
+                    [%- l('You will not be nagged for another [_1] days.', days) -%]
                 </p>
             [% ELSE %]
                 <p>

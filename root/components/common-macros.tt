@@ -4,16 +4,15 @@
     </li>
 [%- END -%]
 
+[%# This next could use localization for alternating comma/period use per locale %]
+[% MACRO add_commas(n) GET n.chunk(-3).join(',') %]
+
 [% MACRO url_escape(url) BLOCK; url | url; END %]
 [% MACRO html_escape(url) BLOCK; url | html; END %]
+[% MACRO make_ucfirst(text) BLOCK; text | ucfirst; END %]
 
-[%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
+[%- MACRO make_widget(field, label) INCLUDE 'forms/generic/row.tt' field=form.field(field) label=label -%]
 [%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
-
-[%# This next is currently a placerholder, but should be changed to be l(text, args) and c.localize(text, args); when that function exists #%]
-[%- MACRO l(text) BLOCK -%]
-    [%- text -%]
-[%- END -%]
 
 [% USE UserDate(user.preferences) %]
 
@@ -28,7 +27,6 @@ END; %]
 [% MACRO ln(text, args) BLOCK;
     c.ngettext(text, args);
 END; %]
-
 
 [%- MACRO entity_link(entity, noicon) IF entity -%]
     [%- mpclass = entity.has_mod_pending ? ' class="mp"' : '' -%]
@@ -63,7 +61,7 @@ END; %]
     ELSE; '';
     END -%]
 
-[%# Take type and return pluralized word form, avoids problems with "[% type %\]s" %]
+[%# Take type and return pluralized word form, avoids problems with '|% type %|s' #%]
 [%- MACRO get_plural_type(entity) BLOCK %]
   [% SWITCH entity %]
     [%   CASE release %]

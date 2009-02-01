@@ -1,30 +1,28 @@
-[%- WRAPPER 'layout.tt' title='Subscriptions' -%]
-[%- WRAPPER 'components/box.tt' header='Your Subscriptions' -%]
-<p>
-    You are currently subscribed to <strong>[% artist_count %]</strong> artists,
-    <strong>[% label_count %]</strong> labels and <strong>[% editor_count %]</strong> editors.
-</p>
-<p>
-    To unsubscribe, activate the checkbox next to the artists, labels or editors you would like
-    to unsubscribe from, then <em>Unsubscribe</em> below. To subscribe to an artist, a label or an editor,
-    use the "Subscribe" link on the artist's, label's or editor's page.
-</p>
-
-<h3>[% type | ucfirst %]s</h3>
-[%- WRAPPER 'components/with-pager.tt' -%]
-    [%- WRAPPER 'forms/form.tt' custom=1 -%]
-    <ul>
-        [%- FOREACH entity IN entities -%]
-            <li>
-                <input type="checkbox" name="id" value="[% entity.id %]" id="[% type %].[% entity.id %]" />
-                <label for="[% type %].[% entity.id %]">[%- entity_link(entity) -%]</label>
-            </li>
+[%- WRAPPER 'layout.tt' title=l('Your Subscriptions') -%]
+    [%- WRAPPER 'components/box.tt' header=l('Your Subscriptions') -%]
+        <p>
+            [% l('You are currently subscribed to <strong>[_1]</strong> artists, <strong>[_2]</strong> labels and <strong>[_3]</strong> editors.', artist_count, label_count, editor_count) %]
+        </p>
+        <p>
+            [% l('To unsubscribe, activate the checkbox next to the artists, labels or editors you would like to unsubscribe from, then <em>Unsubscribe</em> below. To subscribe to an artist, a label or an editor, use the "Subscribe" link on the artist\'s, label\'s or editor\'s page.') %]
+        </p>
+        <h3>
+            [% make_ucfirst(get_plural_type(type)) %]
+        </h3>
+        [%- WRAPPER 'components/with-pager.tt' -%]
+            [%- WRAPPER 'forms/form.tt' custom=1 -%]
+                <ul>
+                    [%- FOREACH entity IN entities -%]
+                        <li>
+                            <input type="checkbox" name="id" value="[% entity.id %]" id="[% type %].[% entity.id %]" />
+                            <label for="[% type %].[% entity.id %]">
+                                [%- entity_link(entity) -%]
+                            </label>
+                        </li>
+                    [%- END -%]
+                </ul>
+                [%- INCLUDE 'forms/submit.tt' label="Unsubscribe" -%]
+            [%- END -%]
         [%- END -%]
-    </ul>
-
-    [%- INCLUDE 'forms/submit.tt' label="Unsubscribe" -%]
     [%- END -%]
-[%- END -%]
-
-[%- END -%]
 [%- END -%]

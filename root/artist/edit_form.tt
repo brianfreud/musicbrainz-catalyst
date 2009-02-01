@@ -4,7 +4,6 @@
     [%- END -%]
         [%- create_guideline(l('Please read the [_1], then provide the necessary information about the new artist below.', doc_link('StyleGuideline', l('Style Guidelines')))) -%]
         [%- create_guideline(l('If one or more artists with the same name already exist in the database, you will be prompted to [_1], which will allow users to distinguish this entry from the other artist(s) with the same name.', doc_link('ArtistComment', l('add a comment to this artist')))) -%]
-        [%- create_guideline(l('If one or more artists with the same name already exist in the database, you will be prompted to [_1], which will allow users to distinguish this entry from the other artist(s) with the same name.', doc_link('ArtistComment', l('add a comment to this artist')))) -%]
         [%- create_guideline(l('Please use the Guess Case buttons to fix common style errors. (Available only if you have JavaScript enabled.)')) -%]
 [%- END -%]
 [%- WRAPPER 'forms/form.tt' moderation=1 -%]

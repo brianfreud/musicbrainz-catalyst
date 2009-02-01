@@ -35,6 +35,10 @@ div.status_ok {
     border: 1px solid black;
 }
 
+caption {
+    display: none;
+}
+
 /*
  * Header
  */
@@ -436,7 +440,8 @@ table.statistics th {
     padding: 5pt;
 }
 
-table.statistics th {
+table.statistics th,
+table.statistics tfoot {
     background: #eee;
 }
 

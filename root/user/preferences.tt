@@ -1,14 +1,14 @@
 [% BLOCK fields %]
     [% FOREACH field=fields %]
-        [%- widget = form.field(field.widget) -%]
+        [%- field = form.field(pref.widget) -%]
         <p>
-            [%- IF widget.widget == 'checkbox' -%]
+            [%- IF field.widget == 'checkbox' -%]
                 [%- INCLUDE "forms/input.tt" -%]
-                [%- INCLUDE 'forms/label.tt' label=field.label right=1 -%]
+                [%- INCLUDE 'forms/label.tt' label=pref.label for=field -%]
             [%- ELSE -%]
-                [%- INCLUDE 'forms/label.tt' label=field.label -%]
+                [%- INCLUDE 'forms/label.tt' for=field label=pref.label -%]
                 [%- INCLUDE "forms/input.tt" -%]
-            [%- END -%]
+            [%- END -%] 
         </p>
     [% END %]
 [% END %]
@@ -72,9 +72,9 @@
             </fieldset>
             <fieldset>
                 <legend>
-                    Show artist
+                    [% l('Show artist') %]
                 </legend>
-                [% widget = form.field('releases_show_compact') %]
+                [% INCLUDE "forms/input.tt" field=form.field('releases_show_compact') type='text' %]
                 <p>
                     [% l('Default to a "compact" listing for how many, or more, releases? (allowed range: 1 - 1000).') %] [% INCLUDE "forms/input.tt" %]
                 </p>
@@ -147,7 +147,6 @@
     [% END %]
     </ul>
 [% END %]
-
 <fieldset>
     <legend>Voting/edit review pages</legend>
       <p>
@@ -187,7 +186,6 @@
         { widget = 'auto_subscribe', label = 'Automatically subscribe me to artists or labels I create.' },
     ] %]
 </fieldset>
-
 <fieldset>
     <legend>E-mailing other editors</legend>
     [% fields = [
@@ -196,7 +194,6 @@
     ] %]
     [% PROCESS fields %]
 </fieldset>
-
 <fieldset>
     <legend>Show artist</legend>
     <p>
@@ -205,7 +202,6 @@
       release or more (allowed range: 1 - 1000).
     </p>
 </fieldset>
-
 <fieldset>
     <legend>Show release</legend>
     [% fields = [
@@ -216,7 +212,6 @@
     ] %]
 [% PROCESS fields %]
 </fieldset>
-
 <fieldset>
     <legend>Country</legend>
     [% fields = [
@@ -225,7 +220,6 @@
     ] %]
     [% PROCESS fields %]
 </fieldset>
-
 <fieldset>
     <legend>Date/time display</legend>
     [% fields = [
@@ -254,7 +248,6 @@
     ] %]
     [% PROCESS fields %]
 </fieldset>
-
 <fieldset>
     <legend>Display options</legend>
     <h3>Sidebar panels:</h3>
@@ -274,16 +267,10 @@
         { widget = 'css_nosmallfonts', label = 'Do not use small font sizes' },
     ] -%]
 </fieldset>
-
 [%- WRAPPER 'forms/fieldset.tt' legend='Privacy' -%]
-  [%- PROCESS fields fields = [
-      { widget = 'subscriptions_public', label='Allow other users to see my subscriptions' },
-      { widget = 'tags_public', label='Allow other users to see my folksonomy tags' },
-  ] -%]
-[%- END -%]
-
+    [%- PROCESS fields fields = [
+        { widget = 'subscriptions_public', label='Allow other users to see my subscriptions' },
+        { widget = 'tags_public', label='Allow other users to see my folksonomy tags' },
+    ] -%]
+    [%- END -%]
 [% INCLUDE "forms/submit.tt" label="Update Preferences" %]
-[% END %]
-[% END %]
-
-[% END %]

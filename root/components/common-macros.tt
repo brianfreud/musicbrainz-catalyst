@@ -4,6 +4,9 @@
     </li>
 [%- END -%]
 
+[%# This next could use localization for alternating comma/period use per locale %]
+[% MACRO add_commas(n) GET n.chunk(-3).join(',') %]
+
 [% MACRO url_escape(url) BLOCK; url | url; END %]
 [% MACRO html_escape(url) BLOCK; url | html; END %]
 [% MACRO make_ucfirst(text) BLOCK; text | ucfirst; END %]

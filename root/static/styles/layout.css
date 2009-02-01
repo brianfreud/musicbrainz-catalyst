@@ -440,7 +440,8 @@ table.statistics th {
     padding: 5pt;
 }
 
-table.statistics th {
+table.statistics th,
+table.statistics tfoot {
     background: #eee;
 }
 

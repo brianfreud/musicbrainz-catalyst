@@ -34,7 +34,7 @@
             <tbody>
     [%- END -%]
     [%- BLOCK group_item -%]
-        <tr[% ' class="odd"' IF loop.count % 2 == 0 %]>
+        <tr[% ' class="odd"' IF loop.count % 2 == 1 %]>
             <td headers="table_[% plural_release_attribute(item.release_type) %]_title">
                 [% entity_link(item, 1) %]
             </td>

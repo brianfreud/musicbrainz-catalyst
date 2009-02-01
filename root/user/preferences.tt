@@ -1,3 +1,5 @@
+[% extra_js = 'jquery/jquery-ui-1.5.3.js tab.js' %] 
+[% extra_css = 'jquery-ui/ui.all.css' %] 
 [% BLOCK fields %]
     [% FOREACH pref=fields %]
         [%- field = form.field(pref.widget) -%]
@@ -32,9 +34,9 @@
                     [% END %]
                 </ul>
             [% END %]
-            <fieldset>
+            <fieldset class="ui-tabs-panel ui-tabs-hide">
                 <legend>
-                    [%- l('Voting/edit review pages') %]
+                    [%- l('Voting / Edit review pages') %]
                 </legend>
                 <p>
                     [%- INCLUDE 'forms/input.tt' field=form.field('mod_add_album_inline') -%]

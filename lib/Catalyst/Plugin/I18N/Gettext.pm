@@ -16,10 +16,10 @@ sub setup {
     my $self = shift;
     $self->NEXT::setup(@_);
     my $calldir = $self;
-    $calldir =~ s{::}{/}g;
+    $calldir =~ s{::}{/}g;   
     my $file = "$calldir.pm";
     $trans_path = $INC{$file};
-    $trans_path =~ s{\.pm$}{/I18N};
+    $trans_path =~ s{\.pm$}{/\.\./\.\./\.\./po};
     $self->log->debug($trans_path);
 }
 
@@ -49,14 +49,20 @@ sub gettext
 {
 	my ($c, $msgid, $vars) = @_;
 
-	return __expand($c->_dcngettext ($msgid, undef, undef), %$vars);
+        my %vars = {};
+        %vars = %$vars if (ref $vars eq "HASH");
+
+	return __expand($c->_dcngettext ($msgid, undef, undef), %vars);
 }
 
 sub ngettext
 {
 	my ($c, $msgid, $msgid_plural, $n, $vars) = @_;
 
-	return __expand($c->_dcngettext ($msgid, $msgid_plural, $n), %$vars);
+        my %vars = {};
+        %vars = %$vars if (ref $vars eq "HASH");
+
+	return __expand($c->_dcngettext ($msgid, $msgid_plural, $n), %vars);
 }
 
 sub _dcngettext

@@ -7,10 +7,10 @@ use base 'Catalyst::Controller';
 
 # Import MusicBrainz libraries
 use DBDefs;
-use MusicBrainz::Server::Adapter qw( EntityUrl );
 use MusicBrainz::Server::Cache;
 use MusicBrainz::Server::Replication ':replication_type';
 use MusicBrainz::Server::Statistic;
+use UserPreference;
 
 #
 # Sets the actions in this controller to be registered with no prefix
@@ -151,7 +151,6 @@ sub end : ActionClass('RenderView')
     };
 
     # For linking to entities
-    $c->stash(entity_url => sub { EntityUrl($c, @_); }); 
     $c->stash->{server_details}->{version} = &DBDefs::VERSION;
 
     # For displaying release attributes
@@ -168,8 +167,6 @@ sub end : ActionClass('RenderView')
     $c->stash->{begin_date_name} = \&MusicBrainz::Server::Artist::begin_date_name;
     $c->stash->{end_date_name  } = \&MusicBrainz::Server::Artist::end_date_name;
 
-    $c->stash->{date} = \&MusicBrainz::Server::Validation::MakeDisplayDateStr;
-    
     $c->stash->{vote} = \&ModDefs::vote_name;
 
     $c->stash->{release_format} = \&MusicBrainz::Server::ReleaseEvent::release_format_name;

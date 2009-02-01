@@ -56,37 +56,31 @@ sub login : Private
         if $c->user_exists;
 
     use MusicBrainz::Server::Form::User::Login;
-    my $form = $self->form(MusicBrainz::Server::Form::User::Login->new());
-    $c->stash->{template} = 'user/login.tt';
-    $c->stash->{form} = $self->form;
-    $c->session->{__login_dest} = $c->req->uri
-        unless defined $c->session->{__login_dest};
+    $self->form(MusicBrainz::Server::Form::User::Login->new);
+
+    $c->stash->{template}         = 'user/login.tt';
+    $c->stash->{form}             = $self->form;
+    $c->session->{__login_dest} ||= $c->req->uri;
 
     $c->detach unless $self->submit_and_validate($c);
 
-    my ($username, $password) = ( $form->value("username"),
-                                  $form->value("password") );
-
-    if( !$c->authenticate({ username => $username,
-                            password => $password }) )
+    if( !$c->authenticate({ username => $self->form->value("username"),
+                            password => $self->form->value("password") }) )
     {
-        $form->add_general_error('Username/password combination invalid');
+        $self->form->add_general_error('Username/password combination invalid');
         $c->detach;
     }
     else
     {
-        if ($form->value('remember_me'))
+        if ($self->form->value('remember_me'))
         {
             $c->user->SetPermanentCookie($c,
-                only_this_ip => $form->value('single_ip')
+                only_this_ip => $self->form->value('single_ip')
             );
         }
     }
     
-    my $redir = $c->session->{__login_dest};
-    $c->session->{__login_dest} = undef;
-    
-    $c->response->redirect($redir);
+    $c->response->redirect(delete $c->session->{__login_dest});
     $c->detach;
 }
 
@@ -97,10 +91,26 @@ sub login_form : Local Path('login')
     $c->detach('/user/profile', [ $c->user->name ])
         if $c->user_exists;
 
-    $c->session->{__login_dest} = $c->req->referer
-        unless defined $c->session->{__login_dest};
+    unless (defined $c->session->{__login_dest})
+    {
+        # Only redirect to referer if it came from $base
+        # (the hostname of this server)
+        my $base    = $c->req->base;
+        my $referer = $c->req->referer;
+
+        $c->session->{__login_dest} = $referer =~ $base
+            ? $referer : $c->uri_for('/')
+    }
 
     $c->forward('/user/login');
+
+    if ($c->user_exists)
+    {
+        # As strange as this condition appears, it happens
+        # if users clicks login while being on the login page
+        $c->response->redirect($c->uri_for('/'));
+        $c->detach;
+    }
 }
 
 =head2 register
@@ -309,7 +319,10 @@ sub edit : Local Form('User::EditProfile')
 
     $c->forward('login');
 
+    # We refresh $c->user as this is no longed loaded from the database
+    # on each request
     my $form = $self->form;
+    $c->user->Refresh;
     $form->init($c->user);
 
     return unless $self->submit_and_validate($c);
@@ -317,6 +330,8 @@ sub edit : Local Form('User::EditProfile')
     $form->update_model;
 
     $c->flash->{ok} = "Your profile has been sucessfully updated";
+    $c->response->redirect('/user/');
+    $c->detach;
 }
 
 =head2 change_password
@@ -406,6 +421,8 @@ sub profile : Local Args(1)
             overall_pc => int(($all / ($all_votes->{TOTAL} || 1)) * 100 + 0.5),
         };
     }
+
+    $c->stash->{preferences} = $c->model('User')->get_preferences_hash($user);
 
     $c->stash->{user    } = $user;
     $c->stash->{template} = 'user/profile.tt';
@@ -568,6 +585,7 @@ sub preferences : Local Form
     return unless $self->submit_and_validate($c);
 
     $form->update_from_form ($c->req->params);
+    $c->persist_user;
 }
 
 =head2 donate
@@ -588,6 +606,39 @@ sub donate : Local
     $c->stash->{nag} = $donateinfo[0];
     $c->stash->{days} = int($donateinfo[1]);
     $c->stash->{template} = 'user/donate.tt';
+}
+
+=head2 adjust_flags
+
+Allow a user to adjust their user flags (only works on test servers)
+
+=cut
+
+sub adjust_flags : Local Form
+{
+    my ($self, $c) = @_;
+
+    use MusicBrainz::Server::Replication ':replication_type';
+    use DBDefs;
+    $c->detach('/error_404')
+        unless (DBDefs::REPLICATION_TYPE == RT_STANDALONE);
+
+    $c->forward('/user/login');
+
+    my $form = $self->form;
+    $c->user->Refresh;
+    $form->init($c->user);
+
+    return unless $self->submit_and_validate($c);
+
+    $c->user->SetUserInfo(
+        privs =>
+            ($form->value('auto_editor') && &MusicBrainz::Server::Editor::AUTOMOD_FLAG) |
+            ($form->value('bot') && &MusicBrainz::Server::Editor::BOT_FLAG) |
+            ($form->value('link_editor') && &MusicBrainz::Server::Editor::LINK_MODERATOR_FLAG) |
+            ($form->value('wiki_transcluder') && &MusicBrainz::Server::Editor::WIKI_TRANSCLUSION_FLAG) |
+            ($form->value('mbid_submitter') && &MusicBrainz::Server::Editor::MBID_SUBMITTER_FLAG)
+    );
 }
 
 =head1 LICENSE

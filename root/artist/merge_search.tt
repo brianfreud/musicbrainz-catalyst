@@ -6,7 +6,7 @@
             [%- create_guideline(l('Please read the guideline on [_1] before entering this edit.', doc_link("HowToMergeArtists", l('how to merge Artists')))) -%]
             [%- create_guideline(l('Please enter the [_1] of the Artist you would like to merge this Artist into, and press <em>search</em> to start the search.', doc_link('ArtistName', l('artist name')))) -%]
             [%- create_guideline(l('When you have found the Artist that you would like to merge into [_1], please follow the link and you will be forwarded to the next step of the wizard.', entity_link(artist))) -%]
-            [%- create_guideline(l('If you added recently added this Artist by mistake, l(' please note that the server automatically removes empty Artists once a day.  There is no need to remove these manually.')) -%]
+            [%- create_guideline(l('If you added recently added this Artist by mistake, please note that the server automatically removes empty Artists once a day.  There is no need to remove these manually.')) -%]
         [%- END -%]
         [%- BLOCK create_link; 
             c.entity_url(artist, 'merge_into', entity.mbid); 

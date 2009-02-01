@@ -31,6 +31,7 @@ requires 'Email::Valid';
 requires 'Form::Processor';
 requires 'JSON';
 requires 'Locale::MakeText';
+requires 'Locale::Maketext::Extract::Plugin::TT2';
 requires 'MIME::Lite';
 requires 'Moose';
 requires 'OSSP::uuid';

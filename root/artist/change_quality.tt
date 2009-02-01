@@ -1,10 +1,10 @@
 [%- WRAPPER 'artist/layout.tt' title=l('Change Data Quality') -%]
     [%- WRAPPER 'components/box.tt' header=l('Change Data Quality') -%]
         [%- WRAPPER 'layout/guidelines.tt' -%]
-            [%- create_guideline(l('Please select the new [_1] setting.', doc_link('DataQuality', l('Data Quality')))) -%]
-            [%- create_guideline(l('Note that this is <strong>only</strong> to change the [_1] setting.  [_1] has nothing to do with <em>popularity</em>.', doc_link('DataQuality', l('Data Quality')))) -%]
+            [%- create_guideline(l('Please select the new {doc_quality} setting.', {doc_quality => doc_link('DataQuality', l('Data Quality'))})) -%]
+            [%- create_guideline(l('Note that this is <strong>only</strong> to change the {doc_quality} setting.  {doc_quality} has nothing to do with <em>popularity</em>.', {doc_quality => doc_link('DataQuality', l('Data Quality'))})) -%]
         [%- END -%]
-        [% l('The data quality for [_1] is currently set to:', entity_link(artist)) %]
+        [% l('The data quality for {artist} is currently set to:', {artist => entity_link(artist)}) %]
         <strong>
             [% data_quality(artist.quality) FILTER ucfirst -%]
         </strong>.

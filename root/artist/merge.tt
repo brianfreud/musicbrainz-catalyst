@@ -1,7 +1,7 @@
 [% WRAPPER 'artist/layout.tt' title=l('Merge Artists') %]
-    [% WRAPPER 'components/box.tt' header=l('Merge [_1] into [_2]', ${artist.name}, ${new_artist.name}) %]
+    [% WRAPPER 'components/box.tt' header=l('Merge {artist1} into {artist2}', {artist1 => ${artist.name}, artist2 => ${new_artist.name}}) %]
         <p>
-            [% l('Are you sure that you want to merge the artist [_1] into the artist [_2]?', entity_link(artist), entity_link(new_artist)) %]
+            [% l('Are you sure that you want to merge the artist {artist1} into the artist {artist2}?', {artist1 => entity_link(artist), artist2 => entity_link(new_artist)}) %]
         </p>
         [%- WRAPPER "forms/form.tt" -%]
             [% INCLUDE "forms/edit-note.tt" %]

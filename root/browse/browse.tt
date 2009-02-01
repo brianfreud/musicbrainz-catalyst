@@ -1,5 +1,5 @@
-[% WRAPPER 'layout.tt' title=l('Browse [_1]s', ${type}) %]
-    [% INCLUDE "browse/page_selector.tt" %]
+[% WRAPPER 'layout.tt' title=l("Browse [_1]", ${type}s) %]
+   [% INCLUDE "browse/page_selector.tt" %]
     [% IF entities.size %]
         <h1>
             [% type | ucfirst %]s starting with &quot;[% index | upper | html %]&quot;
@@ -8,9 +8,9 @@
             [% WRAPPER 'components/with-pager.tt' %]
                 <ul>
                     [% FOR entity IN entities %]
-                    <li class="column[%column %]">
-                        <span class="counter">[% loop.index + pager.first %].</span> [% entity_link(entity) %]
-                    </li>
+                        <li class="column[%column %]">
+                            <span class="counter">[% loop.index + pager.first %].</span> [% entity_link(entity) %]
+                        </li>
                     [% END %]
                 </ul>
             [% END %]
@@ -18,6 +18,13 @@
     [% ELSE %]
         [% WRAPPER "components/box.tt" header=l('Browse [_1]s', ${type}) %]
             [%- IF index.length > 0 -%]
+                </p>
+                    [% l('Sorry, we could not find any [_1] starting with [_2]', type, html_escape(index)) %]
+                </p>
+                <p>
+                    [% l('To begin browsing, please select a letter above.') %]
+                </p>
+            [% ELSE %]
                 <p>
                     [% l('To begin browsing, please select a letter above.') %]
                 </p>

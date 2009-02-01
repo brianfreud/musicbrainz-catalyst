@@ -4,7 +4,7 @@
             [%- l('Are you sure you delete the track [_1]? If so, please enter an edit note below.', entity_link(track)) -%]
         </p>
         [%- WRAPPER "forms/form.tt" -%]
-            [% INCLUDE "forms/edit-note.tt" widget=form.field("edit_note") %]
+            [% INCLUDE "forms/edit-note.tt" field=form.field("edit_note") %]
             [% INCLUDE "forms/submit.tt" label=l("Enter edit") %]
         [%- END -%]
     [% END %]

@@ -11,7 +11,7 @@
 [% MACRO html_escape(url) BLOCK; url | html; END %]
 [% MACRO make_ucfirst(text) BLOCK; text | ucfirst; END %]
 
-[%- MACRO make_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
+[%- MACRO make_widget(field, label) INCLUDE 'forms/generic/row.tt' field=form.field(field) label=label -%]
 [%- MACRO make_required_widget(field, label) INCLUDE 'forms/widget.tt' widget=form.field(field) label=label -%]
 
 [% USE UserDate(user.preferences) %]

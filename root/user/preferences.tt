@@ -1,14 +1,14 @@
 [% BLOCK fields %]
     [% FOREACH field=fields %]
-        [%- widget = form.field(field.widget) -%]
+        [%- field = form.field(pref.widget) -%]
         <p>
-            [%- IF widget.widget == 'checkbox' -%]
+            [%- IF field.widget == 'checkbox' -%]
                 [%- INCLUDE "forms/input.tt" -%]
-                [%- INCLUDE 'forms/label.tt' label=field.label right=1 -%]
+                [%- INCLUDE 'forms/label.tt' label=pref.label for=field -%]
             [%- ELSE -%]
-                [%- INCLUDE 'forms/label.tt' label=field.label -%]
+                [%- INCLUDE 'forms/label.tt' for=field label=pref.label -%]
                 [%- INCLUDE "forms/input.tt" -%]
-            [%- END -%]
+            [%- END -%] 
         </p>
     [% END %]
 [% END %]
@@ -72,9 +72,9 @@
             </fieldset>
             <fieldset>
                 <legend>
-                    Show artist
+                    [% l('Show artist') %]
                 </legend>
-                [% widget = form.field('releases_show_compact') %]
+                [% INCLUDE "forms/input.tt" field=form.field('releases_show_compact') type='text' %]
                 <p>
                     [% l('Default to a "compact" listing for how many, or more, releases? (allowed range: 1 - 1000).') %] [% INCLUDE "forms/input.tt" %]
                 </p>

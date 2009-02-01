@@ -1,4 +1,4 @@
-[% extra_js = 'jquery/jquery-ui-1.5.3.js tab.js' %] 
+[% extra_js = 'jquery/jquery-ui.js tab.js' %] 
 [% extra_css = 'jquery-ui/ui.all.css' %] 
 [% BLOCK fields %]
     [% FOREACH pref=fields %]
@@ -34,7 +34,7 @@
                     [% END %]
                 </ul>
             [% END %]
-            <fieldset class="ui-tabs-panel ui-tabs-hide">
+            <fieldset>
                 <legend>
                     [%- l('Voting / Edit review pages') %]
                 </legend>

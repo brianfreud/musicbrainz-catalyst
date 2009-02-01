@@ -47,16 +47,16 @@ sub language {
 
 sub gettext
 {
-	my ($c, $msgid, %vars) = @_;
+	my ($c, $msgid, $vars) = @_;
 
-	return __expand($c->_dcngettext ($msgid, undef, undef), %vars);
+	return __expand($c->_dcngettext ($msgid, undef, undef), %$vars);
 }
 
 sub ngettext
 {
-	my ($c, $msgid, $msgid_plural, $n, %vars) = @_;
+	my ($c, $msgid, $msgid_plural, $n, $vars) = @_;
 
-	return __expand($c->_dcngettext ($msgid, $msgid_plural, $n), %vars);
+	return __expand($c->_dcngettext ($msgid, $msgid_plural, $n), %$vars);
 }
 
 sub _dcngettext
@@ -106,7 +106,7 @@ sub __expand
     
     my $re = join '|', map { quotemeta $_ } keys %args;
     $translation =~ s/\{($re)\}/defined $args{$1} ? $args{$1} : "{$1}"/ge;
-    
+
     return $translation;
 }
 

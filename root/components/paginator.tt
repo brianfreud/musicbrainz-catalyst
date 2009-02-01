@@ -1,7 +1,7 @@
 [% IF pager && pager.last_page > 1 %]
     <ul class="paginator">
         <li class="counter">
-            [%- l('Page [_1] of [_2]', pager.current_page, pager.last_page) -%]
+            [%- l('Page {cur} of {total}', {cur => pager.current_page, total => pager.last_page}) -%]
         </li>
         <li>
             <a href="[% c.req.uri_with( page => pager.first_page ) %]">&laquo;</a>

@@ -25,13 +25,13 @@ Every string in a template should be marked as localizable, this can be done wit
 
 If some interpolation is needed, it should be implemented with a named parameter and a parameter hash:
 
-[%- l('{entity} has no aliases.', entity => entity_link(entity)) -%]
+[%- l('{entity} has no aliases.', {entity => entity_link(entity)}) -%]
 
 [% l('You may proceed to <a href=\"{url}\">your user profile</a>, or maybe you want to {edit_link}', url => c.uri_for('/user/profile'), edit_link => doc_link("HowEditingWorks", l("start editing!")) %]
 
 Plurals are done with an ln()-function:
 
-[% l('{num} relationship not shown.', '{num} relationships not shown', n, num => n) %]    
+[% l('{num} relationship not shown.', '{num} relationships not shown', n, {num => n}) %]    
 
 (proper syntax: ln(english_singular, english_plural, number, parameter_hash))
 

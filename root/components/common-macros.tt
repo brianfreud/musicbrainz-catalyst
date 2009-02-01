@@ -30,7 +30,6 @@ END; %]
 END; %]
 
 
-
 [%- MACRO entity_link(entity, noicon) IF entity -%]
     [%- mpclass = entity.has_mod_pending ? ' class="mp"' : '' -%]
     [%- IF entity.entity_type == "url" -%]
@@ -64,7 +63,7 @@ END; %]
     ELSE; '';
     END -%]
 
-[%# Take type and return pluralized word form, avoids problems with '[% type %]s' #%]
+[%# Take type and return pluralized word form, avoids problems with "[% type %\]s" %]
 [%- MACRO get_plural_type(entity) BLOCK %]
   [% SWITCH entity %]
     [%   CASE release %]

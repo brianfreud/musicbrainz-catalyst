@@ -59,7 +59,7 @@
                 {
                     link => c.uri_for(c.controller('relate').action_for('store'),
                         [ source.entity_type, source.mbid ]),
-                    text => l("Use this [_1] in a Relationship", ${source.entity_type})
+                    text => l("Use this [_1] in a Relationship", make_ucfirst(source.entity_type))
                         hide => !c.user_exists,
                     },
                     {

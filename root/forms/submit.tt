@@ -1,3 +1,4 @@
+[%- DEFAULT id="" -%]
 [% WRAPPER 'forms/blank_row.tt' %]
-    <input class="submit" type="submit" value="[% label || l('Enter Edit') %]" name="submit" />
+    <input class="submit" type="submit" id="[% id %]" value="[% label || l('Enter Edit') %]" name="submit" />
 [% END %]

@@ -34,7 +34,86 @@
                     [% END %]
                 </ul>
             [% END %]
-            <fieldset>
+        <noscript>
+            <h3>
+                [% l('Preferences Sections') %]
+            </h3>
+        </noscript>
+        <div id="example">
+            <ul>
+                <li>
+                    <a href="#options_voting_edit_pages">
+                        <span>
+                            [% l('Voting / Editing') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_emailing">
+                        <span>
+                            [% l('Email') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_show_artist">
+                        <span>
+                            [% l('Artist') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_show_release">
+                        <span>
+                            [% l('Release') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_country">
+                        <span>
+                            [% l('Country') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_datetime">
+                        <span>
+                            [% l('Date / Time') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_topmenu">
+                        <span>
+                            [% l('Top Menu') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_javascript">
+                        <span>
+                            [% l('JavaScript') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_display">
+                        <span>
+                            [% l('Display Options') %]
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#options_privacy">
+                        <span>
+                            [% l('Privacy') %]
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <fieldset id="options_voting_edit_pages">
                 <legend>
                     [%- l('Voting / Edit review pages') %]
                 </legend>
@@ -52,7 +131,7 @@
                     ] %]
                 <p>
                     [% widget = form.field('mods_per_page') %]
-                    [% l('Show up to how many edits per page? (max: 25).') %] [% INCLUDE "forms/input.tt" for=widget type='text' %]
+                    [% l('Show up to how many edits per page? (max: 25)') %] [% INCLUDE "forms/input.tt" for=widget type='text' %]
                 </p>
                 [% PROCESS fields fields = [
                     { widget = 'vote_abs_default' label=l('Abstain by default.') },
@@ -75,7 +154,7 @@
                     { widget = 'auto_subscribe', label=l('Automatically subscribe me to artists or labels I create.') }
                     ] %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_emailing">
                 <legend>
                     [%- l('Emailing other editors') %]
                 </legend>
@@ -85,17 +164,17 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_show_artist">
                 <legend>
-                    [% l('Show artist') %]
+                    [% l('Show Artist') %]
                 </legend>
                 <p>
                     [% l('Default to a "compact" listing for how many, or more, releases? (allowed range: 1 - 1000)') %] [% INCLUDE "forms/input.tt" field=form.field('releases_show_compact') type='text' %]
                 </p>
             </fieldset>
-            <fieldset>
+            <fieldset id="options_show_release">
                 <legend>
-                    [% l('Show release') %]
+                    [% l('Show Release') %]
                 </legend>
                 [% fields = [
                     { widget = 'release_show_relationshipslinks', label=l('Show the add/edit relationships links in the Release header.') },
@@ -105,7 +184,7 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_country">
                 <legend>
                     [% l('Country') %]
                 </legend>
@@ -115,9 +194,9 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_datetime">
                 <legend>
-                    [% l('Date/time display') %]
+                    [% l('Date / Time display') %]
                 </legend>
                 [% fields = [
                     { widget = 'datetimeformat', label=l('Your preferred date/time format') },
@@ -125,16 +204,16 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_topmenu">
                 <legend>
                     [% l('Top menu configuration') %]
                 </legend>
                 [% fields = [
-                    { widget = 'topmenu_submenu_types' label=l('The menu which is placed on top of the pages features multiple ways of navigating the site. You can choose which menu(s) you would like to see if you are logged in') },
+                    { widget = 'topmenu_submenu_types' label=l('The menu which is placed on top of the pages features multiple ways of navigating the site. <br />You can choose which menu(s) you would like to see if you are logged in') },
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_javascript">
                 <legend>
                     [% l('Use of JavaScript') %]
                 </legend>
@@ -146,7 +225,7 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-            <fieldset>
+            <fieldset id="options_display">
                 <legend>
                     [% l('Display options') %]
                 </legend>
@@ -168,12 +247,16 @@
                     { widget = 'css_nosmallfonts', label=l('Do not use small font sizes') }
                     ] -%]
             </fieldset>
-            [%- WRAPPER 'forms/fieldset.tt' legend=l('Privacy') -%]
-                [%- PROCESS fields fields = [
-                    { widget = 'subscriptions_public', label=l('Allow other users to see my subscriptions') },
-                    { widget = 'tags_public', label=l('Allow other users to see my folksonomy tags') }
-                    ] -%]
-            [%- END -%]
+            <div id="options_privacy">
+                [%- WRAPPER 'forms/fieldset.tt' legend=l('Privacy') -%]
+                    [%- PROCESS fields fields = [
+                        { widget = 'subscriptions_public', label=l('Allow other users to see my subscriptions') },
+                        { widget = 'tags_public', label=l('Allow other users to see my folksonomy tags') }
+                        ] -%]
+                [%- END -%]
+            </div>
+        </div>
+        <br />
             [% INCLUDE "forms/submit.tt" label=l("Update Preferences") %]
         [% END %]
     [% END %]

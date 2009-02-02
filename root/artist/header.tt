@@ -45,11 +45,11 @@
         </div>    
     </div>
     <div class='infoLinks'>
-        Info: 
+        [% l('Info:') %]
         [% INCLUDE 'components/piped-list.tt' list=info_links %]
     </div>
     <div class='editLinks'>
-        Edit:
+        [% l('Edit:') %]
         [%- IF c.user_exists -%]
             [%- edit_links = [
                 { link => c.entity_url(artist, 'add_alias'), text => l('Add Alias') },

@@ -1,8 +1,5 @@
-<<<<<<< HEAD:root/user/preferences.tt
 [% extra_js = 'jquery/jquery-ui.js userprefstabs.js' %] 
 [% extra_css = 'jquery-ui/ui.all.css' %] 
-=======
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
 [% BLOCK fields %]
     [% FOREACH pref=fields %]
         [%- field = form.field(pref.widget) -%]
@@ -37,7 +34,6 @@
                     [% END %]
                 </ul>
             [% END %]
-<<<<<<< HEAD:root/user/preferences.tt
         <noscript>
             <h3>
                 [% l('Preferences Sections') %]
@@ -120,11 +116,6 @@
             <fieldset id="options_voting_edit_pages">
                 <legend>
                     [%- l('Voting / Edit review pages') %]
-=======
-            <fieldset>
-                <legend>
-                    [%- l('Voting/edit review pages') %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 </legend>
                 <p>
                     [%- INCLUDE 'forms/input.tt' field=form.field('mod_add_album_inline') -%]
@@ -140,11 +131,7 @@
                     ] %]
                 <p>
                     [% widget = form.field('mods_per_page') %]
-<<<<<<< HEAD:root/user/preferences.tt
                     [% l('Show up to how many edits per page? (max: 25)') %] [% INCLUDE "forms/input.tt" for=widget type='text' %]
-=======
-                    [% l('Show up to how many edits per page? (max: 25).') %] [% INCLUDE "forms/input.tt" for=widget type='text' %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 </p>
                 [% PROCESS fields fields = [
                     { widget = 'vote_abs_default' label=l('Abstain by default.') },
@@ -167,11 +154,7 @@
                     { widget = 'auto_subscribe', label=l('Automatically subscribe me to artists or labels I create.') }
                     ] %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_emailing">
-=======
-            <fieldset>
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 <legend>
                     [%- l('Emailing other editors') %]
                 </legend>
@@ -181,29 +164,17 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_show_artist">
                 <legend>
                     [% l('Show Artist') %]
-=======
-            <fieldset>
-                <legend>
-                    [% l('Show artist') %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 </legend>
                 <p>
                     [% l('Default to a "compact" listing for how many, or more, releases? (allowed range: 1 - 1000)') %] [% INCLUDE "forms/input.tt" field=form.field('releases_show_compact') type='text' %]
                 </p>
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_show_release">
                 <legend>
                     [% l('Show Release') %]
-=======
-            <fieldset>
-                <legend>
-                    [% l('Show release') %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 </legend>
                 [% fields = [
                     { widget = 'release_show_relationshipslinks', label=l('Show the add/edit relationships links in the Release header.') },
@@ -213,11 +184,7 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_country">
-=======
-            <fieldset>
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 <legend>
                     [% l('Country') %]
                 </legend>
@@ -227,15 +194,9 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_datetime">
                 <legend>
                     [% l('Date / Time display') %]
-=======
-            <fieldset>
-                <legend>
-                    [% l('Date/time display') %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 </legend>
                 [% fields = [
                     { widget = 'datetimeformat', label=l('Your preferred date/time format') },
@@ -243,28 +204,16 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_topmenu">
-=======
-            <fieldset>
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 <legend>
                     [% l('Top menu configuration') %]
                 </legend>
                 [% fields = [
-<<<<<<< HEAD:root/user/preferences.tt
                     { widget = 'topmenu_submenu_types' label=l('The menu which is placed on top of the pages features multiple ways of navigating the site. <br />You can choose which menu(s) you would like to see if you are logged in') },
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
             <fieldset id="options_javascript">
-=======
-                    { widget = 'topmenu_submenu_types' label=l('The menu which is placed on top of the pages features multiple ways of navigating the site. You can choose which menu(s) you would like to see if you are logged in') },
-                    ] %]
-                [% PROCESS fields %]
-            </fieldset>
-            <fieldset>
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 <legend>
                     [% l('Use of JavaScript') %]
                 </legend>
@@ -276,11 +225,7 @@
                     ] %]
                 [% PROCESS fields %]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <fieldset id="options_display">
-=======
-            <fieldset>
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
                 <legend>
                     [% l('Display options') %]
                 </legend>
@@ -302,7 +247,6 @@
                     { widget = 'css_nosmallfonts', label=l('Do not use small font sizes') }
                     ] -%]
             </fieldset>
-<<<<<<< HEAD:root/user/preferences.tt
             <div id="options_privacy">
                 [%- WRAPPER 'forms/fieldset.tt' legend=l('Privacy') -%]
                     [%- PROCESS fields fields = [
@@ -314,15 +258,6 @@
         </div>
         <br />
             [% INCLUDE "forms/submit.tt" id="button_update_prefs" label=l("Update Preferences") %]
-=======
-            [%- WRAPPER 'forms/fieldset.tt' legend=l('Privacy') -%]
-                [%- PROCESS fields fields = [
-                    { widget = 'subscriptions_public', label=l('Allow other users to see my subscriptions') },
-                    { widget = 'tags_public', label=l('Allow other users to see my folksonomy tags') }
-                    ] -%]
-            [%- END -%]
-            [% INCLUDE "forms/submit.tt" label=l("Update Preferences") %]
->>>>>>> a035016a4f0d4575d0af48b93532ff65e69b089e:root/user/preferences.tt
         [% END %]
     [% END %]
 [% END %]

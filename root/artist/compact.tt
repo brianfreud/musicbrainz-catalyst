@@ -2,7 +2,7 @@
     [% BLOCK group_head %]
         <h2 class="compactreleasetype">
         [%- IF item.release_type %]
-            [% IF item.artist != artist.id; l("Various Artists"); END %]
+            [% IF item.artist != artist.id; l('Various Artists'); END %]
             [% plural_release_attribute(item.release_type) %]
         [%- ELSE; l("Uncategorized Releases"); END -%]
         </h2>

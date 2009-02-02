@@ -26,7 +26,7 @@
                     [% l('Permanent Link:') %]
                 </th>
                 <td>
-                    [% link = "http://musicbrainz.org/track/${track.mbid}.html" %]
+                    [% link = "http://musicbrainz.org/track/${track.mbid}" %]
                     <a href="[% link %]">
                         [% link | html %]
                     </a>

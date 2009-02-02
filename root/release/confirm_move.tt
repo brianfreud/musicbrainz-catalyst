@@ -2,7 +2,7 @@
     [% WRAPPER 'components/box.tt' header=l('Move Release to another Artist') %]
         <ul>
             <li>
-                [% l('Are you sure you want to move the release [_1] to the artist [_2]?', entity_link(release), entity_link(new_artist)) %]
+                [% l('Are you sure you want to move the release {release} to the artist {artist}?', {release => entity_link(release), artist => entity_link(new_artist)}) %]
             </li>
         </ul>
         [% WRAPPER "forms/form.tt" %]

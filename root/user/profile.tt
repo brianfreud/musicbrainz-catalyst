@@ -1,5 +1,5 @@
 [% extra_css = "user.css" %]
-[% WRAPPER "layout.tt" title=l("Editor \"[_1]\"", $user.name) %]
+[% WRAPPER "layout.tt" title=l("Editor \"{user}\"", {user => $user.name}) %]
     [% BLOCK property %]
         <dt>
             [% name %]:
@@ -22,7 +22,7 @@
         { link => c.uri_for('/user/preferences'), text => l("Preferences") },
         { link => c.uri_for('/user/donate'), text => l("Check Donation Status") },
     ] %]
-    [% WRAPPER "components/box.tt" header=l("Editor \"[_1]\"", $user.name) %]
+    [% WRAPPER "components/box.tt" header=l("Editor \"{user}\"", {user => $user.name}) %]
         <h3>
             [% l('General Information:') %]
         </h3>
@@ -81,13 +81,13 @@
                     [% IF viewing_own_profile %]
                         [% l('Your subscriptions are public.') -%]
                     [% ELSE %]
-                        [% l('The subscriptions for [_1] are public.', html_encode(user.name)) %]
+                        [% l('The subscriptions for {user} are public.', {user => html_encode(user.name)}) %]
                     [% END %]
                 [% ELSE %]
                     [% IF viewing_own_profile %]
                         [% l('Your subscriptions are private.') -%]
                     [% ELSE %]
-                        [% l('The subscriptions for [_1] are private.', html_encode(user.name)) %]
+                        [% l('The subscriptions for {user} are private.', {user = html_encode(user.name)}) %]
                     [% END %]
                 [% END %]
             [% END %]

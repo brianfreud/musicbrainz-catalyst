@@ -1,6 +1,6 @@
 <<<<<<< HEAD:root/moderation/show.tt
-[%- WRAPPER 'layout.tt' title=l("Moderation [_1]", #${moderation.id}) -%]
-    [%- WRAPPER 'components/box.tt' header=l("Moderation [_1]", #${moderation.id}) -%]
+[%- WRAPPER 'layout.tt' title=l("Moderation {num}", {num => #${moderation.id}}) -%]
+    [%- WRAPPER 'components/box.tt' header=l("Moderation {id}", {id => #${moderation.id}}) -%]
         <table class="details">
             <tr>
                 <th>
@@ -55,9 +55,9 @@
                     [% l('Conditions:') %]
                 </th>
                 <td>
-                    [% l('[_1] data quality', data_quality(moderation.quality)) %]
-                    [% l('[_1] on expiration', expire_action(moderation.GetExpireAction)) %]
-                    [% l('[_1] to accept/reject', moderation.GetNumVotesNeeded) %]
+                    [% l('{x} data quality', {x => data_quality(moderation.quality)}) %]
+                    [% l('{x} on expiration', {x => expire_action(moderation.GetExpireAction)}) %]
+                    [% l('{x} to accept/reject', {x => moderation.GetNumVotesNeeded}) %]
                 </td>
             </tr>
         </table>

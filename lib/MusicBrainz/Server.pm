@@ -23,8 +23,7 @@ Static::Simple
 
 StackTrace
 
-I18N
-Unicode
+I18N::Gettext
 
 Session
 Session::State::Cookie

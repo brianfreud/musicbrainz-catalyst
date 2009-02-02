@@ -6,9 +6,9 @@
             [% plural_release_attribute(item.release_type) %]
         [%- ELSE; l("Uncategorized Releases"); END -%]
         </h2>
-        <table class="releases" summary="[% l('[_1] releases by [_2]', plural_release_attribute(item.release_type), artist.name) %]">
+        <table class="releases" summary="[% l('{release_type} releases by {artist}', {release_type => plural_release_attribute(item.release_type), artist => artist.name}) %]">
             <caption>
-                [% l('This table displays [_1] releases by [_2]', plural_release_attribute(item.release_type), artist.name) %]
+                [% l('This table displays {type} releases by {artist}', {type => plural_release_attribute(item.release_type), artist => artist.name}) %]
             </caption>
             <tr>
                 <th id="table_[% plural_release_attribute(item.release_type) %]_title">

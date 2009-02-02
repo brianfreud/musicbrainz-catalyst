@@ -30,7 +30,7 @@
     [%- IF relations.size > maximum  && !showall -%]
         [%- n = relations.size - maximum -%]
         <div class="more_relationships">
-            [% n %] [% l('[quant,_1,relationship,relationships] not shown.', n) %]
+            [% ln('{num} relationship not shown', '{num} relationships not shown', n, {num => n}) %]
             <a href="[% c.entity_url(source, 'relations') %]">[% l('View all relationships&hellip;') %]</a>
         </div>
     [%- END -%]
@@ -44,7 +44,7 @@
                     [%- entity_link(source) -%][% relations.size > 1 ? ":" : "" %]
                     [%- PROCESS list -%]
                 [%- ELSE -%]
-                    [% l('[_1] has no relationships.', entity_link(source)) -%]
+                    [% l('{entity} has no relationships.', {entity => entity_link(source)}) -%]
                 [%- END -%]
             [%- IF current_relationship -%]
                 <hr/>
@@ -59,7 +59,7 @@
                 {
                     link => c.uri_for(c.controller('relate').action_for('store'),
                         [ source.entity_type, source.mbid ]),
-                    text => l("Use this [_1] in a Relationship", make_ucfirst(source.entity_type))
+                        text => l("Use this {type} in a Relationship", {type => ${source.entity_type}})
                         hide => !c.user_exists,
                     },
                     {

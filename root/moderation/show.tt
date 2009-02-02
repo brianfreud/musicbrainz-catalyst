@@ -1,4 +1,3 @@
-<<<<<<< HEAD:root/moderation/show.tt
 [%- WRAPPER 'layout.tt' title=l("Moderation {num}", {num => #${moderation.id}}) -%]
     [%- WRAPPER 'components/box.tt' header=l("Moderation {id}", {id => #${moderation.id}}) -%]
         <table class="details">

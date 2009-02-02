@@ -15,9 +15,9 @@
         [% entity_link(track, 1) %]
     </div>
     [%- IF artist -%]
-    <div class="info">
-        by [% entity_link(artist, 1) %]
-    </div>
+        <div class="info">
+            [% l('by [_1]', entity_link(release_artist, 1)) %]
+        </div>
     [%- END -%]
     <div class="infoLinks">
         Info: [% INCLUDE "components/piped-list.tt" list=info_links %]

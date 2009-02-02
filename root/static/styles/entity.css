@@ -20,6 +20,10 @@
     padding-left: 45px;
 }
 
+.entity_header .infoline {
+    padding-top: .25em;
+}
+
 .entity_header div.title a {
     color: #000;
     font-size: 20pt;

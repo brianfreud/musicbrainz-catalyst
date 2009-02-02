@@ -3,7 +3,9 @@
         <p>
             [% IF subscribers.size %]
                 [%- FOREACH ed IN subscribers -%]
-                    [% ed.name %]
+                    <a href="[% c.uri_for('/user/profile', ed.name) %]">
+                        [% ed.name %]
+                    </a>
                 [%- END -%]
             [% ELSE %]
                 [%- l('There are no users currently subscribed to this Label.') -%]

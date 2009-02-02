@@ -22,7 +22,7 @@
         </tr>
     </table>
     <p>
-        [% l('If you wish to use a link with an icon (e.g. {entity}, you can use the following markup:', {entity => entity_link(entity, 1)}) %]
+        [% l('If you wish to use a link with an icon (e.g. {entity}, you can use the following markup:', {entity => entity_link(entity)}) %]
     </p>
     <table id="id-table-icon-link">
         <tr>

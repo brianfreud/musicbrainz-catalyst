@@ -1,4 +1,4 @@
-[% extra_js = 'jquery/jquery-ui.js tab.js' %] 
+[% extra_js = 'jquery/jquery-ui.js userprefstabs.js' %] 
 [% extra_css = 'jquery-ui/ui.all.css' %] 
 [% BLOCK fields %]
     [% FOREACH pref=fields %]
@@ -39,7 +39,7 @@
                 [% l('Preferences Sections') %]
             </h3>
         </noscript>
-        <div id="example">
+        <div id="form_preferences_toc">
             <ul>
                 <li>
                     <a href="#options_voting_edit_pages">
@@ -257,7 +257,7 @@
             </div>
         </div>
         <br />
-            [% INCLUDE "forms/submit.tt" label=l("Update Preferences") %]
+            [% INCLUDE "forms/submit.tt" id="button_update_prefs" label=l("Update Preferences") %]
         [% END %]
     [% END %]
 [% END %]

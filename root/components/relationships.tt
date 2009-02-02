@@ -91,5 +91,4 @@
             [%- INCLUDE 'components/piped-list.tt' list=links -%]
         </div>
         </div>
-    [%- PROCESS list -%]
 [%- END -%]

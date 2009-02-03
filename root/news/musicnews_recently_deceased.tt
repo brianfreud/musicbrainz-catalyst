@@ -1,0 +1,33 @@
+<h3>
+    [% l('Recently Deceased') %]
+</h3>
+<p class="lastupdated">
+    [% l('Updated:)' %] [% timestamp %]
+</p>
+<table class="statistics">
+    <thead>
+        <tr>
+            <th>
+                [% l('Artist') %]
+            </th>
+            <th>
+                [% l('Born') %]
+            </th>
+            <th>
+                [% l('Died') %]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        [%- PROCESS 'news/musicnews_artistlist.tt' data=recently_deceased timestamp=recently_deceased_timestamp -%]
+        [%- IF show_more_link -%]
+            <tr>
+                <td colspan="4">
+                    <a href="[% c.uri_for('/news/music_news', 'recently_deceased') %]">
+                        [% l('See more recently deceased Artists.') %]
+                    </a>
+                </td>
+            </tr>
+        [%- END -%]
+    </tbody>
+</table>

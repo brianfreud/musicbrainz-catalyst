@@ -1,0 +1,33 @@
+<h3>
+    [% l('Recently Broken Up') %]
+    </h3>
+<p class="lastupdated">
+    [% l('Updated:)' %] [% timestamp %]
+</p>
+<table class="statistics">
+    <thead>
+        <tr>
+            <th>
+                [% l('Band') %]
+            </th>
+            <th>
+                [% l('Formed') %]
+            </th>
+            <th>
+                [% l('Broke Up') %]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        [%- PROCESS 'news/musicnews_artistlist.tt' data=recently_brokenup timestamp=recently_brokenup_timestamp -%]
+        [%- IF show_more_link -%]
+            <tr>
+                <td colspan="4">
+                    <a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">
+                        [% l('See more recently broken up bands.') %]
+                    </a>
+                </td>
+            </tr>
+        [%- END -%]
+    </tbody>
+</table>

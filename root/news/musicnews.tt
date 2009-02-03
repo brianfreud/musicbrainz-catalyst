@@ -1,0 +1,43 @@
+[%- WRAPPER 'layout.tt' title=l('Music News') %]
+    <h1>
+        [% l('Music News') %]
+    </h1>
+    [% IF upcoming_releases && recently_deceased && recently_brokenup %]
+        [%- PROCESS 'news/musicnews_upcoming_releases.tt' 
+            data=upcoming_releases 
+            timestamp=upcoming_releases_timestamp 
+            show_more_link=1 -%]
+        [%- PROCESS 'news/musicnews_recent_releases.tt' 
+            data=recent_releases 
+            timestamp=recent_releases_timestamp 
+            show_more_link=1 -%]
+        <div class="two_column_right">
+            [%- PROCESS 'news/musicnews_recently_brokenup.tt' 
+                data=recently_brokenup 
+                timestamp=recently_brokenup_timestamp
+                show_more_link=1 -%]
+        </div>
+        <div class="two_column_left">
+            [%- PROCESS 'news/musicnews_recently_deceased.tt' 
+                data=recently_deceased 
+                timestamp=recently_deceased_timestamp 
+                show_more_link=1 -%]
+        </div>
+    [% ELSIF upcoming_releases %]
+        [%- PROCESS 'news/musicnews_upcoming_releases.tt' 
+            data=upcoming_releases 
+            timestamp=upcoming_releases_timestamp -%]
+    [% ELSIF recent_releases %]
+        [%- PROCESS 'news/musicnews_recent_releases.tt' 
+            data=recent_releases 
+            timestamp=recent_releases_timestamp -%]
+    [% ELSIF recently_deceased %]
+        [%- PROCESS 'news/musicnews_recently_deceased.tt' 
+            data=recently_deceased 
+            timestamp=recently_deceased_timestamp -%]
+    [% ELSIF recently_brokenup %]
+        [%- PROCESS 'news/musicnews_recently_brokenup.tt' 
+            data=recently_brokenup 
+            timestamp=recently_brokenup_timestamp -%]
+    [% END %]
+[%- END -%]

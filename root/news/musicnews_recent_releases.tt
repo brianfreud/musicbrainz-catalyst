@@ -12,7 +12,7 @@
         <tbody>
 [%- PROCESS 'news/musicnews_releaselist.tt' data=recent_releases -%]
 [%- IF show_more_link -%]
-	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'recent_releases') %]">see more recent releases</a></td></tr>
+            <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'recent_releases') %]">see more recent releases</a></td></tr>
 [%- END -%]
         </tbody>
     </table>

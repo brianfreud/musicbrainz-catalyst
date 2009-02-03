@@ -1,18 +1,18 @@
 [% IF data.size %]
     [%- FOR artist IN data -%]
     <tr>
-	<td><a href="[% c.uri_for('/artist', artist.mbid) %]">[% artist.name %]</a></td>
-	<td>[% artist.begindate %]</td>
-	<td>[% artist.enddate %]</td>
+        <td><a href="[% c.uri_for('/artist', artist.mbid) %]">[% artist.name %]</a></td>
+        <td>[% artist.begindate %]</td>
+        <td>[% artist.enddate %]</td>
     </tr>
     [%- END -%]
     [% IF pager.last_page > 1 %]
-	<tr>
-	    <td colspan="4">[% INCLUDE 'components/paginator.tt' %]</td>
-	</tr>
+        <tr>
+            <td colspan="4">[% INCLUDE 'components/paginator.tt' %]</td>
+        </tr>
     [%- END -%]
 [% ELSE %]
     <tr>
-	<td colspan="3">There are no artists to display.</td>
+        <td colspan="3">There are no artists to display.</td>
     </tr>
 [% END %]

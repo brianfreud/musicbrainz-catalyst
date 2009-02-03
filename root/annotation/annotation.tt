@@ -1,6 +1,6 @@
 [%- IF annotation.text -%]
-    <div class="annotation">
-        <div class="body">
+    <div class="annotation" id="annotation_box">
+        <div class="body" id="annotation_box_body">
             [% annotation.summary_as_html  %]
         </div>
         [%- IF show_change_log -%]
@@ -25,10 +25,22 @@
         </div>
     </div>
 [%- ELSE -%]
-    <p>
-      [% l('This {entity} has no annotation.', {entity => parent.entity_type}) %]
-        [%- IF c.user_exists -%]
-            <a href="[% c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit') %]">[% l('Add an annotation') %]</a>
-        [%- END -%]
-    </p>
+    <div class="annotation" id="annotation_box">
+        <div class="bar">
+            <div class="body" id="annotation_box_body">
+            </div>
+            <div class="details">
+                [% l('This {entity} has no annotation.', {entity => parent.entity_type}) %]
+            </div>
+            <div class="options">
+            [%- IF c.user_exists -%]
+                <a href="[% c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit') %]">
+                    [% l('Add an annotation') %]
+                </a>
+            [%- ELSE -%]
+                [% l('Please <a href={uri}>log in</a> to add an annotation.', {uri => c.uri_for('/user/login')}) %]
+            [%- END -%]
+            </div>
+        </div>
+    </div>
 [%- END -%]

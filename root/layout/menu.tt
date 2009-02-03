@@ -20,6 +20,7 @@
         <a href="http://blog.musicbrainz.org">News</a>
         <ul>
             <li><a href="http://blog.musicbrainz.org">General News</a></li>
+            <li><a href="/news/music_news">Music News</a></li>
             <li><a href="http://blog.musicbrainz.org?cat=3">Server</a></li>
             <li><a href="http://blog.musicbrainz.org?cat=9">Picard</a></li>
             <li>[%- doc_link('MusicBrainzPress', 'In the Press') -%]</li>

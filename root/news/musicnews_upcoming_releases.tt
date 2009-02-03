@@ -11,7 +11,7 @@
         </thead>
         <tbody>
 [%- PROCESS 'news/musicnews_releaselist.tt' data=upcoming_releases -%]
-[%- IF upcoming_releases_numitems > maxitems -%]
+[%- IF show_more_link -%]
 	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'upcoming_releases') %]">see more upcoming releases</a></td></tr>
 [%- END -%]
         </tbody>

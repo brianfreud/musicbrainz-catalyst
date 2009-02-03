@@ -1,16 +1,19 @@
 [% IF data.size %]
-    [% WRAPPER 'components/with-pager.tt' %]
-	[%- FOR release IN data -%]
+    [%- FOR release IN data -%]
+    <tr>
+	<td><a href="[% c.uri_for('/release', release.release_mbid) %]">[% release.release_name %]</a></td>
+	<td><a href="[% c.uri_for('/artist', release.artist_mbid) %]">[% release.artist_name %]</a></td>
+	<td>[% release.country %] / [% release.releasedate %]</td>
+	<td>[% release.format %]</td>
+    </tr>
+    [%- END -%]
+    [% IF pager.last_page > 1 %]
 	<tr>
-	    <td><a href="[% c.uri_for('/release', release.release_mbid) %]">[% release.release_name %]</a></td>
-	    <td><a href="[% c.uri_for('/artist', release.artist_mbid) %]">[% release.artist_name %]</a></td>
-	    <td>[% release.country %] / [% release.releasedate %]</td>
-	    <td>[% release.format %]</td>
+	    <td colspan="4">[% INCLUDE 'components/paginator.tt' %]</td>
 	</tr>
-	[%- END -%]
     [%- END -%]
 [% ELSE %]
     <tr>
 	<td colspan="4">There are no releases to display.</td>
-    <tr>
+    </tr>
 [% END %]

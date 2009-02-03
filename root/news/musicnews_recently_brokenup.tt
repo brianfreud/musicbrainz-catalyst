@@ -9,7 +9,7 @@
     </thead>
     <tbody>
 [%- PROCESS 'news/musicnews_artistlist.tt' data=recently_brokenup timestamp=recently_brokenup_timestamp -%]
-[%- IF recently_brokenup_numitems > maxitems -%]
+[%- IF show_more_link -%]
 	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">see more recently broken up bands</a></td></tr>
 [%- END -%]
     </tbody>

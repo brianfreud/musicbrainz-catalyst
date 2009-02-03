@@ -6,6 +6,11 @@
 	<td>[% artist.enddate %]</td>
     </tr>
     [%- END -%]
+    [% IF pager.last_page > 1 %]
+	<tr>
+	    <td colspan="4">[% INCLUDE 'components/paginator.tt' %]</td>
+	</tr>
+    [%- END -%]
 [% ELSE %]
     <tr>
 	<td colspan="3">There are no artists to display.</td>

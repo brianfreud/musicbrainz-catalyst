@@ -23,8 +23,8 @@
     c.gettext(text, args);
 END; %]
 
-[% MACRO ln(text, args) BLOCK;
-    c.ngettext(text, args);
+[% MACRO ln(text, plural, num, args) BLOCK;
+    c.ngettext(text, plural, num, args);
 END; %]
 
 [%- MACRO entity_link(entity, noicon) IF entity -%]

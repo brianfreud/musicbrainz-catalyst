@@ -112,7 +112,7 @@ sub GetUpcomingReleases
 										 WHERE album.id IN (
 												SELECT album 
 												  FROM release 
-												 WHERE releasedate > now() 
+												 WHERE to_timestamp(releasedate, 'YYYY-MM-DD') > now() 
 											  ORDER BY releasedate, album) 
 										   AND release.album = album.id 
 										   AND release.country = country.id 
@@ -126,7 +126,7 @@ sub GetUpcomingReleases
 		$timestamp = time();
 		$numitems = $sql->SelectSingleValue("SELECT count(*) 
 		                                  FROM release 
-										 WHERE releasedate > now()");
+										 WHERE to_timestamp(releasedate, 'YYYY-MM-DD') > now()");
 		MusicBrainz::Server::Cache->set("statistics-upcoming-releases", [$upcoming, $numitems, $timestamp], 60 * 60);
 	}
 	splice(@$upcoming, 0, $offset) if ($offset);

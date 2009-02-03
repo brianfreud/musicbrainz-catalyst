@@ -3,6 +3,9 @@
         <caption>
             [% l('This table displays a list of bands which have recently broken up.') %]
         </caption>
+        <p class="lastupdated">
+            [% l('Updated:') %] [% timestamp() %]
+        </p>
         <thead>
             <tr>
                 <th id="statistics_broken_up_band">
@@ -17,16 +20,18 @@
             </tr>
         </thead>
         <tbody>
-            [%- PROCESS 'news/musicnews_artistlist.tt' data=data timestamp=timestamp td1='Band' td2='Formed' td3='Broke Up' -%]
-            [%- IF show_more_link -%]
-                <tr>
-                    <td colspan="4">
-                        <a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">
-                            [% l('See more recently broken up bands.') %]
-                        </a>
-                    </td>
-                </tr>
-            [%- END -%]
+            [%- PROCESS 'news/musicnews_artistlist.tt' data=data timestamp=timestamp td1=statistics_broken_up_band td2=statistics_broken_up_formed td3=statistics_broken_up_date -%]
         </tbody>
+            [%- IF show_more_link -%]
+                <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">
+                                    [% l('See more recently broken up bands.') %]
+                                </a>
+                            </td>
+                        </tr>
+                </tfoot>
+            [%- END -%]
     </table>
 [%- END -%]

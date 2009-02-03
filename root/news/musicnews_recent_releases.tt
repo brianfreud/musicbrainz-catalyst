@@ -1,36 +1,39 @@
-<h3>
-    [% l('Recent Releases (within the last 30 days)') %]
-</h3>
-<p class="lastupdated">
-    [% l('Updated:') %] [% recent_releases_timestamp %]
-</p>
-<table class="statistics">
-    <thead>
-        <tr>
-            <th>
-                [% l('Release') %]
-            </th>
-            <th>
-                [% l('Artist') %]
-            </th>
-            <th>
-                [% l('Country/Date') %]
-            </th>
-            <th>
-                [% l('Format') %]
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        [%- PROCESS 'news/musicnews_releaselist.tt' data=recent_releases -%]
-        [%- IF show_more_link -%]
+[%- WRAPPER 'components/box.tt' header=l('Recent Releases (within the last 30 days)') color='purple' -%]
+    <table class="statistics" summary="[% l('This table displays a list of Releases released recently.') %]">
+        <caption>
+            [% l('This table displays a list of Releases released recently.') %]
+        </caption>
+    <p class="lastupdated">
+        [% l('Updated:') %] [% recent_releases_timestamp %]
+    </p>
+    <table class="statistics">
+        <thead>
             <tr>
-                <td colspan="4">
-                    <a href="[% c.uri_for('/news/music_news', 'recent_releases') %]">
-                        [% l('See more recent Releases.') %]
-                    </a>
-                </td>
+                <th>
+                    [% l('Release') %]
+                </th>
+                <th>
+                    [% l('Artist') %]
+                </th>
+                <th>
+                    [% l('Country/Date') %]
+                </th>
+                <th>
+                    [% l('Format') %]
+                </th>
             </tr>
-        [%- END -%]
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            [%- PROCESS 'news/musicnews_releaselist.tt' data=recent_releases -%]
+            [%- IF show_more_link -%]
+                <tr>
+                    <td colspan="4">
+                        <a href="[% c.uri_for('/news/music_news', 'recent_releases') %]">
+                            [% l('See more recent Releases.') %]
+                        </a>
+                    </td>
+                </tr>
+            [%- END -%]
+        </tbody>
+    </table>
+[%- END -%]

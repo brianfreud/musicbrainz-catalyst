@@ -19,7 +19,7 @@
         [% WRAPPER "forms/form.tt" custom=1 %]
             [% IF form.has_error %]
                 <p>
-                    [% l('It appears there are some errors present in the preferences you attempted to set:') %]
+                    [% l('Some errors were present in the preferences that you attempted to set:') %]
                 </p>
                 <ul>
                     [% FOREACH field=form.error_fields %]

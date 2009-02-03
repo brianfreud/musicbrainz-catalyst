@@ -183,7 +183,7 @@ sub GetRecentlyBrokenUp
 									  FROM artist 
 									 WHERE type = 2 
 									   AND enddate != '' 
-									   AND enddate <= now()
+									   AND to_timestamp(enddate, 'YYYY-MM-DD') <= now()
 									   AND now() - to_timestamp(enddate, 'YYYY-MM-DD') < interval '12 months'
 					              ORDER BY enddate DESC");
 
@@ -191,7 +191,7 @@ sub GetRecentlyBrokenUp
 		$numitems = $sql->SelectSingleValue("SELECT count(*) 
 		                                  FROM artist 
 										 WHERE enddate != '' 
-										   AND enddate <= now() 
+										   AND to_timestamp(enddate, 'YYYY-MM-DD') <= now() 
 										   AND type = 2
 										   AND now() - to_timestamp(enddate, 'YYYY-MM-DD') < interval '12 months'");
 		MusicBrainz::Server::Cache->set("statistics-recently-brokenup", [$brokenup, $numitems, $timestamp], 60 * 60);

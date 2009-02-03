@@ -1,20 +1,35 @@
 [%- WRAPPER 'layout.tt' title='Music News'%]
     <h1>Music News</h1>
 
-    <h2>Upcoming Releases</h2>
-    [%- PROCESS 'news/musicnews-release.tt' data=upcoming_releases -%]
+[% IF upcoming_releases && recently_deceased && recently_brokenup %]
 
-    <h2>Recent releases (within the last 30 days)</h2>
-    [%- PROCESS 'news/musicnews-release.tt' data=recent_releases -%]
+    [%- PROCESS 'news/musicnews_upcoming_releases.tt' data=upcoming_releases timestamp=upcoming_releases_timestamp -%]
+    [%- PROCESS 'news/musicnews_recent_releases.tt' data=recent_releases timestamp=recent_releases_timestamp -%]
 
     <div class="two_column_right">
-    <h2>Recently Broken Up</h2>
-    [%- PROCESS 'news/musicnews-artist.tt' data=recently_brokenup is_person=0 -%]
+    [%- PROCESS 'news/musicnews_recently_brokenup.tt' data=recently_brokenup timestamp=recently_brokenup_timestamp -%]
     </div>
 
     <div class="two_column_left">
-    <h2>Recently Deceased</h2>
-    [%- PROCESS 'news/musicnews-artist.tt' data=recently_deceased is_person=1 -%]
+    [%- PROCESS 'news/musicnews_recently_deceased.tt' data=recently_deceased timestamp=recently_deceased_timestamp -%]
     </div>
+
+[% ELSIF upcoming_releases %]
+
+    [%- PROCESS 'news/musicnews_upcoming_releases.tt' data=upcoming_releases timestamp=upcoming_releases_timestamp -%]
+
+[% ELSIF recent_releases %]
+
+    [%- PROCESS 'news/musicnews_recent_releases.tt' data=recent_releases timestamp=recent_releases_timestamp -%]
+
+[% ELSIF recently_deceased %]
+
+    [%- PROCESS 'news/musicnews_recently_deceased.tt' data=recently_deceased timestamp=recently_deceased_timestamp -%]
+
+[% ELSIF recently_brokenup %]
+
+    [%- PROCESS 'news/musicnews_recently_brokenup.tt' data=recently_brokenup timestamp=recently_brokenup_timestamp -%]
+
+[% END %]
 
 [%- END -%]

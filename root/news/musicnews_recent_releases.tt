@@ -1,0 +1,18 @@
+<h3>Recent releases (within the last 30 days)</h3>
+    <table class="statistics">
+        <thead>
+            <tr>
+                <th>Release</th>
+                <th>Artist</th>
+                <th>Country/Date</th>
+                <th>Format</th>
+            </tr>
+        </thead>
+        <tbody>
+[%- PROCESS 'news/musicnews_releaselist.tt' data=recent_releases -%]
+[%- IF recent_releases_numitems > maxitems -%]
+	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'recent_releases') %]">see more recent releases</a></td></tr>
+[%- END -%]
+        </tbody>
+    </table>
+    <p class="lastupdated">Updated [% recent_releases_timestamp %]</p>

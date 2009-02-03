@@ -1,0 +1,18 @@
+<h3>Upcoming Releases</h3>
+<p class="lastupdated">Updated [% timestamp %]</p>
+    <table class="statistics">
+        <thead>
+            <tr>
+                <th>Release</th>
+                <th>Artist</th>
+                <th>Country/Date</th>
+                <th>Format</th>
+            </tr>
+        </thead>
+        <tbody>
+[%- PROCESS 'news/musicnews_releaselist.tt' data=upcoming_releases -%]
+[%- IF upcoming_releases_numitems > maxitems -%]
+	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'upcoming_releases') %]">see more upcoming releases</a></td></tr>
+[%- END -%]
+        </tbody>
+    </table>

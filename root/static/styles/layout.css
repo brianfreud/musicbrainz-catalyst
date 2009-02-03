@@ -467,3 +467,12 @@ table.browse td {
 	text-align: center;
 	padding: 0pt 4pt;
 }
+
+div.two_column_left {
+    width: 48%; 
+}
+
+div.two_column_right {
+    width: 48%; 
+    float: right; 
+}

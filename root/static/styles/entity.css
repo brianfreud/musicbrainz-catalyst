@@ -107,3 +107,9 @@ span.artist_icon { background-image: url("/static/images/entity/artist_small.gif
 span.release_icon { background-image: url("/static/images/entity/release_small.gif"); }
 span.label_icon { background-image: url("/static/images/entity/label_small.gif"); }
 span.track_icon { background-image: url("/static/images/entity/track_small.gif"); }
+
+.lastupdated {
+    color: grey;
+    font-size: x-small;
+}
+

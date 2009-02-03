@@ -32,6 +32,7 @@ use ModDefs;
 use Sql;
 use MusicBrainz::Server::Cache;
 use MusicBrainz::Server::ReleaseEvent;
+use MusicBrainz::Server::DateTime;
 
 sub new
 {
@@ -91,7 +92,7 @@ sub GetRecentReleases
 	splice(@$recent, 0, $offset) if ($offset);
 	splice(@$recent, $maxitems) if (scalar(@$recent) > $maxitems);
 
-	return ($recent, $numitems, $timestamp);
+	return ($recent, $numitems, MusicBrainz::Server::DateTime::format_datetime_since($timestamp));
 }
 
 sub GetUpcomingReleases
@@ -131,7 +132,7 @@ sub GetUpcomingReleases
 	splice(@$upcoming, 0, $offset) if ($offset);
 	splice(@$upcoming, $maxitems) if (scalar(@$upcoming) > $maxitems);
 
-	return ($upcoming, $numitems, $timestamp);
+	return ($upcoming, $numitems, MusicBrainz::Server::DateTime::format_datetime_since($timestamp));
 }
 
 sub GetRecentlyDeceased
@@ -163,7 +164,7 @@ sub GetRecentlyDeceased
 	splice(@$deceased, 0, $offset) if ($offset);
 	splice(@$deceased, $maxitems) if (scalar(@$deceased) > $maxitems);
 
-	return ($deceased, $numitems, $timestamp);
+	return ($deceased, $numitems, MusicBrainz::Server::DateTime::format_datetime_since($timestamp));
 }
 
 sub GetRecentlyBrokenUp
@@ -198,7 +199,7 @@ sub GetRecentlyBrokenUp
 	splice(@$brokenup, 0, $offset) if ($offset);
 	splice(@$brokenup, $maxitems) if (scalar(@$brokenup) > $maxitems);
 
-	return ($brokenup, $numitems, $timestamp);
+	return ($brokenup, $numitems, MusicBrainz::Server::DateTime::format_datetime_since($timestamp));
 }
 
 1;

@@ -2,6 +2,7 @@ package MusicBrainz::Server::Controller::News;
 
 use strict;
 use warnings;
+use Data::Page;
 
 use base 'MusicBrainz::Server::Controller';
 
@@ -21,45 +22,49 @@ Display a page that shows upcoming release, recent releases, recently deceased a
 
 =cut
 
-sub music_news : Local
+sub music_news : Local Arg(1)
 {
-    my ($self, $c) = @_;
+    my ($self, $c, $type) = @_;
 
-    my $type = $c->req->param('type') || '';
-    my $maxitems = $c->req->param('maxitems') || 25;
-    my $offset = $c->req->param('offset') || 0;
+    my $page  = $c->req->query_params->{page} || 1;
 
+    $c->stash->{template} = "news/musicnews.tt";
     if ($type eq 'upcoming_releases')
     {
-	$c->stash->{template} = "news/musicnews-upcoming_releases.tt";
-	($c->stash->{upcoming_releases}, $c->stash->{upcoming_releases_count}, $c->stash->{upcoming_releases_maxitems}) =
-	    $c->model('News')->upcoming_releases($maxitems, $offset);
+	my $pager = Data::Page->new;
+
+	($c->stash->{upcoming_releases}, $c->stash->{upcoming_releases_numitems}, $c->stash->{upcoming_releases_timestamp}) =
+	    $c->model('News')->upcoming_releases($pager->entries_per_page, ($page - 1) * $pager->entries_per_page);
+
+	$pager->total_entries($c->stash->{upcoming_releases_numitems});
+	$pager->entries_per_page(25);
+	$pager->current_page($page);
+	$c->stash->{pager} = $pager;
     } 
     elsif ($type eq 'recent_releases')
     {
-	$c->stash->{template} = "news/musicnews-recent_releases.tt";
-	$c->stash->{recent_releases} = $c->model('News')->recent_releases($maxitems, $offset);
+	($c->stash->{recent_releases}, $c->stash->{recent_releases_numitems}, $c->stash->{recent_releases_timestamp}) =
+	    $c->model('News')->recent_releases(10, 0);
     } 
     elsif ($type eq 'recently_deceased')
     {
-	$c->stash->{template} = "news/musicnews-recently_deceased.tt";
-	$c->stash->{recently_deceased} = $c->model('News')->recently_deceased($maxitems, $offset);
+	($c->stash->{recently_deceased}, $c->stash->{recently_deceased_numitems}, $c->stash->{recently_deceased_timestamp}) =
+	    $c->model('News')->recently_deceased(10, 0);
     }
     elsif ($type eq 'recently_brokenup')
     {
-	$c->stash->{template} = "statistics/musicnews-recently_brokenup.tt";
-	$c->stash->{recently_brokenup} = $c->model('News')->recently_brokenup($maxitems, $offset);
+	($c->stash->{recently_brokenup}, $c->stash->{recently_brokenup_numitems}, $c->stash->{recently_brokenup_timestamp}) =
+	    $c->model('News')->recently_brokenup(10, 0);
     }
     else
     {
-	$c->stash->{template} = "news/musicnews.tt";
-	($c->stash->{upcoming_releases}, $c->stash->{upcoming_releases_count}, $c->stash->{upcoming_releases_maxitems}) =
+	($c->stash->{upcoming_releases}, $c->stash->{upcoming_releases_numitems}, $c->stash->{upcoming_releases_timestamp}) =
 	    $c->model('News')->upcoming_releases(10, 0);
-	($c->stash->{recent_releases}, $c->stash->{recent_releases_count}, $c->stash->{recent_releases_maxitems}) =
+	($c->stash->{recent_releases}, $c->stash->{recent_releases_numitems}, $c->stash->{recent_releases_timestamp}) =
 	    $c->model('News')->recent_releases(10, 0);
-	($c->stash->{recently_deceased}, $c->stash->{recently_deceased_count}, $c->stash->{recently_deceased_maxitems}) =
+	($c->stash->{recently_deceased}, $c->stash->{recently_deceased_numitems}, $c->stash->{recently_deceased_timestamp}) =
 	    $c->model('News')->recently_deceased(10, 0);
-	($c->stash->{recently_brokenup}, $c->stash->{recently_brokenup_count}, $c->stash->{recently_brokenup_maxitems}) =
+	($c->stash->{recently_brokenup}, $c->stash->{recently_brokenup_numitems}, $c->stash->{recently_brokenup_timestamp}) =
 	    $c->model('News')->recently_brokenup(10, 0);
     } 
 }

@@ -1,0 +1,17 @@
+<h3>Recently Deceased</h3>
+<table class="statistics">
+    <thead>
+	<tr>
+	    <th>Artist</th>
+	    <th>Born</th>
+	    <th>Died</th>
+	</tr>
+    </thead>
+    <tbody>
+[%- PROCESS 'news/musicnews_artistlist.tt' data=recently_deceased timestamp=recently_deceased_timestamp -%]
+[%- IF recently_deceased_numitems > maxitems -%]
+	    <tr><td colspan="4"><a href="[% c.uri_for('/news/music_news', 'recently_deceased') %]">see more recently deceased artists</a></td></tr>
+[%- END -%]
+    </tbody>
+</table>
+<p class="lastupdated">Updated [% timestamp %]</p>

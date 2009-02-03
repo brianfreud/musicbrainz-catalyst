@@ -117,7 +117,7 @@ sub GetUpcomingReleases
 										   AND release.album = album.id 
 										   AND release.country = country.id 
 										   AND album.artist = artist.id 
-										   AND releasedate > now() 
+										   AND to_timestamp(releasedate, 'YYYY-MM-DD') > now() 
 									  ORDER BY releasedate, album.id, country, format");
 		foreach my $row (@$upcoming)
 		{

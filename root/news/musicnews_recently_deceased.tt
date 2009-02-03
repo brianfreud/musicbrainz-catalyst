@@ -2,7 +2,7 @@
     [% l('Recently Deceased') %]
 </h3>
 <p class="lastupdated">
-    [% l('Updated:)' %] [% timestamp %]
+    [% l('Updated:') %] [% timestamp %]
 </p>
 <table class="statistics">
     <thead>

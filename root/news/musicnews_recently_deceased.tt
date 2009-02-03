@@ -1,4 +1,5 @@
 <h3>Recently Deceased</h3>
+<p class="lastupdated">Updated [% timestamp %]</p>
 <table class="statistics">
     <thead>
         <tr>
@@ -14,4 +15,3 @@
 [%- END -%]
     </tbody>
 </table>
-<p class="lastupdated">Updated [% timestamp %]</p>

@@ -68,13 +68,13 @@ sub GetRecentReleases
 										 WHERE album.id IN (
 												SELECT album 
 												  FROM release 
-												 WHERE releasedate <= now() 
+												 WHERE to_timestamp(releasedate, 'YYYY-MM-DD') <= now() 
 												   AND now() - to_timestamp(releasedate, 'YYYY-MM-DD') < interval '60 days'
 											  ORDER BY releasedate DESC, album) 
 										   AND release.album = album.id 
 										   AND release.country = country.id 
 										   AND album.artist = artist.id 
-										   AND releasedate <= now() 
+										   AND to_timestamp(releasedate, 'YYYY-MM-DD') <= now() 
 									  ORDER BY releasedate DESC, album.id, country, format");
 		foreach my $row (@$recent)
 		{
@@ -84,7 +84,7 @@ sub GetRecentReleases
 		$timestamp = time();
 		$numitems = $sql->SelectSingleValue("SELECT count(*) 
 		                                  FROM release 
-										 WHERE releasedate <= now() 
+										 WHERE to_timestamp(releasedate, 'YYYY-MM-DD') <= now() 
 										   AND now() - to_timestamp(releasedate, 'YYYY-MM-DD') < interval '30 days'");
 		MusicBrainz::Server::Cache->set("statistics-recent-releases", [$recent, $numitems, $timestamp], 60 * 60);
 	}

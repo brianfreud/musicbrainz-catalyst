@@ -1,15 +1,15 @@
 [% IF data.size %]
     [%- FOR artist IN data -%]
     <tr>
-        <td>
+        <td headers="[% td1 %]">
             <a href="[% c.uri_for('/artist', artist.mbid) %]">
                 [% artist.name %]
             </a>
         </td>
-        <td>
+        <td headers="[% td2 %]">
             [% artist.begindate %]
         </td>
-        <td>
+        <td headers="[% td3 %]">
             [% artist.enddate %]
         </td>
     </tr>

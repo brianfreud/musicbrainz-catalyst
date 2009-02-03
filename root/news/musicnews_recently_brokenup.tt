@@ -1,33 +1,32 @@
-<h3>
-    [% l('Recently Broken Up') %]
-    </h3>
-<p class="lastupdated">
-    [% l('Updated:') %] [% timestamp %]
-</p>
-<table class="statistics">
-    <thead>
-        <tr>
-            <th>
-                [% l('Band') %]
-            </th>
-            <th>
-                [% l('Formed') %]
-            </th>
-            <th>
-                [% l('Broke Up') %]
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        [%- PROCESS 'news/musicnews_artistlist.tt' data=recently_brokenup timestamp=recently_brokenup_timestamp -%]
-        [%- IF show_more_link -%]
+[%- WRAPPER 'components/box.tt' header=l('Recently Broken Up') color='purple' -%]
+    <table class="statistics" summary="[% l('This table displays a list of bands which have recently broken up.') %]">
+        <caption>
+            [% l('This table displays a list of bands which have recently broken up.') %]
+        </caption>
+        <thead>
             <tr>
-                <td colspan="4">
-                    <a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">
-                        [% l('See more recently broken up bands.') %]
-                    </a>
-                </td>
+                <th id="statistics_broken_up_band">
+                    [% l('Band') %]
+                </th>
+                <th id="statistics_broken_up_formed">
+                    [% l('Formed') %]
+                </th>
+                <th id="statistics_broken_up_date">
+                    [% l('Broke Up') %]
+                </th>
             </tr>
-        [%- END -%]
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            [%- PROCESS 'news/musicnews_artistlist.tt' data=data timestamp=timestamp td1='Band' td2='Formed' td3='Broke Up' -%]
+            [%- IF show_more_link -%]
+                <tr>
+                    <td colspan="4">
+                        <a href="[% c.uri_for('/news/music_news', 'recently_brokenup') %]">
+                            [% l('See more recently broken up bands.') %]
+                        </a>
+                    </td>
+                </tr>
+            [%- END -%]
+        </tbody>
+    </table>
+[%- END -%]

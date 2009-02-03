@@ -1,3 +1,4 @@
+[% extra_css = 'statistics.css' %]
 [%- WRAPPER 'layout.tt' title=l('Music News') %]
     <h1>
         [% l('Music News') %]

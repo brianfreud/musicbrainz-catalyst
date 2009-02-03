@@ -12,14 +12,16 @@
             <div class="details">
                 [% l('Annotation last modified:') %] [% annotation.creation_time %].
             </div>
-            [%- IF c.user_exists -%]
                 <div class="options">
+            [%- IF c.user_exists -%]
                     [%- INCLUDE 'components/piped-list.tt' list = [
                         { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'edit', annotation.id), text => l('Edit') },
                         { link => c.uri_for('/annotation', parent.entity_type, parent.mbid, 'history'), text => l('History') }
                     ] -%]
-                </div>
+            [%- ELSE -%]
+                [% l('Please <a href={uri}>log in</a> to edit this annotation.', {uri => c.uri_for('/user/login')}) %]
             [%- END -%]
+                </div>
         </div>
     </div>
 [%- ELSE -%]

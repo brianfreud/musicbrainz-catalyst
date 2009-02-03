@@ -28,7 +28,7 @@
     [%- IF relations.size > maximum && !showall -%]
         [%- n = relations.size - maximum -%]
         <div class="more_relationships">
-            [% n %] [% l('relationship ' _ n > 1 ? "s" : "" _ ' not shown.') %]
+            [% ln('{num} relationship not shown', '{num} relationships not shown', n, {num => n}) %]
             <a href="[% c.entity_url(source, 'relations') %]">[% l('View all relationships&hellip;') %]</a>
         </div>
     [%- END -%]

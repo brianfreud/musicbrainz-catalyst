@@ -12,7 +12,6 @@
 [% MACRO make_ucfirst(text) BLOCK; text | ucfirst; END %]
 
 [%- MACRO make_widget(field, label) INCLUDE 'forms/generic/row.tt' field=form.field(field) label=label -%]
-[%- MACRO make_required_widget(field, label) INCLUDE 'forms/generic/row.tt' field=form.field(field) label=label -%]
 
 [% USE UserDate(user.preferences) %]
 

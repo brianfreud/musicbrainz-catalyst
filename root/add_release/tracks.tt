@@ -16,7 +16,7 @@
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') %]
                 [%- FOR i=[1..track_count] -%]
                     [%- INCLUDE 'forms/generic/row.tt' field=form.field("track_$i") label=l('Track') -%]
-                    [%- INCLUDE 'forms/switchable.tt' object="artist_$i" field=form.field("artist_$i") label=l('Artist') -%]
+                    [%- INCLUDE 'forms/generic/row.tt' field=form.field("artist_$i") label=l('Artist') object="artist_$i" type='switch' %]
                     <br />
                 [%- END -%]
                 <div id="form-controls"></div>

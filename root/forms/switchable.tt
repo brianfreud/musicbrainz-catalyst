@@ -1,5 +1,0 @@
-[% IF object %]
-    [%- INCLUDE 'forms/switch_row.tt' field=form.field(object) display=identified -%]
-[% ELSE %]
-    [%- INCLUDE 'forms/switch_row.tt' field=form.field(object) display=unknown -%]
-[%- END -%]

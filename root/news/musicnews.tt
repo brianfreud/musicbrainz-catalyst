@@ -11,7 +11,7 @@
                 timestamp=recent_releases_timestamp 
                 show_more_link=1 -%]
             <div class="two_column_right">
-                [%- PROCESS 'news/musicnews_recently_brokenup.tt' 
+                [%- PROCESS 'news/musicnews_recently_brokenup.tt' _news
                     data=recently_brokenup 
                     timestamp=recently_brokenup_timestamp
                     show_more_link=1 -%]

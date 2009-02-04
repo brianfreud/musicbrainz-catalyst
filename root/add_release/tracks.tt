@@ -1,3 +1,4 @@
+[% extra_js = "switch.js switchcontrols.js" %]
 [% WRAPPER 'layout.tt' title=l('Add Release') %]
     [% WRAPPER 'components/box.tt' header=l('Add a new Release') %]
         [% INCLUDE 'add_release/bread_crumbs.tt' %]
@@ -13,13 +14,12 @@
                 [%- INCLUDE 'forms/generic/row.tt' field=form.field('title') label=l('Title') -%]
             [%- END -%]
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') %]
-                <div id="label-form-add-release-tracks-controls">
-                </div>
                 [%- FOR i=[1..track_count] -%]
                     [%- INCLUDE 'forms/generic/row.tt' field=form.field("track_$i") label=l('Track') -%]
                     [%- INCLUDE 'forms/switchable.tt' object="artist_$i" field=form.field("artist_$i") label=l('Artist') -%]
                     <br />
                 [%- END -%]
+                <div id="form-controls"></div>
             [%- END -%]
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Release Events') -%]
                 [% INCLUDE 'forms/generic/row.tt' field=form.field("event_${i}") label=l('Release Event')

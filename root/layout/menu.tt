@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li>
-                <a href="/news/music_news">
+                <a href="/news/music">
                     [% l('Music News') %]
                 </a>
             </li>

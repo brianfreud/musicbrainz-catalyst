@@ -25,7 +25,11 @@ $(document).ready(function(){
             if ($(this).attr("src") == "/static/images/release_editor/edit-off.gif") {
                 $(this).nextAll("span").toggle();
                 $(this).nextAll("input").toggle();
-                $(this).trigger('click.artist');
+                $(this).attr({ 
+                    src: "/static/images/release_editor/edit-on.gif",
+                    title: "Change",
+                    alt: "Change"
+                })
             }
             $("#form-controls-button-editall").unbind("click");
             $("#form-controls-button-editall").attr("disabled", "true");

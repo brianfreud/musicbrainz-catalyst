@@ -13,9 +13,11 @@
                 [%- INCLUDE 'forms/generic/row.tt' field=form.field('title') label=l('Title') -%]
             [%- END -%]
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') %]
+                <div id="label-form-add-release-tracks-controls">
+                </div>
                 [%- FOR i=[1..track_count] -%]
                     [%- INCLUDE 'forms/generic/row.tt' field=form.field("track_$i") label=l('Track') -%]
-                    [%- INCLUDE 'forms/generic/row.tt' field=form.field("artist_$i") label=l('Artist') -%]
+                    [%- INCLUDE 'forms/switchable.tt' object="artist_$i" field=form.field("track_$i") label=l('Artist') -%]
                     <br />
                 [%- END -%]
             [%- END -%]

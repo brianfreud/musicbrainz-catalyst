@@ -14,7 +14,7 @@
                     [%- l('Description:') -%]
                 </th>
                 <td>
-                    [%- (url.desc || l("This url has no description")) | html -%]
+                    [%- (url.desc || l("This URL has no description")) | html -%]
                 </td>
             </tr>
             <tr>

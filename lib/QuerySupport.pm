@@ -96,7 +96,7 @@ sub FindArtistByName
    my ($dbh, $parser, $rdf, $search, $limit) = @_;
    my ($sql, @ids);
 
-   return $rdf->ErrorRDF("No artist search criteria given.")
+   return $rdf->ErrorRDF("No Artist search criteria given.")
       if (!defined $search);
    return undef if (!defined $dbh);
 
@@ -124,7 +124,7 @@ sub FindAlbumByName
    my ($dbh, $parser, $rdf, $search, $limit) = @_;
    my ($sql, @ids);
 
-   return $rdf->ErrorRDF("No album search criteria given.")
+   return $rdf->ErrorRDF("No Release search criteria given.")
       if (!defined $search);
    return undef if (!defined $dbh);
 
@@ -152,7 +152,7 @@ sub FindTrackByName
    my ($dbh, $parser, $rdf, $search, $limit) = @_;
    my ($sql, @ids);
 
-   return $rdf->ErrorRDF("No track search criteria given.")
+   return $rdf->ErrorRDF("No Track search criteria given.")
       if (!defined $search);
    return undef if (!defined $dbh);
 
@@ -201,7 +201,7 @@ sub GetAlbumByGlobalId
 
     if (not defined $id or $id eq "")
     {
-	carp "Missing album GUID in GetAlbumByGlobalId";
+	carp "Missing Release GUID in GetAlbumByGlobalId";
 	return $rdf->ErrorRDF("No album GUID given");
     }
 
@@ -221,7 +221,7 @@ sub GetTrackByGlobalId
 
     if (not defined $id or $id eq "")
     {
-	carp "Missing track GUID in GetTrackByGlobalId";
+	carp "Missing Track GUID in GetTrackByGlobalId";
 	return $rdf->ErrorRDF("No track GUID given");
     }
 
@@ -299,7 +299,7 @@ sub artist_relationships
 
     if (not defined $id or $id eq "")
     {
-	carp "Missing artist GUID in artist_relationships";
+	carp "Missing Artist GUID in artist_relationships";
 	return $rdf->ErrorRDF("No artist GUID given");
     }
 
@@ -307,7 +307,7 @@ sub artist_relationships
     $ar->mbid($id);
     if (!$ar->LoadFromId())
     {
-	carp "Invalid artist is given to GetTrackRelationships";
+	carp "Invalid Artist is given to GetTrackRelationships";
 	return $rdf->ErrorRDF("Invalid artist GUID given");
     }
 
@@ -364,7 +364,7 @@ sub GetAlbumRelationships
 
     if (not defined $id or $id eq "")
     {
-	carp "Missing artist GUID in GetAlbumRelationships";
+	carp "Missing Artist GUID in GetAlbumRelationships";
 	return $rdf->ErrorRDF("No album GUID given");
     }
 
@@ -372,7 +372,7 @@ sub GetAlbumRelationships
     $al->mbid($id);
     if (!$al->LoadFromId())
     {
-	carp "Invalid album is given to GetTrackRelationships";
+	carp "Invalid Release is given to GetTrackRelationships";
 	return $rdf->ErrorRDF("Invalid album GUID given");
     }
 
@@ -389,7 +389,7 @@ sub GetTrackRelationships
 
     if (not defined $id or $id eq "")
     {
-	carp "Missing artist GUID in GetTrackRelationships";
+	carp "Missing Artist GUID in GetTrackRelationships";
 	return $rdf->ErrorRDF("No artist GUID given");
     }
 
@@ -397,7 +397,7 @@ sub GetTrackRelationships
     $tr->mbid($id);
     if (!$tr->LoadFromId())
     {
-	carp "Invalid artist is given to GetTrackRelationships";
+	carp "Invalid Artist is given to GetTrackRelationships";
 	return $rdf->ErrorRDF("Invalid artist GUID given");
     }
 

@@ -10,7 +10,7 @@
 <search
  version="7.1"
  name="MusicBrainz: Track (indexed)"
- description="Indexed search for a track on MusicBrainz.org" 
+ description="Indexed search for a Track on MusicBrainz.org" 
  action="http://musicbrainz.org/search/textsearch.html"
  searchForm="http://musicbrainz.org/search.html"
  method="GET" >

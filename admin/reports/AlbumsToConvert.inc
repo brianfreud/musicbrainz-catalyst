@@ -62,10 +62,10 @@
 
 	<& /comp/tablebegin, title => $report_title &>
 		<ul>
-			<li>This report aims to identify releases which need converting to
-				"multiple artists". Currently it does this by looking for releases
+			<li>This report aims to identify Releases which need converting to
+				"Multiple Artists". Currently it does this by looking for Releases
 				where every track contains "/" or "-".</li>
-			<li>Total releases found: <% $rep->Records %></li>
+			<li>Total Releases found: <% $rep->Records %></li>
 			<li>Generated <% $m->comp('/comp/datetime', $rep->Time) %></li>
 		</ul>
 

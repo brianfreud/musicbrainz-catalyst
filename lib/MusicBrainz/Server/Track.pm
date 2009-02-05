@@ -50,7 +50,7 @@ sub _GetMBIDCacheKey
     "track-mbid-" . lc $mbid;
 }
 
-# Accessor functions to set/get the artist id of this album
+# Accessor functions to set/get the Artist id of this album
 sub artist
 {
     my ($self, $new_artist) = @_;
@@ -315,7 +315,7 @@ sub Insert
 
 	if (not $artist)
 	{
-		carp "Missing artist ID in Insert";
+		carp "Missing Artist ID in Insert";
 		return undef;
 	}
 

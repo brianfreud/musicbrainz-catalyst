@@ -10,7 +10,7 @@
 <search
  version="7.1"
  name="MusicBrainz: Artist (direct)"
- description="Direct search for an artist on MusicBrainz.org" 
+ description="Direct search for an Artist on MusicBrainz.org" 
  action="http://musicbrainz.org/search/oldsearch.html"
  searchForm="http://musicbrainz.org/search.html"
  method="GET" >

@@ -97,19 +97,19 @@ sub CheckPrerequisites
 	$release->id($self->row_id);
 	unless ($release->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This release has been deleted");
+		$self->InsertNote(MODBOT_MODERATOR, "This Release has been deleted");
 		return STATUS_FAILEDDEP;
 	}
 
 	# Check that its artist has not changed
 	if ($release->artist == VARTIST_ID)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This release has already been converted to multiple artists");
+		$self->InsertNote(MODBOT_MODERATOR, "This Release has already been converted to multiple Artists");
 		return STATUS_FAILEDPREREQ;
 	}
 	if ($release->artist != $self->artist)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This release is no longer associated with this artist");
+		$self->InsertNote(MODBOT_MODERATOR, "This Release is no longer associated with this Artist");
 		return STATUS_FAILEDDEP;
 	}
 

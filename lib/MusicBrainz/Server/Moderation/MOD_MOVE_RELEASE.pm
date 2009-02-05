@@ -188,7 +188,7 @@ sub CheckPrerequisites
 		$artist->id($id);
 		unless ($artist->LoadFromId)
 		{
-			$self->InsertNote(MODBOT_MODERATOR, "This artist has been deleted");
+			$self->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted");
 			return STATUS_FAILEDPREREQ;
 		}
 	}
@@ -207,7 +207,7 @@ sub ApprovedAction
 		$this->row_id,
 		$this->artist,
 	) or do {
-		$this->InsertNote(MODBOT_MODERATOR, "This release has already been deleted or moved");
+		$this->InsertNote(MODBOT_MODERATOR, "This Release has already been deleted or moved");
 		return STATUS_FAILEDPREREQ;
 	};
 

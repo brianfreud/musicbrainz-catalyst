@@ -92,7 +92,7 @@ sub CheckPrerequisites
 	{
 		$self->InsertNote(
 			MODBOT_MODERATOR,
-			"This artist has been deleted",
+			"This Artist has been deleted",
 		);
 		return STATUS_FAILEDPREREQ;
 	}

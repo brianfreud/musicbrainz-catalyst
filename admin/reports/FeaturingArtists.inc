@@ -35,8 +35,8 @@
 		qq!Track names which do not conform to FeaturingArtistStyle!;
 
 	$ARGS{"report_text"} =
-		qq!	This report lists broken tracks containing featuring artists that do not
-			follow the style guide. For some tracks (those with a <em>Suggest</em>
+		qq!	This report lists broken Track titless containing featuring Artists that do 
+			not conform to FeaturingArtistStyle. For some Tracks (those with a <em>Suggest</em>
 			link) a suggestion exists which is used as a default in the
 			<em>edit track</em> dialog. You may still need the <em>Guess Case</em>
 			button or manual intervention, however.!;

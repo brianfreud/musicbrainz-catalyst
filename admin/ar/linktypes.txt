@@ -11,20 +11,20 @@ performance <performance | performance|>
   conductor [album--artist], [track--artist] <was conducted by | conducted | Indicates the person who was the conductor for this work>
 
 covers and versions <covers or other versions | covers or other versions|>
-  first track release [track--track] <is the earliest release of | is a later release of | Indicates that the two tracks are identical. This means that the audio data is *exactly* identical. No remastering has been applied and the track lengths are the same (+-2 seconds). Please take care to always point to the *first* version ever released!>
-  first album release [album--album] <is the earliest release of | is a later release of | Indicates that the two albums contain mostly the same audio material. This means that the audio data is *exactly* identical. No remastering has been applied, but it is OK if e.g. a bonus track was added or the order of the tracks was changed. Please take care to always point to the *first* version ever released!>
+  first track release [track--track] <is the earliest release of | is a later release of | Indicates that the two Tracks are identical. This means that the audio data is *exactly* identical. No remastering has been applied and the Track lengths are the same (+-2 seconds). Please take care to always point to the *first* version ever released!>
+  first album release [album--album] <is the earliest release of | is a later release of | Indicates that the two albums contain mostly the same audio material. This means that the audio data is *exactly* identical. No remastering has been applied, but it is OK if e.g. a bonus Track was added or the order of the Tracks was changed. Please take care to always point to the *first* version ever released!>
 #I split the album and the track version of first release, because they mean different things and need different descriptions
-  remaster [track--track], [album--album] <is a remaster of | is remastered from | Indicates that an album or track is a remaster of another work. This means that the audio data was changed in this process but the same original recording material was used. Please take care to always point to the *first* version ever released!>
+  remaster [track--track], [album--album] <is a remaster of | is remastered from | Indicates that a Release or Track is a remaster of another work. This means that the audio data was changed in this process but the same original recording material was used. Please take care to always point to the *first* version ever released!>
   other version [track--track] <is the earliest version of | is a later version of | Indicates another version of the same  song. This is the case when the same Artist made a different recording of the same song. Please take care to always point to the *first* version of that song ever released!>
-  cover [track--track] <is a cover of | is covered by | Indicates a cover version of a track. This means that another Artist performed the same song. Please take care to always point to the *first* version ever released!>
+  cover [track--track] <is a cover of | is covered by | Indicates a cover version of a Track. This means that another Artist performed the same song. Please take care to always point to the *first* version ever released!>
   
 remixes <remixes | remixes|>
-  remixer (additional=0-1) [album--artist], [track--artist] <was {additional:additionally} remixed by | {additional:additionally} remixed | Indicates who remixed an album or a track.>
-  samples material (additional=0-1) [track--track] <contains {additional} samples from  | provides {additional} samples for | Indicates that one track contains samples from another track.>
-  samples from Artist (additional=0-1) [album--artist], [artist--track] <contains {additional} samples by | produced material that was {additional:additionally} sampled in | Indicates that one track contains samples from material that was performed by another Artist. Note that it is always better to point to the exact track that was sampled. Please, use this relationship only if you cannot figure out what that track is.>
+  remixer (additional=0-1) [album--artist], [track--artist] <was {additional:additionally} remixed by | {additional:additionally} remixed | Indicates who remixed a Release or a Track.>
+  samples material (additional=0-1) [track--track] <contains {additional} samples from  | provides {additional} samples for | Indicates that one Track contains samples from another Track.>
+  samples from Artist (additional=0-1) [album--artist], [artist--track] <contains {additional} samples by | produced material that was {additional:additionally} sampled in | Indicates that one Track contains samples from material that was performed by another Artist. Note that it is always better to point to the exact Track that was sampled. Please, use this relationship only if you cannot figure out what that Track is.>
 #IMO this is necessary to cater cases where you simply know that *some* material by that Artist was used.
 #most of the current MB data has track name, original performer and remixer.
-  mashes up [track-track], [album-album], [album-track] <is a mash-up of  | is mashed-up from  | Indicates that tracks or albums were mashed up on this track or album. This means that two pieces of music by different Artists are mixed together, over each other, or otherwise combined into a single work (usually by a third Artist, the remixer).>
+  mashes up [track-track], [album-album], [album-track] <is a mash-up of  | is mashed-up from  | Indicates that Tracks or Releases were mashed up on this Track or Release. This means that two pieces of music by different Artists are mixed together, over each other, or otherwise combined into a single work (usually by a third Artist, the remixer).>
   
 composition <composition | composition|>
   composer (additional=0-1) [album--artist], [track--artist] <was {additional:additionally} composed by | {additional:additionally} composed | Indicates the composer for this work.>
@@ -54,7 +54,7 @@ production <production | production|>
     publishing <provided publishing on | has publishing by | Indicates publishing support was included in this work>
     merchandise <provided merchandising on | has merchandising by | Indicates merchandising support was included in this work>
 #I did not understand the last two entries, so I could not give them a more descriptive description.
-  label [album--url] <was released by | released | Indicates which record label released this work>
+  label [album--url] <was released by | released | Indicates which Label released this work>
 
 musical relationships [artist--artist] <musical relationship | musical relationship|> 
   member of band (additional=0-1) <is/was a {additional} member of | has/had {additional} member(s) | Indicates a membership in a band/orchestra> 

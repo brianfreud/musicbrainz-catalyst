@@ -39,7 +39,7 @@ sub PreInsert
 
 	my $ar = $opts{'artist'} or die;
 
-	die $self->SetError('Editing this artist is not allowed'),
+	die $self->SetError('Editing this Artist is not allowed'),
 		if $ar->id() == VARTIST_ID or $ar->id() == DARTIST_ID;
 
 	my $name = $opts{'name'};
@@ -196,7 +196,7 @@ sub CheckPrerequisites
 
 	if ($artist_id == VARTIST_ID or $artist_id == DARTIST_ID)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "You can't rename this artist!");
+		$self->InsertNote(MODBOT_MODERATOR, "You can't rename this Artist!");
 		return STATUS_ERROR;
 	}
 
@@ -206,7 +206,7 @@ sub CheckPrerequisites
 	$ar->id($artist_id);
 	unless ($ar->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has been deleted.");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted.");
 		return STATUS_FAILEDDEP;
 	}
 
@@ -214,7 +214,7 @@ sub CheckPrerequisites
 	if ( exists $prev->{ArtistName} and $ar->name() ne $prev->{ArtistName} )
 	{
 		$self->InsertNote(MODBOT_MODERATOR,
-									"This artist has already been renamed.");
+									"This Artist has already been renamed.");
 		return STATUS_FAILEDPREREQ;
 	}
 

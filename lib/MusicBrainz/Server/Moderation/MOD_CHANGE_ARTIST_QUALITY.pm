@@ -65,14 +65,14 @@ sub CheckPrerequisites
 	$artist->id($self->row_id);
 	unless ($artist->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has been deleted");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted");
 		return STATUS_FAILEDDEP;
 	}
 
 	# Check that it hasn't been locked
 	if ($artist->quality == $self->new_data)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist is already set to quality level " . ModDefs::GetQualityText($artist->quality));
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist is already set to quality level " . ModDefs::GetQualityText($artist->quality));
 		return STATUS_FAILEDPREREQ;
 	}
 

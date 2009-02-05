@@ -309,7 +309,7 @@ sub edit : Chained('artist') Form
 
     $form->apply_edit;
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($self->entity, 'show'));
@@ -361,7 +361,7 @@ sub merge_into : Chained('artist') PathPart('merge-into') Args(1)
 
     $form->merge_into($new_artist);
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($new_artist, 'show'));
@@ -514,7 +514,7 @@ sub change_quality : Chained('artist') Form('DataQuality')
 
     $form->change_quality($c->model('Artist'));
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($artist, 'show'));
@@ -538,7 +538,7 @@ sub add_alias : Chained('artist') Form
 
     $form->create_for($self->entity);
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($self->entity, 'aliases'));
@@ -566,7 +566,7 @@ sub remove_alias : Chained('artist') Args(1) Form
 
     $form->remove_from($artist);
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($artist, 'aliases'));
@@ -595,7 +595,7 @@ sub edit_alias : Chained('artist') Args(1) Form
 
     $form->edit_for($artist);
 
-    $c->flash->{ok} = "Thanks, your artist edit has been entered " .
+    $c->flash->{ok} = "Thanks, your Artist edit has been entered " .
                       "into the moderation queue";
 
     $c->response->redirect($c->entity_url($artist, 'aliases'));

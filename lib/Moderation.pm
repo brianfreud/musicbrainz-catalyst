@@ -473,7 +473,7 @@ my @QualityChangeDefs =
       votes => 5, 
       expireaction => EXPIRE_REJECT, 
       autoedit => 0,  
-      name => "Lower artist/release quality"
+      name => "Lower Artist/Release quality"
     },  
     # 1 == UP
 	{ 
@@ -481,7 +481,7 @@ my @QualityChangeDefs =
       votes => 1, 
       expireaction => EXPIRE_ACCEPT, 
       autoedit => 0,  
-      name => "Raise artist/release quality"
+      name => "Raise Artist/Release quality"
     }
 );
 

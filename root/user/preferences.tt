@@ -151,7 +151,7 @@
                 </p>
                 [%- PROCESS fields fields = [
                     { widget = 'remove_recent_link_on_add', label=l('After creating a new relationship, remove the linked items from my "recently used" list.') },
-                    { widget = 'auto_subscribe', label=l('Automatically subscribe me to artists or labels I create.') }
+                    { widget = 'auto_subscribe', label=l('Automatically subscribe me to Artists or Labels I create.') }
                     ] %]
             </fieldset>
             <fieldset id="options_emailing">
@@ -243,7 +243,7 @@
                 </div>
                 [%- PROCESS fields fields = [
                     { widget = 'nosidebar', label=l('Do not show the sidebar (can be faster, but may make the website difficult to navigate)') },
-                    { widget = 'css_noentityicons', label=l('Do not show icons next to Artists, Releases, Tracks and Labels') },
+                    { widget = 'css_noentityicons', label=l('Do not show icons next to Artists, Releases, Tracks, and Labels') },
                     { widget = 'css_nosmallfonts', label=l('Do not use small font sizes') }
                     ] -%]
             </fieldset>

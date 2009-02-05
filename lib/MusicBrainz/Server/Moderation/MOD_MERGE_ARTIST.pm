@@ -46,7 +46,7 @@ sub PreInsert
 
 	if ($source->id == $target->id)
 	{
-		$self->SetError("Source and destination artists are the same!");
+		$self->SetError("Source and destination Artists are the same!");
 		die $self;
 	}
 
@@ -148,7 +148,7 @@ sub CheckPrerequisites
 		$newar->id($newid);
 		unless ($newar->LoadFromId)
 		{
-			$self->InsertNote(MODBOT_MODERATOR, "The target artist has been deleted");
+			$self->InsertNote(MODBOT_MODERATOR, "The target Artist has been deleted");
 			return STATUS_FAILEDDEP;
 		}
 	} else {
@@ -168,34 +168,34 @@ sub CheckPrerequisites
 	$oldar->id($rowid);
 	unless ($oldar->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has been deleted");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted");
 		return STATUS_FAILEDPREREQ;
 	}
 
 	# Check to see that the old value is still what we think it is
 	unless ($oldar->name eq $prevval)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has already been renamed");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has already been renamed");
 		return STATUS_FAILEDPREREQ;
 	}
 
 	# You can't merge an artist into itself!
 	if ($oldar->id == $newar->id)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "Source and destination artists are the same!");
+		$self->InsertNote(MODBOT_MODERATOR, "Source and destination Artists are the same!");
 		return STATUS_ERROR;
 	}
 
 	# Disallow various merges involving the "special" artists
 	if ($oldar->id == VARTIST_ID or $oldar->id == DARTIST_ID)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "You can't merge that artist!");
+		$self->InsertNote(MODBOT_MODERATOR, "You can't merge that Artist!");
 		return STATUS_ERROR;
 	}
 	
 	if ($newar->id == DARTIST_ID)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "You can't merge into that artist!");
+		$self->InsertNote(MODBOT_MODERATOR, "You can't merge into that Artist!");
 		return STATUS_ERROR;
 	}
 

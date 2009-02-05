@@ -688,7 +688,7 @@ sub _ProcessUserSubscriptions
 			printf "Artist #%d was deleted by mod #%d\n",
 				$sub->{'artist'}, $modid,
 				if $self->{'verbose'};
-			$text .= "One of your subscribed artists was deleted:\n"
+			$text .= "One of your subscribed Artists was deleted:\n"
 				. "$root/showmod.html?modid=$modid\n\n";
 			next;
 		}
@@ -698,7 +698,7 @@ sub _ProcessUserSubscriptions
 			printf "Artist #%d was merged by mod #%d\n",
 				$sub->{'artist'}, $modid,
 				if $self->{'verbose'};
-			$text .= "One of your subscribed artists was merged:\n"
+			$text .= "One of your subscribed Artists was merged:\n"
 				. "$root/showmod.html?modid=$modid\n\n";
 			next;
 		}
@@ -805,18 +805,18 @@ sub _ProcessUserSubscriptions
 
 	if ($text eq "" and $editorstext eq "")
 	{
-		print "No edits for subscribed artists, labels and editors\n"
+		print "No edits for subscribed Artists, Labels and editors\n"
 			if $self->{'verbose'};
 		return;
 	}
 
 	my $textbody = <<EOF;
-This is a notification that edits have been added for artists, labels and
+This is a notification that edits have been added for Artists, Labels and
 editors to whom you subscribed on the MusicBrainz web site.
 To view or edit your subscription list, please use the following link:
 $root/user/subscriptions.html
 
-To see all open edits for your subscribed artists, see this link:
+To see all open edits for your subscribed Artists, see this link:
 $root/mod/search/pre/subscriptions.html
 EOF
 	;
@@ -825,7 +825,7 @@ EOF
 	{
 		$textbody .= <<EOF
 
-The changes to your subscribed artists are as follows:
+The changes to your subscribed Artists are as follows:
 ------------------------------------------------------------------------
 
 $text
@@ -903,7 +903,7 @@ sub CountArtistEdits
 		return $t->{ $opts{artist} } || 0;
 	}
 
-	printf "Counting edits by artist: s=%d %d <= id <= %d\n",
+	printf "Counting edits by Artist: s=%d %d <= id <= %d\n",
 		$opts{status},
 		$opts{minid},
 		$opts{maxid},

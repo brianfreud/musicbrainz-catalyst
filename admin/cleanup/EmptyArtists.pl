@@ -84,9 +84,9 @@ Allowed options are:
                           (default is to automod)
         --moderator=NAME  insert the moderations as moderator NAME
                           (default is the 'ModBot')
-        --[no]remove      [don't] remove unused artists
+        --[no]remove      [don't] remove unused Artists
                           (default is --remove)
-        --[no]verbose     [don't] show information about each artist
+        --[no]verbose     [don't] show information about each Artist
         --[no]summary     [don't] show summary information at the end
                           (default is --summary)
     -h, --help            show this help (also "-?")
@@ -100,7 +100,7 @@ $verbose = ($remove ? 0 : 1)
 print(STDERR "Running with --noremove --noverbose --nosummary is pointless\n"), exit 1
 	unless $remove or $verbose or $summary;
 
-print localtime() . " : Finding unused artists (using album/AR/mod criteria)\n";
+print localtime() . " : Finding unused Artists (using album/AR/mod criteria)\n";
 
 $sql->Begin;
 $sql->Select(<<EOF) or die;
@@ -170,7 +170,7 @@ $sql->Select(<<EOF) or die;
 EOF
 $sql->Finish;
 
-print localtime() . " : Finding unused artists (using track criteria)\n";
+print localtime() . " : Finding unused Artists (using track criteria)\n";
 
 $sql->Select(<<EOF) or die;
 
@@ -191,7 +191,7 @@ $sql->Select(<<EOF) or die;
 EOF
 $sql->Finish;
 
-print localtime() . " : Collating unused artists\n";
+print localtime() . " : Collating unused Artists\n";
 
 $sql->Select(<<EOF) or die;
 
@@ -281,10 +281,10 @@ $sql->Finish;
 
 if ($summary)
 {
-	printf "%s : Found %d unused artist%s.\n",
+	printf "%s : Found %d unused Artist%s.\n",
 		scalar localtime,
 		$count, ($count==1 ? "" : "s");
-	printf "%s : Successfully removed %d artist%s\n",
+	printf "%s : Successfully removed %d Artist%s\n",
 		scalar localtime,
 		$removed, ($removed==1 ? "" : "s")
 		if $remove;

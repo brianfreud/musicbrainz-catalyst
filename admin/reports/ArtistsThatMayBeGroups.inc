@@ -60,13 +60,13 @@
 
 </%perl>
 
-<& /comp/sidebar-notitle, pagetitle => "Artist that may be groups" &>
+<& /comp/sidebar-notitle, pagetitle => "Artists that may be a group" &>
 
-	<& /comp/tablebegin, title => "Artists that may be groups" &>
+	<& /comp/tablebegin, title => "Artists that may be a group" &>
 		<ul>
-			<li>This report lists artists that are <em>unknown</em> or <em>person</em>, 
+			<li>This report lists Artists that are <em>unknown</em> or <em>person</em>, 
 			    but may be <em>group</em>, based on band "is member of" advanced relationships.</li>
-			<li>Total artists found: <% $rep->Records %></li>
+			<li>Total Artists found: <% $rep->Records %></li>
 			<li>Generated <% $m->comp('/comp/datetime', $rep->Time) %></li>
 		</ul>
 

@@ -27,7 +27,7 @@
 #
 </%perl>
 
-<& /comp/sidebar-notitle, pagetitle => "Possibly duplicate artists (from MusicMagic database)" &>
+<& /comp/sidebar-notitle, pagetitle => "Possible duplicate Artists (from the MusicMagic database)" &>
 
 <%perl>
 
@@ -35,10 +35,10 @@
 	my $supplydate = $m->scomp('/comp/datetime', $mtime);
 
 	$ARGS{"report_title"} =
-		qq!Possibly duplicate artists (from MusicMagic database)!;
+		qq!Possibly duplicate Artists (from the MusicMagic database)!;
 
 	$ARGS{"report_text"} =
-		qq! This report lists artists that may be duplicates. The data for this
+		qq! This report lists Artists that may be duplicates. The data for this
 			report has been contributed by Wendell T. Hicken from
 			<a href="http://music.predixis.com/">Predixis</a> using the MusicMagic
 			database. Thanks\!

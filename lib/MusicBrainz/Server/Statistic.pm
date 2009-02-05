@@ -164,15 +164,15 @@ sub TakeSnapshot
 
 my %stats = (
 	"count.album" => {
-		DESC => "Count of all releases",
+		DESC => "Count of all Releases",
 		SQL => "SELECT COUNT(*) FROM album",
 	},
 	"count.artist" => {
-		DESC => "Count of all artists",
+		DESC => "Count of all Artists",
 		SQL => "SELECT COUNT(*) FROM artist",
 	},
 	"count.label" => {
-		DESC => "Count of all labels",
+		DESC => "Count of all Labels",
 		SQL => "SELECT COUNT(*) FROM label",
 	},
 	"count.discid" => {
@@ -196,7 +196,7 @@ my %stats = (
 		SQL => "SELECT COUNT(DISTINCT puid) FROM puidjoin",
 	},
 	"count.track" => {
-		DESC => "Count of all tracks",
+		DESC => "Count of all Tracks",
 		SQL => "SELECT COUNT(*) FROM track",
 	},
 	"count.vote" => {
@@ -205,11 +205,11 @@ my %stats = (
 	},
 
 	"count.album.various" => {
-		DESC => "Count of all 'Various Artists' releases",
+		DESC => "Count of all 'Various Artists' Releases",
 		SQL => "SELECT COUNT(*) FROM album WHERE artist = " . &ModDefs::VARTIST_ID,
 	},
 	"count.album.nonvarious" => {
-		DESC => "Count of all 'Various Artists' releases",
+		DESC => "Count of all 'Various Artists' Releases",
 		PREREQ => [qw[ count.album count.album.various ]],
 		CALC => sub {
 			my ($self, $sql) = @_;
@@ -220,7 +220,7 @@ my %stats = (
 	},
 
 	"count.album.has_discid" => {
-		DESC => "Count of releases with at least one disc ID",
+		DESC => "Count of Releases with at least one disc ID",
 		SQL => "SELECT COUNT(DISTINCT album) FROM album_cdtoc",
 	},
 	"count.album.Ndiscids" => {
@@ -286,23 +286,23 @@ my %stats = (
 		},
 	},
 	"count.quality.album.low" => {
-		DESC => "Count of low quality releases",
+		DESC => "Count of low quality Releases",
 		PREREQ => [qw[ count.quality.album.high ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.quality.album.normal" => {
-		DESC => "Count of normal quality releases",
+		DESC => "Count of normal quality Releases",
 		PREREQ => [qw[ count.quality.album.high ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.quality.album.unknown" => {
-		DESC => "Count of unknow quality releases",
+		DESC => "Count of unknow quality Releases",
 		PREREQ => [qw[ count.quality.album.high ]],
 		PREREQ_ONLY => 1,
 	},
 
 	"count.quality.artist.high" => {
-		DESC => "Count of high quality releases",
+		DESC => "Count of high quality Releases",
 		CALC => sub {
 			my ($self, $sql) = @_;
 
@@ -325,17 +325,17 @@ my %stats = (
 		},
 	},
 	"count.quality.artist.low" => {
-		DESC => "Count of low quality artists",
+		DESC => "Count of low quality Artists",
 		PREREQ => [qw[ count.quality.artist.high ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.quality.artist.normal" => {
-		DESC => "Count of normal quality artists",
+		DESC => "Count of normal quality Artists",
 		PREREQ => [qw[ count.quality.artist.high ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.quality.artist.unknown" => {
-		DESC => "Count of unknow quality artists",
+		DESC => "Count of unknow quality Artists",
 		PREREQ => [qw[ count.quality.artist.high ]],
 		PREREQ_ONLY => 1,
 	},
@@ -377,11 +377,11 @@ my %stats = (
 	},
 
 	"count.track.has_puid" => {
-		DESC => "Count of tracks with at least one PUID",
+		DESC => "Count of Tracks with at least one PUID",
 		SQL => "SELECT COUNT(DISTINCT track) FROM puidjoin",
 	},
 	"count.track.Npuids" => {
-		DESC => "Distribution of PUIDs per track (varying PUIDs)",
+		DESC => "Distribution of PUIDs per Track (varying PUIDs)",
 		PREREQ => [qw[ count.track count.track.has_puid ]],
 		CALC => sub {
 			my ($self, $sql) = @_;
@@ -649,72 +649,72 @@ my %stats = (
 		},
 	},
 	"count.ar.links.l_album_album" => {
-		DESC => "Count of release-release advanced relationships links",
+		DESC => "Count of Release-Release advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_album_artist" => {
-		DESC => "Count of release-artist advanced relationships links",
+		DESC => "Count of Release-Artist advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_album_label" => {
-		DESC => "Count of release-label advanced relationships links",
+		DESC => "Count of Release-Label advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_album_track" => {
-		DESC => "Count of release-track advanced relationships links",
+		DESC => "Count of Release-Track advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_album_url" => {
-		DESC => "Count of release-URL advanced relationships links",
+		DESC => "Count of Release-URL advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_artist_artist" => {
-		DESC => "Count of artist-artist advanced relationships links",
+		DESC => "Count of Artist-Artist advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_artist_label" => {
-		DESC => "Count of artist-label advanced relationships links",
+		DESC => "Count of Artist-Label advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_artist_track" => {
-		DESC => "Count of artist-track advanced relationships links",
+		DESC => "Count of Artist-Track advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_artist_url" => {
-		DESC => "Count of artist-URL advanced relationships links",
+		DESC => "Count of Artist-URL advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_label_label" => {
-		DESC => "Count of label-label advanced relationships links",
+		DESC => "Count of Label-Label advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_label_track" => {
-		DESC => "Count of label-track advanced relationships links",
+		DESC => "Count of Label-Track advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_label_url" => {
-		DESC => "Count of label-URL advanced relationships links",
+		DESC => "Count of Label-URL advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_track_track" => {
-		DESC => "Count of track-track advanced relationships links",
+		DESC => "Count of Track-Track advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.ar.links.l_track_url" => {
-		DESC => "Count of track-URL advanced relationships links",
+		DESC => "Count of Track-URL advanced relationships links",
 		PREREQ => [qw[ count.ar.links ]],
 		PREREQ_ONLY => 1,
 	},
@@ -730,22 +730,22 @@ my %stats = (
 		SQL => "SELECT COUNT(*) FROM tag",
 	},
 	"count.tag.raw.artist" => {
-		DESC => "Count of all artist raw tags",
+		DESC => "Count of all Artist raw tags",
 		SQL => "SELECT COUNT(*) FROM artist_tag_raw",
 		RAWDATA_DB => 1,
 	},
 	"count.tag.raw.label" => {
-		DESC => "Count of all label raw tags",
+		DESC => "Count of all Label raw tags",
 		SQL => "SELECT COUNT(*) FROM label_tag_raw",
 		RAWDATA_DB => 1,
 	},
 	"count.tag.raw.release" => {
-		DESC => "Count of all release raw tags",
+		DESC => "Count of all Release raw tags",
 		SQL => "SELECT COUNT(*) FROM release_tag_raw",
 		RAWDATA_DB => 1,
 	},
 	"count.tag.raw.track" => {
-		DESC => "Count of all track raw tags",
+		DESC => "Count of all Track raw tags",
 		SQL => "SELECT COUNT(*) FROM track_tag_raw",
 		RAWDATA_DB => 1,
 	},
@@ -763,7 +763,7 @@ my %stats = (
 
 	# Ratings
 	"count.rating.artist" => {
-		DESC => "Count of artist ratings",
+		DESC => "Count of Artist ratings",
 		CALC => sub {
 			my ($self, $sql) = @_;
 
@@ -778,12 +778,12 @@ my %stats = (
 		},
 	},
 	"count.rating.raw.artist" => {
-		DESC => "Count of all artist raw ratings",
+		DESC => "Count of all Artist raw ratings",
 		PREREQ => [qw[ count.rating.artist ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.rating.release" => {
-		DESC => "Count of release ratings",
+		DESC => "Count of Release ratings",
 		CALC => sub {
 			my ($self, $sql) = @_;
 
@@ -798,12 +798,12 @@ my %stats = (
 		},
 	},
 	"count.rating.raw.release" => {
-		DESC => "Count of all release raw ratings",
+		DESC => "Count of all Release raw ratings",
 		PREREQ => [qw[ count.rating.release ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.rating.track" => {
-		DESC => "Count of track ratings",
+		DESC => "Count of Track ratings",
 		CALC => sub {
 			my ($self, $sql) = @_;
 
@@ -818,12 +818,12 @@ my %stats = (
 		},
 	},
 	"count.rating.raw.track" => {
-		DESC => "Count of all track raw ratings",
+		DESC => "Count of all Track raw ratings",
 		PREREQ => [qw[ count.rating.track ]],
 		PREREQ_ONLY => 1,
 	},
 	"count.rating.label" => {
-		DESC => "Count of label ratings",
+		DESC => "Count of Label ratings",
 		CALC => sub {
 			my ($self, $sql) = @_;
 
@@ -838,7 +838,7 @@ my %stats = (
 		},
 	},
 	"count.rating.raw.label" => {
-		DESC => "Count of all label raw ratings",
+		DESC => "Count of all Label raw ratings",
 		PREREQ => [qw[ count.rating.label ]],
 		PREREQ_ONLY => 1,
 	},

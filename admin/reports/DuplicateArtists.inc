@@ -32,7 +32,7 @@
 	$page => undef
 	$pagesize => undef
 
-	$report_title => "Possibly duplicate artists"
+	$report_title => "Possible duplicate Artists"
 
 </%args>
 <%perl>
@@ -68,9 +68,9 @@
 
 	<& /comp/tablebegin, title => $report_title &>
 		<ul>
-			<li>This report aims to identify artists with very similar names,
-				which might indicate that the artists need to be merged.</li>
-			<li>Total artists found: <% $rep->Records %></li>
+			<li>This report aims to identify Artists with very similar names,
+				which might indicate that the Artists need to be merged.</li>
+			<li>Total Artists found: <% $rep->Records %></li>
 			<li>Generated <% $m->comp('/comp/datetime', $rep->Time) %></li>
 		</ul>
 

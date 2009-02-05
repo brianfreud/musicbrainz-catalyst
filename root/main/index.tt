@@ -52,7 +52,7 @@
         [% END %]
         [% WRAPPER "components/box.tt" header=l("What is MusicBrainz?") %]
             <p>
-                [% l('MusicBrainz is a community music metadatabase that attempts to create a comprehensive music information site. You can use the MusicBrainz data either by browsing this web site, or you can access the data from a client program - for example, a CD player program can use MusicBrainz to identify CDs and provide information about the CD, about the artist or about related information. You can also use the MusicBrainz Tagger to automatically identify and clean up the metadata tags in your digital music collections. Find out more in the <a href="{uri}">introduction</a>.', {uri => c.uri_for('/doc/AboutMusicBrainz')}) %]
+                [% l('MusicBrainz is a community music metadatabase that attempts to create a comprehensive music information site. You can use the MusicBrainz data either by browsing this web site, or you can access the data from a client program - for example, a CD player program can use MusicBrainz to identify CDs and provide information about the CD, about the Artist or about related information. You can also use the MusicBrainz Tagger to automatically identify and clean up the metadata tags in your digital music collections. Find out more in the <a href="{uri}">introduction</a>.', {uri => c.uri_for('/doc/AboutMusicBrainz')}) %]
             </p>
         [% END %]
         [% WRAPPER "components/box.tt" header=l("Use MusicBrainz") %]
@@ -101,7 +101,7 @@
                     [% l('Please download and use Picard. By doing so, you will be using and adding to the MusicBrainz database.') %]
                 </li>
                 <li>
-                    [% l('<a href="{uri_search}">Search</a> or <a href="{uri_browse}">browse</a> the MusicBrainz data for your favourite artists, or for your <a href="{uri_fav}">favourite releases</a>.', {uri_search => c.uri_for('/search'), uri_browse => c.uri_for('/browse/artist'), uri_fav => c.uri_for('/browse/release')}) %]
+                    [% l('<a href="{uri_search}">Search</a> or <a href="{uri_browse}">browse</a> the MusicBrainz data for your favourite Artists, or for your <a href="{uri_fav}">favourite releases</a>.', {uri_search => c.uri_for('/search'), uri_browse => c.uri_for('/browse/artist'), uri_fav => c.uri_for('/browse/release')}) %]
                 </li>
                 <li>
                     [% l('If you spot something that is wrong, poorly entered or just plain missing, please <a href="{uri_register}">register</a> and {edit}', {uri_register => c.uri_for('/user/register'), edit => doc_link('HowEditingWorks', l('edit the data'))}) %]

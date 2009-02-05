@@ -131,7 +131,7 @@ sub CheckPrerequisites
 	$al->id($rowid);
 	unless ($al->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This release has been deleted");
+		$self->InsertNote(MODBOT_MODERATOR, "This Release has been deleted");
 		return STATUS_FAILEDDEP;
 	}
 
@@ -140,7 +140,7 @@ sub CheckPrerequisites
 	if ($al->artist != VARTIST_ID and 
 		not $al->has_multiple_track_artists)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This release has already been converted to a single artist");
+		$self->InsertNote(MODBOT_MODERATOR, "This Release has already been converted to a single Artist");
 		return STATUS_FAILEDPREREQ;
 	}
 

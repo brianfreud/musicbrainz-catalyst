@@ -82,7 +82,7 @@ sub CheckPrerequisites
 
 	if ($rowid == VARTIST_ID or $rowid == DARTIST_ID)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "You can't rename this artist!");
+		$self->InsertNote(MODBOT_MODERATOR, "You can't rename this Artist!");
 		return STATUS_ERROR;
 	}
 
@@ -92,14 +92,14 @@ sub CheckPrerequisites
 	$ar->id($rowid);
 	unless ($ar->LoadFromId)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has been deleted");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted");
 		return STATUS_FAILEDDEP;
 	}
 
 	# Check that its name has not changed
 	if ($ar->name ne $self->previous_data)
 	{
-		$self->InsertNote(MODBOT_MODERATOR, "This artist has already been renamed");
+		$self->InsertNote(MODBOT_MODERATOR, "This Artist has already been renamed");
 		return STATUS_FAILEDPREREQ;
 	}
 

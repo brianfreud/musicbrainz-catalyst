@@ -70,7 +70,7 @@ sub ApprovedAction
 
   	unless ($al->LoadFromId)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist alias has been deleted");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist alias has been deleted");
 		return STATUS_FAILEDDEP;
 	}
 	

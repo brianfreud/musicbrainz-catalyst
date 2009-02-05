@@ -68,8 +68,8 @@ then
 	mv "$TEMP_DIR"/mailman-$DATETIME.tar.bz2 "$BACKUP_DIR"/
 fi
 
-# Identify and remove unused artists
-echo `date`" : Removing unused artists"
+# Identify and remove unused Artists
+echo `date`" : Removing unused Artists"
 ./admin/cleanup/EmptyArtists.pl --remove --summary --noverbose
 
 # Dump all the data

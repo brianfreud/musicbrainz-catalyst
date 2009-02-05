@@ -1,5 +1,5 @@
 [%- WRAPPER 'artist/layout.tt' title=l('Subscribed editors') -%]
-    [%- WRAPPER 'components/box.tt' header=l('Editors subscribed to this artist') -%]
+    [%- WRAPPER 'components/box.tt' header=l('Editors subscribed to this Artist') -%]
         <p>
         [% IF subscribers.size %]
         [%- FOREACH ed IN subscribers -%]
@@ -8,16 +8,16 @@
             </a>
             [%- END -%]
         [% ELSE %]
-            [% l('There are no editors currently subscribed to this artist.') %]
+            [% l('There are no editors currently subscribed to this Artist.') %]
         [% END %]
         </p>
         [% IF anonymous_subscribers %]
             <p>[% ln('There is also {num} anonymous subscriber', 'There are also {num} anonymous subscribers', anonymous_subscribers, {num => anonymous_subscribers}) %]</p>
         [% END %]
         [% IF user_subscribed %]
-            <a href="[% c.entity_url(artist, 'unsubscribe') %]">[% l('Unsubscribe from this artist.') %]</a>
+            <a href="[% c.entity_url(artist, 'unsubscribe') %]">[% l('Unsubscribe from this Artist.') %]</a>
         [% ELSE %]
-            <a href="[% c.entity_url(artist, 'subscribe') %]">[% l('Subscribe to this artist.') %]</a>
+            <a href="[% c.entity_url(artist, 'subscribe') %]">[% l('Subscribe to this Artist.') %]</a>
         [% END %]
     [%- END -%]
 [%- END -%]

@@ -80,7 +80,7 @@ sub ApprovedAction
 
 	if ($rowid == VARTIST_ID or $rowid == DARTIST_ID)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist cannot be edited");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist cannot be edited");
 		return STATUS_ERROR;
 	}
 
@@ -90,13 +90,13 @@ sub ApprovedAction
 
 	unless ($artist->LoadFromId)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist has been deleted");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist has been deleted");
 		return STATUS_FAILEDPREREQ;
 	}
 	
 	unless ($artist->sort_name eq $this->previous_data)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist's sortname has already been changed");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist's sortname has already been changed");
 		return STATUS_FAILEDDEP;
 	}
 

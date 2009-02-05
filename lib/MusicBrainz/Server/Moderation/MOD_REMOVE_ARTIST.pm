@@ -69,7 +69,7 @@ sub ApprovedAction
 
 	if ($rowid == VARTIST_ID or $rowid == DARTIST_ID)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist cannot be deleted");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist cannot be deleted");
 		return STATUS_ERROR;
 	}
    
@@ -85,7 +85,7 @@ sub ApprovedAction
 
 	unless (defined $ar->Remove)
 	{
-		$this->InsertNote(MODBOT_MODERATOR, "This artist could not be removed");
+		$this->InsertNote(MODBOT_MODERATOR, "This Artist could not be removed");
 		return STATUS_FAILEDDEP;
 	}
 

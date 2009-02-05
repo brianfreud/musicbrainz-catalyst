@@ -7,7 +7,7 @@
     [%- INCLUDE "components/relationships.tt" source=artist -%]
     <div style="text-align: center;">
     [%- IF c.req.query_params.show_all -%]
-        [% l('You are currently viewing all releases by {artist_name}.', {artist_name => artist.name}) %]
+        [% l('You are currently viewing all Releases by {artist_name}.', {artist_name => artist.name}) %]
         <br />
         <strong>
             <a href="[% c.entity_url(artist, 'show', { show_all => 0 }) %]">
@@ -19,7 +19,7 @@
         <br />
         <strong>
             <a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">
-                [%- l(' View all releases by {artist_name}.', {artist_name => artist.name}) -%]
+                [%- l(' View all Releases by {artist_name}.', {artist_name => artist.name}) -%]
             </a>
         </strong>.
     [%- END -%]

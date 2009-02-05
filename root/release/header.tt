@@ -7,7 +7,7 @@
     { link => c.uri_for('/moderation/entity/release', release.mbid), text => l('View Edits') }
 ] -%]
 <div class="entity_header">
-    <div class="title album">
+    <div class="title release">
         [% entity_link(release, 1) %]
     </div>
     [%- IF release_artist -%]

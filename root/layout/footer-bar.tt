@@ -7,28 +7,28 @@
         </li>
         <li>
             <a href="http://www.eff.org/">
-                <acronym title=l("Electronic Frontier Foundation")>
+                <acronym title=[%- l("Electronic Frontier Foundation") -%]>
                     [% l('EFF') %]
                 </acronym>
             </a>
         </li>
         <li>
             <a href="http://www.gnu.org/copyleft/gpl.html">
-                <acronym title=l("General Public License")>
+                <acronym title=[%- l("General Public License") -%]>
                     [% l('GPL') %]
                 </acronym>
             </a>
         </li>
         <li>
             <a href="http://www.gnu.org/copyleft/lesser.html">
-                <acronym title=l("Lesser General Public License")>
+                <acronym title=[%- l("Lesser General Public License") -%]>
                     [% l('LGPL') %]
                 </acronym>
             </a>
         </li>
         <li class="right">
             <a href="http://opendefinition.org/">
-                <img alt=l("This material is Open Knowledge") src="[% c.uri_for('/static/images/icon/ok_80x15_grey.png') %]" />
+                <img alt=[%- l("This material is Open Knowledge") -%] src="[% c.uri_for('/static/images/icon/ok_80x15_grey.png') %]" />
             </a>
             <a href="http://validator.w3.org/check?uri=referer">
                 <img src="[% c.uri_for('/static/images/icon/valid-xhtml11-wm.png') %]" alt=l("Valid XHTML 1.1") class="textIcon" />

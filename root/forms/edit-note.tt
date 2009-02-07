@@ -7,7 +7,7 @@
     </p>
     [%- END -%]
     <div class="row">
-        <label for="id_[% field.name %]" class="[% field.required_text %]">[% l('Edit Note:') %]</label>
+        <label for="id_[% field.name %]" class="[% field.required_text %]"><span id="id_edit_note">[% l('Edit Note:') %]<span></label>
         <div class="input">
             <textarea name="[% field.name %]" rows="10" cols="100"></textarea>
         </div>

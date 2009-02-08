@@ -21,7 +21,7 @@
             <a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">
                 [%- l(' View all releases by {artist_name}.', {artist_name => artist.name}) -%]
             </a>
-        </strong>.
+        </strong>
     [%- END -%]
     </div>
     [%- content -%]

@@ -11,8 +11,33 @@
    every WikiDoc page served, after that first one.
 *********************************************************/
 
+            $(function() {
+                
+                $.ui.history('add', 'show', function() {
+                    $('#wiki_content').show();
+                });
+                $.ui.history('add', 'hide', function() {
+                    $('#wiki_content').hide();
+                });
+                
+                $('#wiki_content a').eq(0).
+                    click(function() {
+                        $.ui.history('go', 'show');
+                        return false;
+                    }).
+                    end().eq(1).
+                    click(function() {
+                        $.ui.history('go', 'hide'); 
+                        return false;
+                    });
+                    
+                $.ui.history('enable');
+                
+                
+            });
+
+
 $(document).ready(function() {
-    $.ajaxHistory.initialize()
     fixLinks();
     $().ajaxComplete(function(evt, request, settings) {
         fixLinks();

@@ -379,12 +379,8 @@ sub profile : Local Args(1)
 
     my $user = $c->model('User')->load({ username => $user_name });
 
-    if (!defined $user)
-    {
-        $c->response->status(404);
-        $c->error("User with user name $user_name not found");
-        $c->detach;
-    }
+    $c->detach('/error_404')
+        if (!defined $user);
 
     if ($c->user_exists && $c->user->id eq $user->id)
     {
@@ -584,7 +580,8 @@ sub preferences : Local Form
 
     return unless $self->submit_and_validate($c);
 
-    $form->update_from_form ($c->req->params);
+    $form->update_from_form($c->req->params);
+    $c->user->preferences($prefs);
     $c->persist_user;
 }
 

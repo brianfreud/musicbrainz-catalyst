@@ -22,13 +22,17 @@ $(document).ready(function() {
             $(this).animate({ 
                 height: "55pt"
             }, 500 );
-            $(this).css('width', '');
-            $(this).css('maxHeight', '55pt');
+            $(this).css({
+                width: '',
+                maxHeight: '55pt'
+            });
             $(".releasetags:eq("+0+")").css('height','');
         } else {
-            $(this).css('max-height', '');
-            $(this).css('width', '');
-            $(this).css('height', '');
+            $(this).css({
+                maxHeight: '',
+                width: '',
+                height: ''
+            });
             $(".releasetags:eq("+0+")").css('height','160pt');
             $(this).animate({ 
                 width: "270px"

@@ -46,7 +46,7 @@
         <table>
         <thead>
             <tr>
-                <th class="date">
+                <th>
                     [% l('Date') %]
                 </th>
                 <th>
@@ -73,19 +73,29 @@
                         [% event.sort_date | release_date %]
                     </td>
                     <td>
-                        [% event.country %]
+                        <span class="country">
+                            [% event.country %]
+                        </span>
                     </td>
                     <td>
-                        [% entity_link(event.label) IF event.label.name %]
+                        <span class="label">
+                            [% entity_link(event.label) IF event.label.name %]
+                        </span>
                     </td>
                     <td>
-                        [% event.cat_no %]
+                        <span class="catalogue">
+                            [% event.cat_no %]
+                        </span>
                     </td>
                     <td>
-                        [% event.barcode %]
+                        <span class="barcode">
+                            [% event.barcode %]
+                        </span>
                     </td>
                     <td>
-                        [% release_format(event.format) %]
+                        <span class="format">
+                            [% release_format(event.format) %]
+                        </span>
                     </td>
                 </tr>
             [%- END -%]

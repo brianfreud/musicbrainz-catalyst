@@ -221,7 +221,8 @@
                     { widget = 'autofix_open', label=l('On each page which uses it, the "Guess Case" box should initially be') },
                     { widget = 'JSMoveFocus', label=l('Use JavaScript to move the input focus when the page loads.') },
                     { widget = 'JSDiff', label=l('Use JavaScript to highlight changes on title edits.') },
-                    { widget = 'JSCollapse', label=l('Collapse Releases per default on pages which show full Releases (except on the Release pages themselves)') }
+                    { widget = 'JSCollapse', label=l('Collapse Releases per default on pages which show full Releases (except on the Release pages themselves)') },
+                    { widget = 'JSIcons', label=l('Show country flag and release format icons on release pages.') }
                     ] %]
                 [% PROCESS fields %]
             </fieldset>

@@ -262,6 +262,7 @@ addpref('google_domain', "www.google.com", \&check_google_domain);
 addpref('JSCollapse', '1', \&check_bool);
 addpref('JSDebug', '0', \&check_bool);
 addpref('JSDiff', '1', \&check_bool);
+addpref('JSIcons', '1', \&check_bool);
 addpref('JSMoveFocus', '1', \&check_bool);
 addpref('mail_notes_if_i_noted', 1, \&check_bool);
 addpref('mail_notes_if_i_voted', 1, \&check_bool);

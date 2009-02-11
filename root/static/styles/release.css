@@ -16,6 +16,10 @@ h2.releasetype {
     padding: 2px 4px;
 }
 
+div.release_discids {
+    border-top: 1px solid #000;
+}
+
 div.release_discids table {
     border-collapse: collapse;
 }
@@ -43,6 +47,10 @@ div.release .release_top {
 }
 
 div.release .artwork {
+    background-color: white;
+    border-style: none none none solid;
+    border-color: black;
+    border-width: 0 0 0 1px;
     float: right;
     padding: 3pt;
     text-align: center;
@@ -116,7 +124,7 @@ div.releaseinfo {
 
 div.releasetags {
     background: #F0EFFF;
-    padding: 1pt 5pt;
+    padding: 13pt 5pt;
     border-bottom: 1px solid black;
 }
 

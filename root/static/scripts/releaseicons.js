@@ -285,6 +285,7 @@ function getformat(name) {
     }
 }
 $(document).ready(function() {
+    /* Add country flags */
     var i = 0;
     $(".country").each(function() {
         var eventCountry = jQuery.trim($(this).text());
@@ -309,6 +310,7 @@ $(document).ready(function() {
 	$(this).before(flag);
         i++;
     });
+    /* Add format flags */
     $(".format").each(function() {
         var eventFormat = jQuery.trim($(this).text());
         var formatCode = getformat(eventFormat);

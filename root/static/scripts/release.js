@@ -1,6 +1,7 @@
 /* Small helpers for viewing releases */
 
 $(document).ready(function() {
+    /* Coverart explode / implode on user click */
     $('#toggle_discids').click(function() {
         $('#release_discids').slideToggle("normal", function() {
             $('#toggle_discids').text(this.style.display == 'none' ?
@@ -13,5 +14,25 @@ $(document).ready(function() {
     $('#toggle_artists').click(function() {
         $('.release_tracks .artist').toggle();
         return false;
+    });
+    /* Coverart explode / implode on user click */
+    $(".artwork > img").click(function() { 
+        $(".release_top:eq("+0+")").css("overflow", "visible");
+        if($(this).css('width') == "270px") {
+            $(this).animate({ 
+                height: "55pt"
+            }, 500 );
+            $(this).css('width', '');
+            $(this).css('maxHeight', '55pt');
+            $(".releasetags:eq("+0+")").css('height','');
+        } else {
+            $(this).css('max-height', '');
+            $(this).css('width', '');
+            $(this).css('height', '');
+            $(".releasetags:eq("+0+")").css('height','160pt');
+            $(this).animate({ 
+                width: "270px"
+            }, 500 );
+        }
     });
 });

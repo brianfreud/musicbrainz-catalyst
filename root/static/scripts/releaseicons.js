@@ -255,7 +255,7 @@ function getcountry(name) {
     c['Serbia and Montenegro (historical, 2003-2006)'] = 'cs';
     c['Yugoslavia (historical, 1918-2003)'] = 'cs';
     c['Europe'] = 'europeanunion';
-    c['Worldwide'] = 'worldwide';
+    c['[Worldwide]'] = 'worldwide';
     if (c[name]) {
         return c[name];
     } else {
@@ -303,9 +303,7 @@ $(document).ready(function() {
         } else {
             var countryCode = getcountry(eventCountry);
         }
-        if (eventCountry === false) {
-            var countryCode = "blank";
-        }
+        if (eventCountry === false) var countryCode = "blank";
         var flag = jQuery(document.createElement('img'));
         flag.attr('src', '/static/images/icon/flags/' + countryCode + '.png');
 	$(this).before(flag);

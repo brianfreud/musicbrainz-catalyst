@@ -1,7 +1,7 @@
 /* Small helpers for viewing releases */
 
 $(document).ready(function() {
-    /* Coverart explode / implode on user click */
+    /* Add the Show / Hide Disc IDs options and functionality */
     $('#toggle_discids').click(function() {
         $('#release_discids').slideToggle("normal", function() {
             $('#toggle_discids').text(this.style.display == 'none' ?

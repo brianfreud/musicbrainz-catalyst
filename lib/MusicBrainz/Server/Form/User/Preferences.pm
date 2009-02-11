@@ -84,7 +84,7 @@ sub profile
             autofix_open => 'Select',
             JSMoveFocus  => 'Checkbox',
             JSDiff       => 'Checkbox',
-            JSIcons       => 'Checkbox',
+            JSIcons      => 'Checkbox',
             JSCollapse   => 'Checkbox',
             JSDebug      => 'Checkbox',
 

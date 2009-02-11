@@ -1,6 +1,6 @@
 // Almost all flag images licensed under the public domain from http://i.hbtronix.de/index.php?t=flags&display=&start=all
 // Exceptions, all under Creative Commons Public Domain Dedication from Wikimedia Commons:
-// Antarctica, Earth, all German flags, Guernsey, Isle of Man, Jersey, USSR (aq, gg, im, je, de1, de2, de3, de4, de5, de6, 
+// Antarctica, Earth, all German flags, Guernsey, Isle of Man, Jersey, USSR (aq, gg, im, je, de1, de2, de3, de4, de5, de6)
 //
 // Original getcountry function written by nikki, modified by BrianFreud.
 function getcountry(name) {
@@ -293,7 +293,10 @@ $(document).ready(function() {
         if (eventCountry === "Germany") {
             if (eventYear >= 1871 && eventYear <= 1918) countryCode = "de1";
             if (eventYear >= 1919 && eventYear <= 1932) countryCode = "de2";
+    var $noTipsCheck = $(".es-no-tips");  
+    if ($noTipsCheck.length === 0) {
             if (eventYear >= 1933 && eventYear <= 1945) countryCode = "de3";
+    }
             if (eventYear >= 1946 && eventYear <= 1948) countryCode = "de4";
             if (eventYear >= 1949 && eventYear <= 2500) countryCode = "de5";
         } else if (eventCountry === "East Germany (historical, 1949-1990)") {

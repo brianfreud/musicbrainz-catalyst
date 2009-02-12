@@ -3,6 +3,15 @@
         <caption class="hidden">
             [% l('This table shows information about each track on this release.') %]
         </caption>
+        <colgroup>
+            <col id="col-num"></col>
+            <col id="col-title"></col>
+            <col id="col-artist"></col>
+            <col id="col-dur"></col>
+            [%- IF c.user_exists && !no_edit_tracks-%]
+                <col id="col-edit"></col>
+            [%- END -%]
+        </colgroup>
         <thead>
             <tr class="releasehead">
                 <th class="number" id="track-num" abbr="[% l('Track Number') %]">#

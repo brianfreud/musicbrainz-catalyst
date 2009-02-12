@@ -1,5 +1,5 @@
 [% extra_js = 'release.js' %]
-[% IF c.user.preferences.get('JSIcons') %]
+[% IF c.user.preferences.get('JSIcons') or !(c.user_exists) %]
     [% extra_js = extra_js _ " releaseicons.js" %]
 [% END %]
 [% WRAPPER 'artist/layout.tt' title=release.name %]

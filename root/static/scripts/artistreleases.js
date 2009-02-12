@@ -7,14 +7,12 @@ $(document).ready(function() {
     });
     /* Remove, then re-zebra stripe the rows */
     $(".releases").each(function() {
-        $(this).bind("sortStart",
-        function() {
-            jQuery(this).find(".odd").each(function(i) {
+        $(this).bind("sortStart",function() {
+            jQuery(this).find(".odd").each(function() {
                 $(this).removeClass("odd");
             });
-        }).bind("sortEnd",
-        function() {
-            jQuery(this).find("tr:odd").each(function(i) {
+        }).bind("sortEnd",function() {
+            jQuery(this).find("tr:odd").each(function() {
                 $(this).addClass("odd");
             });
         });

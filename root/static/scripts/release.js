@@ -1,6 +1,7 @@
 /* Small helpers for viewing releases */
 
 $(document).ready(function() {
+    /* Toggle Disc IDs via the show/hide Disc IDs link */
     $('#toggle_discids').click(function() {
         $('#release_discids').slideToggle("normal", function() {
             $('#toggle_discids').text(this.style.display == 'none' ?
@@ -9,9 +10,22 @@ $(document).ready(function() {
         });
         return false;
     });
-
+    /* Toggle artists via the show/hide artists link */
     $('#toggle_artists').click(function() {
-        $('.release_tracks .artist').toggle();
-        return false;
+        var showHideLink = $('#toggle_artists');
+        showHideLink.unbind("click");
+        showHideLink.text("Hide Artists");
+        showHideLink.removeAttr("href");
+        showHideLink.css("cursor","pointer"); 
+        showHideLink.bind("click", function() {
+            if(showHideLink.text() == "Show Artists") {
+                showHideLink.text("Hide Artists");
+            }
+            else {
+               showHideLink.text("Show Artists");
+            }
+            $('.release_tracks .artist').toggle();
+        });
+        showHideLink.trigger("click");
     });
 });

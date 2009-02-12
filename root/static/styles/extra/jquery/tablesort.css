@@ -10,7 +10,3 @@
 .headerSortDown {
     background-image: url(/static/images/icon/d.gif);
 }
-.headerSortDown,
-.headerSortUp {
-    background-color: #FFBAFF;
-}

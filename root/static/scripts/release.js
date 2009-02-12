@@ -1,7 +1,7 @@
 /* Small helpers for viewing releases */
 
 $(document).ready(function() {
-    /* Toggle Disc IDs via the show/hide Disc IDs link */
+    /* Toggle Disc IDs via the show/hide Disc IDs link. */
     $('#toggle_discids').click(function() {
         $('#release_discids').slideToggle("normal", function() {
             $('#toggle_discids').text(this.style.display == 'none' ?
@@ -10,7 +10,7 @@ $(document).ready(function() {
         });
         return false;
     });
-    /* Toggle artists via the show/hide artists link */
+    /* Toggle artists via the show/hide artists link. */
     $('#toggle_artists').click(function() {
         var showHideLink = $('#toggle_artists');
         showHideLink.unbind("click");
@@ -27,5 +27,10 @@ $(document).ready(function() {
             $('.release_tracks .artist').toggle();
         });
         showHideLink.trigger("click");
+    });
+    /* Make the table sortable. */
+    $("thead").toggle();
+    $(".release_tracks").tablesorter({
+        textExtraction: "complex"
     });
 });

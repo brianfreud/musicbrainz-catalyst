@@ -5,13 +5,13 @@
         </caption>
         <thead>
             <tr class="releasehead">
-                <th class="number" id="track-num" abbr="[% l('Track Number') %]"><div>#</div>
+                <th class="number" id="track-num" abbr="[% l('Track Number') %]">#
                 </th>
-                <th class="title" id="track-title"><div>[% l('Track Title') %]</div>
+                <th class="title" id="track-title">[% l('Track Title') %]
                 </th>
-                <th class="artist" style="display: [% show_artists ? 'block' : 'none' %]" id="track-artist"><div>[% l('Track Artist') %]</div>
+                <th class="artist" style="display: [% show_artists ? 'block' : 'none' %]" id="track-artist">[% l('Track Artist') %]
                 </th>
-                <th class="duration" id="track-dur" abbr="[% l('Track Duration') %]"><div>[% l('Length') %]</div>
+                <th class="duration" id="track-dur" abbr="[% l('Track Duration') %]">[% l('Length') %]
                 </th>
                 [%- IF c.user_exists && !no_edit_tracks-%]
                     <th class="editinglinks" id="track-edit">[% l('Editing Links') %]

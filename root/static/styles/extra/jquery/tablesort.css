@@ -1,0 +1,17 @@
+.header {
+    background-image: url(/static/images/icon/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    padding-right: 12pt;
+    cursor: pointer;
+}
+.headerSortUp {
+    background-image: url(/static/images/icon/a.gif);
+}
+.headerSortDown {
+    background-image: url(/static/images/icon/d.gif);
+}
+.headerSortDown,
+.headerSortUp {
+    background-color: #FFBAFF;
+}

@@ -24,7 +24,7 @@ $(document).ready(function() {
             else {
                showHideLink.text("Show Artists");
             }
-            $('.release_tracks .artist').toggle();
+            $('#col-artist, .release_tracks .artist' ).toggle();
         });
         showHideLink.trigger("click");
     });

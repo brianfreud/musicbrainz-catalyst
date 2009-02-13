@@ -15,7 +15,7 @@ $(document).ready(function() {
         $(this).css("white-space", "");
     });
     /* Turn the old table cells into table header cells */
-    $(".searchresultsheader:first").html($(".searchresultsheader:first").html().replace(/td>/g, "th>"));
+    $(".searchresultsheader:first").html($(".searchresultsheader:first").html().replace(/td.*?>/g, "th>"));
     /* Turn off centering for the new table header cells */
     $(".searchresultsheader:first th").each(function() {
         $(this).css("text-align", "left");
@@ -25,15 +25,14 @@ $(document).ready(function() {
         $(this).removeClass("searchresultseven");
     });
     /* Turn on table sorting */
-
-alert($(".searchresults th:last").text());
-/* Don't sort on the Import field in FreeDB search */
+    if($(".searchresults th:eq(6)").text() == "Action") {
     $(".searchresults:first").tablesorter({
         textExtraction: "complex",
-        headers: { 1 : { sorter: "text"  }, 2 : { sorter: "text"  } }
+        headers: {
+            1 : { sorter: "text" },
+            2 : { sorter: "text" }
+        }
     });
-
-
     /* Remove, then re-zebra stripe, the rows */
     $(".searchresults:first").each(function() {
         $(this).bind("sortStart",function() {

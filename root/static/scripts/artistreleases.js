@@ -10,7 +10,7 @@ $(document).ready(function() {
         textExtraction: "complex",
         headers: { 0 : { sorter: "text"  } }
     });
-    /* Remove, then re-zebra stripe the rows */
+    /* Remove, then re-zebra stripe, the rows */
     $(".releases").each(function() {
         $(this).bind("sortStart",function() {
             jQuery(this).find(".odd").each(function() {

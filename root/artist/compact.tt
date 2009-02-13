@@ -54,16 +54,16 @@
                 [% entity_link(item, 1) %]
             </td>
             <td class="tracks" headers="table-[% plural_release_attribute(item.release_type) | replace('\s+', '-') %]-tracks">
-                [% item.track_count %]&nbsp;<img src="[% c.uri_for('/static/images/notes.gif') %]" alt=l("Tracks") />
+                [% item.track_count %]&nbsp;<img src="[% c.uri_for('/static/images/notes.gif') %]" alt=[% l("Tracks") %] />
             </td>
             <td class="discids" headers="table-[% plural_release_attribute(item.release_type) | replace('\s+', '-') %]-discids">
                 [% IF item.discid_count %]
-                    [% item.discid_count %]&nbsp;<img src="[% c.uri_for('/static/images/cd.gif') %]" alt=l("Disc IDs") />
+                    [% item.discid_count %]&nbsp;<img src="[% c.uri_for('/static/images/cd.gif') %]" alt=[% l("Disc IDs") %] />
                 [% END %]
             </td>
             <td class="puids" headers="table-[% plural_release_attribute(item.release_type) | replace('\s+', '-') %]-puids">
                 [% IF item.puid_count %]
-                    [% item.puid_count %]&nbsp;<img src="[% c.uri_for('/static/images/puid.gif') %]" alt=l("PUIDs") />
+                    [% item.puid_count %]&nbsp;<img src="[% c.uri_for('/static/images/puid.gif') %]" alt=[% l("PUIDs") %] />
                 [% END %]
             </td>
             <td class="status" headers="table-[% plural_release_attribute(item.release_type) | replace('\s+', '-') %]-status">

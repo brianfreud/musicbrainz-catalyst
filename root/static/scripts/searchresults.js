@@ -10,6 +10,10 @@ $(document).ready(function() {
        the HTML.  If one is then added dynamically, you actually get a tbody in a tbody, and things break! */
     $(".searchresults:first").prepend('<thead id="resultsheader"></thead>');
     $(".searchresultsheader:first").appendTo("#resultsheader");
+    /* Strip out unneeded style that would make the next line miss some columns */
+    $(".searchresultsheader:first").each(function() {
+        $(this).css("white-space", "");
+    });
     /* Turn the old table cells into table header cells */
     $(".searchresultsheader:first").html($(".searchresultsheader:first").html().replace(/td>/g, "th>"));
     /* Turn off centering for the new table header cells */
@@ -21,10 +25,15 @@ $(document).ready(function() {
         $(this).removeClass("searchresultseven");
     });
     /* Turn on table sorting */
+
+alert($(".searchresults th:last").text());
+/* Don't sort on the Import field in FreeDB search */
     $(".searchresults:first").tablesorter({
         textExtraction: "complex",
-        headers: { 0 : { sorter: "text"  } }
+        headers: { 1 : { sorter: "text"  }, 2 : { sorter: "text"  } }
     });
+
+
     /* Remove, then re-zebra stripe, the rows */
     $(".searchresults:first").each(function() {
         $(this).bind("sortStart",function() {

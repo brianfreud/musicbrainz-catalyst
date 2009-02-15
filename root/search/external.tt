@@ -1,4 +1,4 @@
-[% extra_js = 'searchresults.js jquery/jquery.tablesorter.min.js' %]
+[% extra_js = 'jquery/jquery.tablesorter.min.js searchresults.js' %]
 [% extra_css = 'jquery/tablesort.css' %]
 [% WRAPPER "layout.tt" title=l("Search") %]
     [% WRAPPER "components/box.tt" header=l("Search Results") %]

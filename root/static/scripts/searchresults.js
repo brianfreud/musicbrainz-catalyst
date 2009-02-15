@@ -25,7 +25,6 @@ $(document).ready(function() {
         $(this).removeClass("searchresultseven");
     });
     /* Turn on table sorting */
-    if($(".searchresults th:eq(6)").text() == "Action") {
     $(".searchresults:first").tablesorter({
         textExtraction: "complex",
         headers: {

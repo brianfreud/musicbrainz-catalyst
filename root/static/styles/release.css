@@ -194,7 +194,7 @@ table.releases .date {
 }
 
 table.releases .language {
-    width: 20pt;
+    width: 65pt;
     text-align: center;
 }
 
@@ -202,6 +202,10 @@ table.releases .artist,
 table.releases .title,
 table.releases .catalog {
     text-align: left;
+}
+
+table.releases .catalog {
+    width: 62pt;
 }
 
 /*

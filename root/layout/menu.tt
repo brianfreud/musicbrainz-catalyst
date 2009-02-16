@@ -275,11 +275,11 @@
                 [%- doc_link('Subversion', l('Subversion Access')) -%]
             </li>
             <li>
-                [%- doc_link('Projects', l('SVN Modules')) -%]
+                [%- doc_link('Projects', l('<abbr title="Subversion">SVN</abbr> Modules')) -%]
             </li>
             <li>
                 <a href="http://bugs.musicbrainz.org/browser">
-                    [% l('SVN Viewer') %]
+                    [% l('<abbr title="Subversion">SVN</abbr> Viewer') %]
                 </a>
             </li>
         </ul>
@@ -306,7 +306,7 @@
             </li>
             <li>
                 <a href="http://bugs.musicbrainz.org">
-                    [% l('Bugs / RFEs') %]
+                    [% l('Bugs / <abbr title="Requests for Enhancement">RFEs</abbr>') %]
                 </a>
             </li>
             <li>

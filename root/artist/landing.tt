@@ -15,7 +15,7 @@
             </a>
         </strong>
     [%- ELSE -%]
-        [% l('You are currently viewing only albums, EPs, singles, and compilations by {artist_name}.', {artist_name => artist.name}) %]
+        [% l('You are currently viewing only albums, <abbr title="Extended Plays">EPs</abbr>, singles, and compilations by {artist_name}.', {artist_name => artist.name}) %]
         <br />
         <strong>
             <a href="[% c.entity_url(artist, 'show', { show_all => 1 }) %]">

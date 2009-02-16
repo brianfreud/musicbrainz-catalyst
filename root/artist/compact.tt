@@ -21,7 +21,7 @@
                     [% l('DiscIDs') %]
                 </th>
                 <th id="table_[% plural_release_attribute(item.release_type) %]_puids">
-                    [% l('PUIDs') %]
+                    [% l('<abbr title="Portable Unique IDentifiers">PUIDs</abbr>') %]
                 </th>
                 <th id="table_[% plural_release_attribute(item.release_type) %]_status">
                     [% l('Status') %]

@@ -2,7 +2,7 @@
     <div class="tracks">
         [% release.track_count %]&nbsp;<img src="[% c.uri_for('/static/images/notes.gif') %]" alt=l("Tracks") />
         [% IF release.puid_count %]
-            [% release.puid_count %]&nbsp;<img src="[% c.uri_for('/static/images/puid.gif') %]" alt=l("PUIDs") />
+            [% release.puid_count %]&nbsp;<img src="[% c.uri_for('/static/images/puid.gif') %]" alt=l("<abbr title="Portable Unique IDentifiers">PUIDs</abbr>") />
         [% END %]
     </div>
     <div class="right">

@@ -291,17 +291,22 @@
                 [%- doc_link('ContactUs', l('ContactUs')) -%]
             </li>
             <li>
-                [%- doc_link('FrequentlyAskedQuestions', l('FAQs')) -%]
+                [%- doc_link('FrequentlyAskedQuestions', l('<abbr title="Frequently Asked Questions">FAQs</abbr>')) -%]
             </li>
             <li>
                 [%- doc_link('OfficialStyleGuideline', l('Style Guidelines')) -%]
             </li>
             <li>
-                [%- doc_link('MailingList', l('MailingList')) -%]
+                [%- doc_link('MailingList', l('Mailing Lists')) -%]
             </li>
             <li>
                 <a href="http://forums.musicbrainz.org">
                     [% l('Web Forums') %]
+                </a>
+            </li>
+            <li>
+                <a href="http://musicbrainz.uservoice.com">
+                    [% l('UserVoice Feedback') %]
                 </a>
             </li>
             <li>

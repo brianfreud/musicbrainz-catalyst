@@ -1,9 +1,9 @@
-[%- WRAPPER 'layout.tt' title=l("CD Table of Contents Information") -%]
-    [% WRAPPER 'components/box.tt' header=l("CD Table of Contents Information") %]
+[%- WRAPPER 'layout.tt' title=l("<abbr "Compact Disc">CD</abbr> Table of Contents Information") -%]
+    [% WRAPPER 'components/box.tt' header=l("<abbr "Compact Disc">CD</abbr> Table of Contents Information") %]
         <table class="details">
             <tr>
                 <th>
-                    [% l('Full TOC:') %]
+                    [% l('Full <abbr "Table of Contents">TOC</abbr>:') %]
                 </th>
                 <td>
                     [% cdtoc.toc %]
@@ -43,13 +43,13 @@
             </tr>
             <tr>
                 <th>
-                    [% l('Total length:') %]
+                    [% l('Total Length:') %]
                 </th>
                 <td>[% cdtoc.duration %]</td>
             </tr>
             <tr>
                 <th>
-                    [% l('Track details:') %]
+                    [% l('Track Details:') %]
                 </th>
                 <td>
                     <table class="cdtoc_track_details">

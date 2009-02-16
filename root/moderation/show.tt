@@ -1,5 +1,5 @@
-[%- WRAPPER 'layout.tt' title=l("Moderation {num}", {num => #${moderation.id}}) -%]
-    [%- WRAPPER 'components/box.tt' header=l("Moderation {id}", {id => #${moderation.id}}) -%]
+[%- WRAPPER 'layout.tt' title=l("Edit {num}", {num => #${moderation.id}}) -%]
+    [%- WRAPPER 'components/box.tt' header=l("Edit {id}", {id => #${moderation.id}}) -%]
         <table class="details">
             <tr>
                 <th>

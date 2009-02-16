@@ -22,7 +22,7 @@
                     [%- l('Date') -%]
                 </th>
                 <th class="catalog">
-                    [%- l('Catalog #') -%]
+                    [%- l('<abbr title="Catalog Number">Catalog #</abbr>') -%]
                 </th>
                 <th class="artist">
                     [%- l('Artist') -%]

@@ -52,7 +52,7 @@
         [% END %]
         [% WRAPPER "components/box.tt" header=l("What is MusicBrainz?") %]
             <p>
-                [% l('MusicBrainz is a community music <abbr title="a database for storing metadata">metadatabase</abbr> that attempts to create a comprehensive music information site. You can use the MusicBrainz data either by browsing this web site, or you can access the data from a client program - for example, a CD player program can use MusicBrainz to identify CDs and provide information about the CD, about the Artist or about related information. You can also use the MusicBrainz Tagger to automatically identify and clean up the metadata tags in your digital music collections. Find out more in the <a href="{uri}">introduction</a>.', {uri => c.uri_for('/doc/AboutMusicBrainz')}) %]
+                [% l('MusicBrainz is a community music <abbr title="a database for storing metadata">metadatabase</abbr> that attempts to create a comprehensive music information site. You can use the MusicBrainz data either by browsing this web site, or you can access the data from a client program - for example, a <abbr title="Compact Disc">CD</abbr> player program can use MusicBrainz to identify <abbr title="Compact Discs">CDs</abbr> and provide information about the CD, about the Artist or about related information. You can also use the MusicBrainz Tagger to automatically identify and clean up the metadata tags in your digital music collections. Find out more in the <a href="{uri}">introduction</a>.', {uri => c.uri_for('/doc/AboutMusicBrainz')}) %]
             </p>
         [% END %]
         [% WRAPPER "components/box.tt" header=l("Use MusicBrainz") %]

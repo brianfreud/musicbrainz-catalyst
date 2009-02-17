@@ -14,7 +14,7 @@
 [%- END -%]
 
 [%- WRAPPER 'layout.tt' title='Search Other Sites' -%]
-    [%- WRAPPER 'components/box.tt' header='CD Shopping Sites' -%]
+    [%- WRAPPER 'components/box.tt' header='<abbr title="Compact Disc">CD</abbr> Shopping Sites' -%]
         [%- PROCESS search
             action='http://www.amazon.com/exec/obidos/external-search'
             link='http://www.amazon.com'
@@ -95,7 +95,7 @@
         -%]
     [%- END -%]
 
-    [%- WRAPPER 'components/box.tt' header='Info Sites' -%]
+    [%- WRAPPER 'components/box.tt' header='Information Sites' -%]
         [%- PROCESS search
             action='http://www.rollingstone.com/search'
             link='http://www.rollingstone.com'

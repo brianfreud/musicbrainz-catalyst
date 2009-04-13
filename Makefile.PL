@@ -33,7 +33,7 @@ requires 'Email::Date::Format'                         => '1.002';
 requires 'Email::Valid'                                => '0.179';
 requires 'Form::Processor'                             => '0.190';
 requires 'JSON'                                        => '2.120';
-requires 'Locale::MakeText';
+requires 'Locale::Maketext';
 requires 'Locale::Maketext::Extract::Plugin::TT2';
 requires 'MIME::Lite'                                  => '3.023';
 requires 'Moose'                                       => '0.640';

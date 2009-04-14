@@ -526,7 +526,7 @@ sub second
     		"UPDATE automod_election
     			SET seconder_2 = ?, status = $STATUS_VOTING_OPEN, opentime = NOW()
     			WHERE id = ? AND status = $STATUS_AWAITING_SECONDER_2",
-    		$seconder,
+    		$seconder->id,
     		$self->id,
     	) and do {
     		$self->{seconder2} = $seconder;
@@ -667,7 +667,7 @@ Notify that an election has been cancelled.
 
 sub notify_cancelled
 {
-    die "Not yet implemented";
+    warn "Not yet implemented";
 }
 
 =head2 notify_open
@@ -678,7 +678,7 @@ Notify that an election is now open for voting.
 
 sub notify_open
 {
-    die "Not yet implemented";
+    warn "Not yet implemented";
 }
 
 no Moose;

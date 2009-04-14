@@ -19,7 +19,7 @@ sub elections : Path('') Form('AutoEditorElection::Propose')
     );
 }
 
-sub details : Path('') Args(1)
+sub details : Path('') Args(1) Form('AutoEditorElection::Vote')
 {
     my ($self, $c, $election) = @_;
 
@@ -103,7 +103,7 @@ sub propose : Local Form('AutoEditorElection::Propose')
     }
 }
 
-sub second : Local Args(1)
+sub second : Local Args(1) Form('AutoEditorElection::Vote')
 {
     my ($self, $c, $election) = @_;
     $c->forward('login');
@@ -133,6 +133,51 @@ sub second : Local Args(1)
         $c->stash(
             template => 'elections/problem.tt',
             message  => 'This election is aleady open'
+        );
+    }
+    elsif ($e = Exception::Class->caught('ElectionClosedException'))
+    {
+        $c->stash(
+            template => 'elections/problem.tt',
+            message  => 'This election has closed'
+        );
+    }
+    else
+    {
+        # All good, redirect back to the election details page
+        $c->response->redirect($c->uri_for('/elections', $election->id));
+    }
+}
+
+sub vote : Local Args(1) Form('AutoEditorElection::Vote')
+{
+    my ($self, $c, $election) = @_;
+    $c->forward('login');
+
+    if(!$self->submit_and_validate($c))
+    {
+        $c->response->redirect($c->uri_for('/elections', $election));
+        $c->detach;
+    }
+
+    eval {
+        $election = $c->model('AutoEditorElection')->new_from_id($election);
+        $election->vote($c->user, $self->form->value('vote'));
+    };
+
+    my $e;
+    if ($e = Exception::Class->caught('EditorIneligibleException'))
+    {
+        $c->stash(
+            template => 'elections/problem.tt',
+            message  => 'You are not eligible to vote on this election'
+        );
+    }
+    elsif ($e = Exception::Class->caught('ElectionNotReadyException'))
+    {
+        $c->stash(
+            template => 'elections/problem.tt',
+            message  => 'This election is not yet open for voting'
         );
     }
     elsif ($e = Exception::Class->caught('ElectionClosedException'))

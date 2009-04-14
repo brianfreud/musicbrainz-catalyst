@@ -13,7 +13,6 @@ __PACKAGE__->config(namespace => 'elections');
 sub elections : Path('') Form('AutoEditorElection::Propose')
 {
     my ($self, $c) = @_;
-    $c->forward('/user/login');
 
     $c->stash->{elections} = $c->model('AutoEditorElection')->elections(
         with_candidate => 1
@@ -23,13 +22,49 @@ sub elections : Path('') Form('AutoEditorElection::Propose')
 sub details : Path('') Args(1)
 {
     my ($self, $c, $election) = @_;
-    $c->forward('/user/login');
 
     $c->stash->{election} = $election =
         $c->model('AutoEditorElection')->new_from_id($election, with_editors => 1)
         or $c->detach('/error_404');
 
     $c->stash->{votes} = $election->votes(with_voters => 1);
+}
+
+sub cancel : Local Args(1)
+{
+    my ($self, $c, $election) = @_;
+    $c->forward('login');
+
+    if (!$c->form_posted)
+    {
+        # Require POST as this action is non-idempotent
+        $c->response->redirect($c->uri_for('/elections', $election));
+        $c->detach;
+    }
+
+    eval {
+        $election = $c->model('AutoEditorElection')->new_from_id($election);
+        $election->cancel($c->user)
+    };
+
+    if (my $e = Exception::Class->caught('EditorIneligibleException'))
+    {
+        $c->stash(
+            template => 'elections/problem.tt',
+            message  => 'You may not cancel elections you did not propose'
+        );
+    }
+    elsif (my $e = Exception::Class->caught('ElectionClosedException'))
+    {
+        $c->stash(
+            template => 'elections/problem.tt',
+            message  => 'This election has already been closed'
+        );
+    }
+    else
+    {
+        $c->response->redirect($c->uri_for('/elections', $election));
+    }
 }
 
 sub propose : Local Form('AutoEditorElection::Propose')

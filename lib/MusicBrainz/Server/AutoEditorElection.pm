@@ -164,7 +164,9 @@ sub elections
     my $sql = Sql->new($self->dbh);
 
     my $query = exists $opts{with_candidate}
-              ? qq|SELECT automod_election.*,moderator.* FROM automod_election,moderator
+              ? qq|SELECT automod_election.*,
+                          moderator.name AS m_name, moderator.id AS m_id
+                     FROM automod_election,moderator
                     WHERE moderator.id = automod_election.candidate
                  ORDER BY proposetime DESC|
                     
@@ -174,13 +176,11 @@ sub elections
     my $rows = $sql->SelectListOfHashes($query);
 
     my @elections = map {
-            if ($opts{with_candidate})
-            {
-                $_->{candidate} = MusicBrainz::Server::Editor->new(undef, $_);
-            }
+        $_->{candidate} = MusicBrainz::Server::Editor->_new_from_row($_, strip_prefix => 'm_')
+            if $opts{with_candidate};
             
-            MusicBrainz::Server::AutoEditorElection->new($self->dbh, $_);
-        } @$rows;
+        MusicBrainz::Server::AutoEditorElection->new($self->dbh, $_);
+    } @$rows;
 
     return \@elections;
 }
@@ -607,25 +607,25 @@ sub vote
 
 sub cancel
 {
-	my ($self, $canceller) = @_;
+	my ($self, $editor) = @_;
 	my $sql = Sql->new($self->dbh);
 
-	$sql->Do("LOCK TABLE automod_election IN EXCLUSIVE MODE");
-	$self->_refresh
-		or ElectionDoesNotExistException->throw;
+    $sql->AutoTransaction(sub {
+    	$sql->Do("LOCK TABLE automod_election IN EXCLUSIVE MODE");
+    	$self->refresh or ElectionDoesNotExistException->throw;
 
-	EditorIneligibleException->throw
-		unless $self->proposer == $canceller;
+    	EditorIneligibleException->throw
+    		unless $self->proposer->id == $editor->id;
 
-	ElectionClosedException->throw
-		if $self->status =~ /^($STATUS_ACCEPTED|$STATUS_REJECTED|$STATUS_CANCELLED)$/o;
+    	ElectionClosedException->throw if $self->is_closed;
 
-	$sql->Do(
-		"UPDATE automod_election
-			SET status = $STATUS_CANCELLED, closetime = NOW()
-			WHERE id = ? AND status IN ($STATUS_AWAITING_SECONDER_1,$STATUS_AWAITING_SECONDER_2,$STATUS_VOTING_OPEN)",
-		$self->id,
-	) or die;
+    	$sql->Do(
+    		"UPDATE automod_election
+    			SET status = $STATUS_CANCELLED, closetime = NOW()
+    			WHERE id = ? AND status IN ($STATUS_AWAITING_SECONDER_1,$STATUS_AWAITING_SECONDER_2,$STATUS_VOTING_OPEN)",
+    		$self->id,
+    	) or die;
+	});
 
 	$self->{status} = $STATUS_CANCELLED;
 	# NOTE closetime is not set
@@ -633,6 +633,10 @@ sub cancel
 
 	return 1;
 }
+
+=head2 EMAIL NOTIFICATION
+
+The following methods send out emails after certain events
 
 =head2 announce
 
@@ -645,7 +649,17 @@ sub announce
     die "Not yet implemented";
 }
 
+=head2 notify_cancelled
+
+Notify that an election has been cancelled.
+
+=cut
+
+sub notify_cancelled
+{
+    die "Not yet implemented";
+}
+
 no Moose;
-__PACKAGE__->meta->make_immutable;
 
 1;

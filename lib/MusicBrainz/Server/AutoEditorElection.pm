@@ -1,6 +1,8 @@
 package MusicBrainz::Server::AutoEditorElection;
 use Moose;
+
 extends 'TableBase';
+with 'MusicBrainz::Server::Role::SendsEmail';
 
 use Moose::Util::TypeConstraints;
 
@@ -79,6 +81,28 @@ has 'opened_at' => (
 has 'closed_at' => (
     is => 'ro',
     init_arg => 'closetime'
+);
+
+=head2 generate_profile_link
+
+A closure to generate a URL to a user profile
+
+=cut
+
+has 'generate_profile_link' => (
+    is => 'ro',
+    isa => 'CodeRef',
+);
+
+=head2 generate_election_link
+
+A closure to generate a URL to an election
+
+=cut
+
+has 'generate_election_link' => (
+    is => 'ro',
+    isa => 'CodeRef',
 );
 
 =head2 seconders
@@ -289,6 +313,13 @@ sub new_from_id
         delete $row->{seconder2} unless defined $row->{seconder2};
     }
 
+    if (ref $self)
+    {
+        $row->{template_directory} = $self->template_directory;
+        $row->{generate_profile_link} = $self->generate_profile_link;
+        $row->{generate_election_link} = $self->generate_election_link;
+    }
+
     return MusicBrainz::Server::AutoEditorElection->new($self->dbh, $row);
 }
 
@@ -399,7 +430,7 @@ sub _timeout
 	$self->{status} = $STATUS_REJECTED; # XXX: Fix me - avoiding accessors
 	# NOTE closetime not set
 
-	$self->send_timeout_email;
+	$self->_send_email('timeout.tt', as_reply => 1);
 }
 
 =head2 _close
@@ -427,11 +458,11 @@ sub _close
 	    my $candidate = MusicBrainz::Server::Editor->newFromId($self->dbh, $self->candidate);
 		$candidate->MakeAutoModerator;
 
-		$self->notify_accepted;
+		$self->_send_email('accepted.tt', as_reply => 1);
 	}
 	else
 	{
-		$self->notify_rejected;
+	    $self->_send_email('rejected.tt', as_reply => 1);
 	}
 }
 
@@ -486,7 +517,7 @@ sub propose
     my $id = $sql->GetLastInsertId("automod_election");
 
 	$self = $self->new_from_id($id);
-	$self->announce;
+	$self->_send_email('new_election.tt');
 
     return $self;
 }
@@ -531,7 +562,7 @@ sub second
     	) and do {
     		$self->{seconder2} = $seconder;
     		$self->{status} = $STATUS_VOTING_OPEN;
-    		$self->notify_open;
+    		$self->_send_email('voting_open.tt', as_reply => 1);
     		return $self;
     	};
 
@@ -639,48 +670,72 @@ sub cancel
 
 	$self->{status} = $STATUS_CANCELLED;
 	# NOTE closetime is not set
-	$self->notify_cancelled;
+	$self->_send_email('cancelled.tt', as_reply => 1);
 
 	return 1;
 }
 
-=head2 EMAIL NOTIFICATION
-
-The following methods send out emails after certain events
-
-=head2 announce
-
-Announce the creation of a new auto editor election via email
-
-=cut
-
-sub announce
+sub _send_email
 {
-    die "Not yet implemented";
+    my ($self, $template, %opts) = @_;
+
+    my $context = {
+        $self->_user_to_context('proposer',  $self->proposer),
+        $self->_user_to_context('candidate', $self->candidate),
+        $self->_user_to_context('seconder1', $self->seconder1),
+        $self->_user_to_context('seconder2', $self->seconder2),
+        election_link => $self->generate_election_link->($self),
+    };
+
+    my @extra_headers;
+    if (exists $opts{as_reply})
+    {
+        @extra_headers = (
+            'In-Reply-To'  => $self->_email_id,
+            'References'   => $self->_email_id,
+        );
+    }
+    else
+    {
+        @extra_headers = ('Message-Id' => $self->_email_id);
+    }
+
+    $self->send_email($template, $context, extra_headers => \@extra_headers);
 }
 
-=head2 notify_cancelled
-
-Notify that an election has been cancelled.
-
-=cut
-
-sub notify_cancelled
+sub _user_to_context
 {
-    warn "Not yet implemented";
+    my ($self, $key, $user) = @_;
+    return unless defined $user;
+
+    return (
+        $key . "_name" => $user->name,
+        $key . "_link" => $self->generate_profile_link->($user),
+    );
 }
 
-=head2 notify_open
-
-Notify that an election is now open for voting.
-
-=cut
-
-sub notify_open
+sub generate_email_headers
 {
-    warn "Not yet implemented";
+    my $self = shift;
+
+    return [
+        'Subject'      => 'Autoeditor Election: ' . $self->candidate->name,
+        'Sender'       => 'Webserver <webserver@musicbrainz.org>',
+        'From'         => 'The Returning Officer <returning-officer@musicbrainz.org>',
+        'To'           => 'o.charles@lancaster.ac.uk',
+        'Content-Type' => 'text/plain',
+    ];
+}
+
+sub _email_id
+{
+    my $self = shift;
+    my $id = $self->id;
+    (my $nums = $self->proposed_at) =~ tr/0-9//cd;
+
+    return "<autoeditor-election-$id-$nums\@musicbrainz.org>"
 }
 
 no Moose;
-
+__PACKAGE__->meta->make_immutable;
 1;

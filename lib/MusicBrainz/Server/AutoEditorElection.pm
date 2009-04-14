@@ -7,7 +7,20 @@ use Moose::Util::TypeConstraints;
 use Carp;
 use ModDefs ':vote';
 use ModDefs ':userid';
+use MusicBrainz::Server::AutoEditorElectionVote;
 use MusicBrainz::Server::Editor;
+
+use Exception::Class (
+        'AlreadyAutoEditorException',
+        'EditorIneligibleException',
+        'ElectionAlreadyExistsException' => {
+            fields => 'election_id',
+        },
+        'ElectionDoesNotExistException',
+        'ElectionClosedException',
+        'ElectionOpenException',
+        'ElectionNotReadyException',
+    );
 
 use constant PROPOSAL_TIMEOUT => "1 week";
 use constant VOTING_TIMEOUT   => "1 week";
@@ -37,25 +50,18 @@ has [qw/candidate proposer seconder1 seconder2/] => (
     is  => 'ro',
     isa => 'MusicBrainz.Editor',
     coerce => 1,
-    trigger => \&_set_user_dbh
 );
-
-sub _set_user_dbh
-{
-    my ($self, $user) = @_;
-    $user->dbh($self->dbh);
-}
 
 has 'status' => (
     is => 'ro'
 );
 
-has 'yes_votes' => (
+has 'votes_for' => (
     is => 'ro',
     init_arg => 'yesvotes',
 );
 
-has 'no_votes' => (
+has 'votes_against' => (
     is => 'ro',
     init_arg => 'novotes'
 );
@@ -75,26 +81,105 @@ has 'closed_at' => (
     init_arg => 'closetime'
 );
 
-=head2 elections
+=head2 seconders
+
+Return a list of all seconders
+
+=cut
+
+sub seconders
+{
+    my $self = shift;
+    return [ grep { defined } (
+        $self->seconder1,
+        $self->seconder2,
+    ) ];
+}
+
+=head2 editor_is_support $editor
+
+Check if an editor is supporting an election by seconding it, or originally
+proposing it
+
+=cut
+
+sub editor_is_supporter
+{
+    my ($self, $editor) = @_;
+
+    my @supporters = (
+        $self->proposer,
+        $self->candidate,
+        @{ $self->seconders }
+    );
+
+    return scalar (grep { $_->id == $editor->id } @supporters) > 0;
+}
+
+=head2 editor_can_second $editor
+
+Check if an editor is elligible to second an election
+
+=cut
+
+sub editor_can_second
+{
+    my ($self, $editor) = @_;
+
+    return unless defined $editor;
+    return unless $editor->is_auto_editor;
+    return !$self->editor_is_supporter($editor);
+}
+
+=head2 editor_can_cancel $editor
+
+Check if an editor can cancel an election
+
+=cut
+
+sub editor_can_cancel
+{
+    my ($self, $editor) = @_;
+
+    return unless defined $editor;
+    return $editor->id == $self->proposer->id;
+}
+
+=head2 elections ?%opts
 
 Get a list of all auto-editor elections, order in descednding order of the
 the election was proposed.
 
-Returns an array reference of MusicBrainz::Server::AutoEditorElections
+Returns an array reference of MusicBrainz::Server::AutoEditorElections.
+
+%opts is a hash that can be used to modify the bahavior of this method. If
+the C<with_candidate> key exists, candidates will be fully loaded objects. If
+this key is B<not> present, only the ID will be available.
 
 =cut
 
 sub elections
 {
-    my $self = shift;
+    my ($self, %opts) = @_;
     my $sql = Sql->new($self->dbh);
 
-    my $rows = $sql->SelectListOfHashes(
-        "SELECT * FROM automod_election ORDER BY proposetime DESC",
-    );
+    my $query = exists $opts{with_candidate}
+              ? qq|SELECT automod_election.*,moderator.* FROM automod_election,moderator
+                    WHERE moderator.id = automod_election.candidate
+                 ORDER BY proposetime DESC|
+                    
+              : qq|SELECT * FROM automod_election
+                 ORDER BY proposetime DESC|;
+
+    my $rows = $sql->SelectListOfHashes($query);
 
     my @elections = map {
-            MusicBrainz::Server::AutoEditorElection->new($self->dbh, $_)
+            if ($opts{with_candidate})
+            {
+                $_->{candidate} = MusicBrainz::Server::Editor->new(undef, $_);
+            }
+            
+            MusicBrainz::Server::AutoEditorElection->new($self->dbh, $_);
         } @$rows;
 
     return \@elections;
@@ -119,18 +204,14 @@ sub pending_elections
 		                  $STATUS_VOTING_OPEN)
 	  ORDER BY proposetime DESC|);
 
-    # Find all elections the user proposed or seconded, but have not voted
-    # in
+    # Find all open elections the user has not voted in (excluded elections
+    # that they have shown support for).
     my @elections;
     my $uid = $user->id;
 	for (@$rows)
 	{
 	    my $el = MusicBrainz::Server::AutoEditorElection->new($self->dbh, $_);
-	    
-	    next
-	        if ($el->proposer->id  == $uid ||
-                $el->seconder1->id == $uid ||
-                $el->seconder2->id == $uid);
+	    next if $el->editor_is_supporter($user);
 
 	    for my $vote (@{ $el->votes })
 	    {
@@ -143,15 +224,65 @@ sub pending_elections
 	return \@elections;
 }
 
+=head2 new_from_id $id, ?%opts
+
+Load the election with database id, C<id>.
+
+%opts is a hash that can be used to modify the bahavior of this method. If
+the C<with_editors> key exists, all assossciated editors (candidate, proposer,
+seconders) will be fully loaded Editor objects. Otherwise, only the ID will be
+guaranteed available.
+
+=cut
+
 sub new_from_id
 {
-	my ($self, $id) = @_;
-	my $sql = Sql->new($self->dbh);
+    my ($self, $id, %opts) = @_;
+    my $sql = Sql->new($self->dbh);
 
-	my $row = $sql->SelectSingleRowHash(
-	    qq|SELECT * FROM automod_election WHERE id = ?|,
-		$id,
-	) or return;
+    my $query;
+    if (exists $opts{with_editors})
+    {
+        $query = qq|SELECT election.id, election.status, election.yesvotes,
+                           election.novotes, election.proposetime,
+                           election.opentime, election.closetime,
+                           s1.id AS s1_id, s1.name AS s1_name,
+                           s2.id AS s2_id, s2.name AS s2_name,
+                           c.id  AS c_id,  c.name  AS c_name,
+                           p.id  AS p_id,  p.name  AS p_name
+                      FROM automod_election election
+                 LEFT JOIN moderator s1 ON (election.seconder_1 = s1.id)
+                 LEFT JOIN moderator s2 ON (election.seconder_2 = s2.id)
+                 LEFT JOIN moderator c  ON (election.candidate  = c.id)
+                 LEFT JOIN moderator p  ON (election.proposer   = p.id)
+                     WHERE election.id = ?|;
+    }
+    else
+    {
+        $query = qq|SELECT election.id, election.status, election.yesvotes,
+                           election.novotes, election.proposetime,
+                           election.opentime, election.closetime,
+                           election.seconder_1 AS seconder1,
+                           election.seconder_2 AS seconder2,
+                           election.candidate, election.proposer
+                      FROM automod_election election
+                     WHERE election.id = ?|;
+    }
+
+	my $row = $sql->SelectSingleRowHash($query, $id)
+	    or return;
+
+    if (exists $opts{with_editors})
+    {
+        $row->{candidate} = MusicBrainz::Server::Editor->_new_from_row($row, strip_prefix => 'c_');
+        $row->{proposer}  = MusicBrainz::Server::Editor->_new_from_row($row, strip_prefix => 'p_');
+        
+        $row->{seconder1} = MusicBrainz::Server::Editor->_new_from_row($row, strip_prefix => 's1_')
+            if defined $row->{s1_id};
+        
+        $row->{seconder2} = MusicBrainz::Server::Editor->_new_from_row($row, strip_prefix => 's2_')
+            if defined $row->{s2_id};
+    }
 
     return MusicBrainz::Server::AutoEditorElection->new($self->dbh, $row);
 }
@@ -178,15 +309,32 @@ sub status_name
 
 sub votes
 {
-    my ($self) = @_;
+    my ($self, %opts) = @_;
 	my $sql = Sql->new($self->dbh);
 
-	my $votes = $sql->SelectListOfHashes(
-		"SELECT * FROM automod_election_vote WHERE automod_election = ? ORDER BY votetime",
-		$self->id,
-	);
+	my $query;
+	if (exists $opts{with_voters})
+	{
+	    $query = qq|SELECT automod_election_vote.*,
+	                       moderator.name AS m_name, moderator.id AS m_id
+	                  FROM automod_election_vote, moderator
+	                 WHERE automod_election = ? AND moderator.id = voter
+	              ORDER BY votetime|;
+	}
+	else
+	{
+	    $query = qq|SELECT * FROM automod_election_vote
+	                 WHERE automod_election = ?
+	              ORDER BY votetime|;
+	}
+
+	my $votes = $sql->SelectListOfHashes($query, $self->id);
 	
 	return [ map {
+	    if (exists $opts{with_voters}) {
+	        $_->{voter} = MusicBrainz::Server::Editor->_new_from_row($_, strip_prefix => 'm_');
+	    }
+
 	    MusicBrainz::Server::AutoEditorElectionVote->new($self->dbh, $_);
 	} @$votes ];
 }
@@ -261,7 +409,7 @@ sub _close
 	my $sql = Sql->new($self->dbh);
 
     # XXX Fix me - avoiding accessors
-	$self->{status} = (($self->yes_votes > $self->no_votes) ? $STATUS_ACCEPTED : $STATUS_REJECTED);
+	$self->{status} = (($self->votes_for > $self->votes_against) ? $STATUS_ACCEPTED : $STATUS_REJECTED);
 	# NOTE closetime not set
 
 	$sql->Do(
@@ -389,78 +537,73 @@ sub second
 	die;
 }
 
+sub is_closed
+{
+    my $self = shift;
+    return $self->status =~ /^($STATUS_ACCEPTED|$STATUS_REJECTED|$STATUS_CANCELLED)$/o;
+}
+
+sub is_pending
+{
+    my $self = shift;
+    return $self->status =~ /^($STATUS_AWAITING_SECONDER_1|$STATUS_AWAITING_SECONDER_2)$/o;
+}
+
 sub vote
 {
 	my ($self, $voter, $vote) = @_;
 	my $sql = Sql->new($self->dbh);
 
-	$sql->Do("LOCK TABLE automod_election, automod_election_vote IN EXCLUSIVE MODE");
-	$self->_refresh
-		or ElectionDoesNotExistException->throw;
+    $sql->AutoTransaction(sub {
+    	$sql->Do("LOCK TABLE automod_election, automod_election_vote IN EXCLUSIVE MODE");
+    	$self->refresh or ElectionDoesNotExistException->throw;
 
-	ElectionClosedException->throw
-		if $self->{status} =~ /^($STATUS_ACCEPTED|$STATUS_REJECTED|$STATUS_CANCELLED)$/o;
-	ElectionNotReadyException->throw
-		if $self->{status} =~ /^($STATUS_AWAITING_SECONDER_1|$STATUS_AWAITING_SECONDER_2)$/o;
+    	ElectionClosedException->throw   if $self->is_closed;
+    	ElectionNotReadyException->throw if $self->is_pending;
 
-	my $propsec = grep { ($self->{$_}||0) == $voter }
-		qw( candidate proposer seconder_1 seconder_2 );
-	EditorIneligibleException->throw
-		if $propsec;
+    	EditorIneligibleException->throw if $self->editor_is_supporter($voter);
 
-	my $old_vote = $sql->SelectSingleRowHash(
-		"SELECT * FROM automod_election_vote
-			WHERE automod_election = ? AND voter = ?",
-		$self->id,
-		$voter->id,
-	);
+    	my $old_vote = $sql->SelectSingleRowHash(
+    		"SELECT * FROM automod_election_vote
+    			WHERE automod_election = ? AND voter = ?",
+    		$self->id, $voter->id,
+    	);
 
-	return 1
-		if $old_vote and $old_vote->{vote} == $vote;
+    	return 1
+    		if $old_vote and $old_vote->{vote} == $vote;
 
-	if ($old_vote) {
-		$sql->Do(
-			"UPDATE automod_election_vote SET vote = ?, votetime = NOW() WHERE id = ?",
-			$vote,
-			$old_vote->{id},
-		);
-	} else {
-		$sql->Do(
-			"INSERT INTO automod_election_vote (automod_election, voter, vote) VALUES (?, ?, ?)",
-			$self->id,
-			$voter->id,
-			$vote,
-		);
-	}
+    	if ($old_vote) {
+    		$sql->Do(
+    			"UPDATE automod_election_vote SET vote = ?, votetime = NOW() WHERE id = ?",
+    			$vote,
+    			$old_vote->{id},
+    		);
+    	} else {
+    		$sql->Do(
+    			"INSERT INTO automod_election_vote (automod_election, voter, vote) VALUES (?, ?, ?)",
+    			$self->id,
+    			$voter->id,
+    			$vote,
+    		);
+    	}
 
-	my $yesdelta = my $nodelta = 0;
-	--$yesdelta if $old_vote and $old_vote->{vote} == &ModDefs::VOTE_YES;
-	--$nodelta if $old_vote and $old_vote->{vote} == &ModDefs::VOTE_NO;
-	++$yesdelta if $vote == &ModDefs::VOTE_YES;
-	++$nodelta if $vote == &ModDefs::VOTE_NO;
+    	my $yesdelta = my $nodelta = 0;
+    	--$yesdelta if $old_vote and $old_vote->{vote} == &ModDefs::VOTE_YES;
+    	--$nodelta if $old_vote and $old_vote->{vote} == &ModDefs::VOTE_NO;
+    	++$yesdelta if $vote == &ModDefs::VOTE_YES;
+    	++$nodelta if $vote == &ModDefs::VOTE_NO;
 
-	$sql->Do(
-		"UPDATE automod_election SET yesvotes = yesvotes + ?,
-		novotes = novotes + ? WHERE id = ?",
-		$yesdelta,
-		$nodelta,
-		$self->id,
-	);
+    	$sql->Do(
+    		"UPDATE automod_election SET yesvotes = yesvotes + ?,
+    		novotes = novotes + ? WHERE id = ?",
+    		$yesdelta,
+    		$nodelta,
+    		$self->id,
+    	);
+    });
 
 	return 1;
 }
-
-use Exception::Class (
-        'AlreadyAutoEditorException',
-        'EditorIneligibleException',
-        'ElectionAlreadyExistsException' => {
-            fields => 'election_id',
-        },
-        'ElectionDoesNotExistException',
-        'ElectionClosedException',
-        'ElectionOpenException',
-        'ElectionNotReadyException',
-    );
 
 sub cancel
 {

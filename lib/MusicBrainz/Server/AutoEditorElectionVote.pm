@@ -1,4 +1,4 @@
-package MusicBrainz::Server::AutoEditorElection::Vote;
+package MusicBrainz::Server::AutoEditorElectionVote;
 use Moose;
 extends 'TableBase';
 

@@ -15,18 +15,27 @@ sub elections : Path('') Form('AutoEditorElection::Propose')
     my ($self, $c) = @_;
     $c->forward('/user/login');
 
-    $c->stash->{elections} = $c->model('AutoEditorElection')->elections;
+    $c->stash->{elections} = $c->model('AutoEditorElection')->elections(
+        with_candidate => 1
+    );
+}
 
-    # Refresh all the candidates so we can display them correctly
-    for my $el (@{ $c->stash->{elections}})
-    {
-        $el->candidate->Refresh;
-    }
+sub details : Path('') Args(1)
+{
+    my ($self, $c, $election) = @_;
+    $c->forward('/user/login');
+
+    $c->stash->{election} = $election =
+        $c->model('AutoEditorElection')->new_from_id($election, with_editors => 1)
+        or $c->detach('/error_404');
+
+    $c->stash->{votes} = $election->votes(with_voters => 1);
 }
 
 sub propose : Local Form('AutoEditorElection::Propose')
 {
     my ($self, $c) = @_;
+    $c->forward('login');
     
     return unless $self->submit_and_validate($c);
 

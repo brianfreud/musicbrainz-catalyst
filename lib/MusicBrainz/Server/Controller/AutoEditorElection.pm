@@ -5,6 +5,8 @@ use warnings;
 
 use base 'Catalyst::Controller';
 
+__PACKAGE__->config(namespace => 'elections');
+
 sub elections : Path('')
 {
     my ($self, $c) = @_;

@@ -19,7 +19,7 @@
                         <td>[% UserDate.format(election.start_date) %]</td>
                         <td>[% UserDate.format(election.end_date) %]</td>
                         <td>
-                            <a href="[% c.uri_for('autoeditorelection/', election.id) %]">
+                            <a href="[% c.uri_for('elections', election.id) %]">
                                 View Details</a>
                         </td>
                     </tr>

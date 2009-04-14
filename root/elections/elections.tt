@@ -19,7 +19,7 @@
                         <td>[% UserDate.format(election.start_date) %]</td>
                         <td>[% UserDate.format(election.end_date) %]</td>
                         <td>
-                            <a href="[% c.uri_for('elections', election.id) %]">
+                            <a href="[% c.uri_for('/elections', election.id) %]">
                                 View Details</a>
                         </td>
                     </tr>
@@ -30,4 +30,6 @@
         <p>[% l('No users have been elected to become an auto-editor.') %]</p>
         [%- END -%]
     [%- END -%]
+    
+    [%- INCLUDE 'elections/propose_form.tt' -%]
 [%- END -%]

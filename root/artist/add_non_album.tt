@@ -1,5 +1,5 @@
 [% SET guessCase=1 undoRevert=1 searchReplace=1 trackParser=1 styleGuidelines=1 guessAll=1 %]
-[% PROCESS 'editsuite/suitereqs.tt' %]
+[% PROCESS 'scripts/suitereqs.tt' %]
 [%- WRAPPER 'artist/layout.tt' title=l('Add Non-Album Track') -%]
     [%- WRAPPER 'components/box.tt' header=l('Add Non-Album Track') -%]
     [% INCLUDE 'editsuite/suiteloader.tt' %]

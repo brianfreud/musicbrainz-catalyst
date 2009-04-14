@@ -47,7 +47,7 @@ filelocs.serverJavaScript = "/static/scripts/";            // Relative location 
 filelocs.serverImage = "/static/images/es/";               // Relative location of base image directory on the server
 filelocs.serverStyles = "/static/styles/extra/";           // Relative location of base image directory on the server
 filelocs.serverJQuery = "jquery/";                         // Relative location of jQuery scripts / styles directories on the server
-filelocs.serverEditSuite = "editsuite/";                   // Relative location of Edit Suite scripts directory on the server
+filelocs.serverForms = "forms/";                           // Relative location of form scripts directory on the server
 /*===========================================================================================
  *   CSS Classes                                                                            *
  ===========================================================================================*/
@@ -143,9 +143,9 @@ function loadFiles() {
                 if (fileToLoad.match(/^jquery\./)) { // If this is a jQuery plugin file
                     fileToLoad = filelocs.serverJQuery + fileToLoad; // Prepend that subdirectory name onto the file name
                 } else if (fileToLoad.match(/^es_/)) { // If this is an Edit Suite file
-                    fileToLoad = filelocs.serverEditSuite + fileToLoad; // Prepend that subdirectory name onto the file name
+                    fileToLoad = filelocs.serverForms + fileToLoad; // Prepend that subdirectory name onto the file name
                 }
-                if (fileToLoad == (filelocs.serverEditSuite + "es_text.tt")) {
+                if (fileToLoad == (filelocs.serverForms + "es_text.tt")) {
                         fileToLoad = "http://" + filelocs.serverBase + "/es_text.tt";
                         $.ajax({
                             type: "GET",
@@ -222,7 +222,7 @@ $(function() {
     /* Calculate the total size of the Edit Suite files.                        */
     /* ------------------------------------------------------------------------ */
     /* From pre-load:   */
-    totalFileSize += 3133;        // editsuite.css
+    totalFileSize += 3133;        // scripts.css
     totalFileSize += 47;          // jquery.ui.all.css
     totalFileSize += 16498;       // ui.theme.css
     totalFileSize += 298;         // ui.base.css

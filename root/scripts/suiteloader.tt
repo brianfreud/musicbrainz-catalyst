@@ -46,16 +46,16 @@
                     <div class="es-rf">
                         <div id="es-sg-select" class="esdisplay es-ar es-ra hidden">
                             [%- IF styleGuidelines -%]
-                                [% INCLUDE 'editsuite/module_guideline_list.tt' %]
+                                [% INCLUDE 'scripts/module_guideline_list.tt' %]
                             [%- END -%]
                         </div>
                     </div>
                 </div>
             </div>
-            [% INCLUDE 'editsuite/suitemenu.tt' %]
+            [% INCLUDE 'scripts/suitemenu.tt' %]
             <div class="es-l es-rd">
                 <div class="es-re">
-                    [% INCLUDE 'editsuite/module_default.tt' %]
+                    [% INCLUDE 'scripts/module_default.tt' %]
                     [%- BLOCK esPanels -%]
                         [% FOREACH module=modules %]
                             [% IF ${module.module} && c.user.preferences.get('JS_es_' _ module.module) %]
@@ -64,12 +64,12 @@
                         [% END %]
                     [%- END -%]
                     [%- modules = [
-                        { module="guessCase" panel="editsuite/module_guesscase.tt" },
-                        { module="undoRevert" panel="editsuite/module_undo_revert.tt" },
-                        { module="searchReplace" panel="editsuite/module_search_replace.tt" },
-                        { module="trackParser" panel="editsuite/module_track_parser.tt" },
-                        { module="styleGuidelines" panel="editsuite/module_style_guidelines.tt" },
-                        { module="userPreferences" panel="editsuite/module_preferences.tt" }
+                        { module="guessCase" panel="scripts/module_guesscase.tt" },
+                        { module="undoRevert" panel="scripts/module_undo_revert.tt" },
+                        { module="searchReplace" panel="scripts/module_search_replace.tt" },
+                        { module="trackParser" panel="scripts/module_track_parser.tt" },
+                        { module="styleGuidelines" panel="scripts/module_style_guidelines.tt" },
+                        { module="userPreferences" panel="scripts/module_preferences.tt" }
                     ] -%]
                     [% PROCESS esPanels %]
                 </div>

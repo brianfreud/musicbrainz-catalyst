@@ -1,0 +1,33 @@
+[%- WRAPPER 'layout.tt' title=l('Auto-Editor Elections') -%]
+    [%- WRAPPER 'components/box.tt' header=l('Auto-Editor Elections') -%]
+        [%- IF elections.size -%]
+            <table>
+                <thead>
+                    <tr>
+                        <th>[% l('Candidate') %]</th>
+                        <th>[% l('Status') %]</th>
+                        <th>[% l('Start Date') -%]</th>
+                        <th>[% l('End Date') %]</th>
+                        <th>[% l('Details') %]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    [%- FOREACH election=elections -%]
+                    <tr>
+                        <td>[% election.candidate.name %]</td>
+                        <td>[% l(election.status_name) %]</td>
+                        <td>[% UserDate.format(election.start_date) %]</td>
+                        <td>[% UserDate.format(election.end_date) %]</td>
+                        <td>
+                            <a href="[% c.uri_for('autoeditorelection/', election.id) %]">
+                                View Details</a>
+                        </td>
+                    </tr>
+                    [%- END -%]
+                </tbody>
+            </table>
+        [%- ELSE -%]
+        <p>[% l('No users have been elected to become an auto-editor.') %]</p>
+        [%- END -%]
+    [%- END -%]
+[%- END -%]

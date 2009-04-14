@@ -283,6 +283,11 @@ sub new_from_id
         $row->{seconder2} = MusicBrainz::Server::Editor->_new_from_row($row, strip_prefix => 's2_')
             if defined $row->{s2_id};
     }
+    else
+    {
+        delete $row->{seconder1} unless defined $row->{seconder1};
+        delete $row->{seconder2} unless defined $row->{seconder2};
+    }
 
     return MusicBrainz::Server::AutoEditorElection->new($self->dbh, $row);
 }
@@ -491,56 +496,61 @@ sub second
 	my ($self, $seconder) = @_;
 	my $sql = Sql->new($self->dbh);
 
-	$sql->Do("LOCK TABLE automod_election IN EXCLUSIVE MODE");
-	$self->_refresh
-		or ElectionDoesNotExistException->throw;
+    $self = $sql->AutoTransaction(sub {
+    	$sql->Do("LOCK TABLE automod_election IN EXCLUSIVE MODE");
+    	$self->refresh
+    		or ElectionDoesNotExistException->throw;
 
-    # Do not allow seconding elections that are already closed
-	ElectionClosedException->throw
-		if $self->{status} =~ /^($STATUS_ACCEPTED|$STATUS_REJECTED|$STATUS_CANCELLED)$/o;
+        # Do not allow seconding elections that are already closed
+    	ElectionClosedException->throw if $self->is_closed;
 
-    # Do not allow seconding elections that are open
-	ElectionOpenException->throw
-		if $self->{status} == $STATUS_VOTING_OPEN;
+        # Do not allow seconding elections that are open
+    	ElectionOpenException->throw if $self->is_open;
 
-    # Do not allow seconding if the seconder has already seconded, or is the candidate
-	my $propsec = grep { ($self->{$_} || 0) == $seconder->id }
-		qw( proposer seconder_1 seconder_2 candidate );
-	EditorIneligibleException->throw
-		if $propsec;
+        # Do not allow seconding if the seconder has already seconded, or is the candidate
+    	EditorIneligibleException->throw if $self->editor_is_supporter($seconder);
 
-	$sql->Do(
-		"UPDATE automod_election
-			SET seconder_1 = ?, status = $STATUS_AWAITING_SECONDER_2
-			WHERE id = ? AND status = $STATUS_AWAITING_SECONDER_1",
-		$seconder->id,
-		$self->id,
-	) and do {
-		$self->{seconder1} = $seconder->id;
-		$self->{status} = $STATUS_AWAITING_SECONDER_2;
-		return $self;
-	};
+    	$sql->Do(
+    		"UPDATE automod_election
+    			SET seconder_1 = ?, status = $STATUS_AWAITING_SECONDER_2
+    			WHERE id = ? AND status = $STATUS_AWAITING_SECONDER_1",
+    		$seconder->id,
+    		$self->id,
+    	) and do {
+    		$self->{seconder1} = $seconder->id;
+    		$self->{status} = $STATUS_AWAITING_SECONDER_2;
+    		return $self;
+    	};
 
-	$sql->Do(
-		"UPDATE automod_election
-			SET seconder_2 = ?, status = $STATUS_VOTING_OPEN, opentime = NOW()
-			WHERE id = ? AND status = $STATUS_AWAITING_SECONDER_2",
-		$seconder,
-		$self->id,
-	) and do {
-		$self->{seconder2} = $seconder;
-		$self->{status} = $STATUS_VOTING_OPEN;
-		$self->SendVotingOpenEmail;
-		return $self;
-	};
+    	$sql->Do(
+    		"UPDATE automod_election
+    			SET seconder_2 = ?, status = $STATUS_VOTING_OPEN, opentime = NOW()
+    			WHERE id = ? AND status = $STATUS_AWAITING_SECONDER_2",
+    		$seconder,
+    		$self->id,
+    	) and do {
+    		$self->{seconder2} = $seconder;
+    		$self->{status} = $STATUS_VOTING_OPEN;
+    		$self->notify_open;
+    		return $self;
+    	};
 
-	die;
+    	return;
+	});
+
+    die unless $self;
 }
 
 sub is_closed
 {
     my $self = shift;
     return $self->status =~ /^($STATUS_ACCEPTED|$STATUS_REJECTED|$STATUS_CANCELLED)$/o;
+}
+
+sub is_open
+{
+    my $self = shift;
+    return $self->status =~ /^($STATUS_VOTING_OPEN)$/o;
 }
 
 sub is_pending
@@ -656,6 +666,17 @@ Notify that an election has been cancelled.
 =cut
 
 sub notify_cancelled
+{
+    die "Not yet implemented";
+}
+
+=head2 notify_open
+
+Notify that an election is now open for voting.
+
+=cut
+
+sub notify_open
 {
     die "Not yet implemented";
 }

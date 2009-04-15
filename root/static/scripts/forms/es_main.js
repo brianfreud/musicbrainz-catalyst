@@ -206,10 +206,6 @@ $(function() {
     /*     (ensures that non-JQuery browsers never see the Edit Suite)          */
     /* -------------------------------------------------------------------------*/
     $modules.removeClass("hidden");
-
-
-
-
     /* ------------------------------------------------------------------------ */
     /* Create container for the Guess All, Undo All, Revert All,                */
     /* and mode selector dropdown.                                              */

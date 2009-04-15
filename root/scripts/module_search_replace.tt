@@ -1,160 +1,102 @@
-<div id="es-sr" class="esdisplay es-lwh">
-    <fieldset class="es-sx">
-        <div class="es-l es-rq">
-            <div id="es-sr-controls1" class="es-l">
-                <div class="es-l">
-                    <div class="es-l">
-                        <strong>
-                            [%- INCLUDE 'forms/label.tt' label=l('Search for:') for="es-sr-input-search" -%]
-                        </strong>
-                    </div>
-                    <br />
-                    <div class="es-r">
-                        [%- INCLUDE 'forms/widgets/text.tt' type="text" id="es-sr-input-search" size="70" class="es-rs" title=l('Type the old string or JavaScript regexp pattern in this field.') %]
-                    </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <div class="es-l">
-                    <div class="es-l">
-                        <strong>
-                            [%- INCLUDE 'forms/label.tt' label=l('Replace with:') for="es-sr-input-replace" -%]
-                        </strong>
-                    </div>
-                        <br />
-                    <div class="es-r">
-                        [%- INCLUDE 'forms/widgets/text.tt' type="text" id="es-sr-input-replace" size="70" class="es-rs" title=l('Type the new string or JavaScript regexp pattern in this field.') %]
-                    </div>
-                </div>
-                <div class="es-c es-w" >
-                    <button id="es-sr-button-sr" class="es-rt">
-                        <span>
-                            [% l('Search and Replace') %]
-                        </span>
-                    </button>
-                    <button id="es-sr-button-swap" class="es-ru">
-                        <span>
-                            [% l('Swap fields') %]
-                        </span>
-                    </button>
-                    <button id="es-sr-button-clear" class="es-ru">
-                        <span>
-                            [% l('Clear fields') %]
-                        </span>
-                    </button>
-                    <button id="es-sr-button-undo" class="es-ru">
-                        <span>
-                            [% l('Undo Search and Replace') %]
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="es-l es-rv es-sz">
-            <div id="es-sr-controls2" class="es-l">
-                <span title="[%- l('Use regular expression pattern matching.') -%]">
-                    [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="es-sr-opt1" class="es-gc-options" -%]
-                    [%- INCLUDE 'forms/label.tt' label=l('Use regular expressions') for="es-sr-opt1" -%]
-                </span>
-                <br />
-                <span title="[%- l('Match the case of the search string.') -%]">
-                    [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="es-sr-opt2" class="es-gc-options" -%]
-                    [%- INCLUDE 'forms/label.tt' label=l('Match case') for="es-sr-opt2" -%]
-                </span>
-                <br />
-                <span title="[%- l('Search and Replace for Artist input fields.') -%]">
-                    [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="es-sr-opt3" class="es-gc-options" value=1 -%]
-                    [%- INCLUDE 'forms/label.tt' label=l('Artist fields') for="es-sr-opt3" -%]
-                </span>
-                <br />
-                <span title="[%- l('Search and Replace for Title input fields.') -%]">
-                    [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="es-sr-opt4" class="es-gc-options" value=1 -%]
-                    [%- INCLUDE 'forms/label.tt' label=l('Title fields') for="es-sr-opt4" -%]
-                </span>
-            </div>
-        </div>
-    </fieldset>
-    <fieldset class="es-sx">
-        <div class="es-sr-preset" style="margin-top: -1em;">
-            <strong>
-                <span class="es-sy"> 
-                    [%- l('Presets:') -%]
-                </span>
-            </strong>
-            <br />
-            <div class="es-l">
-                <ul>
-                    <li>
-                        <button id="es-sr-preset1">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset1">
-                            [%- l('Remove all round parentheses ().') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset2">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset2">
-                            [%- l('Remove all square brackets [].') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset3">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset3">
-                            [%- l('Remove all curly braces {}.') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset4">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset4">
-                            [%- l('Remove all bracketing punctuation ()[]{}.') -%]
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            <div class="es-l">
-                <ul>
-                    <li>
-                        <button id="es-sr-preset5">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset5">
-                            [%- l('Replace [] with ().') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset6">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset6">
-                            [%- l('Replace () with [].') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset7">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset7">
-                            [%- l('Replace #1 with No. 1 for any number.') -%]
-                        </label>
-                    </li>
-                    <li>
-                        <button id="es-sr-preset8">
-                            [%- l('Set') -%]
-                        </button>
-                        <label for="es-sr-preset8">
-                            [%- l('Remove ##. from titles.') -%]
-                        </label>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </fieldset>
+<div style="text-align: right;">
+    <a href="#" class="js-fieldset-trigger-show hidden" id="js-fieldset-sr-trigger-show">
+        <span>
+            [%- l('Show Search & Replace') -%]
+        </span>
+    </a>
+    <a href="#" class="js-fieldset-trigger-hide hidden" id="js-fieldset-sr-trigger-hide">
+        <span>
+            [%- l('Hide Search & Replace') -%]
+        </span>
+    </a>
 </div>
+[%- WRAPPER 'forms/fieldset.tt' legend='Search & Replace' class="js-fieldset" id="js-fieldset-sr" -%]
+    <div style="float:left;">
+        [%- WRAPPER 'forms/row.tt' -%]
+            <strong>
+                [%- INCLUDE 'forms/label.tt' label=l('Search for:') for="es-sr-input-search" -%]
+            </strong>
+        [%- END -%]
+        [%- WRAPPER 'forms/row.tt' -%]
+            [%- INCLUDE 'forms/widgets/text.tt' type="text" id="es-sr-input-search" size="75" title=l('Type the old string or JavaScript regexp pattern in this field.') %]
+        [%- END -%]
+        [%- WRAPPER 'forms/row.tt' -%]
+            <strong>
+                [%- INCLUDE 'forms/label.tt' label=l('Replace with:') for="es-sr-input-replace" -%]
+            </strong>
+        [%- END -%]
+        [%- WRAPPER 'forms/row.tt' -%]
+            [%- INCLUDE 'forms/widgets/text.tt' type="text" id="es-sr-input-replace" size="75" title=l('Type the new string or JavaScript regexp pattern in this field.') %]
+        [%- END -%]
+        [%- WRAPPER 'forms/row.tt' -%]
+            <button id="es-sr-button-sr">
+                <span>
+                    [%- l('Search and Replace') -%]
+                </span>
+            </button>
+            <button id="es-sr-button-swap">
+                <span>
+                    [%- l('Swap fields') -%]
+                </span>
+            </button>
+            <button id="es-sr-button-clear">
+                <span>
+                    [%- l('Clear fields') -%]
+                </span>
+            </button>
+            <button id="es-sr-button-undo">
+                <span>
+                    [%- l('Undo Search and Replace') -%]
+                </span>
+            </button>
+        [%- END -%]
+        [%- WRAPPER 'forms/row.tt' -%]
+            [%- l('Search and replace presets:') -%]
+            [%- BLOCK presetOptions -%]
+                [%- FOREACH preset=presets -%]
+                    <option value="[%- preset.value -%]">
+                        [%- preset.description -%]
+                    </option>
+                [%- END -%]
+            [%- END -%]
+            [%- presets = [
+                { value="1"  description => l('Remove all round parentheses ().') },
+                { value="2"  description => l('Remove all square brackets [].') },
+                { value="3"  description => l('Remove all curly braces {}.') },
+                { value="4"  description => l('Remove all bracketing punctuation ()[]{}.') },
+                { value="5"  description => l('Replace [] with ().') },
+                { value="6"  description => l('Replace () with [].') },
+                { value="7"  description => l('Replace #1 with No. 1 for any number.') },
+                { value="8"  description => l('Remove ##. from titles.') },
+            ] -%]
+            <select id="es-sr-selection">
+                [%- PROCESS presetOptions -%]
+            </select>
+        [%- END -%]
+    </div>
+    [%- BLOCK checkboxOptions -%]
+        [%- FOREACH checkbox=checkboxes -%]
+            [%- WRAPPER 'forms/row.tt' -%]
+                <span title="[%- checkbox.title -%]">
+                    <label for="[%- checkbox.for -%]" id="label-[%- checkbox.for -%]" >
+                        [%- IF checkbox.value -%]
+                            [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="${checkbox.for}" value=1 -%]
+                        [%- ELSE -%]
+                            [%- INCLUDE "forms/widgets/checkbox.tt" type="checkbox" id="${checkbox.for}" -%]
+                        [%- END -%]
+                        [%- checkbox.label -%]
+                    </label>
+                </span>
+            [%- END -%]
+        [%- END -%]
+    [%- END -%]
+    <div style="float:left;white-space:nowrap;margin-left:5%;">
+        [%- checkboxes = [
+            { for="es-sr-opt1" title => l('Use regular expression pattern matching.')    label => l('Use regular expressions') },
+            { for="es-sr-opt2" title => l('Match the case of the search string.')        label => l('Match cases') },
+            { for="es-sr-opt3" title => l('Search and Replace for Artist input fields.') label => l('Include Artist fields') value=1 },
+            { for="es-sr-opt4" title => l('Search and Replace for Title input fields.')  label => l('Include Title fields') value=1 },
+        ] -%]
+        [% PROCESS checkboxOptions %]
+    </div>
+[%- END -%]

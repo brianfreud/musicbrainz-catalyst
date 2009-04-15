@@ -3,10 +3,6 @@
  text-align: left!important;
 }
 
-.js-fieldset div {
- margin-left: 10%; 
-}
-
 .js-fieldset-trigger-show,
 .js-fieldset-trigger-hide {
  border: 1px solid #FFBB55;

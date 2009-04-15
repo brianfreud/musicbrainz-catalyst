@@ -13,12 +13,9 @@ $(function() {
     $modeSelection = $("#es-gc-selection"); // Mode select element
     reportErrors = true; // Permit the storeError, clearError, and alertUser methods.
     $mode = handleCookie("get", "es-gc-mode", "English"); // Persistent mode selection from cookie.
-    $gcpageload = handleCookie("get", "es-gc-checkbox1", false); // Apply guess case after page loads.
-    $gcuppercaseRoman = handleCookie("get", "es-gc-checkbox2", true); // Uppercase Roman numerals.
     $gckeepUppercased = handleCookie("get", "es-gc-checkbox3", true); // Keep uppercase words uppercased.
-    $gcautoFixDuration = handleCookie("get", "es-gc-checkbox4", true); // Automatically fix track duration problems.
-    $gcfixDuration = handleCookie("get", "es-gc-checkbox5", true); // Fix track duration problems when using Guess All.
-    $gcautoFixTitle = handleCookie("get", "es-gc-checkbox6", false); // Automatically Guess Case track titles.
+    $gcautoFixTitle = handleCookie("get", "es-gc-checkbox6", false);  // Automatically Guess Case track titles.
+    $gcTurkishI = handleCookie("get", "es-gc-checkbox7", false);      // Use Turkish rules for capitalization.
     /* --------------------------------------------------------------------- */
     /* Hook the blur event for all GC fields to enable storing after         */
     /* manual changes and to enable automatic Guess Casing specifically      */
@@ -44,6 +41,7 @@ $(function() {
     },
     /* --------------------------------------------------------------------- */
     /* Test and handle track durations auto-correction & history triggers.   */
+    /* REMOVE ME
     /* --------------------------------------------------------------------- */
     renewGCDurations = function() {
         unbindGuessCase("2", "duration");
@@ -67,31 +65,18 @@ $(function() {
     /* --------------------------------------------------------------------- */
     /* Handle changes to user Guess Case preferences in the ES panel.        */
     /* --------------------------------------------------------------------- */
-    $("#es-gc-checkbox1").change(function() {
-        handleCookie("set", "es-gc-checkbox1", ($('#es-gc-opt1').is(':checked')));
-        $gcpageload = ($('#es-gc-opt1').is(':checked'));
-    });
-    $("#es-gc-opt2").change(function() {
-        handleCookie("set", "es-gc-checkbox2", ($('#es-gc-opt2').is(':checked')));
-        $gcuppercaseRoman = ($('#es-gc-opt2').is(':checked'));
-    });
     $("#es-gc-opt3").change(function() {
         handleCookie("set", "es-gc-checkbox3", ($('#es-gc-opt3').is(':checked')));
         $gckeepUppercased = ($('#es-gc-opt3').is(':checked'));
-    });
-    $("#es-gc-opt4").change(function() {
-        handleCookie("set", "es-gc-checkbox4", ($('#es-gc-opt4').is(':checked')));
-        $gcautoFixDuration = ($('#es-gc-opt4').is(':checked'));
-        renewGCDurations();
-    });
-    $("#es-gc-opt5").change(function() {
-        handleCookie("set", "es-gc-checkbox5", ($('#es-gc-opt5').is(':checked')));
-        $gcfixDuration = ($('#es-gc-opt5').is(':checked'));
     });
     $("#es-gc-opt6").change(function() {
         handleCookie("set", "es-gc-checkbox6", ($('#es-gc-opt6').is(':checked')));
         $gcautoFixTitle = ($('#es-gc-opt6').is(':checked'));
         renewGCTracks();
+    });
+    $("#es-gc-opt7").change(function() {
+        handleCookie("set", "es-gc-checkbox7", ($('#es-gc-opt7').is(':checked')));
+        $gcTurkishI = ($('#es-gc-opt7').is(':checked'));
     });
     /* --------------------------------------------------------------------- */
     /* Turn on the tooltips, unless user has them off in preferences.        */
@@ -200,6 +185,7 @@ $(function() {
     bindGuessCase("5", "textartist", false);
     /* --------------------------------------------------------------------- */
     /* Run Guess Case on page load if the user has that option turned on.    */
+    /* REMOVE ME
     /* --------------------------------------------------------------------- */
     if ($gcpageload === true) {
         guessAllAll();

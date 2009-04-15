@@ -1,3 +1,41 @@
+.js-fieldset label {
+ width: 90%!important;
+ text-align: left!important;
+}
+
+.js-fieldset div {
+ margin-left: 10%; 
+}
+
+.js-fieldset-trigger-show,
+.js-fieldset-trigger-hide {
+ border: 1px solid #FFBB55;
+ padding: 3px;
+}
+
+.js-fieldset-trigger-show {
+ background: #FFBB55;
+}
+
+.js-fieldset-trigger-hide {
+ background: #534D8B;
+}
+
+.js-fieldset-trigger-show span,
+.js-fieldset-trigger-hide span {
+ text-decoration: none;
+}
+
+.js-fieldset-trigger-show span {
+ color: #534D8B;
+}
+
+.js-fieldset-trigger-hide span {
+ color: #FFBB55;
+}
+
+
+
 .es_error_hint {
  background: url(/static/images/header-bg-orangefade.gif);
  border: 2px solid #F40;

@@ -29,7 +29,7 @@ var $trackTitleGroup = $("input[class='track_name'], input[name='track.name']"),
 /*===========================================================================================
  *   Specific form elements                                                                 *
  ===========================================================================================*/
-    $editsuite = $('#editsuite'),                     // The Edit Suite div
+    $modules = $('.js-fieldset-trigger-show'),        // Fieldset modules
     $form = $('#es-form'),                            // The form to which Guess Case, Undo / Revert, and Track Parser attach.
     $events = $('#es-events');                        // The release events fieldset, to which various things attach.
 if ($("#es-tips").length === 0) {
@@ -202,10 +202,14 @@ function startLoad() {
  ********************************************************************************************/
 $(function() {
     /* -------------------------------------------------------------------------*/
-    /* Unhide the Edit Suite framework                                          */
+    /* Unhide the modules                                                       */
     /*     (ensures that non-JQuery browsers never see the Edit Suite)          */
     /* -------------------------------------------------------------------------*/
-    $editsuite.removeClass("hidden");
+    $modules.removeClass("hidden");
+
+
+
+
     /* ------------------------------------------------------------------------ */
     /* Create container for the Guess All, Undo All, Revert All,                */
     /* and mode selector dropdown.                                              */

@@ -2,7 +2,7 @@
 [% PROCESS 'scripts/suitereqs.tt' %]
 [%- WRAPPER 'artist/layout.tt' title=l('Add Non-Album Track') -%]
     [%- WRAPPER 'components/box.tt' header=l('Add Non-Album Track') -%]
-    [% INCLUDE 'editsuite/suiteloader.tt' %]
+    [% INCLUDE 'scripts/suiteloader.tt' %]
         [%- WRAPPER 'layout/guidelines.tt' -%]
             [%- create_guideline(l('Please enter the titles of the tracks you wish to add as {nonalbum_doc|non-album tracks}.', {nonalbum_doc => doc_link("NonAlbumTrack")})) -%]
             [%- create_guideline(l('Blank tracks will be ignored.  Leave empty the fields that you do not need.')) -%]

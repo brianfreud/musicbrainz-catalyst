@@ -17,6 +17,7 @@ requires 'Catalyst::Plugin::Cache'                     => '0.08';
 requires 'Catalyst::Plugin::Cache::Memcached'          => '';
 requires 'Catalyst::Plugin::I18N'                      => '0.08';
 requires 'Catalyst::Plugin::Session::State::Cookie'    => '0.09';
+requires 'Catalyst::Plugin::Session::Store::FastMmap' => '0.05';
 requires 'Catalyst::Plugin::StackTrace'                => '0.09';
 requires 'Catalyst::Plugin::Static::Simple'            => '0.20';
 requires 'Catalyst::Runtime'                           => '5.71000';
@@ -53,7 +54,6 @@ requires 'YAML'                                        => '0.680';
 
 recommends 'Apache::Session';
 recommends 'Apache::Session::File';
-recommends 'Catalyst::Plugin::Session::Store::FastMmap' => '0.05';
 
 catalyst;
 

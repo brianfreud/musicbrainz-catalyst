@@ -5,6 +5,19 @@
  clear: both;
 }
 
+.js-progress-text {
+ padding-left: 3em;
+ padding-right: 2em;
+}
+
+.js-progress-text span {
+ float: left;
+ padding-top: 4px;
+ padding-left: 6px;
+ font-weight: bolder;
+}
+
+
 .es_error_hint {
  background: url(/static/images/header-bg-orangefade.gif);
  border: 2px solid #F40;

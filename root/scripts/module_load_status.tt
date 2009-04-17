@@ -1,0 +1,6 @@
+<div style="padding-left:3em;padding-right:2em;">
+    <span style="float:left;padding-top:4px;padding-left:6px;font-weight:bolder;" id="es-statusbar-text">
+    </span>
+    <div id="es-load-status">
+    </div>
+</div>

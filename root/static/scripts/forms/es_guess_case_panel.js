@@ -13,9 +13,9 @@ $(function() {
     $modeSelection = $("#es-gc-selection"); // Mode select element
     reportErrors = true; // Permit the storeError, clearError, and alertUser methods.
     $mode = handleCookie("get", "es-gc-mode", "English"); // Persistent mode selection from cookie.
-    $gckeepUppercased = handleCookie("get", "es-gc-checkbox3", true); // Keep uppercase words uppercased.
-    $gcautoFixTitle = handleCookie("get", "es-gc-checkbox6", false);  // Automatically Guess Case track titles.
-    $gcTurkishI = handleCookie("get", "es-gc-checkbox7", false);      // Use Turkish rules for capitalization.
+    $gckeepUppercased = handleCookie("get", "es-gc-checkbox1", true); // Keep uppercase words uppercased.
+    $gcautoFixTitle = handleCookie("get", "es-gc-checkbox2", false);  // Automatically Guess Case track titles.
+    $gcTurkishI = handleCookie("get", "es-gc-checkbox3", false);      // Use Turkish rules for capitalization.
     /* --------------------------------------------------------------------- */
     /* Hook the blur event for all GC fields to enable storing after         */
     /* manual changes and to enable automatic Guess Casing specifically      */
@@ -65,18 +65,18 @@ $(function() {
     /* --------------------------------------------------------------------- */
     /* Handle changes to user Guess Case preferences in the ES panel.        */
     /* --------------------------------------------------------------------- */
-    $("#es-gc-opt3").change(function() {
-        handleCookie("set", "es-gc-checkbox3", ($('#es-gc-opt3').is(':checked')));
-        $gckeepUppercased = ($('#es-gc-opt3').is(':checked'));
+    $("#es-gc-opt1").change(function() {
+        handleCookie("set", "es-gc-checkbox1", ($('#es-gc-opt1').is(':checked')));
+        $gckeepUppercased = ($('#es-gc-opt1').is(':checked'));
     });
-    $("#es-gc-opt6").change(function() {
-        handleCookie("set", "es-gc-checkbox6", ($('#es-gc-opt6').is(':checked')));
-        $gcautoFixTitle = ($('#es-gc-opt6').is(':checked'));
+    $("#es-gc-opt2").change(function() {
+        handleCookie("set", "es-gc-checkbox2", ($('#es-gc-opt2').is(':checked')));
+        $gcautoFixTitle = ($('#es-gc-opt2').is(':checked'));
         renewGCTracks();
     });
-    $("#es-gc-opt7").change(function() {
-        handleCookie("set", "es-gc-checkbox7", ($('#es-gc-opt7').is(':checked')));
-        $gcTurkishI = ($('#es-gc-opt7').is(':checked'));
+    $("#es-gc-opt3").change(function() {
+        handleCookie("set", "es-gc-checkbox3", ($('#es-gc-opt3').is(':checked')));
+        $gcTurkishI = ($('#es-gc-opt3').is(':checked'));
     });
     /* --------------------------------------------------------------------- */
     /* Turn on the tooltips, unless user has them off in preferences.        */

@@ -1,16 +1,5 @@
-<div style="text-align: right;">
-    <a href="#" class="js-fieldset-trigger-show hidden" id="js-fieldset-sr-trigger-show">
-        <span>
-            [%- l('Show Search & Replace') -%]
-        </span>
-    </a>
-    <a href="#" class="js-fieldset-trigger-hide hidden" id="js-fieldset-sr-trigger-hide">
-        <span>
-            [%- l('Hide Search & Replace') -%]
-        </span>
-    </a>
-</div>
-[%- WRAPPER 'forms/fieldset.tt' legend='Search & Replace' class="js-fieldset" id="js-fieldset-sr" -%]
+[%- INCLUDE "scripts/module_trigger.tt" show=l('Show Search & Replace') hide=l('Hide Search & Replace') module="sr" -%]
+[%- WRAPPER 'forms/fieldset.tt' legend='Search & Replace' class="js-fieldset hidden" id="js-fieldset-sr" -%]
     <div style="float:left;">
         [%- WRAPPER 'forms/row.tt' -%]
             <strong>

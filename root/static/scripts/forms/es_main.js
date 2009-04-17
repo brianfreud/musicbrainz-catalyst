@@ -137,7 +137,7 @@ function loadFiles() {
                 progressBar = 1;
             }
             if (textStrings) {
-                $("#es-sg-explain").text(text.Loading+" "+fileToLoad);
+                $('#es-statusbar-text').text(text.Loading+" "+fileToLoad);
             }
             if (fileToLoad.substr(0, 4) !== "http") { // Allow full urls to be passed, but still allow passing "shorthand" urls for local files
                 if (fileToLoad.match(/^jquery\./)) { // If this is a jQuery plugin file
@@ -145,8 +145,8 @@ function loadFiles() {
                 } else if (fileToLoad.match(/^es_/)) { // If this is an Edit Suite file
                     fileToLoad = filelocs.serverForms + fileToLoad; // Prepend that subdirectory name onto the file name
                 }
-                if (fileToLoad == (filelocs.serverForms + "es_text.tt")) {
-                        fileToLoad = "http://" + filelocs.serverBase + "/es_text.tt";
+                if (fileToLoad == "js_text.tt") {
+                        fileToLoad = "http://" + filelocs.serverBase + "/scripts/js_text.tt";
                         $.ajax({
                             type: "GET",
                             url: fileToLoad,
@@ -203,9 +203,42 @@ function startLoad() {
 $(function() {
     /* -------------------------------------------------------------------------*/
     /* Unhide the modules                                                       */
-    /*     (ensures that non-JQuery browsers never see the Edit Suite)          */
+    /*     (ensures that non-JQuery browsers never see the JS modules)          */
     /* -------------------------------------------------------------------------*/
     $modules.removeClass("hidden");
+    /* -------------------------------------------------------------------------*/
+    /* Turn on show/hide functionality for the JS modules.                      */
+    /* -------------------------------------------------------------------------*/
+    $("#js-fieldset-gc-trigger-show").click(function() {
+        $("#js-fieldset-gc").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-gc-trigger-hide").click(function() {
+        $("#js-fieldset-gc").addClass("hidden");
+        $("#js-fieldset-gc-trigger-show").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-hide").addClass("hidden");
+    });
+    $("#js-fieldset-sr-trigger-show").click(function() {
+        $("#js-fieldset-sr").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-sr-trigger-hide").click(function() {
+        $("#js-fieldset-sr").addClass("hidden");
+        $("#js-fieldset-sr-trigger-show").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-hide").addClass("hidden");
+    });
+    $("#js-fieldset-tp-trigger-show").click(function() {
+        $("#js-fieldset-tp").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-tp-trigger-hide").click(function() {
+        $("#js-fieldset-tp").addClass("hidden");
+        $("#js-fieldset-tp-trigger-show").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-hide").addClass("hidden");
+    });
     /* ------------------------------------------------------------------------ */
     /* Create container for the Guess All, Undo All, Revert All,                */
     /* and mode selector dropdown.                                              */
@@ -277,7 +310,7 @@ $(function() {
     /* ------------------------------------------------------------------------ */
     /* Lazy-load the Edit Suite files.                                          */
     /* ------------------------------------------------------------------------ */
-    toBeLoaded.push("es_text.tt"); // Must be the first file loaded
+    toBeLoaded.push("js_text.tt"); // Must be the first file loaded
     startLoad();
     toBeLoaded.push("jquery.jquery-ui.js");
     startLoad();
@@ -291,7 +324,7 @@ $(function() {
     startLoad();
     toBeLoaded.push("jquery.selectboxes.js");
     toBeLoaded.push("jquery.inputHintBox.js");
-    if ($("#es-button1").length !== 0) { // Guess Case
+    if ($("#js-fieldset-gc-trigger-show").length !== 0) { // Guess Case
         toBeLoaded.push("es_names.js");
         toBeLoaded.push("es_guess_case.js");
         toBeLoaded.push("es_guess_case_panel.js");
@@ -303,28 +336,22 @@ $(function() {
     startLoad();
     if ($("#es-button2").length !== 0) { // Undo / Revert
         toBeLoaded.push("es_undo_revert.js");
-        startLoad();
     }
-    if ($("#es-button3").length !== 0) { // Search / Replace
+    if ($("#js-fieldset-sr-trigger-show").length !== 0) { // Search / Replace
         toBeLoaded.push("es_search_replace.js");
-        startLoad();
     }
-    if ($("#es-button4").length !== 0) { // Track Parser
+    if ($("#js-fieldset-tp-trigger-show").length !== 0) { // Track Parser
         toBeLoaded.push("es_track_parser.js");
-        startLoad();
     }
     if ($("#es-button5").length !== 0) { // Style Guidelines
         toBeLoaded.push("es_style_guidelines.js");
-        startLoad();
-    }
-    if ($("#es-button6").length !== 0) { // Suite Settings
-        toBeLoaded.push("es_suite_preferences.js");
-        startLoad();
     }
     if ($("#es-urlfixer").length !== 0) { // URL AutoFixer
         toBeLoaded.push("es_URLfixer.js");
-        startLoad();
     }
     startLoad();
+console.log("a")
     $('head').append('<script type="text/javascript" href="http://www.google.com/jsapi?key=ABQIAAAAutQrCy8v9EMhfZsC7lEANBSTu9g1Vv0xmF87JHH0oUgrycAWThRHDU_DQ9OlY04hXHLL-FL4RKHaKA"></style>');
+console.log("b")
+    $('#es-statusbar-text').text(text.AllLoaded);
 });

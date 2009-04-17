@@ -3,6 +3,7 @@
  ===========================================================================================*/
 var text                   = [];
 text.AddRE                 = "[% l("Add a release event") %]";
+text.AllLoaded             = "[% l("All JavaScript has been loaded.") %]";
 text.AmazonCatalog         = "[% l("This would appear to be an Amazon ASIN, and not a catalog number.  Please note that Amazon ASINs should not be entered here, but should instead be added as a release - url Advanced Relationship.") %]";
 text.RERemove              = "[% l("Remove release event") %]";
 text.AddTrack              = "[% l("Add Track") %]";
@@ -49,7 +50,7 @@ text.Kakko                 = "[% l("unbalanced kakko bracket:") %]";
 text.LabelMask             = "[% l("Label Name") %]";
 text.Lenticular            = "[% l("unbalanced lenticular bracket:") %]";
 text.LikelyACompilation    = "[% l("Based on the release title, this appears to be a Compilation.  However, that is not the release type that is currently set.") %]";
-text.Loading               = "[% l("Loading:") %]";
+text.Loading               = "[% l("Loading Javascript:") %]";
 text.Manipulators          = "[% l("Toggle track manipulation controls") %]";
 text.MonthMask             = "[% l("MM") %]";
 text.MoveDown              = "[% l("Move track down one in the track order.") %]";

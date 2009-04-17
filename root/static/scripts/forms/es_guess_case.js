@@ -2343,7 +2343,7 @@ console.log(stringBeingFixed+"    N");
                 case "eightyseven"       : return fixAndReportMisspelling(p1,"eighty-seven"); 
                 case "eightyeight"       : return fixAndReportMisspelling(p1,"eighty-eight"); 
                 case "eightynine"        : return fixAndReportMisspelling(p1,"eighty-nine"); 
-                case "esharp"            : return fixAndReportMisspelling(p1,"E-sharp");           // 
+                case "esharp"            : return fixAndReportMisspelling(p1,"E-sharp");
                 case "embracable"        : return fixAndReportMisspelling(p1,"embraceable"); 
                 case "enviromental"      : return fixAndReportMisspelling(p1,"environmental");     // 15
                 case "enlightment"       : return fixAndReportMisspelling(p1,"enlightenment"); 

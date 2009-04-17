@@ -20,7 +20,7 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
-#   $Id: Common.pm 10857 2008-11-24 16:27:34Z luks $
+#   $Id$
 #____________________________________________________________________________
 
 use strict;
@@ -52,6 +52,7 @@ use MusicBrainz::Server::Release;
 use MusicBrainz::Server::ReleaseEvent;
 use MusicBrainz::Server::Country;
 use MusicBrainz::Server::LuceneSearch;
+use MusicBrainz::Server::PUID;
 
 use constant MAX_TAGS_PER_REQUEST => 100;
 
@@ -542,7 +543,7 @@ sub xml_track_list
             return undef;
         }
 
-        printf '<track-list count="%s"/>', scalar(@$tracks);
+        printf '<track-list count="%s">', scalar(@$tracks);
         foreach my $tr (@$tracks)
         {
 
@@ -610,15 +611,14 @@ sub xml_track
 
 sub xml_puid
 {
-    require MusicBrainz::Server::PUID;
     my ($tr) = @_;
 
     my $id;
-    my $puid = MusicBrainz::Server::PUID->new($tr->{dbh});
-    my @PUID = $puid->GetPUIDFromTrackId($tr->id);
-    return undef if (scalar(@PUID) == 0);
+    my $puid_obj = MusicBrainz::Server::PUID->new($tr->{dbh});
+    my $PUID = $puid_obj->new_from_track($tr);
+    return unless scalar @$PUID > 0;
     print '<puid-list>';
-    foreach $id (@PUID)
+    foreach $id (@$PUID)
     {
         print '<puid id="';
         print $id->{PUID};
@@ -959,7 +959,7 @@ sub xml_cdstub
     print '<release><title>' . xml_escape($cd->{title}) . '</title>';
     print '<artist><name>'. xml_escape($cd->{artist}) . '</name></artist>' if ($cd->{artist});
 
-    printf '<track-list count="%s"/>', scalar(@{$cd->{tracks}});
+    printf '<track-list count="%s">', scalar(@{$cd->{tracks}});
     foreach my $tr (@{$cd->{tracks}})
     {
         print '<track><title>' . xml_escape($tr->{title}) . '</title>';

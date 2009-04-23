@@ -1,11 +1,7 @@
 [%#- Do not remove apparently empty divs or other elements from the edit suite templates!
     ------------------------------------------------------------------------------------ -%]
-[%# <script type='text/javascript' 
-        src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script> %]
 [%#- Don't load the Edit Suite if the user has turned it off in user preferences -%]
 [%- IF c.user.preferences.get('JS_es') -%]
-    [%# Enable the User Preferences tab on all instances of the Edit Suite %]
-    [%- SET userPreferences=1 -%]
     [% IF guessAll %]
         <span id="es-guessall">
         </span>
@@ -13,11 +9,6 @@
     [%# If the user has the JS_es_Tooltips preference on, then add an empty element to pass that preference on to the JavaScript. %]
     [% IF (c.user.preferences.get('JS_es_Tooltips')) %]
         <span id="es-tips">
-        </span>
-    [% END %]
-    [%# If the user has the JS_es_InlineMode preference off, then add an empty element to pass that preference on to the JavaScript. %]
-    [% IF !(c.user.preferences.get('JS_es_InlineMode')) %]
-        <span id="es-no-secondinline">
         </span>
     [% END %]
     <div id="editsuite" class="es purple es-l hidden" style="width: 100%;">

@@ -126,8 +126,7 @@ $(function() {
     /* Create and insert "Guess All" button for the form.                    */
     /* --------------------------------------------------------------------- */
     var $esControlsDiv = $("#esControlsDiv"),
-        $GACheck = $("#es-guessall"),
-        $ModeTwo = $("#es-no-secondinline").length;
+        $GACheck = $("#es-guessall");
     if ($GACheck.length === 1) {
         $form.each(function(i) {
             gcControlsDiv.append(new GuessAllButton().makeButton(i));
@@ -136,62 +135,47 @@ $(function() {
     /* --------------------------------------------------------------------- */
     /* Check that the user doesn't have the JS_es_InlineMode preference off. */
     /* --------------------------------------------------------------------- */
-    if ($ModeTwo === 0) {
-        /* Create and insert explanatory text. */
-        gcText = jQuery(document.createElement('span'));
-        if ($GACheck.length === 1) {
-            gcText.text(" using Guess Case set to: ");
-        } else {
-            gcText.text("Guess Case is set to: ");
-        }
-        gcText.appendTo(gcControlsDiv);
-        /* --------------------------------------------------------------------- */
-        /* Copy and insert the mode selector dropdown.                           */
-        /* --------------------------------------------------------------------- */
-        $modeSelection.clone().attr("id", "es-gc-selection-copy").removeClass("es-ro").removeClass("es-rm").appendTo(gcControlsDiv)
-        /* --------------------------------------------------------------------- */
-        /* Keep the two Guess Case mode selectors synchronized.                  */
-        /* --------------------------------------------------------------------- */
-        .change(function() {
-            var i = $("#es-gc-selection-copy").selectedValues()[0];
-            $modeSelection.selectOptions(i);
-            $mode = handleCookie("set", "es-gc-mode", i);
-        })
-        .keyup(function() {
-            var i = $("#es-gc-selection-copy").selectedValues()[0];
-            $modeSelection.selectOptions(i);
-            $mode = handleCookie("set", "es-gc-mode", i);
-        });
-        var $modeSelectionClone = $("#es-gc-selection-copy");
-        $modeSelection.change(function() {
-            var i = $modeSelection.selectedValues()[0];
-            $modeSelectionClone.selectOptions(i);
-            $mode = handleCookie("set", "es-gc-mode", i);
-        })
-        .keyup(function() {
-            var i = $modeSelection.selectedValues()[0];
-            $modeSelectionClone.selectOptions(i);
-            $mode = handleCookie("set", "es-gc-mode", i);
-        });
-        /* --------------------------------------------------------------------- */
-        /* or at least keep track of the selected item, in the cookie, if we     */
-        /*  only have the one selector.                                          */
-        /* --------------------------------------------------------------------- */
+    /* Create and insert explanatory text. */
+    gcText = jQuery(document.createElement('span'));
+    if ($GACheck.length === 1) {
+        gcText.text(" using Guess Case set to: ");
     } else {
-        $modeSelection.change(function() {
-            handleCookie("set", "es-gc-mode", $modeSelection.selectedValues()[0]);
-        });
+        gcText.text("Guess Case is set to: ");
     }
+    gcText.appendTo(gcControlsDiv);
+    /* --------------------------------------------------------------------- */
+    /* Copy and insert the mode selector dropdown.                           */
+    /* --------------------------------------------------------------------- */
+    $modeSelection.clone().attr("id", "es-gc-selection-copy").removeClass("es-ro").removeClass("es-rm").appendTo(gcControlsDiv)
+    /* --------------------------------------------------------------------- */
+    /* Keep the two Guess Case mode selectors synchronized.                  */
+    /* --------------------------------------------------------------------- */
+    .change(function() {
+        var i = $("#es-gc-selection-copy").selectedValues()[0];
+        $modeSelection.selectOptions(i);
+        $mode = handleCookie("set", "es-gc-mode", i);
+    })
+    .keyup(function() {
+        var i = $("#es-gc-selection-copy").selectedValues()[0];
+        $modeSelection.selectOptions(i);
+        $mode = handleCookie("set", "es-gc-mode", i);
+    });
+    var $modeSelectionClone = $("#es-gc-selection-copy");
+    $modeSelection.change(function() {
+        var i = $modeSelection.selectedValues()[0];
+        $modeSelectionClone.selectOptions(i);
+        $mode = handleCookie("set", "es-gc-mode", i);
+    })
+    .keyup(function() {
+        var i = $modeSelection.selectedValues()[0];
+        $modeSelectionClone.selectOptions(i);
+        $mode = handleCookie("set", "es-gc-mode", i);
+    });
     /* --------------------------------------------------------------------- */
     /* Make persistent the state of mode selectors between forms.            */
     /* --------------------------------------------------------------------- */
     $modeSelection.selectOptions($mode);
-    /* --------------------------------------------------------------------- */
-    /* Check that the user doesn't have the JS_es_InlineMode preference off. */
-    /* --------------------------------------------------------------------- */
-    if ($ModeTwo === 0) {
-        $modeSelectionClone.selectOptions($mode);
-    }
+    $modeSelectionClone.selectOptions($mode);
     /* --------------------------------------------------------------------- */
     /* Set undo history event triggers.                                      */
     /* --------------------------------------------------------------------- */

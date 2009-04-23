@@ -296,7 +296,6 @@
                         { widget = 'JS_es_searchReplace', label=l('Enable the Search / Replace module.') },
                         { widget = 'JS_es_trackParser', label=l('Enable the Track Parser module.') },
                         { widget = 'JS_es_styleGuidelines', label=l('Enable the Style Guidelines module.') },
-                        { widget = 'JS_es_userPreferences', label=l('Enable the Edit Suite display preferences module. (Useful for debugging purposes only.)') }
                         ] %]
                     [% PROCESS fields %]
                 </fieldset>

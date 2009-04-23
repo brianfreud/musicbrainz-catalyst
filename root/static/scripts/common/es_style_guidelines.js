@@ -25,6 +25,7 @@ $(function() {
     /* -------------------------------------------------------------------------*/
     $("#js-fieldset-sg-trigger-show").click(function() {
         $("#js-fieldset-sg").removeClass("hidden");
+        $("#js-fieldset-sg-row").removeClass("floatRight");
         $("#js-fieldset-sg-trigger-hide").removeClass("hidden");
         $("#js-fieldset-sg-trigger-show").addClass("hidden");
     });
@@ -32,9 +33,11 @@ $(function() {
         $("#es-sg").css({"height" : "0px"});
         $("#es-sg").empty();
         $("#js-fieldset-sg").addClass("hidden");
+        $("#js-fieldset-sg-row").addClass("floatRight");
         $("#js-fieldset-sg-trigger-show").removeClass("hidden");
         $("#js-fieldset-sg-trigger-hide").addClass("hidden");
     });
+    $("#js-fieldset-sg-row").addClass("floatRight");
     var loadGuideline = function(selection) {
         jQuery(function($) {
             $("#es-sg").load("/doc/" + selection + "/bare/");

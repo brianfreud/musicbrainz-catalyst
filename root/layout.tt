@@ -53,7 +53,7 @@
         <script type="text/javascript">
             $(function() {
                 $("input[type='radio']").dblclick(function() {
-                    $("input[type='submit']").click();
+                    $("fieldset:has(div:has(input[type='radio'])) ~ div:has(input[type='submit']) > input[type='submit']").click();
                 });
             });
         </script>

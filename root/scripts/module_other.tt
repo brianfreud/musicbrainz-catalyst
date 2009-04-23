@@ -6,3 +6,7 @@
     <span id="es-guessall">
     </span>
 [%- END -%]
+[%- IF URLFixer -%]
+    <span id="es-urlfixer">
+    </span>
+[%- END -%]

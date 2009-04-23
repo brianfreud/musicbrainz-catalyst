@@ -123,8 +123,12 @@ $(function() {
     }
     /* Create and insert explanatory text. */
     gcText = jQuery(document.createElement('span'));
-    gcText.text(" using Guess Case set to: ");
     gcText.appendTo(gcControlsDiv);
+    if ($GACheck.length === 1) {
+        gcText.text(" " + text.gcMode1 + " ");
+    } else {
+        gcText.text(text.gcMode2 + " ");
+    }
     /* --------------------------------------------------------------------- */
     /* Copy and insert the mode selector dropdown.                           */
     /* --------------------------------------------------------------------- */

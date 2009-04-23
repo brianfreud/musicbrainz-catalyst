@@ -1,4 +1,4 @@
-[%- IF styleGuidelines -%]
+[%- IF styleGuidelines && !suppressStyleGuidelines -%]
     [%- INCLUDE 'scripts/module_style_guidelines.tt' -%]
 [%- END -%]
 <ul>

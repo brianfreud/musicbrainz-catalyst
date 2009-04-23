@@ -1,7 +1,6 @@
-[% SET styleGuidelines=1 %]
-[% PROCESS 'scripts/suitereqs.tt' %]
+[%- SET styleGuidelines=1 -%]
+[%- PROCESS 'scripts/suitereqs.tt' -%]
 [%- WRAPPER 'artist/layout.tt' title=l('Add Artist Alias') -%]
-    [%- INCLUDE 'scripts/suiteloader.tt' -%]
     [%- INCLUDE 'artist/alias_form.tt'
     WRAPPER 'components/box.tt' header=l('Add Artist Alias') -%]
 [%- END -%]

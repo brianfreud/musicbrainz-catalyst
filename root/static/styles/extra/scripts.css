@@ -1,3 +1,7 @@
+.floatRight {
+ float: right;
+}
+
 .js-fieldset label {
  white-space: nowrap;
  text-align: left!important;

@@ -26,11 +26,6 @@
         <h3>
             [% l('Bio:') %]
         </h3>
-        [% IF user.avatar_url %]
-        <div class="gravatar_profile">
-            <img src="[% user.avatar_url %]">
-        </div>
-        [% END %]
         <div class="bio">
             [% html_escape(user.biography or l("[None]")).split("\n").join("<br />") %]
         </div>

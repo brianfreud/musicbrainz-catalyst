@@ -548,7 +548,7 @@ sub second
     		$seconder->id,
     		$self->id,
     	) and do {
-    		$self->{seconder1} = $seconder->id;
+    		$self->{seconder1} = $seconder;
     		$self->{status} = $STATUS_AWAITING_SECONDER_2;
     		return $self;
     	};
@@ -562,14 +562,16 @@ sub second
     	) and do {
     		$self->{seconder2} = $seconder;
     		$self->{status} = $STATUS_VOTING_OPEN;
-    		$self->_send_email('voting_open.tt', as_reply => 1);
     		return $self;
     	};
 
     	return;
 	});
 
-    die unless $self;
+    if ($self)
+    {
+        $self->_send_email('voting_open.tt', as_reply => 1);
+    }
 }
 
 sub is_closed
@@ -722,7 +724,11 @@ sub generate_email_headers
         'Subject'      => 'Autoeditor Election: ' . $self->candidate->name,
         'Sender'       => 'Webserver <webserver@musicbrainz.org>',
         'From'         => 'The Returning Officer <returning-officer@musicbrainz.org>',
+<<<<<<< HEAD:lib/MusicBrainz/Server/AutoEditorElection.pm
         'To'           => 'o.charles@lancaster.ac.uk',
+=======
+        'To'           => '',
+>>>>>>> 6b5a514d2542e9b8e7b3a1ccc1899059b8a9be19:lib/MusicBrainz/Server/AutoEditorElection.pm
         'Content-Type' => 'text/plain',
     ];
 }

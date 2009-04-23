@@ -27,7 +27,6 @@ sub details : Path('') Args(1) Form('AutoEditorElection::Vote')
         $c->model('AutoEditorElection')->new_from_id($election, with_editors => 1)
             or $c->detach('/error_404');
 
-    $election->notify_open;
     $c->stash->{votes} = $election->votes(with_voters => 1);
 }
 

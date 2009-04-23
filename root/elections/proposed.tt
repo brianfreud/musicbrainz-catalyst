@@ -4,7 +4,7 @@
                 { user=candidate.name }) -%]
         </p>
         <p>[% l('Please remember to follow the election <a href="{url}">online</a> and on the mailing lists.'
-                { url=c.uri_for('/elections', election_id }) %]
+                { url=c.uri_for('/elections', election_id) }) %]
         </p>
     [%- END -%]
 [%- END -%]

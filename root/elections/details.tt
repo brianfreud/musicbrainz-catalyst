@@ -7,7 +7,7 @@
                     <td>
                         [% election.candidate.name %]
                         [%- INCLUDE 'forms/submit.tt' label=l('Cancel') inline=1
-                            WRAPPER 'forms/form.tt' action=c.uri_for('/elections/cancel', election.id) inline=1
+                            WRAPPER 'forms/form.tt' action=c.uri_for('/elections/cancel', election.id) quiet=1
                             IF c.user_exists && election.editor_can_cancel(c.user) -%]
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
                         -%]
                         
                         [%- INCLUDE 'forms/submit.tt' label=l('Second') inline=1
-                            WRAPPER 'forms/form.tt' action=c.uri_for('/elections/second', election.id) inline=1
+                            WRAPPER 'forms/form.tt' action=c.uri_for('/elections/second', election.id) quiet=1
                             IF c.user_exists && election.editor_can_second(c.user) -%]
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
                 <p>
                     [% l('You are already supporting this election, and do not need to vote.') -%]
                 </p>
-                [%- ELSE -%]
+                [%- ELSIF c.user.is_auto_editor -%]
                     [%#- Display the voting form -%]
                     [%- WRAPPER 'forms/form.tt' action=c.uri_for('/elections/vote', election.id) -%]
                         [%- INCLUDE 'forms/generic/row.tt' field=form.field('vote') label=l('Vote') -%]

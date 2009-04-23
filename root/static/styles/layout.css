@@ -131,7 +131,7 @@ caption {
 /*
  * Sidebar
  */
-.sidebar {
+#sidebar {
     width: 130px;
     background: #DDD;
     border-right: 1px solid #000;
@@ -139,7 +139,6 @@ caption {
     font-size: 9pt;
     margin-bottom: 20pt;
     margin-top:0px;
-    float: left;
 }
 
 #sidebar .sidebar-toggle {
@@ -241,12 +240,13 @@ caption {
  * Content
  */
 #container {
-    width: 90%;
+    width: 100%;
     float: right;
     margin-left: -200px;
 }
 
 #content {
+	margin-left: 140px;
     padding: 15px;
 }
 
@@ -288,9 +288,9 @@ div.box div.content {
 }
 
 div.bio {
-    width: 90%;
-    border: 1px dotted #CCC;
-    padding: 0px 5px 5px 5px;
+    width: 100%;
+    border: none;
+    padding: 0px;
 }
 
 ul.tagcloud li {
@@ -518,4 +518,11 @@ div.grippie {
     margin-bottom:0pt;
     width:95%;
     height:20%;
+}
+
+table tr.even {
+    background: #fff;
+}
+table tr.odd {
+    background: #eee;
 }

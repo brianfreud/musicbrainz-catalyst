@@ -2,17 +2,14 @@
 [%- WRAPPER 'forms/fieldset.tt' legend='Track Parser' class="js-fieldset hidden" id="js-fieldset-tp" -%]
     [%- WRAPPER 'forms/row.tt' -%]
         [%# Do not wrap the closing tag here, it will create whitespace within the textarea form. %]
-        <textarea id="es-tp-textarea" class="js-fullwidth" cols="90" rows="15"></textarea>
+        <textarea id="es-tp-textarea" class="js-fullwidth" cols="88" rows="15"></textarea>
     [%- END -%]
     [%- BLOCK tpButtons -%]
-        <button id="es-tp-button-[%- button.id -%]">
-            <span>
-                [%- button.text -%]
-            </span>
-        </button>
+        <input type="button" id="es-tp-button-[%- button.id -%]" value="[%- button.text -%]">
+        </input>
     [% END %]
     [%- WRAPPER 'forms/row.tt' -%]
-        <div class="js-tp-buttons">
+        <div class="js-tp-buttons" style="width:30%;">
             [%- WRAPPER 'forms/row.tt' -%]
                 [%- buttons = [
                     { id="titles"   text => l('Parse Titles') },

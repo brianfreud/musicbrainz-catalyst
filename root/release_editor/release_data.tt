@@ -12,11 +12,11 @@
         [%- END -%]
         [%- WRAPPER 'forms/form.tt' -%]
             [% INCLUDE 'scripts/module_search_replace.tt' %]
+            [% INCLUDE 'scripts/module_track_parser.tt' %]    
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Release Information') -%]
                 [%- INCLUDE 'forms/generic/row.tt' field=form.field('title') label=l('Title') class='release-title' -%]
                 [%- INCLUDE 'forms/generic/row.tt' field=form.field('release_artist') label=l('Artist') class='release-artist'-%]
             [%- END -%]
-            [% INCLUDE 'scripts/module_track_parser.tt' %]    
             [%- WRAPPER 'forms/fieldset.tt' legend=l('Tracks') es=1 %]
                     [%- FOR i=[1..form.track_count] -%]
                     <div id="form-add-release-tracks-track_[%- i -%]" class="releasetracks">

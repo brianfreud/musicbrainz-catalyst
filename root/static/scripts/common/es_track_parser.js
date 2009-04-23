@@ -40,15 +40,6 @@ $(function() {
             $("#es-tp-opt9b-row").hide();
         }
     });
-    if(jQuery.browser.opera) {  // Opera renders with additional vertical space - make that space useful to the user.
-        $("#es-tp-textarea").attr("rows","13.5");
-    } else if (new RegExp("epiphany","i").test(navigator.userAgent)) { // Ephiphany and Galeon on the other hand render with too little vertical space.
-        $("#es-tp-textarea").attr("rows","10");
-    } else if (new RegExp("galeon","i").test(navigator.userAgent)) { 
-        $("#es-tp-textarea").attr("rows","10");
-    } else if (new RegExp("konqueror","i").test(navigator.userAgent)) { // Same for Konquerer...
-        $("#es-tp-textarea").attr("rows","10");
-    }
     $("#es-tp-opt9b").attr("value","-/");
     $("#es-tp-opt2").change();
     $("#es-tp-opt4").change();

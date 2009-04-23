@@ -55,7 +55,6 @@
             [% INCLUDE 'scripts/suitemenu.tt' %]
             <div class="es-l es-rd">
                 <div class="es-re">
-                    [% INCLUDE 'scripts/module_default.tt' %]
                     [%- BLOCK esPanels -%]
                         [% FOREACH module=modules %]
                             [% IF ${module.module} && c.user.preferences.get('JS_es_' _ module.module) %]
@@ -64,7 +63,7 @@
                         [% END %]
                     [%- END -%]
                     [%- modules = [
-                        { module="guessCase" panel="scripts/module_guesscase.tt" },
+                        { module="guessCase" panel="scripts/module_guess_case.tt" },
                         { module="undoRevert" panel="scripts/module_undo_revert.tt" },
                         { module="searchReplace" panel="scripts/module_search_replace.tt" },
                         { module="trackParser" panel="scripts/module_track_parser.tt" },

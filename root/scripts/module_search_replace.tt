@@ -18,26 +18,14 @@
             [%- INCLUDE 'forms/widgets/text.tt' type="text" id="es-sr-input-replace" size="75" title=l('Type the new string or JavaScript regexp pattern in this field.') %]
         [%- END -%]
         [%- WRAPPER 'forms/row.tt' -%]
-            <button id="es-sr-button-sr">
-                <span>
-                    [%- l('Search and Replace') -%]
-                </span>
-            </button>
-            <button id="es-sr-button-swap">
-                <span>
-                    [%- l('Swap fields') -%]
-                </span>
-            </button>
-            <button id="es-sr-button-clear">
-                <span>
-                    [%- l('Clear fields') -%]
-                </span>
-            </button>
-            <button id="es-sr-button-undo">
-                <span>
-                    [%- l('Undo Search and Replace') -%]
-                </span>
-            </button>
+            <input type="button" id="es-sr-button-sr" value="[%- l('Search and Replace') -%]">
+            </input>
+            <input type="button" id="es-sr-button-swap" value="[%- l('Swap fields') -%]">
+            </input>
+            <input type="button" id="es-sr-button-clear" value="[%- l('Clear fields') -%]">
+            </input>
+            <input type="button" id="es-sr-button-undo" value="[%- l('Undo Search and Replace') -%]">
+            </input>
         [%- END -%]
         [%- WRAPPER 'forms/row.tt' -%]
             [%- l('Search and replace presets:') -%]
@@ -59,6 +47,7 @@
                 { value="8"  description => l('Remove ##. from titles.') },
             ] -%]
             <select id="es-sr-selection">
+                <option value="" selected="selected"> </option>
                 [%- PROCESS presetOptions -%]
             </select>
         [%- END -%]

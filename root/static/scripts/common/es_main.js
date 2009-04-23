@@ -47,7 +47,7 @@ filelocs.serverJavaScript = "/static/scripts/";            // Relative location 
 filelocs.serverImage = "/static/images/es/";               // Relative location of base image directory on the server
 filelocs.serverStyles = "/static/styles/extra/";           // Relative location of base image directory on the server
 filelocs.serverJQuery = "jquery/";                         // Relative location of jQuery scripts / styles directories on the server
-filelocs.serverForms = "forms/";                           // Relative location of form scripts directory on the server
+filelocs.serverCommon = "common/";                         // Relative location of "common" scripts directory on the server
 /*===========================================================================================
  *   CSS Classes                                                                            *
  ===========================================================================================*/
@@ -143,7 +143,7 @@ function loadFiles() {
                 if (fileToLoad.match(/^jquery\./)) { // If this is a jQuery plugin file
                     fileToLoad = filelocs.serverJQuery + fileToLoad; // Prepend that subdirectory name onto the file name
                 } else if (fileToLoad.match(/^es_/)) { // If this is an Edit Suite file
-                    fileToLoad = filelocs.serverForms + fileToLoad; // Prepend that subdirectory name onto the file name
+                    fileToLoad = filelocs.serverCommon + fileToLoad; // Prepend that subdirectory name onto the file name
                 }
                 if (fileToLoad == "js_text.tt") {
                         fileToLoad = "http://" + filelocs.serverBase + "/scripts/js_text.tt";
@@ -334,7 +334,7 @@ $(function() {
     toBeLoaded.push("jquery.impromptu.js");
     toBeLoaded.push("jquery.impromptu.css");
     startLoad();
-    if ($("#es-button2").length !== 0) { // Undo / Revert
+    if ($("#es-ur").length !== 0) { // Undo / Revert
         toBeLoaded.push("es_undo_revert.js");
     }
     if ($("#js-fieldset-sr-trigger-show").length !== 0) { // Search / Replace
@@ -350,8 +350,6 @@ $(function() {
         toBeLoaded.push("es_URLfixer.js");
     }
     startLoad();
-console.log("a")
     $('head').append('<script type="text/javascript" href="http://www.google.com/jsapi?key=ABQIAAAAutQrCy8v9EMhfZsC7lEANBSTu9g1Vv0xmF87JHH0oUgrycAWThRHDU_DQ9OlY04hXHLL-FL4RKHaKA"></style>');
-console.log("b")
     $('#es-statusbar-text').text(text.AllLoaded);
 });

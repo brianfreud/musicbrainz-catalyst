@@ -32,7 +32,6 @@
         [%- INCLUDE "forms/generic/row.tt" field=form.field("sortname") label=l('Sort Name') class='artist-sort-name' -%]
         [%- INCLUDE "forms/generic/row.tt" field=form.field("resolution") label=l('Comment') class='artist-resolution' -%]
     [%- END -%]
-    [% INCLUDE 'scripts/js_fieldset.tt' %]
     [%- WRAPPER 'forms/fieldset.tt' legend=l('Date Period') -%]
         <p>
             [%- l('Dates are in the format YYYY-MM-DD. Partial dates such as YYYY-MM or just YYYY are OK, or you can omit the date entirely.') -%]

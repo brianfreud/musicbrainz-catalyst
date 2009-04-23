@@ -21,45 +21,39 @@ $(function() {
         $("#es-sr").show();
     });
     /* Add presets functionality. */
-    $('#es-sr-preset1').click(function() {
+    $("#es-sr-selection").click(function() {
         setUseRegExp();
-        setSearchField("\\(|\\)");
         setReplaceField("");
-    });
-    $('#es-sr-preset2').click(function() {
-        setUseRegExp();
-        setSearchField("\\[|\\]");
-        setReplaceField("");
-    });
-    $('#es-sr-preset3').click(function() {
-        setUseRegExp();
-        setSearchField("\\{|\\}");
-        setReplaceField("");
-    });
-    $('#es-sr-preset4').click(function() {
-        setUseRegExp();
-        setSearchField("\\(|\\)|\\[|\\]|\\{|\\}");
-        setReplaceField("");
-    });
-    $('#es-sr-preset5').click(function() {
-        setUseRegExp();
-        setSearchField("\\[([^\\]]*)\\]");
-        setReplaceField("($1)");
-    });
-    $('#es-sr-preset6').click(function() {
-        setUseRegExp();
-        setSearchField("\\(([^\\)]*)\\)");
-        setReplaceField("[$1]");
-    });
-    $('#es-sr-preset7').click(function() {
-        setUseRegExp();
-        setSearchField("#(\\d*)");
-        setReplaceField("No. $1");
-    });
-    $('#es-sr-preset8').click(function() {
-        setUseRegExp();
-        setSearchField("((\\d)(\\d).\\s?)");
-        setReplaceField("");
+        switch ($("#es-sr-selection").selectedValues()[0]) {
+            case "1":
+                setSearchField("\\(|\\)");
+                break;
+            case "2":
+                setSearchField("\\[|\\]");
+                break;
+            case "3":
+                setSearchField("\\{|\\}");
+                break;
+            case "4":
+                setSearchField("\\(|\\)|\\[|\\]|\\{|\\}");
+                break;
+            case "5":
+                setSearchField("\\[([^\\]]*)\\]");
+                setReplaceField("($1)");
+                break;
+            case "6":
+                setSearchField("\\(([^\\)]*)\\)");
+                setReplaceField("[$1]");
+                break;
+            case "7":
+                setSearchField("#(\\d*)");
+                setReplaceField("No. $1");
+                break;
+            case "8":
+                setSearchField("((\\d)(\\d).\\s?)");
+                break;
+            default:
+        };
     });
     /* Add swap fields functionality. */
     $('#es-sr-button-swap').click(function() {

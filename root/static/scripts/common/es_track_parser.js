@@ -10,11 +10,6 @@ $(function() {
         $("#es-tp-presets *").tooltip();
         $("#es-tp-loadfromfile *").tooltip();
     }
-    $('#es-button4').click(function() {
-        $("#es-sg-explain").text("Paste and parse release information to fill the form fields.");
-        $(".esdisplay").hide();
-        $("#es-tp").show();
-    });
     /* Handle options which don't make sense unless other options are also selected. */
     $("#es-tp-opt2").change(function() {
         if ($("#es-tp-opt2").attr("checked")) {
@@ -27,18 +22,22 @@ $(function() {
     $("#es-tp-opt4").change(function() {
         if ($("#es-tp-opt4").attr("checked")) {
             $("#es-tp-opt5-span").show();
+            $("#es-tp-button-times").show();
         } else {
             $("#es-tp-opt5").attr("checked",false);
             $("#es-tp-opt5-span").hide();
+            $("#es-tp-button-times").hide();
         }
     });
     $("#es-tp-opt9").change(function() {
         if ($("#es-tp-opt9").attr("checked")) {
             $("#es-tp-button-artists").show();
             $("#es-tp-opt9b-span").css("visibility","visible");
+            $("#es-tp-opt9b-row").show();
         } else {
             $("#es-tp-button-artists").hide();
             $("#es-tp-opt9b-span").css("visibility","hidden");
+            $("#es-tp-opt9b-row").hide();
         }
     });
     if(jQuery.browser.opera) {  // Opera renders with additional vertical space - make that space useful to the user.

@@ -3,5 +3,5 @@
     [%# Load the core edit suite files.  %]
     [%# JQuery UI's .js can be lazy loaded, but the JQuery UI .css file has to be pre-loaded, else the browser doesn't load the @includes properly. %]
     [%- scripts_css = "scripts.css jquery/jquery.ui.all.css" -%]
-    [%- scripts_js = "forms/es_main.js" %]
+    [%- scripts_js = "common/es_main.js" %]
 [% END %]

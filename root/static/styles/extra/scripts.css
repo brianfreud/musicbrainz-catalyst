@@ -7,7 +7,7 @@
 
 .js-progress-text {
  padding-left: 3em;
- padding-right: 2em;
+ padding-right: 3em;
 }
 
 .js-progress-text span {
@@ -16,6 +16,38 @@
  padding-left: 6px;
  font-weight: bolder;
 }
+
+.js-fullwidth {
+ width: 100%;
+}
+
+.js-tp-buttons {
+ float: left;
+ text-align: center;
+ margin-left: 5%;
+ margin-right: 5%;
+}
+
+.js-tp-options {
+ float: left;
+ text-align: center;
+ white-space: nowrap;
+}
+
+.js-tp-separator-text {
+ vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .es_error_hint {

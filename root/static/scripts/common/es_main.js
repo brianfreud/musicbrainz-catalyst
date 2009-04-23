@@ -145,48 +145,35 @@ function loadFiles() {
                 } else if (fileToLoad.match(/^es_/)) { // If this is an Edit Suite file
                     fileToLoad = filelocs.serverCommon + fileToLoad; // Prepend that subdirectory name onto the file name
                 }
-                if (fileToLoad == "js_text") {
-                        fileToLoad = "http://" + filelocs.serverBase + "/js_text";
+                switch (new RegExp(/\.css|\.js/).exec(fileToLoad).toString()) { // Handle the url depending upon which type of file it is
+                    case ".js":
+                        fileToLoad = "http://" + filelocs.serverBase + filelocs.serverJavaScript + fileToLoad;
                         $.ajax({
                             type: "GET",
                             url: fileToLoad,
                             error: loadError,
                             success: loadSuccess,
                             dataType: "script",
-                            cache: false  // Always leave this set to false; the user will end up redownloading it each time,
-                        });               // but it is small, and that way the user can control what language.  (Not a static file!)
-                } else {
-                    switch (new RegExp(/\.css|\.js/).exec(fileToLoad).toString()) { // Handle the url depending upon which type of file it is
-                        case ".js":
-                            fileToLoad = "http://" + filelocs.serverBase + filelocs.serverJavaScript + fileToLoad;
-                            $.ajax({
-                                type: "GET",
-                                url: fileToLoad,
-                                error: loadError,
-                                success: loadSuccess,
-                                dataType: "script",
-                                cache: false
-                            });
-                            break;
-                        case ".css":
-                            fileToLoad = "http://" + filelocs.serverBase + filelocs.serverStyles + fileToLoad;
-                            $.ajax({
-                                type: "GET",
-                                url: fileToLoad,
-                                success: loadSuccessCss,
-                                error: loadError,
-                                dataType: "html",
-                                cache: false
-                            });
-                            break;
-                        default:
-                    }
+                            cache: false
+                        });
+                        break;
+                    case ".css":
+                        fileToLoad = "http://" + filelocs.serverBase + filelocs.serverStyles + fileToLoad;
+                        $.ajax({
+                            type: "GET",
+                            url: fileToLoad,
+                            success: loadSuccessCss,
+                            error: loadError,
+                            dataType: "html",
+                            cache: false
+                        });
+                        break;
+                    default:
                 }
             }
         }
     } else {  // Done loading files
         loadingState = true; // Unlock the file loader
-        $("#es-sg-explain").text(text.ESLoaded);
         $('#es-loader').html(text.ESBeginA+"<br />"+text.ESBeginB);
     } 
 }
@@ -205,14 +192,17 @@ $(function() {
     /* Create container for the Guess All, Undo All, Revert All,                */
     /* and mode selector dropdown.                                              */
     /* ------------------------------------------------------------------------ */
-    gcControlsDiv = jQuery(document.createElement('div')).addClass(buttonContainer)
-                                                         .css("margin-top", "-3em")
-                                                         .addClass("row")
+    gcControlsDiv = jQuery(document.createElement('div')).addClass("js-button-row")
+                                                         .css({"paddingBottom" : "0",})
                                                          .attr("id", "esControlsDiv");
     /* ------------------------------------------------------------------------ */
     /* Insert the Guess All and mode selector div into the form.                */
     /* ------------------------------------------------------------------------ */
     gcControlsDiv.appendTo($form.get(0));
+    /* ------------------------------------------------------------------------ */
+    /* Hide the "Add another track" checkbox's div.                             */
+    /* ------------------------------------------------------------------------ */
+    $("input[name='more_tracks']").parent().hide();
     /* ------------------------------------------------------------------------ */
     /* Calculate the total size of the Edit Suite files.                        */
     /* ------------------------------------------------------------------------ */
@@ -232,14 +222,10 @@ $(function() {
     totalFileSize += 18384;       // es_main.js
     currentLoadedSize = totalFileSize;
     /* From lazy-load:  */
-    totalFileSize += 2086;        // es_text.tt
     totalFileSize += 21119;       // jquery.jquery-ui.js
     totalFileSize += 3454;        // es_stack.js
-    if ($noTipsCheck) {           // fancy tooltips option
-        totalFileSize += 1402;    // jquery.bgiframe.min.js
-        totalFileSize += 207;     // jquery.tooltip.css
-        totalFileSize += 8086;    // jquery.tooltip.js
-    }
+    totalFileSize += 207;         // jquery.tooltip.css
+    totalFileSize += 8086;        // jquery.tooltip.js
     totalFileSize += 23902;       // es_functions.js
     totalFileSize += 13114;       // jquery.selectboxes.js
     if ($("#es-button1").length !== 0) { // Guess Case
@@ -272,17 +258,12 @@ $(function() {
     /* ------------------------------------------------------------------------ */
     /* Lazy-load the Edit Suite files.                                          */
     /* ------------------------------------------------------------------------ */
-    toBeLoaded.push("js_text"); // Must be the first file loaded
-    startLoad();
     toBeLoaded.push("jquery.jquery-ui.js");
     startLoad();
     toBeLoaded.push("es_stack.js");
     toBeLoaded.push("es_functions.js");
-    if ($noTipsCheck) { // Fancy tooltips option
-        toBeLoaded.push("jquery.bgiframe.min.js");
-        toBeLoaded.push("jquery.tooltip.css");
-        toBeLoaded.push("jquery.tooltip.js");
-    }
+    toBeLoaded.push("jquery.tooltip.css");
+    toBeLoaded.push("jquery.tooltip.js");
     startLoad();
     toBeLoaded.push("jquery.selectboxes.js");
     toBeLoaded.push("jquery.inputHintBox.js");
@@ -305,7 +286,7 @@ $(function() {
     if ($("#js-fieldset-tp-trigger-show").length !== 0) { // Track Parser
         toBeLoaded.push("es_track_parser.js");
     }
-    if ($("#es-button5").length !== 0) { // Style Guidelines
+    if ($("#js-fieldset-sg-trigger-show").length !== 0) { // Style Guidelines
         toBeLoaded.push("es_style_guidelines.js");
     }
     if ($("#es-urlfixer").length !== 0) { // URL AutoFixer

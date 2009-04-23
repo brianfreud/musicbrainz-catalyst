@@ -87,20 +87,9 @@ $(function() {
         $gcTurkishI = ($('#es-gc-opt3').is(':checked'));
     });
     /* --------------------------------------------------------------------- */
-    /* Turn on the tooltips, unless user has them off in preferences.        */
+    /* Turn on the tooltips.                                                 */
     /* --------------------------------------------------------------------- */
-    if ($noTipsCheck) {
-        $("#es-gc-optionset1 *").tooltip();
-        $("#es-gc-optionset2 *").tooltip();
-    }
-    /* --------------------------------------------------------------------- */
-    /* Attach ES panel display function to the ES GC button.                 */
-    /* --------------------------------------------------------------------- */
-    $('#es-button1').click(function() {
-        $("#es-sg-explain").text(text.GuessCasePrefs);
-        $(".esdisplay").hide();
-        $("#es-gc").show();
-    });
+    $("#js-fieldset-gc *").tooltip();
     /* --------------------------------------------------------------------- */
     /* Create and insert "Guess Case" buttons for each title & artist field. */
     /* --------------------------------------------------------------------- */
@@ -132,16 +121,9 @@ $(function() {
             gcControlsDiv.append(new GuessAllButton().makeButton(i));
         });
     }
-    /* --------------------------------------------------------------------- */
-    /* Check that the user doesn't have the JS_es_InlineMode preference off. */
-    /* --------------------------------------------------------------------- */
     /* Create and insert explanatory text. */
     gcText = jQuery(document.createElement('span'));
-    if ($GACheck.length === 1) {
-        gcText.text(" using Guess Case set to: ");
-    } else {
-        gcText.text("Guess Case is set to: ");
-    }
+    gcText.text(" using Guess Case set to: ");
     gcText.appendTo(gcControlsDiv);
     /* --------------------------------------------------------------------- */
     /* Copy and insert the mode selector dropdown.                           */

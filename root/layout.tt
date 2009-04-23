@@ -42,6 +42,7 @@
         [%- INCLUDE "layout/sidebar.tt" UNLESS no_sidebar -%]
         [%- INCLUDE "layout/footer-bar.tt" -%]
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js_text"></script>
         [%- IF includeJQueryUI -%]
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
         [%- END %]

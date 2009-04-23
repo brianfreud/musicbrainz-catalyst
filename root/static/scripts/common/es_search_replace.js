@@ -21,18 +21,8 @@ $(function() {
     var setUseRegExp = function() {
         $("#es-sr-opt1").attr("checked","checked");
     }
-    /* Add fancy tooltips. */
-    if ($noTipsCheck) {
-        $("#es-sr-controls1 *").tooltip();
-        $("#es-sr-controls2 *").tooltip();
-        $("#es-sr-presets *").tooltip();
-    }
-    /* Add ES panel button functionality. */
-    $('#es-button3').click(function() {
-        $("#es-sg-explain").text("Search and replace text within form fields.");
-        $(".esdisplay").hide();
-        $("#es-sr").show();
-    });
+    /* Turn on the tooltips. */
+    $("#js-fieldset-sr *").tooltip();
     /* Add presets functionality. */
     $("#es-sr-selection").click(function() {
         setUseRegExp();

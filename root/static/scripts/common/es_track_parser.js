@@ -19,10 +19,8 @@ $(function() {
         inputTitles = [],
         inputArtists = [],
         inputDurations = [];
-    if ($noTipsCheck) {
-        $("#es-tp-presets *").tooltip();
-        $("#es-tp-loadfromfile *").tooltip();
-    }
+    /* Turn on the tooltips. */
+    $("#js-fieldset-tp *").tooltip();
     /* Handle options which don't make sense unless other options are also selected. */
     $("#es-tp-opt2").change(function() {
         if ($("#es-tp-opt2").attr("checked")) {

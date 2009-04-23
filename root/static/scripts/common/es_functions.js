@@ -354,11 +354,7 @@ var UndoAllButton = EsButton.extend({
     makeButton: function(number) {
         return this._super(number).click(
             function() {
-                if ($("#es-ur-ur1").attr("checked")) {  // If the user has Undo All configured to ask for confirmation
-                    alertUser("confirm", text.ConfirmUndoAll, undoAllConfirm); // then ask for confirmation, and upon confirmation, run Undo All.
-                } else {  // Otherwise, just run Undo All without asking the user for confirmation.
-                    undoAllConfirm(true);
-                }
+                undoAll();
             }
         );
     }
@@ -373,11 +369,7 @@ var RevertAllButton = EsButton.extend({
     makeButton: function(number) {
         return this._super(number).click(
             function() {
-                if ($("#es-ur-ur2").attr("checked")) {  // If the user has Revert All configured to ask for confirmation
-                    alertUser("confirm", text.ConfirmRevertAll, revertAllConfirm); // then ask for confirmation, and upon confirmation, run Revert All.
-                } else {  // Otherwise, just run Revert All without asking the user for confirmation.
-                    revertAllConfirm(true);
-                }
+                revertAll();
             }
         );
     }
@@ -801,25 +793,6 @@ $(function() {
     $(".only-if-no-javascript").hide();
     $(".only-if-javascript").show();
     /* -------------------------------------------------------------------------*/
-    /* Enable the minimize / maximize button on the Edit Suite.                 */
-    /* -------------------------------------------------------------------------*/
-    $("#es-min").unbind("click");
-    $("#es-min").bind("click",
-    function() {
-        $("#editsuite").css({"border":"0 none"});
-        $(".es-main").slideUp("fast");
-        $("#es-min").hide();
-        $("#es-max").show();
-    });
-    $("#es-max").unbind("click");
-    $("#es-max").bind("click",
-    function() {
-        $("#editsuite").css({"border":"1px solid #736DAB"});
-        $(".es-main").slideDown("fast");
-        $("#es-max").hide();
-        $("#es-min").show();
-    });
-    /* -------------------------------------------------------------------------*/
     /* Remove the ?:?? that is in the duration fields - text hinting can't      */
     /* accidentally be submitted, they can.                                     */
     /* -------------------------------------------------------------------------*/
@@ -887,15 +860,6 @@ $(function() {
     /* Give a heads up if it appears as though an ASIN has been entered as a catalog number. */
     catalogNumberCheck();
     /* -------------------------------------------------------------------------*/
-    /* Set controls for the credits tab.                                        */
-    /* -------------------------------------------------------------------------*/
-    $('#es-button0').click(function() {
-        $("#es-sg-explain").text("");
-        $(".esdisplay").hide();
-        $("#escredits").show();
-        $("#es-sg-explain").text(text.EditSuiteCredits);
-    });
-    /* -------------------------------------------------------------------------*/
     /* Add track insertion, manipulation, and removal controls.                 */
     /* -------------------------------------------------------------------------*/
     $(".releasetracks").prepend('<div class="es-track-controls" style="position: absolute; display: inline; margin-left: -1.4em;">' +
@@ -918,7 +882,8 @@ $(function() {
     $(".track_number").before('<input value="↑" title="' + text.MoveUp + '" class="es-track-controls es-track-up" type="button" style="padding:0 3px 0 3px;font-weight:bolder;"/>');
     $(".track_number").after('<input value="↓" title="' + text.MoveDown + '" class="es-track-controls es-track-down" type="button" style="padding:0 3px 0 3px;font-weight:bolder;"/>');
     setTrackMovers();
-    $("#form-add-release-tracks-track_1").before('<input id="es-button-manipulators" type="button" value="' + text.Manipulators + '" style="font-size: .9em; margin-bottom: 1.5em;" /><br />');
+    $("#form-controls").prepend('<input id="es-button-manipulators" type="button" value="' + text.Manipulators + '" style="float: left;" />')
+                       .css({"marginRight" : "-10pt"});
     $("#es-button-manipulators").click(function() {
         $(".es-track-controls").toggle();
         $(".es-track-up:first").hide();

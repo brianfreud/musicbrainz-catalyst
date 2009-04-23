@@ -12,7 +12,7 @@ function fixLinks() {
                 e.preventDefault();
                 $("#es-sg").empty();
                 jQuery(function($) {
-                    $("#es-sg").load(oldtarget.replace('/doc/', '/doc/bare/'));
+                    $("#es-sg").load(oldtarget.replace(/\/doc\/(.*)"\s/g, '/doc/$1/bare" '));
                     fixLinks();
                 });
             });
@@ -20,25 +20,43 @@ function fixLinks() {
     });
 }
 $(function() {
-    $('#es-button5').click(function() {
-        $("#es-sg-explain").text(text.PickGuideline);
-        $(".esdisplay").hide();
-        $("#es-sg-select").show();
-        $("#es-sg-select").friendlyselect();
-        $("#es-sg").show();
+    /* -------------------------------------------------------------------------*/
+    /* Turn on show/hide functionality
+    /* -------------------------------------------------------------------------*/
+    $("#js-fieldset-sg-trigger-show").click(function() {
+        $("#js-fieldset-sg").removeClass("hidden");
+        $("#js-fieldset-sg-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-sg-trigger-show").addClass("hidden");
     });
-    $("#es-sg-select").change(function() {
-        if ($('#es-sg-selection').val() != "none") {
-            $("#es-sg").empty();
-            $("#es-sg-throbber").hide();
-            $("#es-sg-error").hide();
-            $("#es-sg").show();
-            jQuery(function($) {
-                $("#es-sg").load("/doc/bare/" + $('#es-sg-selection').val());
-            });
-        }
+    $("#js-fieldset-sg-trigger-hide").click(function() {
+        $("#es-sg").css({"height" : "0px"});
+        $("#es-sg").empty();
+        $("#js-fieldset-sg").addClass("hidden");
+        $("#js-fieldset-sg-trigger-show").removeClass("hidden");
+        $("#js-fieldset-sg-trigger-hide").addClass("hidden");
     });
-    $().ajaxStart(function() {
+    var loadGuideline = function(selection) {
+        jQuery(function($) {
+            $("#es-sg").load("/doc/" + selection + "/bare/");
+        });
+        $("#es-sg").css({"height" : "450px"});
+    };
+    $("#es-sg-guidelines").blur(function() {
+        loadGuideline($("#es-sg-guidelines").val())
+    });
+    $("#es-sg-guidelines").keyup(function() {
+        loadGuideline($("#es-sg-guidelines").val())
+    });
+    $("#es-sg-capitalization").blur(function() {
+        loadGuideline($("#es-sg-capitalization").val())
+    });
+    $("#es-sg-capitalization").keyup(function() {
+        loadGuideline($("#es-sg-capitalization").val())
+    });
+    $("#es-sg").bind("ajaxSend", function(){
         $("#es-sg-explain").html('<img src="/static/images/throbber.gif" /> ' + text.Loading + '&hellip;').fadeIn("1000");
+    }).bind("ajaxStop", function(){
+        fixLinks();
+        $("#es-sg-explain").html(text.Loaded);
     });
 });

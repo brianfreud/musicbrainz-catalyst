@@ -8,7 +8,7 @@
         * [% text %]
     </option>
 [%- END -%]
-<select style="font-size: 110%;" id="es-sg-selection">
+<select style="font-size: 110%;" id="es-sg-guidelines">
     <option value="none" selected="selected">
         &nbsp;
     </option>
@@ -53,7 +53,9 @@
         [% add_guideline('VersusStyle', l('Versus Style')) %]
         [% add_guideline('VolumeNumberStyle', l('Volume Number Style')) %]
     </optgroup>
-    <option value="none">
+</select>
+<select style="font-size: 110%;" id="es-sg-capitalization">
+    <option value="none" selected="selected">
         &nbsp;
     </option>
     <optgroup label="&nbsp;Capitalization Standards">

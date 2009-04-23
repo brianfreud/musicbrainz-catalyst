@@ -248,13 +248,6 @@
                                 </span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#options-javascript_attr_presets">
-                                <span>
-                                    [% l('Add / Edit Release Presets') %]
-                                </span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <fieldset id="options-javascript_general">
@@ -298,17 +291,6 @@
                         { widget = 'JS_es_styleGuidelines', label=l('Enable the Style Guidelines module.') },
                         ] %]
                     [% PROCESS fields %]
-                </fieldset>
-                <fieldset id="options-javascript_attr_presets">
-                    <div style="display: none;">
-                        [% fields = [
-                            { widget = 'JS_attr_preset1', label='' },
-                            { widget = 'JS_attr_preset2', label='' },
-                            { widget = 'JS_attr_preset3', label='' },
-                            { widget = 'JS_attr_preset4', label='' },
-                            ] %]
-                        [% PROCESS fields %]
-                    </div>
                 </fieldset>
             </fieldset>
             <fieldset id="options-display">

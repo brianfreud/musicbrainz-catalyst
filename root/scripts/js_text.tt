@@ -3,7 +3,6 @@
  ===========================================================================================*/
 var text                   = [];
 text.AddRE                 = "[% l("Add a release event") %]";
-text.AllLoaded             = "[% l("All JavaScript has been loaded.") %]";
 text.AmazonCatalog         = "[% l("This would appear to be an Amazon ASIN, and not a catalog number.  Please note that Amazon ASINs should not be entered here, but should instead be added as a release - url Advanced Relationship.") %]";
 text.RERemove              = "[% l("Remove release event") %]";
 text.AddTrack              = "[% l("Add Track") %]";

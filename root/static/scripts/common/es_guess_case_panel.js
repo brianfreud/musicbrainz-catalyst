@@ -16,6 +16,19 @@ $(function() {
     $gckeepUppercased = handleCookie("get", "es-gc-checkbox1", true); // Keep uppercase words uppercased.
     $gcautoFixTitle = handleCookie("get", "es-gc-checkbox2", false);  // Automatically Guess Case track titles.
     $gcTurkishI = handleCookie("get", "es-gc-checkbox3", false);      // Use Turkish rules for capitalization.
+    /* -------------------------------------------------------------------------*/
+    /* Turn on show/hide functionality
+    /* -------------------------------------------------------------------------*/
+    $("#js-fieldset-gc-trigger-show").click(function() {
+        $("#js-fieldset-gc").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-gc-trigger-hide").click(function() {
+        $("#js-fieldset-gc").addClass("hidden");
+        $("#js-fieldset-gc-trigger-show").removeClass("hidden");
+        $("#js-fieldset-gc-trigger-hide").addClass("hidden");
+    });
     /* --------------------------------------------------------------------- */
     /* Hook the blur event for all GC fields to enable storing after         */
     /* manual changes and to enable automatic Guess Casing specifically      */
@@ -41,15 +54,10 @@ $(function() {
     },
     /* --------------------------------------------------------------------- */
     /* Test and handle track durations auto-correction & history triggers.   */
-    /* REMOVE ME
     /* --------------------------------------------------------------------- */
     renewGCDurations = function() {
         unbindGuessCase("2", "duration");
-        if ($gcautoFixDuration === true) {
-            bindGuessCase("2", "duration", true);
-        } else {
-            bindGuessCase("2", "duration", false);
-        }
+        bindGuessCase("2", "duration", true);
     },
     /* --------------------------------------------------------------------- */
     /* Test and handle track titles auto-correction & history triggers.      */
@@ -183,13 +191,6 @@ $(function() {
     bindGuessCase("3", "label", false);
     bindGuessCase("4", "text", false);
     bindGuessCase("5", "textartist", false);
-    /* --------------------------------------------------------------------- */
-    /* Run Guess Case on page load if the user has that option turned on.    */
-    /* REMOVE ME
-    /* --------------------------------------------------------------------- */
-    if ($gcpageload === true) {
-        guessAllAll();
-    }
 });
 /*************************************************************************************
  * END GUESS CASE PANEL AND BUTTONS SECTION                                          *

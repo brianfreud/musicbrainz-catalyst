@@ -145,8 +145,8 @@ function loadFiles() {
                 } else if (fileToLoad.match(/^es_/)) { // If this is an Edit Suite file
                     fileToLoad = filelocs.serverCommon + fileToLoad; // Prepend that subdirectory name onto the file name
                 }
-                if (fileToLoad == "js_text.tt") {
-                        fileToLoad = "http://" + filelocs.serverBase + "/scripts/js_text.tt";
+                if (fileToLoad == "js_text") {
+                        fileToLoad = "http://" + filelocs.serverBase + "/js_text";
                         $.ajax({
                             type: "GET",
                             url: fileToLoad,
@@ -201,44 +201,6 @@ function startLoad() {
  * Launches and displays the Edit Suite.                                                    *
  ********************************************************************************************/
 $(function() {
-    /* -------------------------------------------------------------------------*/
-    /* Unhide the modules                                                       */
-    /*     (ensures that non-JQuery browsers never see the JS modules)          */
-    /* -------------------------------------------------------------------------*/
-    $modules.removeClass("hidden");
-    /* -------------------------------------------------------------------------*/
-    /* Turn on show/hide functionality for the JS modules.                      */
-    /* -------------------------------------------------------------------------*/
-    $("#js-fieldset-gc-trigger-show").click(function() {
-        $("#js-fieldset-gc").removeClass("hidden");
-        $("#js-fieldset-gc-trigger-hide").removeClass("hidden");
-        $("#js-fieldset-gc-trigger-show").addClass("hidden");
-    });
-    $("#js-fieldset-gc-trigger-hide").click(function() {
-        $("#js-fieldset-gc").addClass("hidden");
-        $("#js-fieldset-gc-trigger-show").removeClass("hidden");
-        $("#js-fieldset-gc-trigger-hide").addClass("hidden");
-    });
-    $("#js-fieldset-sr-trigger-show").click(function() {
-        $("#js-fieldset-sr").removeClass("hidden");
-        $("#js-fieldset-sr-trigger-hide").removeClass("hidden");
-        $("#js-fieldset-sr-trigger-show").addClass("hidden");
-    });
-    $("#js-fieldset-sr-trigger-hide").click(function() {
-        $("#js-fieldset-sr").addClass("hidden");
-        $("#js-fieldset-sr-trigger-show").removeClass("hidden");
-        $("#js-fieldset-sr-trigger-hide").addClass("hidden");
-    });
-    $("#js-fieldset-tp-trigger-show").click(function() {
-        $("#js-fieldset-tp").removeClass("hidden");
-        $("#js-fieldset-tp-trigger-hide").removeClass("hidden");
-        $("#js-fieldset-tp-trigger-show").addClass("hidden");
-    });
-    $("#js-fieldset-tp-trigger-hide").click(function() {
-        $("#js-fieldset-tp").addClass("hidden");
-        $("#js-fieldset-tp-trigger-show").removeClass("hidden");
-        $("#js-fieldset-tp-trigger-hide").addClass("hidden");
-    });
     /* ------------------------------------------------------------------------ */
     /* Create container for the Guess All, Undo All, Revert All,                */
     /* and mode selector dropdown.                                              */
@@ -310,7 +272,7 @@ $(function() {
     /* ------------------------------------------------------------------------ */
     /* Lazy-load the Edit Suite files.                                          */
     /* ------------------------------------------------------------------------ */
-    toBeLoaded.push("js_text.tt"); // Must be the first file loaded
+    toBeLoaded.push("js_text"); // Must be the first file loaded
     startLoad();
     toBeLoaded.push("jquery.jquery-ui.js");
     startLoad();
@@ -351,5 +313,13 @@ $(function() {
     }
     startLoad();
     $('head').append('<script type="text/javascript" href="http://www.google.com/jsapi?key=ABQIAAAAutQrCy8v9EMhfZsC7lEANBSTu9g1Vv0xmF87JHH0oUgrycAWThRHDU_DQ9OlY04hXHLL-FL4RKHaKA"></style>');
-    $('#es-statusbar-text').text(text.AllLoaded);
+    /* -------------------------------------------------------------------------*/
+    /* Hide the load status indicator, now that all files have been loaded.
+    /* -------------------------------------------------------------------------*/
+    $(".js-progress-text").addClass("hidden");
+    /* -------------------------------------------------------------------------*/
+    /* Unhide the modules                                                       */
+    /*     (ensures that non-JQuery browsers never see the JS modules)          */
+    /* -------------------------------------------------------------------------*/
+    $modules.removeClass("hidden");
 });

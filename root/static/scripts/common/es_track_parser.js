@@ -1,4 +1,17 @@
 $(function() {
+    /* -------------------------------------------------------------------------*/
+    /* Turn on show/hide functionality
+    /* -------------------------------------------------------------------------*/
+    $("#js-fieldset-tp-trigger-show").click(function() {
+        $("#js-fieldset-tp").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-tp-trigger-hide").click(function() {
+        $("#js-fieldset-tp").addClass("hidden");
+        $("#js-fieldset-tp-trigger-show").removeClass("hidden");
+        $("#js-fieldset-tp-trigger-hide").addClass("hidden");
+    });
     var inputField,
         tempArtistStore = "",
         trackCount,

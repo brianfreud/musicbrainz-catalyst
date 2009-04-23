@@ -1,4 +1,17 @@
 $(function() {
+    /* -------------------------------------------------------------------------*/
+    /* Turn on show/hide functionality
+    /* -------------------------------------------------------------------------*/
+    $("#js-fieldset-sr-trigger-show").click(function() {
+        $("#js-fieldset-sr").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-hide").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-show").addClass("hidden");
+    });
+    $("#js-fieldset-sr-trigger-hide").click(function() {
+        $("#js-fieldset-sr").addClass("hidden");
+        $("#js-fieldset-sr-trigger-show").removeClass("hidden");
+        $("#js-fieldset-sr-trigger-hide").addClass("hidden");
+    });
     var setSearchField = function(str) {
         $("#es-sr-input-search").attr("value",str);
     }

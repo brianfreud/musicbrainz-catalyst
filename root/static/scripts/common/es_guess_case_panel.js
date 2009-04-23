@@ -4,7 +4,7 @@
  * Function: (default)                                                               *
  *                                                                                   *
  * Loads on page ready, activates the Guess Case panel, attaches appropriate GC      *
- * buttons to the form.  (Button creation code is in es_main.js.)                    *
+ * buttons to the form.  (Button creation code is in es_functions.js.)               *
  *************************************************************************************/
 $(function() {
 /****************************************************************************************************************************************
@@ -156,9 +156,19 @@ $(function() {
             var i = $("#es-gc-selection-copy").selectedValues()[0];
             $modeSelection.selectOptions(i);
             $mode = handleCookie("set", "es-gc-mode", i);
+        })
+        .keyup(function() {
+            var i = $("#es-gc-selection-copy").selectedValues()[0];
+            $modeSelection.selectOptions(i);
+            $mode = handleCookie("set", "es-gc-mode", i);
         });
         var $modeSelectionClone = $("#es-gc-selection-copy");
         $modeSelection.change(function() {
+            var i = $modeSelection.selectedValues()[0];
+            $modeSelectionClone.selectOptions(i);
+            $mode = handleCookie("set", "es-gc-mode", i);
+        })
+        .keyup(function() {
             var i = $modeSelection.selectedValues()[0];
             $modeSelectionClone.selectOptions(i);
             $mode = handleCookie("set", "es-gc-mode", i);

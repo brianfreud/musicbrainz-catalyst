@@ -4,16 +4,17 @@
         <label for="es-gc-selection">
             [%- l('Select the appropriate casing mode:') -%]
             <select id="es-gc-selection">
-                <option value="English" selected="selected">
-                    [%- l('English Mode') -%]
-                </option>
                 [%- BLOCK languageOptions -%]
-                    <option value="[%- language.value -%]">
+                    <option value="[%- language.value -%]"
+                        [% IF language.value == "English" %]
+                            selected="selected"
+                        [% END -%]>
                         [%- language.description -%]
                     </option>
                 [%- END -%]
                 [%- languages = [
                     { value="Czech"      description => l('Czech Mode') },
+                    { value="English"    description => l('English Mode') },
                     { value="French"     description => l('French Mode') },
                     { value="Latvian"    description => l('Latvian Mode') },
                     { value="Lithuanian" description => l('Lithuanian Mode') },

@@ -10,7 +10,6 @@ function howMuchHistory(type, number) {
 }
 /* Store text in history, if it has been changed */
 function storeHistory(text, type, number) {
-console.log(text + type + number);
     if (dataHistory[type][number][howMuchHistory(type, number)] != text || howMuchHistory(type, number) === 0) {
         dataHistory[type][number].push(text);
     }

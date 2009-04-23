@@ -1865,7 +1865,6 @@ function findBasicErrors(ruleSet, type, number, stringBeingFixed, mode, keepUppe
     /* ---------------------------------------------------------------------*/
     /* Convert HTML entities into text.                                     */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    A");
     stringBeingFixed = $(document.createElement("textarea")).html(stringBeingFixed.replace("<","&lt;")
                                                                                   .replace(">","&gt;")
                                                                                   .replace("&","&#38;"))
@@ -1882,7 +1881,6 @@ console.log(stringBeingFixed+"    A");
     /* ---------------------------------------------------------------------*/
     /* Standardize some punctuation.                                        */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    B");
     stringBeingFixed = stringBeingFixed.replace(/([^\.])\.\.\s/g, "$1. ")  // doubled periods
                                        .replace(/\s\.\.([^\.])/g, " .$1")  // doubled periods
                                        .replace(/\.{4,}/g, "...")  // 4+ periods
@@ -2067,7 +2065,6 @@ console.log(stringBeingFixed+"    B");
     /* ---------------------------------------------------------------------*/
     /* Standardize spellings of some words.                                 */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    C");
     if (new RegExp("w\\/\\s|\\s\\/w").test(stringBeingFixed)) {
         storeError(text.inclFeat, type, number);
     }
@@ -2097,7 +2094,6 @@ console.log(stringBeingFixed+"    C");
     /* ---------------------------------------------------------------------*/
     /* Fix extraneous spaces before punctuation marks.                      */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    D");
     stringBeingFixed = stringBeingFixed.replace(new RegExp('\\s' + ruleSet.punctuationCharacters, "g"),
     function(str, p1) {
         return jQuery.trim(p1);
@@ -2105,7 +2101,6 @@ console.log(stringBeingFixed+"    D");
     /* ---------------------------------------------------------------------*/
     /* Fix missing spaces before punctuation marks.                         */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    E");
     stringBeingFixed = stringBeingFixed.replace(/–(\d+)/g,"\uDBC0\uDCFD$1") // Preserve spacing around number ranges
                                        .replace(/(\d+)–/g,"$1\uDBC0\uDCFD") // Preserve spacing around number ranges
                                        .replace(/\-(\d+)/g,"\uDBC0\uDCFE$1") // Preserve spacing around number ranges
@@ -2119,7 +2114,6 @@ console.log(stringBeingFixed+"    E");
     /* ---------------------------------------------------------------------*/
     /* Fix missing spaces after punctuation marks.                          */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    F");
     stringBeingFixed = stringBeingFixed.replace(new RegExp(ruleSet.spaceAfterPunctuation + "([\\w\\.]+\\s)?", "g"),
         function (str, p1, p2) {
             if (typeof(p2) !== "undefined") {  // Don't add spaces in 'good' acronyms - they'd be fixed later on, but we'd have no way to catch "U.S.A. Y.M.C.A."
@@ -2132,14 +2126,12 @@ console.log(stringBeingFixed+"    F");
     /* ---------------------------------------------------------------------*/
     /* Remove redundant whitespace.                                         */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    G");
     stringBeingFixed = jQuery.trim(stringBeingFixed.replace(/\s+/g, " "));
     /* ---------------------------------------------------------------------*/
     /* Find and store positions for any all CAPS words.                     */
     /* This is not ruleset dependant, so it must break the separation       */
     /* between stages 1 and 2.                                              */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    H");
     if (keepUpperCased) {
         AllCapsPositions = stringBeingFixed.split(" ");
         for (var n in AllCapsPositions) {
@@ -2153,17 +2145,14 @@ console.log(stringBeingFixed+"    H");
     /* ---------------------------------------------------------------------*/
     /* Make the input string all lowercase.                                 */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    I");
     stringBeingFixed = stringBeingFixed.toMusicBrainzLowerCase();
     /* ---------------------------------------------------------------------*/
     /* Fix the spacing of number ranges.                                    */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    J");
     stringBeingFixed = stringBeingFixed.replace(/\b(\d+)[\-|\‐|\–]{1,3}(\d+)\b/g,"$1"+ruleSet.dashRange+"$2");
     /* ---------------------------------------------------------------------*/
     /* Fix the spacing and dash type of phone numbers.                      */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    K");
     stringBeingFixed = stringBeingFixed.replace(/(\(?)(\d{3})(\))?\s?(?:.\s)?(\d{3})(?:\s?.\s?)(\d{4})\b/g, // North American phone numbers
         function(str,p1,p2,p3,p4,p5) {
             return p1+p2+p3+" "+p4+ruleSet.dashFigure+p5;
@@ -2172,7 +2161,6 @@ console.log(stringBeingFixed+"    K");
     /* ---------------------------------------------------------------------*/
     /* Fix the spacing and dash type around quotation marks.                */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    L");
     stringBeingFixed = stringBeingFixed.replace(/([\-\‐\―])?(\s?\"\s?)/g,
         function(str,p1,p2) {
             if (null !== p1 && typeof(p1) !== "undefined" && p1 !== " " && p1 !== "") {
@@ -2186,7 +2174,6 @@ console.log(stringBeingFixed+"    L");
     /* ---------------------------------------------------------------------*/
     /* Fix the spacing and punctuation of times.                            */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    M");
     stringBeingFixed = stringBeingFixed.replace(/\s(\d{1,2})[:\.]\s(\d{1,2})\s?(a|p)\.?m\.?/gi,
         function(str,p1,p2,p3) {
             return " "+p1+":"+p2+" "+p3.toMusicBrainzLowerCase()+".m.";
@@ -2195,7 +2182,6 @@ console.log(stringBeingFixed+"    M");
     /* ---------------------------------------------------------------------*/
     /* Fix commonly misspelled words.                                       */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    N");
     var misspelledWords = "(acaroling|absense|acapela|acapella|accapela|acapella|acappella|acappela|accappella|occapella|a\\scapella|" +
                            "accoustic|accordian|adagioallegro|adago|adiago|agagio|adantino|afroamerican|agression|agressive|airbourne|" +
                            "aligator|alladin|allergro|allgro|alegro|allogro|allego|allegetto|alegretto|aleegretto|allegreto|allamerican|" +
@@ -2600,11 +2586,9 @@ console.log(stringBeingFixed+"    N");
  * Modified and extended by BrianFreud                                                  *
  ****************************************************************************************/
 (function() {
-    this.fixCapitalization = function(ruleSet, type, number, stringBeingFixed, mode, keepUpperCased, uppercaseRoman) {
-console.log(stringBeingFixed+"    O");
+    this.fixCapitalization = function(ruleSet, type, number, stringBeingFixed, mode, keepUpperCased) {
         var lower = function(word) {
                 return word.toMusicBrainzLowerCase();
-console.log(word);
         },
             upper = function(word) {
                 return titleCaseString(word);
@@ -2620,7 +2604,6 @@ console.log(word);
                 return (characterListRegExp).test(word) ? punct+word: punct+upper(word);
         };
         /* Capitalize individual words. */
-console.log(stringBeingFixed+"    P");
         if (ruleSet.changeCapitalization) {
             var punct = ruleSet.punctuationCharacters,
                 smallwords = "("+ruleSet.lowerCaseWords.join("|")+")", // Convert data array to a regexp-friendlier format
@@ -2649,7 +2632,6 @@ console.log(stringBeingFixed+"    P");
             /* ---------------------------------------------------------------------*/
             /* Find and store ambiguous always UPPERCASE words.                     */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    Q1");
             if (reportErrors) {
                 var ambigWord = stringBeingFixed.match(new RegExp("\\b" + ruleSet.ambiguousUppercasedWords + "\\b", "ig"));
                 if (ambigWord !== null) {
@@ -2666,11 +2648,10 @@ console.log(stringBeingFixed+"    Q1");
         /* Don't convert Roman to special unicode symbols, see                  */
         /*   http://www.unicode.org/versions/Unicode5.1.0/ (Search on "roman")  */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    Q2");
         var upperAll = function(str) {
             return str.toMusicBrainzUpperCase();
         };
-        if (ruleSet.usesRomanNumerals && uppercaseRoman) {
+        if (ruleSet.usesRomanNumerals) {
             var romanparts = [];
             romanparts = stringBeingFixed.split(" ");
             for (var n in romanparts) {
@@ -2683,7 +2664,6 @@ console.log(stringBeingFixed+"    Q2");
         /* ---------------------------------------------------------------------*/
         /* Find and un-all-capitalize Roman numerals that happen to be words.   */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    S");
         var romanParts = [];
         romanParts = stringBeingFixed.split(" ");
         for (var s in romanParts) {
@@ -2709,7 +2689,6 @@ console.log(stringBeingFixed+"    S");
         /* Find and re-all-capitalize initial ALLCAPS words.                    */
         /* AllCapsPositions was caught and stored in stage 1.                   */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    T");
         if (keepUpperCased) {
             var allcapsparts = stringBeingFixed.split(" ");
             for (var p in allcapsparts) {
@@ -2723,7 +2702,6 @@ console.log(stringBeingFixed+"    T");
         /* alwayslowercased is the superior rule to the ALLCAPS option for      */
         /* single letter alwayslowercased words.                                */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    U");
         var lowercasedparts = [];
         lowercasedparts = stringBeingFixed.split(" ");
         for (var st in lowercasedparts) {
@@ -2744,7 +2722,6 @@ console.log(stringBeingFixed+"    U");
         /* Clear extraneous whitespace that pops up if a punctuation character  */
         /* which is spaceAfterPunctuation is the last character inside a ().    */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    W");
         stringBeingFixed = stringBeingFixed.replace(/\((.+)\)/g,
             function(str, p1) {
                 return "("+jQuery.trim(p1)+")";
@@ -2754,7 +2731,6 @@ console.log(stringBeingFixed+"    W");
         /* Capitalize first word inside parenthesis, brackets, and / separated  */
         /* substrings.                                                          */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    X");
         if (ruleSet.capitalizeFragments) {
             stringBeingFixed = stringBeingFixed.replace(new RegExp(ruleSet.fragmentPunctuation + "\\s?.", "g"),
             function(a) {
@@ -2765,7 +2741,6 @@ console.log(stringBeingFixed+"    X");
             /* instances in 'foo / (foo (foo) foo / foo'.  Otherwise, '/ (' gets    */
             /* snagged, and the first '(f' gets missed.                             */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    Y");
             stringBeingFixed = stringBeingFixed.replace(new RegExp("\\/\\s.", "g"),
             function(a) {
                 return a.toMusicBrainzUpperCase();
@@ -2775,18 +2750,15 @@ console.log(stringBeingFixed+"    Y");
         /* Make lowercase any non-starting alwayslowercase words which still    */
         /* are uppercased (starting and ending words inside () mainly).         */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    Z");
         stringBeingFixed = stringBeingFixed.replace(new RegExp("\\b" + smallwords + "\\b", "ig"), lower)
                                            .replace(/\(a\s/g,"(A "); // except for "A", as it is pretty much never a continuation of a thought
         /* ---------------------------------------------------------------------*/
         /* Make all UPPERCASE any commaUppercasedWords, if applicable.          */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    1");
         stringBeingFixed = stringBeingFixed.replace(new RegExp(",\\s?" + ruleSet.commaUppercasedWords + "\\s?,", "ig"), allUpper);
         /* ---------------------------------------------------------------------*/
         /* Capitalize sentences.                                                */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    2");
         stringBeingFixed = stringBeingFixed.replace(/(\w\.(\w\.)+)/g,  // Protect acronyms from spacing, to avoid U.S.A.Y.M.C.A. later on
             function (str, p1) {
                 return p1.replace(/\./g,"\uDBC0\uDC00");  // U+100000 is guaranteed to never be a valid character in *anything*
@@ -2795,7 +2767,6 @@ console.log(stringBeingFixed+"    2");
         if (ruleSet.capitalizeSentences) {
             var sentenceparts = [],
                 splitFix = function(stringBeingFixed, mark) {
-console.log(mark);
                     sentenceparts = stringBeingFixed.split(mark);
                     for (var n in sentenceparts) {
                         if (sentenceparts.hasOwnProperty(n)) {
@@ -2806,7 +2777,6 @@ console.log(mark);
                     /* Check if this punctuation mark is one that should be followed by a   */
                     /* space and/or preceeded by a space.                                   */
                     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    3");
                     if (new RegExp(ruleSet.spaceAfterPunctuation).test(mark)) {
                         if (new RegExp(ruleSet.spaceBeforePunctuation).test(mark)) {
                             return sentenceparts.join(" " + mark + " ");
@@ -2836,7 +2806,6 @@ console.log(stringBeingFixed+"    3");
         /* the first letter of an acronym, if that acronym had whitespace       */
         /* before it.                                                           */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    4");
         stringBeingFixed = stringBeingFixed.replace(/((^|\s|\()(?:\"|\')?(\w\.\s?)+)/g,
             function(str, p1) {
                 if (new RegExp(/(^|\s)((?:\w\.)(?:\s\w\.)+)/).test(p1)) {
@@ -2849,7 +2818,6 @@ console.log(stringBeingFixed+"    4");
         /* ---------------------------------------------------------------------*/
         /* Find and store possibly missed acronyms.                             */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    5");
         if (reportErrors) {
             var missedAcronyms = stringBeingFixed.match(new RegExp("([" + allUpperCaseChars + "]\\.)+\\s[" + allUpperCaseChars + "]($|\\s)"));
             if (missedAcronyms !== null) {
@@ -2859,7 +2827,6 @@ console.log(stringBeingFixed+"    5");
         /* ---------------------------------------------------------------------*/
         /* Fix words like Y'all, I'll, C'mon, ( 1 char ' 2+ chars).             */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    6");
         if (ruleSet.fixApostropheWords) {
             stringBeingFixed = stringBeingFixed.replace(new RegExp("(\\b\\w'[" + allFoldableChars + "]{2,})" ,"g"),
             function(str, p1) {
@@ -2868,7 +2835,6 @@ console.log(stringBeingFixed+"    6");
             /* ---------------------------------------------------------------------*/
             /* Exception to the above: O'Clock, O'Leary, O'Henry, and Vulcan names. */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    7");
             stringBeingFixed = stringBeingFixed.replace(/\b([to]\'\w)(\w+)\b/gi,
                 function(str, p1, p2) {
                     return p1.toMusicBrainzUpperCase() + p2.toMusicBrainzLowerCase();
@@ -2877,7 +2843,6 @@ console.log(stringBeingFixed+"    7");
             /* ---------------------------------------------------------------------*/
             /* And d'Arcy, d'Foo, etc.                                              */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    8");
             stringBeingFixed = stringBeingFixed.replace(/\bd\'(\w)(\w+)\b/gi,
                 function(str, p1, p2) {
                     return "d'" + p1.toMusicBrainzUpperCase() + p2.toMusicBrainzLowerCase();
@@ -2887,7 +2852,6 @@ console.log(stringBeingFixed+"    8");
         /* ---------------------------------------------------------------------*/
         /* Fix words like 'round.                                               */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    9");
         if (ruleSet.lowerCaseApostropheWords) {
             stringBeingFixed = stringBeingFixed.replace(/((?:^|\s)'\w)/g,
             function(str, p1) {
@@ -2897,12 +2861,10 @@ console.log(stringBeingFixed+"    9");
         /* ---------------------------------------------------------------------*/
         /* Special capitalizations.                                             */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    10");
         stringBeingFixed = stringBeingFixed.replace("Djs", "DJs");
         /* ---------------------------------------------------------------------*/
         /* Don't space around / or . in dates.                                  */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    11");
         stringBeingFixed = stringBeingFixed.replace(/(\d{1,2})\s\/\s(\d{1,2})/g,"$1/$2")
                                            .replace(/(\d{1,2})\s\/\s(\d{2,4})/g,"$1/$2")
                                            .replace(/(\d{2,4})\.\s(\d{1,2})(?:\.\s(\d{1,2}))?/g,
@@ -2923,7 +2885,6 @@ console.log(stringBeingFixed+"    11");
         /* ---------------------------------------------------------------------*/
         /* Capitalize first word of the track title, no matter what it is.      */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    12");
         if (new RegExp("\\s").test(stringBeingFixed)) {
             var sections = stringBeingFixed.split(" ");
             stringBeingFixed = titleCaseString(sections.shift()) + " " + sections.join(" ");
@@ -2933,12 +2894,10 @@ console.log(stringBeingFixed+"    12");
         /* ---------------------------------------------------------------------*/
         /* Fix lowercase sigma to correct word-ending lowercased sigma.         */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    13");
         stringBeingFixed = stringBeingFixed.replace(/(.+)σ(\s|$)/g,"$1ς$2");
         /* ---------------------------------------------------------------------*/
         /* Handle Mc/Mac names.                                                 */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    14");
         stringBeingFixed = stringBeingFixed.replace(/(\s|^)(ma?c)([A-Za-z]+)(\s|$)/gi,
             function(str,p1,p2,p3) {
                 if (p3.slice(0,1) != "x" && p3.slice(0,1) != "z") {  // Neither letter has any MacNames
@@ -2952,7 +2911,6 @@ console.log(stringBeingFixed+"    14");
         /* ---------------------------------------------------------------------*/
         /* Handle * used as character replacement (normally expletives).        */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    15");
         stringBeingFixed = stringBeingFixed.replace(/\*(\w)/g,
             function (str, p1) {
                 return "*"+p1.toMusicBrainzLowerCase();
@@ -2961,7 +2919,6 @@ console.log(stringBeingFixed+"    15");
         /* ---------------------------------------------------------------------*/
         /* Handle German es-zed (which JavaScript ignores in a toUpper!)        */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    16");
         stringBeingFixed = stringBeingFixed.replace(/([\s$])ß(.*(?:\s|$))/g,
             function(str, p1, p2) {
                 return p1+"SS"+p2.toMusicBrainzLowerCase();
@@ -2970,12 +2927,10 @@ console.log(stringBeingFixed+"    16");
         /* ---------------------------------------------------------------------*/
         /* Fix odd acronym ownership cases like O.D.'d.                         */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    17");
         stringBeingFixed = stringBeingFixed.replace(/\.\s\'d\s/g,".'d ");
         /* ---------------------------------------------------------------------*/
         /* Floating point numbers are not sentences.                            */
         /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    18");
         stringBeingFixed = stringBeingFixed.replace(/(\d+)\.\s(\d+)/g,"$1.$2");
         /* ---------------------------------------------------------------------*/
         /* #1 not # 1.                                                          */
@@ -3012,17 +2967,14 @@ console.log(stringBeingFixed+"    18");
  * Stage 3 of Guess Case, applies style guidelines to the text.                      *
  *************************************************************************************/
 function applyGuidelines(ruleSet, type, number, stringBeingFixed, mode) {
-console.log(stringBeingFixed+"    19");
     /* ---------------------------------------------------------------------*/
     /* Bang + pound is almost always character explitive replacement,       */
     /* ignore normal spacing rules.                                         */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    20");
     stringBeingFixed = stringBeingFixed.replace(/!\s?#\s?/g,"!#");
     /* ---------------------------------------------------------------------*/
     /* Fix explicit interrobangs, if the language uses them.                */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    21");
     if (ruleSet.punctuationCharacters.match("‽") !== "null") {
         stringBeingFixed = stringBeingFixed.replace(/!\s\?\s?/g, "!?")
                                            .replace(/\?\s!\s?/g, "?!");
@@ -3030,7 +2982,6 @@ console.log(stringBeingFixed+"    21");
     /* ---------------------------------------------------------------------*/
     /* Use non-breaking spaces, if there's a space in that position.        */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    22");
     stringBeingFixed = stringBeingFixed.replace(/\s([»\:;?!])/g,
         function (str, p1) {
             return ruleSet.spaceChar + p1;
@@ -3044,7 +2995,6 @@ console.log(stringBeingFixed+"    22");
     /* ---------------------------------------------------------------------*/
     /* Style-mandated artists and titles.                                   */
     /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    23");
             var testString = stringBeingFixed.toMusicBrainzLowerCase().replace(/[\[\(\{](.+)[\]\)\}]/,"$1");
             switch (testString) {
                 /* DataTrackStyle */
@@ -3129,7 +3079,6 @@ console.log(stringBeingFixed+"    23");
             /* ---------------------------------------------------------------------*/
             /* Standardize foreign words prior to applying style rules.             */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    24");
             if (ruleSet.wordForPt.length > 0) {
                 stringBeingFixed = stringBeingFixed.replace(new RegExp("\\b" + ruleSet.wordForPt + "\\b"), "part"); // Multi-language support for "pt." before standardizing
             }
@@ -3154,7 +3103,6 @@ console.log(stringBeingFixed+"    24");
             /* ---------------------------------------------------------------------*/
             /* VolumeNumberStyle.                                                   */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    25");
             stringBeingFixed = stringBeingFixed.replace(new RegExp(",?(^|\\s)[\\(\\[]?vol(?:\\.|(?:ume\\.?))\\s?([" + allFoldableChars + "\\d]+):?(.*)?", "gi"),
                 function(all, p1,p2,p3) {
                     var startOfString;
@@ -3164,13 +3112,10 @@ console.log(stringBeingFixed+"    25");
                         startOfString = "";
                     }
                     if (p3 === "" || p3 == "]") {
-console.log(stringBeingFixed+"    25a");
                         return startOfString+"Volume "+p2;
                     } else if (p3 == ")") {
-console.log(stringBeingFixed+"    25a2");
                         return startOfString+"Volume "+p2+p3;
                     } else {
-console.log(stringBeingFixed+"    25b");
                         return startOfString+"Volume "+jQuery.trim((p2).replace(/[\]\)]/g,"").replace(/#/g,"")+": "+p3);
                     }
                 }
@@ -3179,13 +3124,11 @@ console.log(stringBeingFixed+"    25b");
             /* ---------------------------------------------------------------------*/
             /* PartNumberStyle.                                                     */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    26");
             stringBeingFixed = stringBeingFixed.replace(/\s\(?p(?:ar)?ts?\.?\s(\d+)\sof\s\d+\)?/gi, " part $1 ");  //  Change "Foo Part 1 of 4" into "Foo Part 1"
             var partsInTitleRegExp = new RegExp("([" + AllPunctuation + "\\s])?\\s?\\,?[\\-?\\s\\[\\(]p(?:ar)?ts?s?\\.?\\b\\s?#?(?:\\.\\s)?([" + allFoldableChars + "\\d]+),?(?:\\s?((?:to)|(?:through)|(?:and)|&|\\-|\\‐|\\–|\\)\\s&\\s\\(p(?:ar)?ts?s?|\\+)\\s?)?#?(?:|\\s-|\\s|\\,|&|and|\\‐|\\-|\\–)+#?([" + allFoldableChars + "\\d]+)?[,:]?\\b,?\\s?(?:and|&)?\\s?([" + allFoldableChars + "\\d]+)?,?\\)?\\s?(.+)?", "gi");
             stringBeingFixed = stringBeingFixed.replace(/\s?\,?[\s\[\(]p(?:ar)?ts?s?\.?(\d+)/g," part $1")  // Catch pt1 but not pterodactyl.
                                                .replace(partsInTitleRegExp,
                 function(str, beforepunct, p1, p2, p3, p4, p5) {
-console.log("a   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + beforepunct);
                          var notASentence = false,
                              numberTextStrings = "(" + ruleSet.numberWords.join("|") + ")";
                          if (typeof(beforepunct) === "undefined") {
@@ -3208,7 +3151,6 @@ console.log("a   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                                  return false;
                              }
                          }
-console.log("A");
                          /***************************************************************************/
                          /* Fingerprint, with increasing risk of error and slowness at each step,   */
                          /* to identify if this is a PartNumberStyle case, or the word 'Part'.      */
@@ -3226,13 +3168,11 @@ console.log("A");
                              } else {
                                  notASentence = true; // p2 is never empty when it is a sentence, so if p3 == undefined, this is not a sentence.
                              }
-console.log("B");
                              if (!notASentence) {
                                  if (typeof(p3) !== "undefined") {
                                      if (new RegExp(/^[\d]$/).test(p2)) {  // Look for a number in p3.
                                          notASentence = true; // Makes the assumption that one would never use numbers right in front of "Part" unless referencing a PartNumber.  (Part 1 Foo Bar)
                                      }
-console.log("B2");
                                      if (!notASentence) {
                                          if (typeof(p4) !== "undefined") {  // Look for a number in p4.
                                              if (new RegExp(/^[\d]$/).test(p3)) {
@@ -3240,7 +3180,6 @@ console.log("B2");
                                              }
                                          }
                                      }
-console.log("C");
                                      if (!notASentence) {
                                          if (typeof(p2) !== "undefined" && typeof(p3) !== "undefined") {
                                              if (validateRoman(p2.toMusicBrainzUpperCase()) && validateRoman(p3.toMusicBrainzUpperCase())) { // Test if both are Roman numerals.
@@ -3250,7 +3189,6 @@ console.log("C");
                                                  if (p1.length === 1 && p3.length === 1) {
                                                      notASentence = true; // Makes the assumption that if there is a 1 letter string each in p1 and p3, this is not a sentence.  (Part A B Bar)
                                                  }
-console.log("D");
                                                  if (!notASentence) {
                                                      if (p1.length === 2 && p3.length === 2) {
                                                          if (checkAlphabeticalOrder(1)) {
@@ -3263,7 +3201,6 @@ console.log("D");
                                                                  notASentence = true; // If there is a 3 letter string each in p1 and p3, and they are sequential, this is not a sentence.  (Part AAA AAB Bar)
                                                              }
                                                          }
-console.log("E");
                                                          if (!notASentence) {
                                                              if (p1.length === 4 && p3.length === 4) {
                                                                  if (checkAlphabeticalOrder(1)) {
@@ -3271,60 +3208,46 @@ console.log("E");
                                                                  }
                                                              }
                                                              if (!notASentence) {
-console.log("ddd   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                                                                  if (typeof(p4) != "undefined") {
                                                                      if (validateRoman(p2.toMusicBrainzUpperCase()) && validateRoman(p4.toMusicBrainzUpperCase().replace(/^&\s(.+)\)/,"$1"))) {
                                                                          notASentence = true; // Makes the assumption that one would rarely use two Roman numerals within the three words following "Part".  (Part III Foo VI)
                                                                      }                        // p4 would only still be present at this point as sentence text, text in a subtitle, or in a '& VI)' form, hence the regexp.
                                                                  }
-console.log("F");
                                                                  /* Finally, by this point, we have only two groups left: sentences and subtitles.  Time to go back to str. */
                                                                  if (!notASentence) {
                                                                      if (str.match("Part:")) {  // Note the colon.
                                                                          notASentence = true;   // Assume it's a part number.    (Part: 2 Foo Bar)
                                                                      }
                                                                      if (!notASentence) {
-console.log("z   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                                                                          if (str.match("Pt")) {
                                                                              notASentence = true;  // Abbreviated "Pt" almost certainly indicates PartNumberStyle.  (Pt. Foo Bar)
                                                                          }
-console.log("z1");
                                                                          if (!notASentence) {
                                                                              if (str.slice(0,7).match(new RegExp("[\\.\\:]"))) {
                                                                                  notASentence = true;  // Period or colon within reasonable range of the word "Part".  Take that to indicate PartNumberStyle.  (Part: 4 Foo Bar)
                                                                              }
-console.log("z2");
                                                                              if (!notASentence) {
                                                                                  if (str.slice(0,9).match(new RegExp("\\d+"))) {
                                                                                      notASentence = true;  // A number within reasonable range of the word "Part".  Take that to indicate PartNumberStyle.  (Part   4 Foo Bar)
                                                                                  }
-console.log("z3");
                                                                                  if (!notASentence) {
-console.log("z3a");
                                                                                      if (!(new RegExp("(^[" + ruleSet.romanWordsNormal.join("|") + "|" + ruleSet.romanWordsLower.join("|") + "]$)", "i").test(p1)) || p1 == "I" || p1 == "VI") {  // Make sure it's not a Roman numeral that also happens to be a valid word in the language.
-console.log("z3b");
                                                                                          if (validateRoman(p1.toMusicBrainzUpperCase())) {
                                                                                              if (validateRoman(p3.match(new RegExp("[A-Za-z]+")).join().toUpperCase()) || validateRoman(p4.match(new RegExp("[A-Za-z]+")).join().toUpperCase())) {  // Check for a I II sequence, avoid a false positive
-console.log("zd");
                                                                                                  notASentence = true;  // The first word after "Part" is a Roman numeral, assume PartNumberStyle.  (Part II Foo Bar)
                                                                                              }
                                                                                          }
-console.log("z4");
                                                                                          if (!notASentence) {
                                                                                              if (new RegExp(numberTextStrings, "i").test(p1)) {
                                                                                                  notASentence = true;  // We matched to a written out number.  (Part One Foo Bar)
                                                                                              }
-console.log("z6");
                                                                                              if (!notASentence) {
-console.log("z7");
                                                                                                  if ((p1.length == p2.length || p2.length == p3.length) && (new RegExp("\\d").test(p1)) || new RegExp("\\d").test(p3)) {
-console.log("z8");
                                                                                                      notASentence = true;  // Look for mixed letter/number part numbers, like A1, A1a, etc.
                                                                                                  }
                                                                                              }
 
                                                                                          } // At this point, give up, and assume it's a sentence.
-console.log("I");
                                                                                      }
                                                                                  }
                                                                              }
@@ -3342,7 +3265,6 @@ console.log("I");
                              }
                          }
                          if (!notASentence) {
-console.log("sentence");
                              return str;  // It *is* a sentence.  Return it unchanged.
                          }
                          if (typeof(p2) === "undefined") {
@@ -3481,12 +3403,8 @@ console.log("sentence");
                          ***********************************************************
                          * First, to clean out p4...
                          ***********************************************************/
- console.log("b   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                           p4 = jQuery.trim(p4.replace(/[\(\.,&\)]/g,"")            // Do not remove the colons or dashes, but remove all ( . , & )
                                      .replace(/\bp(?:ar)?ts?\.?\s/i,""));           // and all those unneeded "Part"s.
-//                                     .replace(new RegExp("^([" + allFoldableChars + "\\d]+)\uDBC0\uDC01/"),"$1 / ");
-//                                     .replace(/\uDBC0\uDC01/," \uDBC0\uDC01");
- console.log("c   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                          /***********************************************************
                           *               1    |       |
                           *               1    |  1    |
@@ -3521,13 +3439,11 @@ console.log("sentence");
                           * Now we need to split out Subtitles.  It's assumed that
                           * each part does not have its own subtitle.
                           ***********************************************************/
-console.log("d   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                           var partSubtitle = "";
                           if (new RegExp("^[\\/:]").test(p4)) {
                               partSubtitle = jQuery.trim(p4.replace(/:/," "));  // Found a colon or slash starting p4, store p4,
                               p4 = "";                                          // then empty out p4.
                           }
-console.log("e   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                          /***********************************************************
                           * Now check p2 and p4, looking for range
                           * indicators: to, through, -, ‐, –
@@ -3550,13 +3466,11 @@ console.log("e   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                                partSubtitle = " \uDBC0\uDC01 " + partSubtitle;
                                p4 = p4.replace("\uDBC0\uDC01","");
                            }
-console.log("z3   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                            if (new RegExp("\\s","g").test(p4)) {  // If p4 still has a space in it, there's at least part of the subtitle stuck in there.
                                var tempP4 = p4.split(" ");
                                p4 = tempP4.shift().replace(":","");
                                partSubtitle = partSubtitle + tempP4.join(" ");
                            }
-console.log("e3   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                          /***********************************************************
                           *                 1    |     |
                           *                 1    |  1  |
@@ -3583,7 +3497,6 @@ console.log("e3   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " 
                               Part1Type = "",
                               Part2Type = "",
                               Part3Type = "";
-console.log("z   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                          /***********************************************************
                           * Roman Numbers
                           ***********************************************************/
@@ -3598,7 +3511,6 @@ console.log("z   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                                       }
                                   }
                               }
-console.log("z2   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                               if (typeof(p3) != "undefined") {
                                   toTest = p3.toMusicBrainzUpperCase();
                                   if (validateRoman(toTest)) {
@@ -3609,7 +3521,6 @@ console.log("z2   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " 
                                       }
                                   }
                               }
-console.log("z3   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                               if (typeof(p4) != "undefined") {
                                   toTest = p4.toMusicBrainzUpperCase();
                                   if (validateRoman(toTest)) {
@@ -3626,9 +3537,7 @@ console.log("z3   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " 
                                       }
                                   }
                               }
-console.log("z4   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
                           }
-console.log("5   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                          /***********************************************************/
                           function searchForType(pattern, partType, searchSwitch) {
                               var searchRange = new RegExp(pattern, searchSwitch);
@@ -3679,20 +3588,16 @@ console.log("5   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                           * Numbers
                           ***********************************************************/
                           searchForType("^[\\d]+$", "Arabic", "");
-console.log("6   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                          /***********************************************************
                           * Spelled out numbers (if applicable for the language)
                           ***********************************************************/
                           if (ruleSet.numberWords.length > 0) {
                               searchForType("^" + numberTextStrings + "$", "Spelled", "i");
                           }
-console.log("7   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                          /***********************************************************
                           * Letters + Numbers
                           ***********************************************************/
                           searchForType("^[" + allFoldableChars + "\\d]+$", "Mixed", "i");
-console.log("9   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
- console.log("c   " + Part1 + "    |    " + Part2 + "    |    " +  Part3 );
                           if (Part1Type == "Mixed" && !new RegExp("\\d").test(Part1)) {
                               Part1Type = "Letters";  // Avoid mismatch between Part 1a & 1b, Part A: The Subtitle, and Part A: 1b
                           }
@@ -3702,7 +3607,6 @@ console.log("9   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                           if (Part3Type == "Mixed" && !new RegExp("\\d").test(Part3)) {
                               Part3Type = "Letters";
                           }
-console.log("8   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                           if (typeof(Part1) == "undefined") {
                               Part1 = "";
                           }
@@ -3721,7 +3625,6 @@ console.log("8   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " +
                           if (typeof(Part3Type) == "undefined") {
                               Part3Type = "";
                           }
-console.log("Brian Here   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|" + partSubtitle);
                          /***************************************************************************
                           * Now to filter those into text to return.
                           ***************************************************************************
@@ -3837,7 +3740,6 @@ console.log("Brian Here   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 +
                                                      }
                                                 );
                                 }
-console.log("str2    "+str);
                                           return str;
                           },
                               twoParts = function(spacer) {
@@ -3858,7 +3760,6 @@ console.log("str2    "+str);
                               if (typeof(spacer) == "undefined") {
                                   spacer = " ";
                               }
-console.log("running part 3");
                               if (RangeBetweenOneTwo) {
                                   if (RangeBetweenTwoThree) {  // Parts 1 - 3 - 5 => Parts 1 - 5
                                       return partString + "s " + Part1 + spacer + ruleSet.dashRange + spacer + Part3;
@@ -3900,7 +3801,6 @@ console.log("running part 3");
                           if (Part3Type == "Roman") {
                               Part3 = Part3.toMusicBrainzUpperCase();
                           }
-console.log(Part1Type + " " + Part2Type + " " + Part3Type);
                           PartFilter:
                           switch (Part1Type) {
                               case "":  // Should never happen, but just in case
@@ -4002,60 +3902,46 @@ console.log(Part1Type + " " + Part2Type + " " + Part3Type);
                                   }
                                   break PartFilter;
                               case "Letters":
-// Foo part a The Subtitle -> Foo, Parts A & the: Subtitle
-// Foo part a b The Subtitle -> Foo, Parts A & B: Subtitle
-console.log("Letters Part 1");
                                       Part1 = Part1.toMusicBrainzUpperCase();
                                       if (Part2Type == "Letters") {
-console.log("Letters Part 2");
                                           switch (Part3Type) {
                                           case "":
-console.log("Letters case 1");
                                               // Letters, Letters, empty
                                               if (Part1.length == Part2.length) { // Part A The should become Part A: The, not Parts A & The
-console.log("Letters case 1-1");
                                                   Part2 = Part2.toMusicBrainzUpperCase();
                                                   partString = twoParts();
                                                   break PartFilter;
                                               } else {
-console.log("Letters case 1-2");
                                                   partSubtitle = jQuery.trim(Part2 + " " + partSubtitle);
                                                   partString = partString + " " + Part1;
                                                   break PartFilter;
                                               }
                                               break PartFilter;
                                           case "Letters":
-console.log("Letters case 2");
                                               // Letters, Letters, Letters
                                               if (Part1.length == Part2.length) { // Part A The Foo should become Part A: The Foo, not Parts A, The, & Foo
-console.log("Letters case 2-1");
                                                   Part2 = Part2.toMusicBrainzUpperCase();
                                                   if (Part1.length != Part3.length) { // Part A B The should become Parts A & B: The, not Parts A, B & The
-console.log("Letters case 2-1-1");
                                                       partString = twoParts();
                                                       partSubtitle = jQuery.trim(Part3 + " " + partSubtitle);
                                                       break PartFilter;
                                                   } else { // Parts A, B, & D or Parts A, B & C --> Parts A - C
-console.log("Letters case 2-1-2");
                                                       Part3 = Part3.toMusicBrainzUpperCase();
                                                       partString = threeParts(Part3Type);
                                                       break PartFilter;
                                                   }
                                               } else {
-console.log("Letters elseA");
                                                   partSubtitle = jQuery.trim(Part2 + " " + Part3 + " " + partSubtitle);
                                                   partString = partString + " " + Part1;
                                                   break PartFilter;
                                               }
                                               break PartFilter;
                                           default:
-console.log("Letters default");
                                               partSubtitle = jQuery.trim(Part2 + " " + Part3 + " " + partSubtitle);
                                               partString = partString + " " + Part1;
                                               break PartFilter;
                                           }
                                       } else {
-console.log("Letters elseB");
                                          /* Anything for Part1Type = Letters, but Part2Type and/or Part3Type != Letters   *
                                           * is not a valid Part number*s* formulation.  Combine Part2 and Part3, add them *
                                           * to p4, and set that as the value for partSubtitle.                            *
@@ -4107,13 +3993,10 @@ console.log("Letters elseB");
                                   Part1 = fixCaps(Part1);
                                   switch (Part2Type) {
                                       case "":
-console.log("---a");
                                           if (Part3Type === "") {  //  Part 1 is mixed, Parts 2 and 3 are empty
-console.log("---b");
                                               partString = partString +  " " + Part1;  // Part 1
                                               break PartFilter;
                                           } else {
-console.log("---c");
                                               partSubtitle = jQuery.trim(Part2 + " " + Part3 + " " + partSubtitle);
                                               partString = partString + " " + Part1;
                                               break PartFilter;
@@ -4124,21 +4007,17 @@ console.log("---c");
                                           if (!new RegExp("\\d").test(Part3)) {
                                               Part3Type = "Letters";  // We check for Mixed type before we check for Letters type - avoid 
                                           }                           // a mis-match on Parts 1a 1b The Subtitle
-console.log("---d");
                                           Part2 = fixCaps(Part2);
                                           switch (Part3Type) {
                                               case "":
-console.log("---e");
                                                   partString = twoParts();
                                                   break PartFilter;
                                               case "Arabic":   // Parts 1a, 1b, & 3
                                               case "Mixed":    // Parts 1a, 1b, & 1d
-console.log("---f");
                                                   Part3 = fixCaps(Part3);
                                                   partString = threeParts(Part3Type);
                                                   break PartFilter;
                                               default:
-console.log("---g");
                                                   Part2 = fixCaps(Part2);
                                                   partSubtitle = jQuery.trim(Part3 + " " + partSubtitle);
                                                   partString = twoParts();
@@ -4146,7 +4025,6 @@ console.log("---g");
                                           }
                                           break PartFilter;
                                       default:
-console.log("---h");
                                           Part1 = fixCaps(Part1);
                                           partSubtitle = jQuery.trim(Part2 + " " + Part3 + " " + partSubtitle);
                                           partString = partString + " " + Part1;
@@ -4154,41 +4032,28 @@ console.log("---h");
                                   }
                                   break PartFilter;
                           }
-console.log(beforepunct);
-console.log("9   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
-console.log("1   "+partSubtitle);
-console.log("c   " + Part1 + "    |    " + Part2 + "    |    " +  Part3 );
                           partSubtitle = jQuery.trim(jQuery.trim(partSubtitle) + " " + p5).replace(/^\s*[\-‐]+\s*/,"");
-console.log("2   "+partSubtitle);
                           partSubtitle = jQuery.trim(partSubtitle).replace(/^:[\s\‐]*/,"");
                           if (partSubtitle !== "") {
                               if (partSubtitle.slice(0,1) == "/") {
                                   partString += " " + partSubtitle;
                               } else  {
                                   if (partSubtitle.length > 1) {
-console.log("2000   "+partSubtitle);
                                       if (partSubtitle.slice(0,2) == "\uDBC0\uDC01") {
-console.log("2aaa   "+partSubtitle);
                                           partString += " " + partSubtitle;
                                       } else if (partString.charCodeAt(0) >= 55296 && partString.charCodeAt(0) <= 55299) { 
-console.log("2bbb   "+partSubtitle);
                                           partString += titleCaseString(partSubtitle.slice(0,2)) + partSubtitle.slice(2);
                                       } else {
-console.log("2ccc   "+partSubtitle);
                                           partString += ": " + titleCaseString(partSubtitle.slice(0,1)) + partSubtitle.slice(1);
                                       }
                                   } else {
-console.log("2ddd   "+partSubtitle);
                                       partString += ": " + titleCaseString(partSubtitle.slice(0,1));
                                   }
                                   partString = partString.replace(": :",":");
                               }        // Capitalize the first word of the subtitle, in case it wasn't already (words like "the"), and get rid
                           }            // of the duplicated colon, if there is one.  (In case one got caught in p5, plus the one we just added.)
-console.log("3   "+partSubtitle);
                           partString = jQuery.trim(partString.replace(/\s\s/g," "))
                                              .replace(/:\s\//,"/");  // Slash separators were protected, but still had the colon added.  Remove it.
-console.log("9   |1: " + p1 + "|2: " + p2 + "|3: " + p3 + "|4: " + p4 + "|5: " + p5 + "|");
-console.log("c   " + Part1 + "    |    " + Part2 + "    |    " +  Part3 );
                           if (beforepunct == ":") {  // Ticket 1518
                               return ", " + partString;
                           } else {
@@ -4201,7 +4066,6 @@ console.log("c   " + Part1 + "    |    " + Part2 + "    |    " +  Part3 );
             /* other punctuation marks.  Also remove hyphen between that            */
             /* and Part or Volume, if present.                                      */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    27");
             stringBeingFixed = stringBeingFixed.replace(new RegExp("([" + AllPunctuation + "]),\\s(Part|Volume)", "g"),"$1 $2")
                                                .replace(new RegExp("([" + AllPunctuation + "])\\s?(?:\\-|\\–|\\‐)\\s?(Part|Volume)", "g"),"$1 $2")
                                                .replace(/\s\sPart/,", Part")  // Add the comma back in - gets lost in the above line for cases like This Is a Song - (Parts 1 2): The Subtitle
@@ -4213,7 +4077,6 @@ console.log(stringBeingFixed+"    27");
             /* ---------------------------------------------------------------------*/
             /* DiscNumberStyle.                                                     */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    28");
             stringBeingFixed = stringBeingFixed.replace(/\(cd(\d)/i,"(cd $1")  // Safer to do this than to try and catch it in the big regexp,
                                                .replace(/\s(cd)\s?(\d)/gi," disc $2") // where removing this \/ \b would also then catch (disco)
                                                .replace(new RegExp("\\b\\,?(\\s)?[\\(\\[]?(bonus\\s)?(?:(?:dis(?:c|k))|(?:cd))(?:(?:\\b:?\\s?([" + allFoldableChars + "\\d]+):?(?:\\s(.+))?[\\)\\]]?)|$)", "i"),
@@ -4247,7 +4110,6 @@ console.log(stringBeingFixed+"    28");
             /* ---------------------------------------------------------------------*/
             /* BoxSetStyle.                                                         */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    29");
             stringBeingFixed = stringBeingFixed.replace(/\,?(?:\s)?[\(\[]?box\s(\d+)[\:\,\s](.+)?\(/i,
                 function(str, p1, p2) {
                     if (typeof(p2) === "undefined" || p2 === "" || p2 === " ") {
@@ -4261,7 +4123,6 @@ console.log(stringBeingFixed+"    29");
             /* ---------------------------------------------------------------------*/
             /* Uppercase x's in date placeholders.                                  */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    30");
             stringBeingFixed = stringBeingFixed.replace(/(\d[\dx]{3}(?:-[\dx]{2}){2})/gi,
                 function(str,p1) {
                     return p1.toMusicBrainzUpperCase();
@@ -4270,7 +4131,6 @@ console.log(stringBeingFixed+"    30");
             /* ---------------------------------------------------------------------*/
             /* Fix commonly misspelled musical terms.                               */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    31");
             stringBeingFixed = stringBeingFixed.replace(/(\b)[\s,]+(Op|Opus)[\s\.#]+($|\b)/i, ", Op. " ) // Opus
                                                .replace("accoustic","acoustic")
             /* Don't include # in the next regexp - it causes too many negative side effects. */
@@ -4288,7 +4148,6 @@ console.log(stringBeingFixed+"    31");
             /* ---------------------------------------------------------------------*/
             /* Remove useless ExtraTitleInformation.                                */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    32");
             stringBeingFixed = stringBeingFixed.replace(/[\(\[]?bonus(\s+track)?s?\s*[\)\]]?$/i,"")
                                                .replace(/[\(\[]?(previously\s)?unreleaseds?\s*[\)\]]?$/i,"")
                                                .replace(/[\(\[]?secret(\s+track)?s?\s*[\)\]]?$/i,"")
@@ -4298,7 +4157,6 @@ console.log(stringBeingFixed+"    32");
             /* ---------------------------------------------------------------------*/
             /* Lowercase roles.                                                     */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    33");
             stringBeingFixed = stringBeingFixed.replace(new RegExp("(\\(.*)" + ruleSet.roleWords + ":\\s?", "ig"),
                 function(all, prior, word) {
                     return prior + word.toMusicBrainzLowerCase() + ": ";
@@ -4447,7 +4305,6 @@ console.log(stringBeingFixed+"    33");
             /* ----------------------------------------------------------------------------------------*/
             /* Set stringBeingFixed equal to the newly built stringInProgress string.                  */
             /* *****************************************************************************************/
-console.log(stringBeingFixed+"    35");
             stringBeingFixed = stringBeingFixed.replace(/(takes?)\s?(\d+)/gi,"$1$2"); // turn it into a single word, for the moment
             /* Use etiRemixerNames for compound words, like remixer names.  (Don't forget to add a bit down below to reverse it!)  */
             var etiRemixerNames = "a cappella|bonus beats|armand van helden|dirty south|ferry corsten|flip & fill|paul oakenfield",
@@ -4464,7 +4321,6 @@ console.log(stringBeingFixed+"    35");
                                               "takes?\\d+|" + notAloneETIWords + "|" + etiRemixers + "|" + ruleSet.extraTitleInfoWords,
                 compoundETIWords = "(" + notAloneETIWords + ")";
                 /* Prep the string for etiRemixerNames listings. */
-console.log(stringBeingFixed+"    35a");
                 stringBeingFixed = stringBeingFixed.replace(new RegExp("(\\b|^|\\s|\\()(" + etiRemixerNames.replace(/\s/g,"\\s") + ")(\\b|$|\\s|\\))", "gi"),
                                                    function(str, p1, p2, p3) {
                                                        return p1+p2.toMusicBrainzLowerCase().replace(/\s/g,"")+p3;
@@ -4473,7 +4329,6 @@ console.log(stringBeingFixed+"    35a");
             var wordsToMatch = new RegExp("^"+extraTitleInformationWords+"(?:\\)|$)", "i"),
                 stringInProgress = "",
                 stringPieces = stringBeingFixed.split("/");
-console.log(stringBeingFixed+"    35b");
             jQuery.each(stringPieces, function(i) {
                 var stringBits = jQuery.trim(stringPieces[i]).split("(");
                 jQuery.each(stringBits, function(j) {
@@ -4486,10 +4341,8 @@ console.log(stringBeingFixed+"    35b");
                             break;
                         }
                     }
-console.log(stringInProgress+"    35zz");
                     if (j > 0) {
                         stringInProgress += " (";  // Add back the parentheses
-console.log(stringInProgress+"    35l");
                     }
                     if (spaceBits.length > 0) {  // Put the non ETI part back together.
                         var inETI = false,
@@ -4507,7 +4360,6 @@ console.log(stringInProgress+"    35l");
                                                         }
                                                     );
                         }
-console.log(stringInProgress+"    35yy");
                         if (!inETI) { // TitleCaps-style
                             if (ruleSet.changeCapitalization) {
                                 nonETIString = nonETIString.replace(/\bacappella\b/gi,"A Cappella"); // Turn it back into two words (non-ETI)
@@ -4518,7 +4370,6 @@ console.log(stringInProgress+"    35yy");
                                 nonETIString = nonETIString.replace(/\bacappella\b/gi,"a cappella"); // Turn it back into two words (ETI)
                         }
                         stringInProgress += nonETIString.replace(/bonusbeats/gi,"Bonus Beats"); // Turn it back into 2 words. - bonus beats
-console.log(stringInProgress+"    35n");
                     }
                     if (etiBits.length > 0) {  // Put the ETI part back together.
                         etiBits.reverse();     // We were pushing into the array while working backwards. Reverse the array to put the words back in the right order.
@@ -4530,15 +4381,12 @@ console.log(stringInProgress+"    35n");
                             tempHolder += ")";
                         }
                         stringInProgress += tempHolder;
-console.log(stringInProgress+"    35p");
                     }
                 });
-console.log(stringInProgress+"    35s");
                 if (i != (stringPieces.length-1)) {
                     stringInProgress += " / ";  // Add back the slash
                 }
             });
-console.log(stringInProgress+"    35u");
             stringBeingFixed = stringInProgress.replace(/([\b\s\(])(\d+)\"\)/,'$1$2" mix)') // Don't leave vinyl types dangling as (12")
                                                .replace(/\(\)/g,"") // "Foo (" becomes "Foo ()" - get rid of the empty ().
                                                .replace(/(?:\-|\‐)(acoustic|electric|Acoustic|Electric)(?:\-|\‐)/gi,
@@ -4553,7 +4401,6 @@ console.log(stringInProgress+"    35u");
                                                        return p1.toMusicBrainzLowerCase();
                                                    }
                                                );
-console.log(stringBeingFixed+"    35y");
 
 //            stringBeingFixed = stringBeingFixed.replace("\\(([" + allFoldableChars + "])",
   //              function(str, p1) {
@@ -4561,7 +4408,6 @@ console.log(stringBeingFixed+"    35y");
       //          }
         //    );
 
-console.log(new RegExp(compoundETIWords + "\\s(?!" + extraTitleInformationWords + ")", "gi"));
             if (ruleSet.changeCapitalization) {
                 stringBeingFixed = stringBeingFixed.replace(new RegExp(compoundETIWords + "\\s(?!" + extraTitleInformationWords + ")", "gi"),
                     function(str, p1, p2) {
@@ -4574,10 +4420,6 @@ console.log(new RegExp(compoundETIWords + "\\s(?!" + extraTitleInformationWords 
       //              }
         //        );
             }
-
-//console.log(new RegExp(compoundETIWords + "\\s[^" + extraTitleInformationWords + "]", "gi"));
-console.log(new RegExp(compoundETIWords + "\\s" + extraTitleInformationWords, "gi"));
-console.log(stringBeingFixed+"    35z");
             stringBeingFixed = stringBeingFixed.replace(/\(A\sCappella\)\svs\./g, "(a cappella) vs.")  // Treat vs. as a sentence split for A Cappella
                                                .replace(/\(feat\./gi, "(feat.")  // Don't capitalize feat.'s that already had () around them...
                                                .replace(/\(a\scappella\s\(/gi, "A Cappella (")  // Fix (a cappella (
@@ -4613,13 +4455,11 @@ console.log(stringBeingFixed+"    35z");
                                                .replace(new RegExp("\\b" + ruleSet.lowerCaseWordsEndWords +  // fix lowerCaseWordsEndWords.  (Now I've Come *O*n, I'll Go)
                                                         "(\\" + ruleSet.sentenceEndingPunctuation.join("|\\") + "|,|$)", "ig"),
                                                         function (str, p1, p2) {
-console.log("p1: "+p1+"    p2: "+p2);
                                                             return titleCaseString(p1) + p2;
                                                         }
                                                     ).replace(new RegExp("(\\" + ruleSet.sentenceEndingPunctuation.join("|\\") + "|,|$)\\s" + 
                                                         ruleSet.lowerCaseWordsEndWords + "\\b", "ig"),  // fix lowerCaseWordsEndWords.   (Now I've Come, *O*n I'll Go)
                                                         function (str, p1, p2) {
-console.log("p1: "+p1+"    p2: "+p2);
                                                             return p1 + " " + titleCaseString(p2);
                                                         }
                                                     ).replace(new RegExp("\\b" + ruleSet.lowerCaseWordsEndWords +  // fix lowerCaseWordsEndWords.  (Now I've Come *O*n and I'll Go)
@@ -4635,38 +4475,32 @@ console.log("p1: "+p1+"    p2: "+p2);
             /* ---------------------------------------------------------------------*/
             /* Warn about "incl."                                                   */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    36");
             if (new RegExp("Incl.", "i").test(stringBeingFixed)) {
                 storeError(text.including, type, number);
             }
             /* ---------------------------------------------------------------------*/
             /* Warn about covers.                                                   */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    37");
             if (new RegExp("Cover\\)", "i").test(stringBeingFixed)) {
                 storeError(text.covers, type, number);
             }
             /* ---------------------------------------------------------------------*/
             /* Fix the Netherlands.                                                 */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    38");
             stringBeingFixed = stringBeingFixed.replace(/,\sthe\snetherlands/i, ", The Netherlands");
             /* ---------------------------------------------------------------------*/
             /* A-flat and A-sharp are not the word A.                               */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    39");
             stringBeingFixed = stringBeingFixed.replace(/a(.Flat|Sharp)/,"A$1")
                                                .replace(/in\sa\,/,"in A,");
             /* ---------------------------------------------------------------------*/
             /* -flat and -sharp should always be lowercase.                         */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    40");
             stringBeingFixed = stringBeingFixed.replace(/(\-|\‐)sharp/gi,"$1sharp")
                                                .replace(/(\-|\‐)flat/gi,"$1flat");
             /* ---------------------------------------------------------------------*/
             /* Remove times trapped in the track title.                             */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    41");
             stringBeingFixed = stringBeingFixed.replace(/\((\d{1,2})\:\s?(\d{2})\)$/,
                 function (str,p1,p2) {
                     storeError(text.timeRemoved+" "+p1+":"+p2, type, number);
@@ -4676,7 +4510,6 @@ console.log(stringBeingFixed+"    41");
             /* ---------------------------------------------------------------------*/
             /* Remove years included at the end of the track title.                 */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    42");
             stringBeingFixed = stringBeingFixed.replace(/\(((?:19|20)\d{2})\)$/,
                 function (str,p1) {
                     storeError(text.yearIncludedA+" ("+p1+") "+text.yearIncludedB, type, number);
@@ -4686,19 +4519,16 @@ console.log(stringBeingFixed+"    42");
             /* ---------------------------------------------------------------------*/
             /* Remove extra space between doubled periods.                          */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    43");
             stringBeingFixed = stringBeingFixed.replace(/\.\s\./g,"..");
             /* ---------------------------------------------------------------------*/
             /* Fix square bracketed cases - ending [remix], [mix] and [feat. Foo].  */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    44");
             stringBeingFixed = stringBeingFixed.replace(/\[\sRemix\]$/,"(remix)")
                                                .replace(/\[\sMix\]$/,"(mix)")
                                                .replace(/\[\s\(feat\.(.+)\]\)/,"(feat.$1)");
             /* ---------------------------------------------------------------------*/
             /* Various other cleanup.                                               */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    45");
             stringBeingFixed = stringBeingFixed.replace(/(\s(\-|\‐|\:)|(\-|\‐|\:)\s)\s\(/," (")  // foo: (bar) and foo - live
                                                .replace(/(Symphony|Concerto),/g,"$1") // Symphony No. 1, not Symphony, No. 1
                                                .replace(/[\/:](?:\s+)?$/,"") // Trailing / and :
@@ -4708,7 +4538,6 @@ console.log(stringBeingFixed+"    45");
             /* ---------------------------------------------------------------------*/
             /* UntitledTrackStyle                                                   */
             /* ---------------------------------------------------------------------*/
-console.log(stringBeingFixed+"    46");
             switch (testString) {
                 /* UntitledTrackStyle: untitled */
                 case "":
@@ -5652,15 +5481,12 @@ function warnGerman(stringToFix, type, number) {
  *                                                                                   *
  * Main interface function for the Guess Case routines.                              *
  *************************************************************************************/
-function guessMyCase(type, number, stringToFix, language, mode, keepUpperCased, uppercaseRoman) {
+function guessMyCase(type, number, stringToFix, language, mode, keepUpperCased) {
     if (typeof(mode) !== "undefined") {
         $mode = mode;
     }
     if (typeof(keepUpperCased) !== "undefined") {
         $gckeepUppercased = keepUpperCased;
-    }
-    if (typeof(uppercaseRoman) !== "undefined") {
-        $gcuppercaseRoman = uppercaseRoman;
     }
     stringToFix = fullWidthConverter(stringToFix);
     switch (language) {
@@ -5673,6 +5499,12 @@ function guessMyCase(type, number, stringToFix, language, mode, keepUpperCased, 
             break;
         default:
             TurkishI = false;
+    }
+    // If Turkish I option is selected, override the default language setting for Turkish I mode.
+    if (typeof($gcTurkishI) != "undefined") {
+        if ($gcTurkishI == true) {
+            TurkishI = true;
+        }
     }
     if (stringToFix.length > 0) {
         var ruleSet = loadRuleSet(type, $mode),
@@ -5708,8 +5540,7 @@ function guessMyCase(type, number, stringToFix, language, mode, keepUpperCased, 
                             $mode,
                             $gckeepUppercased),
                         $mode,
-                        $gckeepUppercased,
-                        $gcuppercaseRoman),
+                        $gckeepUppercased),
                     $mode);
                 finalString = fixIotaSubstrings(finalString);
                 addErrorReport(type, number);

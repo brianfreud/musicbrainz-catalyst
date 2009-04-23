@@ -257,7 +257,12 @@ var GcButton = EsButton.extend({
         return this._super(number).click(
             function() {
                 storeHistory($(this).data("target").attr("value"), $(this).data("type"), $(this).data("number"));
-                $(this).data("target").attr("value", guessMyCase($(this).data("type"), $(this).data("number"), $(this).data("target").attr("value")));
+                // Check for the presence of a "language" dropdown in the current form.
+                if ($("select.release_language").length > 0) {
+                    $(this).data("target").attr("value", guessMyCase($(this).data("type"), $(this).data("number"), $(this).data("target").attr("value"), $("select.release_language").selectedValues()[0]));
+                } else {
+                    $(this).data("target").attr("value", guessMyCase($(this).data("type"), $(this).data("number"), $(this).data("target").attr("value")));
+                }
             }
         );
     }

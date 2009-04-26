@@ -1,12 +1,42 @@
+[%- help_links = [
+    { link => doc_link('EditingFAQ'), text => l("Editing FAQ") },
+    { link => doc_link('StyleGuideline'), text => l("Style Guidelines") },
+    { link => doc_link('HowEditingWorks'), text => l("How Editing Works") },
+] -%]
+[%- MACRO jumpTo BLOCK -%]
+    [%- WRAPPER 'forms/form.tt' -%]
+        <div>
+            [%- INCLUDE 'forms/label.tt' label=l("Jump to edit #:") for="input-jump-edit-number" class="noLink" -%]
+            [%- INCLUDE 'forms/input.tt' field="input-jump-edit-number" type="text" size=9 -%]
+            [%- INCLUDE 'forms/submit.tt' label=l("Go") inline=1 -%]
+        </div>
+    [%- END -%]
+[%- END -%]
+[%- quick_links = [
+    { link => c.uri_for('/moderation/open', release.mbid), text => l("New edits") },
+    { link => c.uri_for('/moderation/subscribed', release.mbid), text => l("Subscribed") },
+    { link => c.uri_for('/moderation/select-filter', release.mbid), text => l("Predefined edit search") },
+    { link => c.uri_for('/moderation/search', release.mbid), text => l("Advanced edit search") },
+    { text => jumpTo, noLink=1 },
+] -%]
+[%- MACRO addCaption(text) BLOCK -%]
+    <strong>
+        [%- text -%]
+    </strong>
+[%- END -%]
 [%- WRAPPER 'layout.tt' title=l('Open Edits') -%]
-    <h1>
-        [% l('Browse Edits') %]
-    </h1>
+    [% WRAPPER 'components/box.tt' header=l('Browse Edits') %]
+        <div class="navigation">
+            [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Help:')) list=help_links %]
+            [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Quick Links:')) list=quick_links %]
+        </div>
+    [%- END -%]
+    [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Results:')) list=[{ text => l("Found 19943 edits matching the current selection.") noLink=1}] %]
     [%- WRAPPER "components/with-pager.tt" -%]
         [%- WRAPPER 'forms/form.tt' quiet=1 custom=1 action=c.uri_for('/moderation/enter_votes')
             moderation=undef -%]
             [%- INCLUDE 'moderation/list.tt' -%]
-            <div style="text-align: right;">
+            <div class="edit_submit">
                 [% INCLUDE 'forms/submit.tt' label=l('Enter votes') %]
             </div>
         [%- END -%]

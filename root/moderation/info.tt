@@ -4,7 +4,9 @@
             [% l('Type:') %]
         </th>
         <td>
-            [%- moderation.Name -%]
+            <a href="[%- c.uri_for(doc_link(moderation.Name)).replace(' ', '_') _ "_Edit" -%]">
+                [%- moderation.Name -%]
+            </a>
         </td>
     </tr>
     [%- IF moderation.artist AND moderation.show_artist -%]

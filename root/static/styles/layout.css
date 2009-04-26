@@ -502,15 +502,14 @@ div.two_column_right {
     padding: 0 0.5em;
 }
 
-div.grippie {
-    background: #EEE url(/static/images/grippie.png) no-repeat scroll center 2px;
-    border-color: #DDD;
-    border-style: solid;
-    border-width: 0pt 1px 1px;
-    cursor:s-resize;
-    height: 6px;
-    width: 95.5%;
-    overflow: hidden;
+.piped_list ul li:first-child {
+    border-left: none!important;
+}
+
+.piped_list .noLink {
+    text-align: left!important;
+    width:auto!important;
+    margin-right:2pt!important;
 }
 
 .resizable-textarea textarea {

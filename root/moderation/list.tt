@@ -51,6 +51,9 @@
                 [% INCLUDE "moderation/info.tt" %]
             </td>
             <td class="actions">
+                <strong>
+                    [%- l("Votes:") -%]
+                </strong>
                 [% moderation.yes_votes %] 
                 [% l('yes') %] :
                 [% moderation.no_votes %] 

@@ -58,7 +58,6 @@
                 [% l('yes') %] :
                 [% moderation.no_votes %] 
                 [% l('no') %]
-                <br />
                 [% links = [
                     { link => c.entity_url(moderation, 'add_note'), text => l('Add note') },
                     { link => c.entity_url(moderation, 'approve'),  text => l('Approve') },

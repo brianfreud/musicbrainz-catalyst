@@ -1,10 +1,10 @@
 <table class="moderation_list">
     [%- FOREACH moderation=edits -%]
-        <tr class="seperator">
+        <tr class="seperator" name="[%- moderation.Name.replace(" ","_") -%]">
             <td colspan="3">
             </td>
         </tr>
-        <tr>
+        <tr class="edit-info" name="[%- moderation.Name.replace(" ","_") -%]">
             <td style="width: 15%">
                 <table class="details">
                     <tr>
@@ -51,25 +51,19 @@
                 [% INCLUDE "moderation/info.tt" %]
             </td>
             <td class="actions">
-                <strong>
-                    [%- l("Votes:") -%]
-                </strong>
-                [% moderation.yes_votes %] 
-                [% l('yes') %] :
-                [% moderation.no_votes %] 
-                [% l('no') %]
-                [% links = [
-                    { link => c.entity_url(moderation, 'add_note'), text => l('Add note') },
-                    { link => c.entity_url(moderation, 'approve'),  text => l('Approve') },
-                ] %]
-                [%- INCLUDE "components/piped-list.tt" list=links -%]
+                <div name="vote-summary">
+                    <strong>
+                        [%- l("Votes:") -%]
+                    </strong>
+                    [% moderation.yes_votes %] 
+                    [% l('yes') %] :
+                    [% moderation.no_votes %] 
+                    [% l('no') %]
+                </div>
             </td>
         </tr>
-        <tr>
-            <td class="under_info">
-                &nbsp;
-            </td>
-            <td class="changes">
+        <tr class="edit-actions" name="[%- moderation.Name.replace(" ","_") -%]">
+            <td class="changes" colspan="2">
                 [% INCLUDE "moderation/mods/${moderation.template}.tt"
                     new=(moderation.new_unpacked  || moderation.new_data)
                     prev=(moderation.prev_unpacked || moderation.previous_data) %]
@@ -78,12 +72,10 @@
                 [% INCLUDE "moderation/vote_options.tt" %]
             </td>
         </tr>
-        [% IF moderation.Notes.size %]
-            <tr>
+        <tr class="edit-notes" name="[%- moderation.Name.replace(" ","_") -%]">
                 <td colspan="3">
                     [% INCLUDE "moderation/notes.tt" %]
                 </td>
-            </tr>
-        [% END %]
+        </tr>
     [%- END -%]
 </table>

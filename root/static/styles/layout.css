@@ -502,8 +502,8 @@ div.two_column_right {
     padding: 0 0.5em;
 }
 
-.piped_list ul li:first-child {
-    border-left: none!important;
+.piped_list .firstPiped {
+   border-left: none!important;
 }
 
 .piped_list .noLink {

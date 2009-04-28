@@ -1,3 +1,4 @@
+[%- extra_js = "jquery/jquery.selectboxes.js showedits.js" -%]
 [%- help_links = [
     { link => doc_link('EditingFAQ'), text => l("Editing FAQ") },
     { link => doc_link('StyleGuideline'), text => l("Style Guidelines") },
@@ -17,7 +18,7 @@
     { link => c.uri_for('/moderation/subscribed', release.mbid), text => l("Subscribed") },
     { link => c.uri_for('/moderation/select-filter', release.mbid), text => l("Predefined edit search") },
     { link => c.uri_for('/moderation/search', release.mbid), text => l("Advanced edit search") },
-    { text => jumpTo, noLink=1 },
+    { text => jumpTo },
 ] -%]
 [%- MACRO addCaption(text) BLOCK -%]
     <strong>
@@ -31,7 +32,7 @@
             [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Quick Links:')) list=quick_links %]
         </div>
     [%- END -%]
-    [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Results:')) list=[{ text => l("Found 19943 edits matching the current selection.") noLink=1}] %]
+    [% INCLUDE "components/piped-list.tt" caption=addCaption(l('Results:') _ "&nbsp;") list=[{ text => l("Found FIXME:INSERTCOUNT edits matching the current selection.")}] %]
     [%- WRAPPER "components/with-pager.tt" -%]
         [%- WRAPPER 'forms/form.tt' quiet=1 custom=1 action=c.uri_for('/moderation/enter_votes')
             moderation=undef -%]

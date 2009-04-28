@@ -103,7 +103,7 @@ sub enter_votes : Local
             $votes{$id} = $vote eq 'y' ? ModDefs::VOTE_YES
                         : $vote eq 'n' ? ModDefs::VOTE_NO
                         : $vote eq 'a' ? ModDefs::VOTE_ABS
-                        : $vote eq 'c' ? ModDefs::VOTE_CANCEL
+
                         : ModDefs::VOTE_NOTVOTED;
         }
     }

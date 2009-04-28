@@ -12,7 +12,6 @@ ie-specific.js - fixes an IE bug with :hover for highlighting tracks in releases
 src/guesscase/GcMain.js - currently storing all the various code bits from the old sortname handler
 src/entervalidate.js - currently storing all old AR editing page code
 movefocus.js - somehow changes field focus within forms
-jsvoting.js - voting page controls
 entervalidate.js - handles client-side edit validation
 applytag.js - tag display and add tag functionality
 labeleditors.js - switch controls for labels
@@ -40,6 +39,7 @@ DONE:
 /root/static/scripts/switch.js - allow switchable form widgets
 /root/static/scripts/switchcontrols.js - add switchable form widget control box (add_release, edit_release)
 /root/static/scripts/userprefstabs.js - add tabs on user preferences page
+/root/static/scripts/showedits.js - voting and edit filtering controls for the open edit display page
 
 -- Edit Suite --
 /root/static/styles/extra/scripts.css - Edit Suite css.

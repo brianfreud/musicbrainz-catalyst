@@ -1,6 +1,6 @@
 [%- USE UserDate(c.user) -%]
-[% IF moderation.Notes %]
-    <table class="edit_notes">
+<table class="edit_notes">
+    [% IF moderation.Notes %]
         [% FOR note=moderation.Notes %]
             <tr>
                 <td class="author">
@@ -16,9 +16,22 @@
                 </td>
             </tr>
         [% END %]
-    </table>
-[% ELSE %]
-    <em>
-        [% l('(None)') %]
-    </em>
-[% END %]
+    [% ELSE %]
+        <tr>
+            <td />
+            <td>
+                [% l('This edit currently has no edit notes.') %]
+            </td>
+        </tr>
+    [% END %]
+    <tr id="add-edit-note-[%- moderation.id -%]">
+        <td class="author">
+            <a href="[% c.uri_for('/user/profile', note.user.name) %]">
+                [% c.user.name %]
+            </a>:
+        </td>
+        <td colspan="2">
+            [% INCLUDE forms/widgets/textarea.tt name="edit_note" id="form-add-moderation-note-edit-note-" _ moderation.id rows="4" extra_attributes='style="width: 98%;"' -%]
+        </td>
+    </tr>
+</table>

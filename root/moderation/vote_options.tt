@@ -20,6 +20,7 @@
                     [% END %]
                 [%- ELSE -%]
                     [%- options = [
+                        { label => l('Approve'), value => 'p', id => 'app' },
                         { label => l('Yes'),     value => 'y', id => 'yes' },
                         { label => l('No'),      value => 'n', id => 'no' },
                         { label => l('Abstain'), value => 'a', id => 'abs' },

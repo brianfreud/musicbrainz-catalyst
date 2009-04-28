@@ -3,12 +3,16 @@
 }
 
 table.moderation_list {
-    border: 1px solid black;
     border-collapse: collapse;
     width: 100%;
 }
 
+table.moderation_list .seperator {
+    border-top: 1px solid black;
+}
+
 table.moderation_list tr {
+    border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
 
@@ -44,7 +48,7 @@ table.moderation_list .actions {
 table.moderation_list .piped_list ul {
     margin-left: auto!important;
     margin-right: auto!important;
-    width: 11em;
+    width: 15em;
 }
 
 table.moderation_list .piped_list .list {

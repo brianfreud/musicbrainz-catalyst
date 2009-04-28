@@ -4,10 +4,13 @@
         <ul>
             [%- FOREACH link IN list -%]
                 [%- NEXT IF link.hide %]
-                [%- IF link.noLink -%]
-                    <li>[% link.text %]</li>
+                   <li[% IF loop.first %]
+                           class="firstPiped"
+                       [%- END -%]>
+                [%- IF link.link -%]
+                    <a [% link.id.defined ? 'id="' _ link.id _ '"' : '' %] href="[% link.link %]">[% link.text %]</a></li>
                 [%- ELSE -%]
-                    <li><a [% link.id.defined ? 'id="' _ link.id _ '"' : '' %] href="[% link.link %]">[% link.text %]</a></li>
+                    [% link.text %]</li>
                 [%- END -%]
             [%- END -%]
         </ul>

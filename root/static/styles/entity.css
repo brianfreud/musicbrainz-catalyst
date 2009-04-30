@@ -71,12 +71,35 @@ div.TagsBox {
     padding: 1pt 5pt;
 }
 
-div.RelationshipBox {
+div.RelationshipBox,
+div.SuggestEditsBox {
     padding: 5px;
-    background-color: #EFE8E2;
     color: #000;
     border: 1px solid;
     margin-bottom: 1em;
+}
+
+div.RelationshipBox {
+    background-color: #EFE8E2;
+}
+
+div.SuggestEditsBox {
+    background-color: #E0EAF8;
+}
+
+div.SuggestEditsBox div.suggestionGroup {
+    width: 100%;
+    margin-bottom: .5em;
+}
+
+div.SuggestEditsBox div.editHeader {
+    width: 25%;
+    padding-left: 2em;
+}
+
+div.SuggestEditsBox div.showEdits {
+    width: 85%;
+    margin: 0 auto;
 }
 
 div.annotation {

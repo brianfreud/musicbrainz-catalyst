@@ -4,6 +4,7 @@
     [%- INCLUDE "label/header.tt" -%]
     [%- INCLUDE "components/relationships.tt" source=label -%]
     [%- INCLUDE "annotation/annotation.tt" parent=label %]
+    [%- INCLUDE "scripts/module_suggest_edits.tt" label=1 -%]
     [%- IF releases.size -%]
         <table class="releases" id="label-release-list">
         <colspan>

@@ -1,3 +1,4 @@
-[% INCLUDE "annotation/annotation.tt" parent=release %]
-[% INCLUDE "components/relationships.tt" source=release %]
-[% INCLUDE "release/release.tt" %]
+[%- INCLUDE "annotation/annotation.tt" parent=release -%]
+[%- INCLUDE "components/relationships.tt" source=release -%]
+[%- INCLUDE "scripts/module_suggest_edits.tt" artist=1 label=1 release=1 track=1 -%]
+[%- INCLUDE "release/release.tt" -%]

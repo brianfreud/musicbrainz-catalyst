@@ -3,6 +3,7 @@
     <div class="TagsBox">
         [% INCLUDE "tag/summary.tt" %]
     </div>
+    [%- INCLUDE "scripts/module_suggest_edits.tt" track=1 -%]
     [% WRAPPER "components/box.tt" header=l("Track Information") %]
         <table class="details">
             <tr>

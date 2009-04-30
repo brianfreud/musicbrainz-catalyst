@@ -1,5 +1,5 @@
 [%- name = field.full_name ? field.full_name : field;
-    id = form_id(field);
+    id = id || form_id(field);
     type = type || field.widget;
     value = value || field.input || field.value;
     class = field.errors.size ? "$class error" : class;

@@ -1,5 +1,5 @@
 [%- WRAPPER "forms/form.tt" quiet=1 -%]
-    [%- INCLUDE "forms/generic/row.tt" field=form.field('query') label=search_label -%]
+    [%- INCLUDE "forms/generic/row.tt" field=form.field('query') label=search_label value=searchvalue -%]
     [%- INCLUDE "forms/submit.tt" label=l('Search') name='do_search' %]
 [% END %]
 

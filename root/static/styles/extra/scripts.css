@@ -77,13 +77,102 @@ div.overlabel-wrapper {
  display: inline;
  position: relative;
 }
+
 label.overlabel {
  color: #999;
 }
+
 label.overlabel-apply {
  color: #999;
  left: 3px;
  padding-top: 1pt;
  position: absolute;
  z-index: 1;
+}
+
+/* css classes used by the lookup function. */
+#lookup-new-entity-header {
+ background: #FB5;
+ border-bottom: thin solid #000;
+ border-top: thin solid #000;
+ font-weight: 700
+}
+
+.lookupSelect {
+ background: #FFF;
+ border: 1px solid #000;
+ display: block;
+ position: absolute;
+ z-index: 100
+}
+
+.lookupSelect img {
+ height: 16px;
+ width: 16px
+}
+
+.lookupSelect span {
+ vertical-align: top;
+ width: 100%
+}
+
+.lookupSelectAddEntityBox {
+ width: 520px
+}
+
+.lookupSelectAddEntityButton {
+ width: 10em!important
+}
+
+.lookupSelectAddEntityForm {
+ background: #F5F3EB;
+ padding: .3em 0 0 .3em
+}
+
+.lookupSelectAddEntityForm input,.lookupSelectAddEntityForm textarea {
+ width: 79%
+}
+
+.lookupSelectAddEntityForm label {
+ width: 60pt!important
+}
+
+.lookupSelectAddEntityRow {
+ padding-bottom: .2em;
+ padding-top: .2em
+}
+
+.lookupSelectButtonBox {
+ background: url(/images/buttonbox-border.gif) repeat-x #F5F3EB;
+ border-top: thin dotted #AAA;
+ padding: 5px
+}
+
+.lookupSelectCenter {
+ text-align: center
+}
+
+.lookupSelectLoading {
+ color: #333;
+ font-size: 11px;
+ font-style: italic;
+ padding: 2px 5px
+}
+
+.lookupSelectMouseNotOver {
+ background: #FFF!important;
+ color: #000!important
+}
+
+.lookupSelectMouseOver {
+ background: #534D8B!important;
+ color: #FFF!important
+}
+
+.lookupSelectResult {
+ cursor: pointer
+}
+
+.lookupSelectResultList div {
+ padding: 2px 4px
 }

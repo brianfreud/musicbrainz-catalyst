@@ -29,7 +29,7 @@
     [%- END -%]
     [%- WRAPPER 'forms/fieldset.tt' legend='Artist Details' -%]
         [%- INCLUDE "forms/generic/row.tt" field=form.field("artist_type") label=l('Type') class='artist-type' -%]
-        [%- INCLUDE "forms/generic/row.tt" field=form.field("name") label=l('Name') class='artist-name' -%]
+        [%- INCLUDE "forms/generic/row.tt" field=form.field("name") label=l('Name') class='artist-name' value=artistname -%]
         [%- INCLUDE "forms/generic/row.tt" field=form.field("sortname") label=l('Sort Name') class='artist-sort-name' -%]
         [%- INCLUDE "forms/generic/row.tt" field=form.field("resolution") label=l('Comment') class='artist-resolution' -%]
     [%- END -%]

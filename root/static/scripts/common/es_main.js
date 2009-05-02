@@ -39,19 +39,21 @@ if ($("#es-tips").length === 0) {
 }
 var $loadindicator = $("#es-loading-text"),           // div containing Edit Suite load status text
 /*===========================================================================================
- *   Locations of files                                                                     *
+ *   Locations of files and MusicBrainz services                                            *
  ===========================================================================================*/
-   filelocs = [];
-filelocs.serverBase = location.href.split("/")[2];         // Base server url
-filelocs.serverJavaScript = "/static/scripts/";            // Relative location of base scripts directory on the server
-filelocs.serverImage = "/static/images/scripts/";               // Relative location of base image directory on the server
-filelocs.serverStyles = "/static/styles/extra/";           // Relative location of base image directory on the server
-filelocs.serverJQuery = "jquery/";                         // Relative location of jQuery scripts / styles directories on the server
-filelocs.serverCommon = "common/";                         // Relative location of "common" scripts directory on the server
+    filelocs = {
+        serverBase       : location.href.split("/")[2],   // Base server url
+        serverJavaScript : "/static/scripts/",            // Relative location of base scripts directory on the server
+        serverImage      : "/static/images/scripts/",     // Relative location of base image directory on the server
+        serverStyles     : "/static/styles/extra/",       // Relative location of base image directory on the server
+        serverJQuery     : "jquery/",                     // Relative location of jQuery scripts / styles directories on the server
+        serverCommon     : "common/",                     // Relative location of "common" scripts directory on the server
+        serverJSON       : "/ws/priv/"                    // MusicBrainz JSON server path
+    },
 /*===========================================================================================
  *   CSS Classes                                                                            *
  ===========================================================================================*/
-var windowTitle     = "es-headlinetitle",             // Class for popup window title bar
+    windowTitle     = "es-headlinetitle",             // Class for popup window title bar
     windowImage     = "es-headlineimg",               // Class for popup window image
     windowMessage   = "es-message",                   // Class for popup window text
     windowConfirm   = "es-confirm",                   // Class for popup confirmation question text

@@ -1,0 +1,2 @@
+[%- DEFAULT id="" -%]
+        <input type="button" id="[% id %]" value="[%- value -%]" />

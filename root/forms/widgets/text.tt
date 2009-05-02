@@ -1,5 +1,8 @@
 <input type="[% type %]" id="[% id %]" value="[% value %]"
-       size="[% size || field.size || 30 %]" [% extra_attributes %] 
+       size="[% size || field.size || 30 %]"
+       [% IF extra_attributes != 'class=""' %]
+           [% extra_attributes %] 
+       [% END %]
        [% IF name %]
            name="[% name %]"
        [% END %]

@@ -3,7 +3,6 @@ JavaScript scripts breakdown
 ar-attributesearch.js - search controls for instruments/vocals tree, hides non-applicable AR options (I think?)
 ar-frontend.js - linkswap script, url correction
 collapsereleases.js - show/collapse (hide) scripts for artist release listing (full view), voting pages, elsewhere?
-jsselect.js - lookup support for artists/labels
 langselect.js - if it ever worked, it doesn't now, but this seems to have been an attempt at AJAX-like lang/script full/compact switching
 rellinks.js - "Relate to..." functionality
 tags.js - tag editor controls
@@ -12,8 +11,8 @@ ie-specific.js - fixes an IE bug with :hover for highlighting tracks in releases
 src/guesscase/GcMain.js - currently storing all the various code bits from the old sortname handler
 src/entervalidate.js - currently storing all old AR editing page code
 movefocus.js - somehow changes field focus within forms
-jsvoting.js - voting page controls
 entervalidate.js - handles client-side edit validation
+jsvoting.js - voting page controls
 applytag.js - tag display and add tag functionality
 labeleditors.js - switch controls for labels
 editreleasesconfig.js - equivalent of switch.tt for label names
@@ -37,7 +36,7 @@ DONE:
 /root/static/scripts/release.js - various small functions used on the show release page
 /root/static/scripts/searchresults.js - table sorting for search results pages
 /root/static/scripts/sidebar.js - show/hide sidebar button
-/root/static/scripts/switch.js - allow switchable form widgets
+/root/static/scripts/switch.js - allow switchable form widgets, including the lookup function
 /root/static/scripts/switchcontrols.js - add switchable form widget control box (add_release, edit_release)
 /root/static/scripts/userprefstabs.js - add tabs on user preferences page
 

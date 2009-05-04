@@ -724,11 +724,7 @@ sub generate_email_headers
         'Subject'      => 'Autoeditor Election: ' . $self->candidate->name,
         'Sender'       => 'Webserver <webserver@musicbrainz.org>',
         'From'         => 'The Returning Officer <returning-officer@musicbrainz.org>',
-<<<<<<< HEAD:lib/MusicBrainz/Server/AutoEditorElection.pm
-        'To'           => 'o.charles@lancaster.ac.uk',
-=======
         'To'           => '',
->>>>>>> 6b5a514d2542e9b8e7b3a1ccc1899059b8a9be19:lib/MusicBrainz/Server/AutoEditorElection.pm
         'Content-Type' => 'text/plain',
     ];
 }
